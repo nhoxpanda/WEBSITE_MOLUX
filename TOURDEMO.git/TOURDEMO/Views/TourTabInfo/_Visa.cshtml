@@ -1,0 +1,56 @@
+﻿@using CRM.Core
+@using TOURDEMO.Utilities
+@model IEnumerable<tbl_CustomerVisa>
+
+@if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+{<a data-toggle="modal" disabled="disabled" class="btn btn-success" id="btnUpdateVisa">Cập nhật</a>}
+<br />
+<br />
+<div class="table-scrollable table-custom-format">
+    <table class="table table-striped table-bordered table-hover TableVisa">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>
+                    <input type="checkbox" id="allcheckvisa" name="allcheck" onclick="SelectAllCheckVisa()" />
+                </th>
+                <th>STT</th>
+                <th>Mã KH</th>
+                <th>Tên KH</th>
+                <th>Visa</th>
+                <th>Quốc gia</th>
+                <th>Trạng thái visa</th>
+                <th>Loại visa</th>
+                <th>Ghi chú</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                int i = 1;
+                foreach (var item in Model)
+                {
+                    <tr class="odd gradeX">
+                        <td>
+                            <a style="cursor: pointer" onclick="updateVisa(@item.Id)"><i class="fa fa-edit"></i>&nbsp;Cập nhật visa</a><br />
+                            @if (ViewBag.IsDelete != null && ViewBag.IsDelete)
+                            { <a style="cursor: pointer" onclick="deleteVisa(@item.Id)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>}
+                        </td>
+                        <td>
+                            <input type="checkbox" value="@item.Id" id="checkvisa@(item.Id)" name="checkvisa" class="cbVisa" onclick="CheckSelectVisa()" />
+                        </td>
+                        <td  style="text-align: center">@i</td>
+                        <td>@item.tbl_Customer.Code</td>
+                        <td>@item.tbl_Customer.FullName</td>
+                        <td>@item.VisaNumber</td>
+                        <td>@item.tbl_Tags.Tag</td>
+                        <td>@(item.tbl_Dictionary != null ? item.tbl_Dictionary.Name : "")</td>
+                        <td>@(item.VisaTypeId != null ? item.tbl_DictionaryType.Name : "")</td>
+                        <td>@Html.Raw(item.CustomerId != null ? item.tbl_Customer.NoteVisa : "")</td>
+                    </tr>
+                            i++;
+                }
+            }
+        </tbody>
+    </table>
+</div>

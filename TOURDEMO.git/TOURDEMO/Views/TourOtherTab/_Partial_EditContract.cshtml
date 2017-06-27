@@ -1,0 +1,133 @@
+﻿@using TOURDEMO.Utilities
+@using CRM.Core
+@model tbl_Contract
+
+<div class="modal fade  bs-modal-lg" id="modal-edit-contract" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Hợp đồng</h4>
+            </div>
+            @using (Ajax.BeginForm("UpdateContract", "TourOtherTab", null, new AjaxOptions { OnFailure = "OnFailureTourTab", OnSuccess = "OnSuccessTourTab", UpdateTargetId = "hopdong" }))
+            {
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.TourId)
+                @Html.HiddenFor(model => model.CustomerId)
+                @Html.HiddenFor(model => model.CreatedDate)
+                @Html.HiddenFor(model => model.StaffId)
+                @Html.HiddenFor(model => model.DictionaryId)
+                
+                <input type="hidden" name="docId" value="@ViewBag.DocId" />
+
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Code</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        @Html.TextBoxFor(model => model.Code, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>
+                                    <label class="control-label col-lg-2 col-md-2">Tình trạng</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        <select class="form-control" id="edit-status-contracttour" name="StatusContractId" style="width: 100%">
+                                            @foreach (var item in LoadData.StatusContractList())
+                                            {
+                                                <option value="@item.Id" @(Model != null && Model.StatusContractId == item.Id ? "selected" : "")>@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Ngày ký hợp đồng</label>
+                                    <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.ContractDate, "{0:yyyy-MM-dd}", new { @class = "form-control", id = "edit-contractdate", style = "width: 100%", @type = "date",  })
+                                    </div>
+                                    <label class="control-label col-lg-2 col-md-2">Nhân viên ký</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        <select class="form-control" id="edit-permission-contracttour" name="Permission" style="width: 100%" >
+                                            @foreach (var item in LoadData.StaffList())
+                                            {
+                                                <option value="@item.Id" @(Model != null && Model.Permission == item.Id.ToString() ? "selected" : "")>[@item.Code] @item.FullName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Ngày bắt đầu</label>
+                                    <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", id = "edit-startdate", @type = "date", style = "width: 100%" })
+                                    </div>
+                                    <label class="control-label col-lg-2 col-md-2">Ngày kết thúc</label>
+                                    <div class="col-lg-4 col-md-4">
+                                            @Html.TextBoxFor(model => model.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", id = "edit-enddate", style = "width: 100%", @type="date" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Số ngày</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        @Html.TextBoxFor(model => model.NumberDay, new { @class = "form-control", type = "number", min = "0" })
+                                    </div>
+                                    <label class="control-label col-lg-2 col-md-2">Tổng giá trị</label>
+                                    <div class="col-lg-2 col-md-2">
+                                        @Html.TextBoxFor(model => model.TotalPrice, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-lg-2 col-md-2">
+                                        <select class="form-control" id="edit-currency-contracttour" name="CurrencyId" style="width: 100%" >
+                                            @foreach (var item in LoadData.CurrencyList())
+                                            {
+                                                <option value="@item.Id" @(Model != null && Model.CurrencyId == item.Id ? "selected" : "")>@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">File</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        <input type="file" class="form-control" name="FileNameContract" id="edit-file-contract" />
+                                    </div>
+                                    <label class="control-label col-lg-2 col-md-2">Tổng chi phí (dự kiến)</label>
+                                    <div class="col-lg-2 col-md-2">
+                                        @Html.TextBoxFor(model => model.TongDuKien, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-lg-2 col-md-2">
+                                        <select id="edit-currency-dukien" name="CurrencyTDK" style="width: 100%" class="form-control">
+                                            @foreach (var item in LoadData.CurrencyList())
+                                            {
+                                                <option value="@item.Id" @(Model != null && Model.CurrencyTDK == item.Id ? "selected" : "")>@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Tags</label>
+                                    <div class="col-lg-10 col-md-10">
+                                        <select class="form-control" name="TagsId" id="edit-tag-contract" style="width: 100%" multiple="multiple">
+                                            @foreach (var item in LoadData.DropdownlistLocation())
+                                            {
+                                                <option value="@item.Id" @(Model.TagsId != null && Model.TagsId.Contains(item.Id.ToString()) ? "selected" : "")>@item.Tags</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Ghi chú</label>
+                                    <div class="col-lg-10 col-md-10">
+                                        @Html.TextAreaFor(model => model.Note, new { @class = "form-control", id = "edit-note-contracttour" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center" style="margin-bottom: 20px">
+                    <button type="submit" class="btn blue">Lưu</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                </div>
+            }
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

@@ -1,0 +1,89 @@
+﻿@using CRM.Core
+@using TOURDEMO.Utilities
+@model TOURDEMO.Models.TourGuideViewModel
+
+<div class="modal fade  bs-modal-lg" id="modal-insert-guide" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Thêm mới hướng dẫn viên</h4>
+            </div>
+            @using (Ajax.BeginForm("CreateGuide", "CustomerOtherTab", null, new AjaxOptions { OnFailure = "OnFailureCustomer", OnSuccess = "OnSuccessCustomer", UpdateTargetId = "tourtuyen" }, new { id = "frmInsertGuide", enctype = "multipart/form-data" }))
+            {
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">
+                                        <input type="checkbox" name="IsVietlike" id="insert-check" /> NV công ty
+                                    </label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <select class="form-control" id="insert-guide" style="width: 100%" name="StaffId" disabled>
+                                            <option value="0">-- Chọn nhân viên --</option>
+                                            @foreach (var item in LoadData.StaffList())
+                                            {
+                                                <option value="@item.Id">[@item.Code] @item.FullName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Họ tên</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextBoxFor(model => model.SingleStaff.FullName, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Ngày sinh</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextBoxFor(model => model.SingleStaff.Birthday, new { type = "date", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Thẻ hướng dẫn viên</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextBoxFor(model => model.SingleStaff.CodeGuide, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Ngày đi</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextBoxFor(model => model.SingleGuide.StartDate, new { @class = "form-control", type = "date" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Ngày về</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextBoxFor(model => model.SingleGuide.EndDate, new { @class = "form-control", type = "date" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Hình ảnh</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="file" name="Image" class="form-control" id="insert-image-staff" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Tài liệu</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="file" name="FileStaff" multiple class="form-control" id="insert-file-staff" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center" style="margin-bottom: 20px">
+                    <button type="submit" class="btn blue">Lưu</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                </div>
+            }
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

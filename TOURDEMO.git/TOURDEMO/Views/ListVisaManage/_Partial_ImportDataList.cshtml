@@ -1,0 +1,68 @@
+﻿@using TOURDEMO.Models
+@using TOURDEMO.Utilities
+@model IEnumerable<VisaExportNew>
+@{
+    int i = 1;
+}
+
+<script>
+    $("#tbl-data-import").on("change", ".cbItem", function () {
+        var ItemID = $(this).val();
+        var currentlistItemID = $("#listItemIdI").val();
+        var stringBranchID = "";
+        if ($(this).prop('checked')) {
+            currentlistItemID += ItemID + ",";
+            $("#listItemIdI").val(currentlistItemID);
+        } else {
+            $("#listItemIdI").val(currentlistItemID.replace(ItemID + ",", ""));
+        }
+    });
+
+    function SaveImport() {
+        var dataPost = { id: $("input[name='CheckImport']:checked").val() }
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify(dataPost),
+            url: '/ListVisaManage/SaveImport',
+            contentType: "application/json; charset=utf-8",
+            dataType: "html",
+            success: function (data) {
+                alert("Đã lưu!");
+                window.location.href = '/ListVisaManage';
+            }
+        });
+    }
+</script>
+
+<div class="table-responsive table-custom-format">
+    <table class="table table-striped table-bordered table-hover" id="tbl-data-import">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>HỌ TÊN</th>
+                <th>VISA</th>
+                <th>QUỐC GIA</th>
+                <th>LOẠI VISA</th>
+                <th>TÌNH TRẠNG</th>
+                <th>NGÀY HIỆU LỰC</th>
+                <th>NGÀY HẾT HẠN</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="text-align: center">@i</td>
+                    <td>@item.HOTEN</td>
+                    <td>@item.VISA</td>
+                    <td>@item.QUOCGIA</td>
+                    <td>@item.LOAIVISA</td>
+                    <td>@item.TINHTRANG</td>
+                    <td>@item.NGAYHIEULUC</td>
+                    <td>@item.NGAYHETHAN</td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+</div>

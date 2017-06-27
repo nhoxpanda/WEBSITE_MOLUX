@@ -1,0 +1,20 @@
+﻿<div class="page-quick-sidebar-wrapper" data-close-on-body-click="false">
+    <div class="page-quick-sidebar">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="javascript:;" data-target="#quick_sidebar_tab_2" data-toggle="tab">
+                    Lịch hẹn
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" data-target="#quick_sidebar_tab_3" data-toggle="tab">
+                    Nhiệm vụ
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            @Html.Action("_Partial_Appointment", "Home")
+            @Html.Action("_Partial_Task", "Home")
+        </div>
+    </div>
+</div>

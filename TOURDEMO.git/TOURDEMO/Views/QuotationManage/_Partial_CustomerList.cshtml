@@ -1,0 +1,11 @@
+﻿@using CRM.Core;
+@using TOURDEMO.Utilities;
+@model IEnumerable<tbl_Customer>
+
+<select id="insert-code-customer" class="form-control" name="CustomerId" style="width: 100%">
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id">@item.FullName</option>
+    }
+</select>
+

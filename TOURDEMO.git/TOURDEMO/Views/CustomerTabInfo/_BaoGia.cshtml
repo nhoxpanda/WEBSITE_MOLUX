@@ -1,0 +1,74 @@
+﻿@model IEnumerable<CRM.Core.tbl_Quotation>
+@{
+    string domain = "https://view.officeapps.live.com/op/embed.aspx?src=" + Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+    int i = 1;
+}
+
+@if (ViewBag.IsAdd != null && ViewBag.IsAdd)
+{
+    <a class="btn btn-primary" onclick="btnCreateQuotation()" id="btndocumentfile"><i class=" fa fa-plus"></i>&nbsp;Thêm</a>
+}
+<br />
+<br />
+<div class="table-scrollable table-custom-format">
+    <table class="table table-striped table-bordered table-hover" id="table-pricetag">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>STT</th>
+                <th>Code</th>
+                <th>Ngày báo giá</th>
+                <th>Người báo giá</th>
+                <th>Số tiền</th>
+                <th>Quốc gia</th>
+                <th>File</th>
+                <th>Ghi chú</th>
+                <th>Người nhập</th>
+                <th>Ngày nhập</th>
+                <th>Ngày sửa</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    string ext = Path.GetExtension(item.FileName);
+                    ext = ext != null ? ext.ToLower() : "";
+                    <tr class="odd gradeX">
+                        <td>
+                            @if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+                            {<a style="cursor: pointer" onclick="updateQuotation(@item.Id)"><i class="fa fa-pencil"></i>&nbsp;Sửa</a><br />}
+                            @if (ViewBag.IsDelete != null && ViewBag.IsDelete)
+                            {<a style="cursor: pointer" onclick="deleteQuotation(@item.Id)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>}
+                        </td>
+                        <td  style="text-align: center">@i</td>
+                        <td>@item.Code</td>
+                        <td>@string.Format("{0:dd-MM-yyyy}", item.QuotationDate)</td>
+                        <td>@(item.StaffQuotationId != null ? item.tbl_StaffQuotation.FullName : "")</td>
+                        <td>@string.Format("{0:0,0}", item.PriceTour).Replace(',', '.') @item.tbl_DictionaryCurrency.Name</td>
+                        <td>@(item.CountryId != null ? item.tbl_TagsCountry.Tag : "")</td>
+                        <td>
+                            @if (ext == ".pdf" || ext == ".jpg" || ext == ".png" || ext == ".txt")
+                            {
+                                <a target="_blank" href="/Upload/file/@item.FileName">@item.FileName</a>
+                            }
+                            else
+                            {
+                                <a target="_blank" href="@domain/Upload/file/@item.FileName">@item.FileName</a>
+                            }
+                        </td>
+                        <td>@Html.Raw(item.Note)</td>
+                        <td>@item.tbl_Staff.FullName</td>
+                        <td>@string.Format("{0:dd-MM-yyyy}", item.CreatedDate)</td>
+                        <td>@string.Format("{0:dd-MM-yyyy}", item.ModifiedDate)</td>
+                        
+                    </tr>
+                            i++;
+                }
+            }
+        </tbody>
+    </table>
+</div>
+

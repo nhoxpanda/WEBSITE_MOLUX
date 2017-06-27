@@ -1,0 +1,201 @@
+﻿@using CRM.Core
+@model IEnumerable<tbl_Tags>
+
+@{
+    ViewBag.Title = "Quản lý Tag Địa điểm";
+}
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD -->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>QUẢN LÝ TAG ĐỊA ĐIỂM</h1>
+        </div>
+        <!-- END PAGE TITLE -->
+    </div>
+    <!-- END PAGE HEAD -->
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="note note-info">
+        <div class="row">
+            <div class="col-md-12">
+                <a class="btn btn-default" href="@Url.Action("Index", "LocationTagsManage")"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="table-responsive table-custom-format" id="tableDictionary-Wrapper">
+                        <div class="panel-group" id="accordion">
+                            @foreach (var item in Model.Where(p => p.ParentId == 0 && p.TypeTag == 1).ToList())
+                            {
+                                <div class="panel panel-default" id="row@(item.Id)">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse-@item.Id">
+                                                <i class="fa fa-globe"></i>&nbsp;@item.Tag
+                                            </a>
+                                            <b style="float: right">
+                                                <a style="cursor: pointer" onclick="create(@item.Id,2)" title="thêm"><i class="fa fa-plus-square"></i></a>
+                                                <a style="cursor: pointer" onclick="update(@item.Id)" title="sửa"><i class="fa fa-pencil-square"></i></a>
+                                                <a style="cursor: pointer" onclick="removeItem(@item.Id)" title="xóa"><i class="fa fa-trash"></i></a>
+                                            </b>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse-@item.Id" class="panel-collapse collapse out">
+                                        <div class="panel-body">
+                                            <div class="panel-group" id="area">
+                                                @foreach (var area in Model.Where(p => p.ParentId == item.Id && p.TypeTag == 2).ToList())
+                                                {
+                                                    <div class="panel panel-default" id="row@(area.Id)">
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title">
+                                                                <a data-toggle="collapse" data-parent="#area" href="#area-@area.Id">
+                                                                    <i class="fa fa-map"></i>&nbsp;@area.Tag
+                                                                </a>
+                                                                <b style="float: right">
+                                                                    <a style="cursor: pointer" onclick="create(@area.Id,3)" title="thêm"><i class="fa fa-plus-square"></i></a>
+                                                                    <a style="cursor: pointer" onclick="update(@area.Id)" title="sửa"><i class="fa fa-pencil-square"></i></a>
+                                                                    <a style="cursor: pointer" onclick="removeItem(@area.Id)" title="xóa"><i class="fa fa-trash"></i></a>
+                                                                </b>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="area-@area.Id" class="panel-collapse collapse out">
+                                                            <div class="panel-body">
+                                                                <div class="panel-group" id="country">
+                                                                    @foreach (var country in Model.Where(p => p.ParentId == area.Id && p.TypeTag == 3).ToList())
+                                                                    {
+                                                                        <div class="panel panel-default" id="row@(country.Id)">
+                                                                            <div class="panel-heading">
+                                                                                <h4 class="panel-title">
+                                                                                    <a data-toggle="collapse" data-parent="#country" href="#country-@country.Id">
+                                                                                        <i class="fa fa-map-pin"></i>&nbsp;@country.Tag
+                                                                                    </a>
+                                                                                    <b style="float: right">
+                                                                                        <a style="cursor: pointer" onclick="create(@country.Id,4)" title="thêm"><i class="fa fa-plus-square"></i></a>
+                                                                                        <a style="cursor: pointer" onclick="update(@country.Id)" title="sửa"><i class="fa fa-pencil-square"></i></a>
+                                                                                        <a style="cursor: pointer" onclick="removeItem(@country.Id)" title="xóa"><i class="fa fa-trash"></i></a>
+                                                                                    </b>
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div id="country-@country.Id" class="panel-collapse collapse out">
+                                                                                <div class="panel-body">
+                                                                                    <div class="panel-group" id="ac">
+                                                                                        @foreach (var ac in Model.Where(p => p.ParentId == country.Id && p.TypeTag == 4).ToList())
+                                                                                        {
+                                                                                            <div class="panel panel-default" id="row@(ac.Id)">
+                                                                                                <div class="panel-heading">
+                                                                                                    <h4 class="panel-title">
+                                                                                                        <a data-toggle="collapse" data-parent="#ac" href="#ac-@ac.Id">
+                                                                                                            <i class="fa fa-map-marker"></i>&nbsp;@ac.Tag
+                                                                                                        </a>
+                                                                                                        <b style="float: right">
+                                                                                                            <a style="cursor: pointer" onclick="create(@ac.Id,5)" title="thêm"><i class="fa fa-plus-square"></i></a>
+                                                                                                            <a style="cursor: pointer" onclick="update(@ac.Id)" title="sửa"><i class="fa fa-pencil-square"></i></a>
+                                                                                                            <a style="cursor: pointer" onclick="removeItem(@ac.Id)" title="xóa"><i class="fa fa-trash"></i></a>
+                                                                                                        </b>
+                                                                                                    </h4>
+                                                                                                </div>
+                                                                                                <div id="ac-@ac.Id" class="panel-collapse collapse out">
+                                                                                                    <div class="panel-body">
+                                                                                                        <div class="panel-group" id="province">
+                                                                                                            @foreach (var province in Model.Where(p => p.ParentId == ac.Id && p.TypeTag == 5).ToList())
+                                                                                                            {
+                                                                                                                <div class="panel panel-default" id="row@(province.Id)">
+                                                                                                                    <div class="panel-heading">
+                                                                                                                        <h4 class="panel-title">
+                                                                                                                            <a data-toggle="collapse" data-parent="#province" href="#province-@province.Id">
+                                                                                                                                <i class="fa fa-map-signs"></i>&nbsp;@province.Tag
+                                                                                                                            </a>
+                                                                                                                            <b style="float: right">
+                                                                                                                                <a style="cursor: pointer" onclick="create(@province.Id,6)" title="thêm"><i class="fa fa-plus-square"></i></a>
+                                                                                                                                <a style="cursor: pointer" onclick="update(@province.Id)" title="sửa"><i class="fa fa-pencil-square"></i></a>
+                                                                                                                                <a style="cursor: pointer" onclick="removeItem(@province.Id)" title="xóa"><i class="fa fa-trash"></i></a>
+                                                                                                                            </b>
+                                                                                                                        </h4>
+                                                                                                                    </div>
+                                                                                                                    <div id="province-@province.Id" class="panel-collapse collapse out">
+                                                                                                                        <div class="panel-body">
+                                                                                                                            <div class="panel-group" id="district">
+                                                                                                                                @foreach (var district in Model.Where(p => p.ParentId == province.Id && p.TypeTag == 6).ToList())
+                                                                                                                                {
+                                                                                                                                    <div class="panel panel-default" id="row@(district.Id)">
+                                                                                                                                        <div class="panel-heading">
+                                                                                                                                            <h4 class="panel-title">
+                                                                                                                                                <a data-toggle="collapse" data-parent="#district" href="#district-@district.Id">
+                                                                                                                                                    <i class="fa fa-location-arrow"></i>&nbsp;@district.Tag
+                                                                                                                                                </a>
+                                                                                                                                                <b style="float: right">
+                                                                                                                                                    <a style="cursor: pointer" onclick="create(@district.Id,7)" title="thêm"><i class="fa fa-plus-square"></i></a>
+                                                                                                                                                    <a style="cursor: pointer" onclick="update(@district.Id)" title="sửa"><i class="fa fa-pencil-square"></i></a>
+                                                                                                                                                    <a style="cursor: pointer" onclick="removeItem(@district.Id)" title="xóa"><i class="fa fa-trash"></i></a>
+                                                                                                                                                </b>
+                                                                                                                                            </h4>
+                                                                                                                                        </div>
+                                                                                                                                        <div id="district-@district.Id" class="panel-collapse collapse out">
+                                                                                                                                            <div class="panel-body">
+                                                                                                                                                <div class="panel-group" id="ward">
+                                                                                                                                                    @foreach (var ward in Model.Where(p => p.ParentId == district.Id && p.TypeTag == 7).ToList())
+                                                                                                                                                    {
+                                                                                                                                                        <div class="panel panel-default" id="row@(ward.Id)">
+                                                                                                                                                            <div class="panel-heading">
+                                                                                                                                                                <h4 class="panel-title">
+                                                                                                                                                                    <a href="#">
+                                                                                                                                                                        <i class="fa fa-info"></i>&nbsp;@ward.Tag
+                                                                                                                                                                    </a>
+                                                                                                                                                                    <b style="float: right">
+                                                                                                                                                                        <a style="cursor: pointer" onclick="update(@ward.Id)" title="sửa"><i class="fa fa-pencil-square"></i></a>
+                                                                                                                                                                        <a style="cursor: pointer" onclick="removeItem(@ward.Id)" title="xóa"><i class="fa fa-trash"></i></a>
+                                                                                                                                                                    </b>
+                                                                                                                                                                </h4>
+                                                                                                                                                            </div>
+                                                                                                                                                        </div>
+                                                                                                                                                    }
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                }
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            }
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        }
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE BASE CONTENT -->
+</div>
+
+<div id="modalTag"></div>
+
+@section scripts{
+<script src="~/Content/ckeditor-basic/ckeditor.js"></script>
+    <script src="~/Scripts/controller/locationtags.js"></script>
+}

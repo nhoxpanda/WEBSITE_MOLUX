@@ -1,0 +1,154 @@
+﻿@using CRM.Core;
+@using TOURDEMO.Models;
+@using TOURDEMO.Utilities
+@model CandidateViewModel
+
+@{
+    ViewBag.Title = "Quản lý Ứng viên";
+}
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>DANH SÁCH ỨNG VIÊN</h1>
+        </div>
+        <!-- END PAGE TITLE -->
+
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="note note-info">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="@Url.Action("Index", "CandidateManage")" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                @if (ViewBag.IsAdd != null && ViewBag.IsAdd)
+                {<button class="btn btn-primary" href="#modal-insert-candidate" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>}
+                @if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+                {<button class="btn btn-warning" id="btnEdit"><i class="fa fa-pencil"></i>&nbsp;Sửa</button>}
+                @if (ViewBag.IsDelete != null && ViewBag.IsDelete)
+                {<button class="btn btn-danger" id="btnRemove"><i class="fa fa-remove"></i>&nbsp;Xóa</button>
+                <form action="@Url.Action("Delete", "CandidateManage")" method="post" style="position:absolute">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="listItemId" name="listItemId" />
+                </form>
+                }
+                @if (ViewBag.IsImport != null && ViewBag.IsImport)
+                {<a class="btn green" data-toggle="modal" href="#modal-import-candidate"><i class="icon-action-redo"></i>&nbsp;Import</a>}
+                @*@if (ViewBag.IsExport != null && ViewBag.IsExport)
+                    {<label class="btn btn-info fileContainer">
+                        <a><i class="icon-action-undo"></i>&nbsp;<input type="file" name="Export" id="btnExport" class="form-control" />&nbsp;Export</a>
+                    </label>
+                        using (Html.BeginForm("ExportFile", "CandidateManage", FormMethod.Post, new { enctype = "multipart/form-data", id = "exportForm", style = "position: absolute" })) { }
+                    }*@
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="table-responsive table-custom-format" id="tableDictionary-Wrapper">
+                        <table class="table table-bordered table-hover dataTable" id="tableDictionary">
+                            <thead>
+                                <tr>
+                                    <td class="width24"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                </tr>
+                                <tr>
+                                    <th class="table-checkbox">
+                                        <input type="checkbox" id="allcb" name="allcb" onclick="SelectAllCb()" />
+                                    </th>
+                                    <th>Họ tên</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Giới tính</th>
+                                    <th>Ngày ứng tuyển</th>
+                                    <th>Vị trí ứng tuyển</th>
+                                    <th>Nơi ứng tuyển</th>
+                                    <th>CMND</th>
+                                    <th>Ngày cấp</th>
+                                    <th>Nơi cấp</th>
+                                    <th>Nơi sinh</th>
+                                    <th>Điện thoại</th>
+                                    <th>Email</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Link CV</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.listCandidates.Count; i++)
+                                {
+                                    <tr>
+                                        <td class="width24">
+                                            <input type="checkbox" value="@Model.listCandidates[i].Id" id="cb@(Model.listCandidates[i].Id)" class="cbItem" name="cb" onclick="CheckSelect()" />
+                                        </td>
+                                        <td class="textalignleft">@Model.listCandidates[i].Fullname</td>
+                                        <td>@Model.listCandidates[i].Birthday.ToShortDateString()</td>
+                                        <td>@(Model.listCandidates[i].Gender == true ? "Nam" : "Nữ")</td>
+                                        <td class="textalignleft">@Model.listCandidates[i].ApplyDate.ToShortDateString()</td>
+                                        <td class="textalignleft">@Model.listCandidates[i].InformationTechnology</td>
+                                        <td class="textalignleft">@LoadData.GetHeadquaterByID(Model.listCandidates[i].HeadQuarterName).HeadquarterName</td>
+                                        <td>@Model.listCandidates[i].IdentityCard</td>
+                                        <td>@Model.listCandidates[i].CreatedDateIdentity.ToShortDateString()</td>
+                                        <td>
+                                            @foreach (var item in Model.listTags)
+                                            {
+                                                if (Model.listCandidates[i].IdentityTagId == item.Id)
+                                                {
+                                                    @item.Tags
+                                                }
+                                            }
+                                        </td>
+                                        <td>
+                                            @foreach (var item in Model.listTags)
+                                            {
+                                                if (Model.listCandidates[i].Birthplace == item.Id)
+                                                {
+                                                    @item.Tags
+                                                }
+                                            }
+                                        </td>
+                                        <td>@Model.listCandidates[i].Phone</td>
+                                        <td class="textalignleft">@Model.listCandidates[i].Email</td>
+                                        <td>@Model.listCandidates[i].Address</td>
+                                        <td class="textalignleft">
+                                            <a target="_blank" href="~/Upload/file/@Model.listCandidates[i].ImageLink">@Model.listCandidates[i].ImageLink</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- END PAGE BASE CONTENT -->
+</div>
+@Html.Partial("_Partial_InsertCandidate", new CandidateViewModel())
+<div id="info-data-candidate">
+</div>
+@Html.Partial("_Partial_EditCandidate", new CandidateViewModel())
+@Html.Partial("_Partial_ImportCandidate")
+
+@section scripts{
+    <script src="~/Scripts/controller/candidate.js"></script>
+
+}

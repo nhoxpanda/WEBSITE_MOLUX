@@ -1,0 +1,103 @@
+﻿@using CRM.Core
+@using TOURDEMO.Models
+@using TOURDEMO.Utilities
+@model IEnumerable<CustomerListViewModel>
+
+<div class="table-responsive table-custom-format" id="tableDictionary-Wrapper">
+    <table class="table table-bordered table-hover dataTable" id="tableDictionary">
+        <thead>
+            <tr>
+                <th class="width24"></th>@*1*@
+                <th></th>@*2*@
+                <th></th>@*3*@
+                <th></th>@*4*@
+                <th></th>@*5*@
+                <th></th>
+                <th></th>
+                <th></th>@*6*@
+                <th></th>@*7*@
+                <th></th>@*8*@
+                <th></th>@*9*@
+                <th></th>@*10*@
+                <th></th>@*11*@
+                <th></th>@*12*@
+                <th></th>@*13*@
+                <th></th>@*14*@
+                <th></th>@*15*@
+                <th></th>@*16*@
+                <th></th>@*17*@
+                <th></th>@*18*@
+                <th></th>@*19*@
+                <th></th>@*20*@
+                @*<th></th>*@@*21*@
+            </tr>
+            <tr>
+                <th class="table-checkbox">
+                    <input type="checkbox" id="allcb" name="allcb" onclick="SelectAllCb()" />
+                </th>
+                @*<th>CODE</th>*@
+                <th>Danh xưng</th>
+                <th>Họ tên</th>
+                <th>Loại khách</th>
+                <th>Thẻ thành viên</th>
+                <th>Điểm</th>
+                <th>Ngày sinh</th>
+                <th>Điện thoại 1</th>
+                <th>Điện thoại 2</th>
+                <th>Địa chỉ</th>
+                <th>Ngành nghề</th>
+                <th>Nguồn khách</th>
+                <th>Nhóm khách</th>
+                <th>Quản lý</th>
+                <th>Passport</th>
+                <th>Ngày hiệu lực</th>
+                <th>Ngày hết hạn</th>
+                <th>Email</th>
+                <th>Ghi chú</th>
+                <th>Skype</th>
+                <th>Nhân viên</th>
+                <th>Ngày nhập</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="width24">
+                        <input type="checkbox" value="@item.Id" id="cb@(item.Id)" class="cbItem" name="cb" onclick="CheckSelect()" />
+                    </td>
+                    @*<td>@item.Code</td>*@
+                    @if (item.CustomerType == CRM.Enum.CustomerType.Organization)
+                    {
+                        <td>@item.Code</td>
+                    }
+                    else
+                    {
+                        <td>@item.DanhXung</td>
+                    }
+                    
+                    <td class="textalignleft" style="width: 150px">@item.Fullname</td>
+                    <td>@item.Type</td>
+                    <td>@item.MemberCard</td>
+                    <td>@item.Point</td>
+                    <td>@item.Birthday</td>
+                    <td>@item.Phone</td>
+                    <td>@item.OtherPhone</td>
+                    <td class="textalignleft" style="width: 100px">@item.Address</td>
+                    <td class="textalignleft">@item.Career</td>
+                    <td class="textalignleft">@item.NguonKhach</td>
+                    <td class="textalignleft">@item.NhomKH</td>
+                    <td>@item.QuanLy</td>
+                    <td>@item.Passport</td>
+                    <td>@item.StartDate</td>
+                    <td>@item.EndDate</td>
+                    <td class="textalignleft"><a href="mailto:@item.Email">@item.Email</a></td>
+                    <td>@Html.Raw(item.Note)</td>
+                    <td>@item.Skype</td>
+                    <td>@item.Staff</td>
+                    <td>@item.CreateDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

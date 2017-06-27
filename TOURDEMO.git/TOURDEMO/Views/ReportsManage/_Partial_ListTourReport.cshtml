@@ -1,0 +1,86 @@
+﻿@model IEnumerable<TOURDEMO.Models.TourReportViewModel>
+@{
+    int i = 1;
+}
+
+<div class="table-scrollable table-custom-format" id="tableDictionary-Wrapper">
+    <table class="table table-bordered table-hover dataTable" id="tableDictionary">
+        <thead>
+            <tr>
+                <td class="width24"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="table-checkbox">
+                    <input type="checkbox" id="allcb" name="allcb" onclick="SelectAllCb()" />
+                </th>
+                <th>Code tour</th>
+                <th>Tên tour</th>
+                <th>Điểm đến</th>
+                <th>Ngày khởi hành</th>
+                <th>Ngày kết thúc</th>
+                <th>Người điều hành</th>
+                <th>Hướng dẫn viên</th>
+                <th>Số lượng khách</th>
+                <th>Nhân viên</th>
+                <th>Khách hàng</th>
+                <th>Loại tour</th>
+                <th>Tổng GT hợp đồng (VNĐ)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="width24">
+                            <input type="checkbox" value="@item.Id" id="cb@(item.Id)" class="cbItem" name="cb" onclick="CheckSelect()" />
+                        </td>
+                        <td class="textalignleft">@item.Code</td>
+                        <td class="textalignleft">@item.Name</td>
+                        <td class="textalignleft">@item.Tag</td>
+                        <td>@item.NgayKhoiHanh</td>
+                        <td>@item.NgayKetThuc</td>
+                        <td class="textalignleft">@item.NguoiDieuHanh</td>
+                        <td class="textalignleft">@Html.Raw(item.HuongDanVien)</td>
+                        <td class="textalignright">@item.SLKhach</td>
+                        <td>@item.NhanVien</td>
+                        <td class="textalignleft">@item.KhachHang</td>
+                        <td class="textalignleft">@item.LoaiTour</td>
+                        <td class="textalignright">@(item.TongGiaTriHD != null ? string.Format("{0:0,0}", item.TongGiaTriHD) : "")</td>
+                    </tr>
+                    i++;
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td class="textalignright">Số lượng tour</td>
+                <td class="textalignleft">@Model.Count()</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="textalignright">Số lượng khách</td>
+                <td class="textalignright" style="padding-right: 5px;">@Model.Sum(p => p.SLKhach)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="textalignright" style="padding-right: 5px;">@string.Format("{0:0,0}", Model.Sum(p => p.TongGiaTriHD))</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

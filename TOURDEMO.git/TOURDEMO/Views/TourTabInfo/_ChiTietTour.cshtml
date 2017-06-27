@@ -1,0 +1,44 @@
+﻿@using CRM.Core
+@model tbl_Tour
+
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-md-6">
+            <p><b>Code tour:</b> @Model.Code</p>
+            <p><b>Tên tour:</b> @Model.Name</p>
+            <p><b>Số ngày:</b> @Model.NumberDay</p>
+            <p><b>Thời gian:</b> @string.Format("{0:dd/MM/yyyy}", Model.StartDate) - @string.Format("{0:dd/MM/yyyy}", Model.EndDate)</p>
+            <p><b>Số lượng khách:</b> @Model.NumberCustomer</p>
+        </div>
+        <div class="col-md-6">
+            <p><b>Hướng dẫn viên:</b> @(Model.StaffId != null ? Model.tbl_Staff.FullName : "")</p>
+            <p><b>Chi tiết chuyến bay:</b> @Html.Raw(Model.NoteFlight)</p>
+            <p><b>Yêu cầu cụ thể:</b> @Html.Raw(Model.Request)</p>
+            <p><b>Tình trạng:</b> @(Model.StatusId != null ? Model.tbl_DictionaryStatus.Name : "")</p>
+        </div>
+        @if (Model.IsBidding)
+        {
+            <div class="col-md-6">
+                <p><b>Thời gian gửi thầu:</b> @string.Format("{0:dd/MM/yyyy}", Model.BiddingDate)</p>
+                <p><b>Ngày thông báo kết quả thầu:</b> @string.Format("{0:dd/MM/yyyy}", Model.BiddingResultDate)</p>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-6">
+            <p><b>Code tour:</b></p>
+            <p><b>Tên tour:</b></p>
+            <p><b>Số ngày:</b></p>
+            <p><b>Thời gian:</b></p>
+        </div>
+        <div class="col-md-6">
+            <p><b>Hướng dẫn viên: </b></p>
+            <p><b>Yêu cầu cụ thể:</b></p>
+            <p><b>Tình trạng:</b> </p>
+        </div>
+    </div>
+}

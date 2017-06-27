@@ -1,0 +1,131 @@
+C:\DIP\CRMVT\CRMViettour\bin\CRMViettour.dll.config
+C:\DIP\CRMVT\CRMViettour\bin\CRMViettour.pdb
+C:\DIP\CRMVT\CRMViettour\bin\EntityFramework.Fakes.fakesconfig
+C:\DIP\CRMVT\CRMViettour\bin\Microsoft.QualityTools.Testing.Fakes.dll
+C:\DIP\CRMVT\CRMViettour\bin\Microsoft.Web.Infrastructure.dll
+C:\DIP\CRMVT\CRMViettour\bin\Microsoft.Web.Infrastructure.xml
+C:\DIP\CRMVT\CRMViettour\obj\Debug\CRMViettour.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\CRMViettour.pdb
+C:\DIP\CRMVT\CRMViettour\obj\Debug\CRMViettour.csprojFakesResolveAssemblyReference.cache
+E:\WORK\DIP VIETNAM\viettours2\CRMViettour\bin\CRMViettour.dll.config
+E:\WORK\DIP VIETNAM\viettours2\CRMViettour\bin\CRMViettour.dll
+E:\WORK\DIP VIETNAM\viettours2\CRMViettour\bin\CRMViettour.pdb
+E:\WORK\DIP VIETNAM\viettours2\CRMViettour\bin\Microsoft.Web.Infrastructure.dll
+E:\WORK\DIP VIETNAM\viettours2\CRMViettour\bin\Microsoft.Web.Infrastructure.xml
+E:\WORK\DIP VIETNAM\viettours2\CRMViettour\obj\Debug\CRMViettour.csprojResolveAssemblyReference.cache
+E:\WORK\DIP VIETNAM\viettours2\CRMViettour\obj\Debug\CRMViettour.dll
+E:\WORK\DIP VIETNAM\viettours2\CRMViettour\obj\Debug\CRMViettour.pdb
+C:\DIP\CRMVT\CRMViettour\obj\Debug\CRMViettour.csprojResolveAssemblyReference.cache
+C:\DIP\CRMVT\CRMViettour\bin\EPPlus.dll
+C:\DIP\CRMVT\CRMViettour\bin\EPPlus.xml
+E:\WORK\DIP VIETNAM\viettour\CRMViettour\bin\CRMViettour.dll.config
+E:\WORK\DIP VIETNAM\viettour\CRMViettour\bin\CRMViettour.dll
+E:\WORK\DIP VIETNAM\viettour\CRMViettour\bin\CRMViettour.pdb
+E:\WORK\DIP VIETNAM\viettour\CRMViettour\bin\EPPlus.dll
+E:\WORK\DIP VIETNAM\viettour\CRMViettour\bin\Microsoft.Web.Infrastructure.dll
+E:\WORK\DIP VIETNAM\viettour\CRMViettour\bin\EPPlus.xml
+E:\WORK\DIP VIETNAM\viettour\CRMViettour\bin\Microsoft.Web.Infrastructure.xml
+E:\WORK\DIP VIETNAM\viettour\CRMViettour\obj\Debug\CRMViettour.csprojResolveAssemblyReference.cache
+E:\WORK\DIP VIETNAM\viettour\CRMViettour\obj\Debug\CRMViettour.dll
+E:\WORK\DIP VIETNAM\viettour\CRMViettour\obj\Debug\CRMViettour.pdb
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\obj\Debug\CRMViettour.csprojResolveAssemblyReference.cache
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\obj\Debug\CRMViettour.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\obj\Debug\CRMViettour.pdb
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\CRMViettour.dll.config
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\CRMViettour.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\CRMViettour.pdb
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\EPPlus.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\EPPlus.xml
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\Microsoft.Web.Infrastructure.xml
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Antlr3.Runtime.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\CRM.Core.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\CRM.Enum.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\CRM.Infrastructure.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\CRMViettour.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\CRMViettour.pdb
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\EntityFramework.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\EntityFramework.Fakes.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\EntityFramework.Fakes.pdb
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\EntityFramework.SqlServer.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\EPPlus.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.AspNet.Identity.Core.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.AspNet.Identity.Owin.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Owin.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Owin.Host.SystemWeb.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Owin.Security.Cookies.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Owin.Security.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Owin.Security.Facebook.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Owin.Security.Google.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Owin.Security.OAuth.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Owin.Security.Twitter.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Practices.ServiceLocation.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Practices.Unity.Configuration.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Practices.Unity.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Practices.Unity.Mvc.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.Practices.Unity.RegistrationByConvention.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Microsoft.QualityTools.Testing.Fakes.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\Owin.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\System.Web.Mvc.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\System.Web.Optimization.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\System.Web.Razor.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\System.Web.WebPages.Razor.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\b\WebActivatorEx.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\f.csproj
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\o\EntityFramework.Fakes.dll
+C:\DIP\CRMVT\CRMViettour\obj\Debug\Fakes\ef\o\EntityFramework.Fakes.pdb
+C:\DIP\CRMVT\CRMViettour\bin\CRMViettour.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\CRM.Core.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\CRM.Enum.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\CRM.Infrastructure.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\CRM.Core.pdb
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\CRM.Enum.pdb
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\CRM.Infrastructure.pdb
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\Humanizer.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\Humanizer.pdb
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\Humanizer.xml
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\af\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\ar\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\bg\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\bn-BD\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\cs\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\da\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\de\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\el\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\es\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\fa\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\fi-FI\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\fr\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\fr-BE\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\he\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\hr\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\hu\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\id\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\it\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\ja\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\nb\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\nb-NO\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\nl\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\pl\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\pt\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\ro\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\ru\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\sk\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\sl\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\sr\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\sr-Latn\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\sv\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\tr\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\uk\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\uz-Cyrl-UZ\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\uz-Latn-UZ\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\vi\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\zh-CN\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\zh-Hans\Humanizer.resources.dll
+C:\Users\PANDA CAPRICORN\Desktop\CRMViettour\bin\zh-Hant\Humanizer.resources.dll

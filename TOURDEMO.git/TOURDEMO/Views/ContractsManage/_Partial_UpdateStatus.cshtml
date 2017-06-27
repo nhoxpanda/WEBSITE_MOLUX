@@ -1,0 +1,54 @@
+﻿@using TOURDEMO.Utilities
+@using CRM.Core
+@model tbl_Contract
+
+<div class="modal fade bs-modal-lg" id="modal-update-status" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Cập nhật tình trạng</h4>
+            </div>
+            @using (Ajax.BeginForm("UpdateStatusContract", "ContractsManage", null, new AjaxOptions { OnFailure = "OnFailureContract", OnSuccess = "OnSuccessContract" }))
+            {
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Tình trạng</label>
+                                    <div class="col-lg-7 col-md-7">
+                                        @Html.HiddenFor(model => model.Id) @Html.HiddenFor(model => model.Code)
+                                        @Html.HiddenFor(model => model.ContractDate) @Html.HiddenFor(model => model.CreatedDate)
+                                        @Html.HiddenFor(model => model.CurrencyId) @Html.HiddenFor(model => model.NumberDay)
+                                        @Html.HiddenFor(model => model.CustomerId) @Html.HiddenFor(model => model.Permission)
+                                        @Html.HiddenFor(model => model.DictionaryId) @Html.HiddenFor(model => model.ModifiedDate)
+                                        @Html.HiddenFor(model => model.EndDate) @Html.HiddenFor(model => model.Name)
+                                        @Html.HiddenFor(model => model.IsDelete) @Html.HiddenFor(model => model.Note)
+                                        @Html.HiddenFor(model => model.StartDate) @Html.HiddenFor(model => model.StaffId)
+                                        @Html.HiddenFor(model => model.TagsId) @Html.HiddenFor(model => model.TotalPrice)
+                                        @Html.HiddenFor(model => model.TourId) @Html.HiddenFor(model => model.TongDuKien)
+                                        @Html.HiddenFor(model => model.LoiNhuanDuKien)
+                                        <select class="form-control" name="StatusContractId" id="update-status" style="width: 100%">
+                                            @foreach (var item in LoadData.StatusContractList())
+                                            {
+                                                <option value="@item.Id" @(Model.StatusContractId == item.Id ? "selected" : "")>@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center" style="margin-bottom: 20px">
+                    <button type="submit" class="btn blue" id="btnLuuThem">Lưu</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                </div>
+            }
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+

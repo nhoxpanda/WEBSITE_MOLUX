@@ -1,0 +1,21 @@
+﻿@using CRM.Core
+@using Microsoft.AspNet.Identity
+@model tbl_Staff
+
+<div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
+    <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
+        <ul class="media-list list-items" id="divusers">
+
+        </ul>
+    </div>
+    <div id="message"></div>
+    @*@Html.Partial("_Partial_Message","LivechatManage")*@
+</div>
+
+<input id="hdId" type="hidden" />
+<input type="hidden" value="" id="userId" />
+<input id="hdUserName" type="hidden" value="@User.Identity.Name" />
+
+<script type="text/javascript">
+    var userId = '@Model.Id';
+</script>

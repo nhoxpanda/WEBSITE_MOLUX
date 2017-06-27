@@ -1,0 +1,146 @@
+﻿@using TOURDEMO.Utilities
+
+@{
+    ViewBag.Title = "Quản lý Danh sách lịch hẹn";
+}
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>DANH SÁCH LỊCH HẸN</h1>
+        </div>
+        <!-- END PAGE TITLE -->
+
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="note note-info">
+        <div class="row">
+            <div class="col-md-3">
+                <label>Trạng thái lịch hẹn</label>
+                <select class="form-control FilterAppoi" id="trangthai-lichhen">
+                    <option value="-1">Chọn trạng thái</option>
+                    @foreach (var item in LoadData.StatusProcessList())
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label>Loại lịch hẹn</label>
+                <select class="form-control FilterAppoi" id="loai-lichhen">
+                    <option value="-1">Chọn loại</option>
+                    @foreach (var item in LoadData.AppointmentTypeList())
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label>Từ ngày</label>
+                <div class="form-group" data-date-format="mm/dd/yyyy">
+                    <input type="date" class="form-control FilterAppoi" id="tungay-lichhen" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label>Đến ngày</label>
+                <div class="form-group" data-date-format="mm/dd/yyyy">
+                    <input type="date" class="form-control FilterAppoi" id="denngay-lichhen" />
+                </div>
+            </div>
+            <div class="col-md-12 margintop10">
+                <a class="btn btn-default" href="@Url.Action("Index", "AppointmentManage")"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                @if (ViewBag.IsAdd != null && ViewBag.IsAdd)
+                {<button class="btn btn-primary" id="btnAdd" @*onclick="btnCreateLichHen()"*@ href="#modal-insert-appointment" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>}
+                @if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+                {<button class="btn btn-warning" id="btnEdit" href="#modal-edit-appointment" data-toggle="modal"><i class="fa fa-pencil"></i>&nbsp;Sửa</button>}
+                @if (ViewBag.IsDelete != null && ViewBag.IsDelete)
+                {<button class="btn btn-danger" id="btnRemove"><i class="fa fa-remove"></i>&nbsp;Xóa</button>
+                    <form action="@Url.Action("Delete", "AppointmentManage")" method="post" style="position:absolute">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="listItemId" name="listItemId" />
+                    </form>}
+                <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo"><i class="icon-book-open"></i>&nbsp;Ẩn/Hiện cột</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="tabbable-custom ">
+                        <ul class="nav nav-tabs ">
+                            <li class="active">
+                                <a href="#dangluoi" data-toggle="tab" id="tabdangluoi">Dạng lưới</a>
+                            </li>
+                            <li>
+                                <a href="#danglich" data-toggle="tab" id="tabdanglich">Dạng lịch</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="dangluoi" style="max-height: 1000px;">
+                                @*Dạng lưới*@
+                                @Html.Action("_Partial_AppointmentList", "AppointmentManage")
+                            </div>
+                            <div class="tab-pane" id="danglich" style="max-height: 1000px;">
+                                @*Dạng lịch*@
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12" style="color:#fff">
+                                        @foreach (var item in LoadData.StatusProcessList())
+                                        {
+                                            <span style="background-color: @item.Note; padding: 5px; margin-right: 5px">@item.Name</span>
+                                        }
+                                    </div>
+                                </div>
+                                <br />
+                                <div id="calendar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet light bordered" id="tabThongTinChiTiet">
+                <div class="portlet-body">
+                    <div class="tabbable-custom ">
+                        <ul class="nav nav-tabs ">
+                            <li class="active">
+                                <a href="#tab1" data-toggle="tab">Thông tin chi tiết</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="table-document">
+                                @Html.Action("_ChiTiet", "AppointmentManage")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END PAGE BASE CONTENT -->
+</div>
+<!----- lịch hẹn ----->
+@if (ViewBag.IsAdd != null && ViewBag.IsAdd)
+{
+    @Html.Partial("_Partial_InsertAppointmentHistory", new CRM.Core.tbl_AppointmentHistory())
+}
+else
+{<div class="modal fade  bs-modal-lg" id="modal-insert-appointment123" role="document" aria-hidden="true">
+        <textarea id="insert-note-lichhen" style="display:none"></textarea>
+    </div>
+}
+<div id="info-data-appoinment">
+</div>
+
+@Styles.Render("~/Content/assets/global/plugins/fullcalendar/fullcalendar.min.css")
+
+@section scripts{
+    <script src="~/Content/ckeditor-basic/ckeditor.js"></script>
+    <script src="~/Scripts/controller/appointmentlist.js"></script>
+    <script src="~/Content/assets/global/plugins/fullcalendar/fullcalendar.min.js"></script>
+    <script src="~/Content/assets/global/plugins/fullcalendar/lang-all.js"></script>
+}

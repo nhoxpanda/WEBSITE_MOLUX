@@ -1,0 +1,46 @@
+﻿@using CRM.Core
+@using TRAVELPLUS.Utilities
+@model IEnumerable<tbl_Customer>
+@{
+    int i = 0;
+}
+<div class="table-responsive table-custom-format">
+    <table class="table table-striped table-bordered table-hover" id="tbl-data-import">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>STT</th>
+                <th>HỌ TÊN</th>
+                <th>D.O.B</th>
+                <th>PP NO.</th>
+                <th>D.O.I</th>
+                <th>D.O.E</th>
+                <th>ĐIỆN THOẠI</th>
+                <th>EMAIL</th>
+                <th>ĐỊA CHỈ</th>
+                <th>CMND</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" value="@i" id="cb@i" class="cbItem" name="cb" onclick="CheckSelect()" />
+                    </td>
+                    <td>@(i + 1)</td>
+                    <td>@item.FullName</td>
+                    <td>@string.Format("{0:dd-MM-yyyy}", item.Birthday)</td>
+                    <td>@item.PassportCard</td>
+                    <td>@string.Format("{0:dd-MM-yyyy}", item.CreatedDatePassport)</td>
+                    <td>@string.Format("{0:dd-MM-yyyy}", item.ExpiredDatePassport)</td>
+                    <td>@item.Phone</td>
+                    <td>@item.PersonalEmail</td>
+                    <td>@item.Address</td>
+                    <td>@item.IdentityCard</td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,53 @@
+﻿@using CRM.Core
+@using TOURDEMO.Utilities
+@model tbl_MailTemplates
+
+<div class="modal fade" id="modal-edit-mailtemplate" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Cập nhật mẫu mail</h4>
+            </div>
+            @using (Html.BeginForm("Update", "MailTemplate"))
+            {
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Tên mẫu </label>
+                                    <div class="col-lg-4 col-md-4">
+                                        @Html.HiddenFor(model => model.Id)
+                                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                    </div>
+                                    <label class="control-label col-lg-2 col-md-2">Loại mẫu</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        <select class="form-control" id="edit-category" name="MailCategoryId" style="width: 100%">
+                                            @foreach (var item in LoadData.MailCategory())
+                                            {
+                                                <option value="@item.Id" @(Model.MailCategoryId == item.Id ? "selected" : "")>@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Nội dung </label>
+                                    <div class="col-lg-10 col-md-10">
+                                        @Html.TextAreaFor(model => model.Content, new { @class = "form-control", id = "edit-noidung" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center" style="margin-bottom: 20px">
+                    <button type="submit" class="btn blue">Lưu</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                </div>
+            }
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

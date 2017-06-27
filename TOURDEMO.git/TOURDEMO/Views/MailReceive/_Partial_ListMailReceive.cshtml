@@ -1,0 +1,45 @@
+﻿@using CRM.Core
+@model IEnumerable<tbl_MailReceiveList>
+
+@if (ViewBag.IsAdd != null && ViewBag.IsAdd)
+{
+    <a class="btn btn-primary" onclick="btnChoose()" id="btnChoose"><i class="fa fa-plus"></i>&nbsp;Thêm</a>
+    
+}
+<br /><br />
+
+<div class="table-scrollable table-custom-format">
+    <table class="table table-bordered table-hover" id="">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Xưng hô</th>
+                <th>Họ tên</th>
+                <th>Ngày sinh</th>
+                <th>Điện thoại</th>
+                <th>Địa chỉ</th>
+                <th>Email</th>
+                <th>Nghề nghiệp/Phòng ban</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr class="odd gradeX" id="item-@item.Id">
+                        <td><a style="cursor: pointer" onclick="removeFromList(@item.Id)"><i class="fa fa-trash"></i>&nbsp;Xóa</a></td>
+                        <td>@item.Vocative</td>
+                        <td>@item.FullName</td>
+                        <td>@(item.Birthday == null ? "" : item.Birthday.Value.ToString("dd/MM/yyyy"))</td>
+                        <td>@item.Phone</td>
+                        <td>@item.HomeAddress</td>
+                        <td>@item.Email</td>
+                        <td>@item.Department</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+

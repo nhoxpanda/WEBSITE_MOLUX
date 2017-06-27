@@ -1,0 +1,19 @@
+﻿@using CRM.Core
+@model IEnumerable<tbl_VisaProcedureCustomer>
+
+@{ 
+    var allProcedure = ViewBag.AllProcedure as List<tbl_VisaProcedure>;
+}
+
+<div class="row">
+    <input type="hidden" id="VisaID" value="@ViewBag.VisaId" />
+    @foreach (var item in allProcedure)
+    {
+        <div class="col-md-3">
+            <label>
+                <input type="checkbox" id="ckProcedure@(item.Id)" name="ckProcedure@(item.Id)" onclick="updateProcedure(@item.Id)"
+                    @(Model.FirstOrDefault(x=>x.VisaProcedureId == item.Id) != null ? "checked" : "") />&nbsp;@item.Name
+            </label>
+        </div>
+    }
+</div>

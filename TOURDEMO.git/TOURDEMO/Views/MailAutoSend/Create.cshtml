@@ -1,0 +1,85 @@
+﻿@using TOURDEMO.Utilities;
+@model CRM.Core.tbl_MailSending
+
+@{
+    ViewBag.Title = "Thêm mới Kế hoạch gửi mail";
+}
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>THÊM MỚI KẾ HOẠCH GỬI MAIL</h1>
+        </div>
+        <!-- END PAGE TITLE -->
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BASE CONTENT -->
+    @using (Html.BeginForm("Create", "MailAutoSend"))
+    {
+        <div class="note note-info">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="@Url.Action("Create", "MailAutoSend")" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                    <button type="submit" class="btn btn-danger" name="btnLuu"><i class="fa fa-save"></i>&nbsp;Lưu</button>
+                    <a href="@Url.Action("Index", "MailAutoSend")" class="btn btn-primary"><i class="fa fa-ban"></i>&nbsp;Hủy</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-md-1 col-lg-1 control-label">Tiêu đề</label>
+                                <div class="col-md-5 col-lg-5">
+                                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                                </div>
+                                <label class="col-md-2 col-lg-2 control-label">Mail gửi</label>
+                                <div class="col-md-4 col-lg-4">
+                                    <select class="form-control" id="insert-mailconfig" name="MailConfigId" style="width: 100%">
+                                        @foreach (var item in LoadData.MailConfigList())
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Danh sách nhận</label>
+                                <div class="col-md-12">
+                                    <button type="button" id="btnAddReceiveList" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                    <br /><br />
+                                    <div class="table-scrollable table-custom-format" id="data-receive">
+                                        @Html.Partial("_Partial_InsertReceiveMail")
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">Chọn mẫu gửi</label>
+
+                                @foreach (var item in ViewBag.MailTemplate)
+                                {
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-10">
+                                        <input type="radio" id="m@(item.Id)" name="MailTemplateId" value="@item.Id" />
+                                        <label for="m@(item.Id)">@item.Name</label><br />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- END PAGE BASE CONTENT -->
+</div>
+
+<div id="listReceive"></div>
+
+@section scripts{
+    <script src="~/Scripts/controller/mailautosendcreate.js"></script>
+}
+

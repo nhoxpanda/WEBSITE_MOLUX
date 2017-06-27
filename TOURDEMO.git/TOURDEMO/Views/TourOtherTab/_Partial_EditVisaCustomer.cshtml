@@ -1,0 +1,88 @@
+﻿@using TOURDEMO.Utilities
+@using CRM.Core
+@model tbl_CustomerVisa
+
+<div class="modal fade " id="modal-visa-update" role="document" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Cập nhật visa</h4>
+            </div>
+            @using (Ajax.BeginForm("UpdateVisaCustomer", "TourOtherTab", null, new AjaxOptions { OnFailure = "OnFailureTour", OnSuccess = "OnSuccessTour", UpdateTargetId = "visa" }))
+            {
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3 col-md-3">Mã visa</label>
+                                    <div class="col-lg-9 col-md-9">
+                                        @Html.HiddenFor(model => model.CreatedDate)
+                                        @Html.HiddenFor(model => model.Id)
+                                        @Html.HiddenFor(model => model.CustomerId)
+                                        @Html.HiddenFor(model => model.TourId)
+                                        @Html.TextBoxFor(model => model.VisaNumber, new { @class = "form-control", })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3 col-md-3">Quốc gia</label>
+                                    <div class="col-lg-9 col-md-9">
+                                        <select class="form-control" id="update-visa-country" style="width: 100%" name="TagsId">
+                                            @foreach (var item in LoadData.DropdownlistCountry())
+                                            {
+                                                <option value="@item.Id" @(Model != null && Model.TagsId == item.Id ? "selected" : "")>@item.Tags</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3 col-md-3">Tình trạng</label>
+                                    <div class="col-lg-9 col-md-9">
+                                        <select class="form-control" id="update-visa-status" style="width: 100%" name="DictionaryId">
+                                            @foreach (var item in LoadData.VisaStatusList())
+                                            {
+                                                <option value="@item.Id" @(Model != null && Model.DictionaryId == item.Id ? "selected" : "")>@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3 col-md-3">Loại visa</label>
+                                    <div class="col-lg-9 col-md-9">
+                                        <select class="form-control" name="VisaTypeId" id="update-visa-type" style="width: 100%">
+                                            @foreach (var item in LoadData.VisaTypeList())
+                                            {
+                                                <option value="@item.Id" @(Model != null && item.Id == Model.VisaTypeId ? "selected" : "")>@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3 col-md-3">Ngày hiệu lực</label>
+                                    <div class="col-lg-9 col-md-9">
+                                        @Html.TextBoxFor(model => model.CreatedDateVisa, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @id = "update-visa-createdate" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3 col-md-3">Ngày hết hạn</label>
+                                    <div class="col-lg-9 col-md-9">
+                                        @Html.TextBoxFor(model => model.ExpiredDateVisa, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @id = "update-visa-expiredate" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center" style="margin-bottom: 20px">
+                    <button type="submit" id="btnLuuVisa" class="btn blue">Lưu</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                </div>
+            }
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+

@@ -1,0 +1,81 @@
+﻿@using TOURDEMO.Utilities
+@using CRM.Core
+@model tbl_TourSchedule
+
+<div class="modal fade  bs-modal-lg" id="modal-edit-tourguide" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Cập nhật</h4>
+            </div>
+            @using (Ajax.BeginForm("UpdateTourGuide", "TourGuideSchedule", null, new AjaxOptions { OnFailure = "OnFailureTourGuide", OnSuccess = "OnSuccessTourGuide" }, new { @id = "frmUpdateTourGuide" }))
+            {
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.CreatedDate)
+                @Html.HiddenFor(model => model.IsDelete)
+                @Html.HiddenFor(model => model.TourId)
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3 col-md-3">Phòng ban</label>
+                                    <div class="col-lg-9 col-md-9">
+                                        <select class="form-control" id="edit-phongban" style="width: 100%">
+                                            <option>-- Chọn phòng ban --</option>
+                                            @foreach (var item in LoadData.DepartmentList())
+                                            {
+                                                <option value="@item.Id" @(Model.tbl_Staff.DepartmentId == item.Id ? "selected" : "")>@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3 col-md-3">Nhân viên</label>
+                                    <div class="col-lg-9 col-md-9">
+                                        <select class="form-control" id="edit-staff" style="width: 100%" name="StaffId">
+                                            <option>-- Chọn nhân viên --</option>
+                                            @foreach (var item in LoadData.StaffList())
+                                            {
+                                                <option value="@item.Id" @(Model.StaffId == item.Id ? "selected" : "")>[@item.Code] @item.FullName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3 col-md-3">Từ ngày</label>
+                                    <div class="col-lg-9 col-md-9">
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(model => model.StartDate, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control"
+                                            <span class="input-group-btn">
+                                                <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3 col-md-3">Đến ngày</label>
+                                    <div class="col-lg-9 col-md-9">
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(model => model.EndDate, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control"
+                                            <span class="input-group-btn">
+                                                <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center" style="margin-bottom: 20px">
+                    <button type="submit" class="btn blue">Lưu</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                </div>
+            }
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

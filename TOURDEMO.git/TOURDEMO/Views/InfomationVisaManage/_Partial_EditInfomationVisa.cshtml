@@ -1,0 +1,109 @@
+﻿@using CRM.Core
+@using TOURDEMO.Utilities
+@model tbl_VisaInfomation
+
+<div class="modal fade bs-modal-lg" id="modal-edit-infovisa" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Cập nhật thông tin VISA</h4>
+            </div>
+            @using (Html.BeginForm("Update", "InfomationVisaManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Quốc gia</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.HiddenFor(model => model.Id)
+                                        @Html.HiddenFor(model => model.CreatedDate)
+                                        @Html.DropDownList("TagId", null, new { @class = "form-control", id = "country-edit-profilevisa", style = "width: 100%" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Loại visa</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <select class="form-control" id="country-edit-categoryvisa" name="CategoryVisaId" style="width: 100%" >
+                                            @foreach (var item in TOURDEMO.Utilities.LoadData.CategoryVisaList())
+                                            {
+                                                <option value="@item.Id" @(Model != null && Model.CategoryVisaId == item.Id ? "selected" : "")>@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Phí VISA cơ bản</label>
+                                    <div class="col-lg-6 col-md-6">
+                                        @Html.TextBoxFor(model => model.BasicPrice, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-lg-2 col-md-2">
+                                        <select id="edit-currency" name="CurrencyId" style="width: 100%" class="form-control">
+                                            @foreach (var item in LoadData.CurrencyList())
+                                            {
+                                                <option value="@item.Id" @(Model != null && Model.CurrencyId == item.Id ? "selected" : "")>@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Phí dịch vụ</label>
+                                    <div class="col-lg-6 col-md-6">
+                                        @Html.TextBoxFor(model => model.BasicService, new { @class = "form-control", min = "0" })
+                                    </div>
+                                    <div class="col-lg-2 col-md-2">
+                                        <select id="edit-currency-service" name="CurrencyServiceId" style="width: 100%" class="form-control">
+                                            @foreach (var item in LoadData.CurrencyList())
+                                            {
+                                                <option value="@item.Id" @(Model != null && Model.CurrencyServiceId == item.Id ? "selected" : "")>@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Thời gian cấp trung bình</label>
+                                    <div class="col-lg-6 col-md-6">
+                                        @Html.TextBoxFor(model => model.NumberDay, new { @class = "form-control", type = "number", min = "0" })
+                                    </div>
+                                    <label class="col-lg-2 col-md-2 control-label" style="text-align: left">ngày</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Địa chỉ nộp</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Địa chỉ lãnh sự quán</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextBoxFor(model => model.PlaceIn, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Giờ làm việc</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextBoxFor(model => model.Time, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Ghi chú</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextAreaFor(model => model.Note, new { @class = "form-control", id = "edit-note" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div align="center" style="margin-bottom: 20px">
+                                <button type="submit" class="btn blue">Lưu</button>
+                                <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>

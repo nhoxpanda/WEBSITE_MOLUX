@@ -1,0 +1,116 @@
+﻿@using TOURDEMO.Models
+@using TOURDEMO.Utilities
+@model StaffSalaryViewModel
+@{
+    int i = 1;
+}
+
+
+@if (Model != null)
+{
+
+        <div class="table-scrollable table-custom-format">
+            
+             @if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+            {
+                <a class="btn btn-primary" onclick="UpdateStaffSalary(@Model.staffSalary.Id);" id="btnEditSalary"><i class="fa fa-pencil-square-o"></i>&nbsp;Sửa thông tin lương</a>
+                <br />
+             }
+            
+      
+            @if (Model.staffSalary != null)
+            {
+                <div class="row">
+                    <div class="luongthuviec">
+                        <div class="col-md-12">
+                            <label class="col-md-3"> - Lương deal:</label>
+                            <label class="col-md-9">@string.Format("{0:0,0}", Model.staffSalary.StartSalary * 100 / 85).Replace(",", ".") VND</label>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="col-md-3"> - Lương thử việc:</label>
+                            <label class="col-md-9">@string.Format("{0:0,0}", Model.staffSalary.StartSalary).Replace(",", ".") VND</label>
+                        </div>
+                    </div>
+
+                    <div class="luongchinhthuc">
+                        <div class="col-md-12">
+                            <label class="col-md-3"> - Tổng lương(gồm phụ cấp):</label>
+                            <label class="col-md-9">@string.Format("{0:0,0}", Model.staffSalary.CurSalary).Replace(",", ".") VND</label>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="col-md-3"> - Lương cơ bản:</label>
+                            <label class="col-md-9">@string.Format("{0:0,0}", Model.staffSalary.BasicSalary).Replace(",", ".") VND</label>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="col-md-3"> - Phụ cấp:</label>
+                            <label class="col-md-9">@string.Format("{0:0,0}", Model.staffSalary.SubsidySalary).Replace(",", ".") VND</label>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="col-md-3"> - Ghi chú:</label>
+                            <label class="col-md-9">@Model.staffSalary.Note</label>
+                        </div>
+                    </div>
+                    
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <label style="color:red;">Không có thông tin lương của nhân viên này!</label>
+                    </div>
+                </div>
+            }
+            <div>
+                <div class="col-md-12">
+                    <br />
+                    <label> - Chi tiết các đợt tăng lương:</label>
+                    <br />
+                    @if (ViewBag.IsAdd != null && ViewBag.IsAdd)
+                {
+                        <a class="btn btn-primary" onclick="btnCreateSalary();" id="btnCreateSalary"><i class="fa fa-plus"></i>&nbsp;Thêm đợt thay đổi lương</a>
+                    }
+                    <br />
+                    <br />
+                </div>
+                <table class="table table-striped table-bordered table-hover" id="table-salary">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Đợt</th>
+                            <th>Năm</th>
+                            <th>Ngày áp dụng</th>
+                            <th>Tăng/Giảm</th>
+                            <th>Số tiền tăng/giảm(VND)</th>
+                            <th>Tổng lương sau tăng(VND)</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.listStaffSalaryDetail)
+                        {
+                            <tr class="odd gradeX">
+                                <td style="text-align: center">@i</td>
+                                <td style="text-align: center">Đợt @LoadData.GetTimeChangeSalary(item.Id)</td>
+                                <td style="text-align: center">@item.ApplyDate.Year</td>
+                                <td style="text-align: center">@(item.ApplyDate != null ? string.Format("{0:dd-MM-yyyy}", item.ApplyDate) : "")</td>
+                                @if (item.IsIncrease)
+                                {
+                                    <td style="text-align: center">@(item.IsIncrease == true ? "Tăng" : "Giảm")</td>
+                                }
+                                else
+                                {
+                                    <td style="text-align: center;color:red;">@(item.IsIncrease == true ? "Tăng" : "Giảm")</td>
+                                }
+                                <td style="text-align: right;padding-right:30px;">@string.Format("{0:0,0}", item.Value).Replace(",", ".")</td>
+                                <td style="text-align: right;padding-right:30px;">@string.Format("{0:0,0}", item.SalaryAfterChange).Replace(",", ".")</td>
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        }

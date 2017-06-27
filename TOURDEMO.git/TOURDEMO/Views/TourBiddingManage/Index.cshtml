@@ -1,0 +1,734 @@
+﻿@using CRM.Core
+@using TRAVELPLUS.Models
+@using TRAVELPLUS.Utilities
+@{
+    ViewBag.Title = "Quản lý Tour đấu thầu";
+    int i = 0;
+}
+
+<script src="~/Content/ckeditor-basic/ckeditor.js"></script>
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>QUẢN LÝ TOUR ĐẤU THẦU</h1>
+        </div>
+        <!-- END PAGE TITLE -->
+
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BREADCRUMB -->
+    <ul class="page-breadcrumb breadcrumb">
+        <li>
+            <a href="/">Trang chủ</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span class="active">Page Layouts</span>
+        </li>
+    </ul>
+    <!-- END PAGE BREADCRUMB -->
+    <div class="note note-info">
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom: 10px">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Kỳ báo cáo</label>
+                        <select class="form-control" id="ddlKyBaoCao" style="width: 100%" name="kybaocao">
+                            @foreach (var item in LoadData.KyBaoCaoList())
+                            {
+                                <option value="@i">@item</option>
+                                i++;
+                            }
+                        </select>
+                    </div>
+                    <div id="startEndDate">
+                        @{
+                            DateTime dateFrom = DateTime.Now.AddYears(-2);
+                            DateTime dateTo = new DateTime(DateTime.Now.Year, 12, 31);
+                        }
+                        <div class="col-md-3">
+                            <label>Từ ngày</label>
+                            <input type="date" id="txtStartDate" value="@dateFrom.ToString("yyyy-MM-dd")" class="form-control" name="tungay" required />
+                        </div>
+                        <div class="col-md-3">
+                            <label>Đến ngày</label>
+                            <input type="date" id="txtEndDate" value="@dateTo.ToString("yyyy-MM-dd")" class=" form-control" name="denngay" required />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        Số lượng khách từ <input type="number" class="form-control" placeholder="Từ" id="txtSLTu" min="0" />
+                    </div>
+                    <div class="col-md-3">
+                        đến <input type="number" class="form-control" placeholder="đến" id="txtSLDen" min="0" />
+                    </div>
+                    <div class="col-md-3">
+                        <label style="padding-top: 18px;">Tour cố định <input type="checkbox" id="chkTourFixed" /> </label>
+                    </div>
+                    <div class="col-md-3">
+                        <br />
+                        <button id="btnSearch" class="btn btn-success"><i class="fa fa-search"></i>&nbsp;Tìm</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="pull-left">
+                    <a href="@Url.Action("Index", "TourBiddingManage")" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                    @if (ViewBag.IsAdd != null && ViewBag.IsAdd)
+                    {<button class="btn btn-primary" id="btnAdd" href="#modal-insert-tour" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm mới tour</button>}
+                    @if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+                    {<button class="btn btn-warning" id="btnEdit" href="#modal-edit-tour" data-toggle="modal"><i class="fa fa-pencil"></i>&nbsp;Sửa</button>}
+                    @if (ViewBag.IsDelete != null && ViewBag.IsDelete)
+                    { <button class="btn btn-danger" id="btnRemove"><i class="fa fa-remove"></i>&nbsp;Xóa</button>
+                    <form action="@Url.Action("Delete", "TourBiddingManage")" method="post" style="position:absolute">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="listItemId" name="listItemId" />
+                    </form>
+                    }
+                    @if (ViewBag.IsAddNV != null && ViewBag.IsAddNV)
+                    {<button class="btn blue" id="btnAddTask"><i class="fa fa-clipboard"></i>&nbsp;Phân công nhiệm vụ</button>}
+                    @if (ViewBag.IsUpdateStatus != null && ViewBag.IsUpdateStatus)
+                    {
+                        <button class="btn green" id="btnUpdateStatus"><i class="fa fa-magic"></i>&nbsp;Cập nhật trạng thái</button>
+                    }
+                    <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo"><i class="icon-book-open"></i>&nbsp;Ẩn/Hiện cột</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="row collapse" id="demo">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-md-2 col-xs-2 col-sm-2">
+                            <ul>
+                                <li><a class="toggle-vis" data-column="1" style="color: #333; font-weight: bold">STT</a></li>
+                                <li><a class="toggle-vis" data-column="2" style="color: #333; font-weight: bold">Code tour</a></li>
+                                <li><a class="toggle-vis" data-column="3" style="color: #333; font-weight: bold">Tên tour</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-xs-2 col-sm-2">
+                            <ul>
+                                <li><a class="toggle-vis" data-column="4" style="color: #333; font-weight: bold">Tình trạng</a></li>
+                                <li><a class="toggle-vis" data-column="5" style="color: #333; font-weight: bold">Khách hàng</a></li>
+                                <li><a class="toggle-vis" data-column="6" style="color: #333; font-weight: bold">Nhân viên</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-xs-2 col-sm-2">
+                            <ul>
+                                <li><a class="toggle-vis" data-column="7" style="color: #333; font-weight: bold">Điều hành</a></li>
+                                <li><a class="toggle-vis" data-column="8" style="color: #333; font-weight: bold">Điểm đếm</a></li>
+                                <li><a class="toggle-vis" data-column="9" style="color: #333; font-weight: bold">Số lượng</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-xs-2 col-sm-2">
+                            <ul>
+                                <li><a class="toggle-vis" data-column="10" style="color: #333; font-weight: bold">Ngày khởi hành</a></li>
+                                <li><a class="toggle-vis" data-column="11" style="color: #333; font-weight: bold">Ngày về</a></li>
+                                <li><a class="toggle-vis" data-column="12" style="color: #333; font-weight: bold">Thời gian</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-xs-2 col-sm-2">
+                            <ul>
+                                <li><a class="toggle-vis" data-column="13" style="color: #333; font-weight: bold">Hướng dẫn viên</a></li>
+                                <li><a class="toggle-vis" data-column="14" style="color: #333; font-weight: bold">Loại tour</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-xs-2 col-sm-2">
+                            <ul>
+                                <li><a class="toggle-vis" data-column="16" style="color: #333; font-weight: bold">Công nợ KH</a></li>
+                                <li><a class="toggle-vis" data-column="17" style="color: #333; font-weight: bold">Công nợ đối tác</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---------------->
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-list-alt font-red"></i>
+                        <span class="caption-subject bold uppercase font-red">Danh sách Tour đấu thầu</span>
+                    </div>
+                    <div class="actions">
+                        <div class="btn-group">
+                            <select class="btn green-haze btn-outline btn-circle form-control" id="select-type-tour">
+                                <option value="0">Tất cả</option>
+                                <option value="1153">Nội địa</option>
+                                <option value="1151">Inbound</option>
+                                <option value="1152">Outbound</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body" id="data-tour">
+                    @Html.Action("_Partial_ListTours", "TourBiddingManage")
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="tabbable-custom ">
+                        <ul class="nav nav-tabs ">
+                            <li class="active">
+                                <a href="#chitiettour" data-toggle="tab" id="tabchitiettour">Chi tiết tour</a>
+                            </li>
+                            <li>
+                                <a href="#huongdanvien" data-toggle="tab" id="tabhuongdanvien">Hướng dẫn viên</a>
+                            </li>
+                            <li>
+                                <a href="#dichvu" data-toggle="tab" id="tabdichvu">DS dịch vụ</a>
+                            </li>
+                            <li>
+                                <a href="#nhiemvu" data-toggle="tab" id="tabnhiemvu">Nhiệm vụ</a>
+                            </li>
+                            <li>
+                                <a href="#khachhang" data-toggle="tab" id="tabkhachhang">Khách hàng</a>
+                            </li>
+                            <li>
+                                <a href="#chuongtrinh" data-toggle="tab" id="tabchuongtrinh">Chương trình</a>
+                            </li>
+                            <li>
+                                <a href="#hopdong" data-toggle="tab" id="tabhopdong">Hợp đồng</a>
+                            </li>
+                            <li>
+                                <a href="#visa" data-toggle="tab" id="tabvisa">VISA</a>
+                            </li>
+                            <li>
+                                <a href="#viettourbaogia" data-toggle="tab" id="tabviettourbaogia">Báo giá</a>
+                            </li>
+                            <li>
+                                <a href="#congnokh" data-toggle="tab" id="tabcongnokh">Công nợ KH</a>
+                            </li>
+                            <li>
+                                <a href="#congnodoitac" data-toggle="tab" id="tabcongnodoitac">Công nợ đối tác</a>
+                            </li>
+                            <li>
+                                <a href="#danhgia" data-toggle="tab" id="tabdanhgia">Đánh giá</a>
+                            </li>
+                            <li>
+                                <a href="#lichhen" data-toggle="tab" id="tablichhen">Lịch hẹn</a>
+                            </li>
+                            <li>
+                                <a href="#tailieumau" data-toggle="tab" id="tabtailieumau">Tài liệu mẫu</a>
+                            </li>
+                            <li>
+                                <a href="#lichsulienhe" data-toggle="tab" id="tablichsulienhe">Lịch sử liên hệ</a>
+                            </li>
+                            <li>
+                                <a href="#capnhatthaydoi" data-toggle="tab" id="tabcapnhatthaydoi">Cập nhật thay đổi</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="chitiettour" data-id="chitiettour">
+                                @*Chi tiết tour*@
+                                @Html.Action("_ChiTietTour", "TourTabInfo")
+                            </div>
+                            <div class="tab-pane" id="huongdanvien" data-id="huongdanvien">
+                                @*Hướng dẫn viên*@
+                                @Html.Action("_HuongDanVien", "TourTabInfo")
+                            </div>
+                            <div class="tab-pane" id="dichvu" data-id="dichvu">
+                                @*Dịch vụ*@
+                                @Html.Action("_DichVu", "TourTabInfo")
+                            </div>
+                            <div class="tab-pane" id="nhiemvu" data-id="nhiemvu">
+                                @*Nhiệm vụ*@
+                                @Html.Action("_NhiemVu", "TourTabInfo")
+                            </div>
+                            <div class="tab-pane" id="khachhang" data-id="khachhang">
+                                @*Khách hàng*@
+                                @Html.Action("_KhachHang", "TourTabInfo")
+                            </div>
+                            <div class="tab-pane" id="tailieumau" data-id="tailieumau">
+                                @*Tài liệu mẫu*@
+                                @Html.Action("_TaiLieuMau", "TourTabInfo")
+                            </div>
+                            <div class="tab-pane" id="hopdong" data-id="hopdong">
+                                @*Hợp đồng*@
+                                @Html.Action("_HopDong", "TourTabInfo")
+                            </div>
+                            <div class="tab-pane" id="viettourbaogia" data-id="viettourbaogia">
+                                @*Báo giá*@
+                                @Html.Action("_ViettourBaoGia", "TourTabInfo")
+                            </div>
+                            <div class="tab-pane" id="danhgia" data-id="danhgia">
+                                @*Đánh giá*@
+                                @Html.Action("_DanhGia", "TourTabInfo")
+                            </div>
+                            <div class="tab-pane" id="visa" data-id="visa">
+                                @*VISA*@
+                                @Html.Action("_Visa", "TourTabInfo")
+                            </div>
+                            <div class="tab-pane" id="lichsulienhe" data-id="lichsulienhe">
+                                @*Lịch sử liên hệ*@
+                                @Html.Action("_LichSuLienHe", "TourTabInfo")
+                            </div>
+                            <div class="tab-pane" id="chuongtrinh" data-id="chuongtrinh">
+                                @*Chương trình*@
+                                @Html.Action("_ChuongTrinh", "TourTabInfo")
+                            </div>
+                            <div id="congnokh" class="tab-pane" data-id="congnokh">
+                                @*Công nợ khách hàng*@
+                                @Html.Action("_CongNoKH", "TourTabInfo")
+                            </div>
+                            <div id="congnodoitac" class="tab-pane" data-id="congnodoitac">
+                                @*Công nợ đối tác*@
+                                @Html.Action("_CongNoDoiTac", "TourTabInfo")
+                            </div>
+                            <div id="lichhen" class="tab-pane" data-id="lichhen">
+                                @*Lịch hẹn*@
+                                @Html.Action("_LichHen", "TourTabInfo")
+                            </div>
+                            <div id="capnhatthaydoi" class="tab-pane" data-id="capnhatthaydoi">
+                                @*Cập nhật thay đổi*@
+                                @Html.Action("_CapNhatThayDoi", "TourTabInfo")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----- tour ----->
+@Html.Partial("_Partial_InsertTour")
+<div id="info-data-tour"></div>
+
+<!----- lịch hẹn ----->
+@Html.Partial("~/Views/TourOtherTab/_Partial_InsertAppointmentHistory.cshtml", new tbl_AppointmentHistory())
+<div id="info-data-appoinment"></div>
+
+<!----- lịch sử liên hệ ----->
+@Html.Partial("~/Views/TourOtherTab/_Partial_InsertContactHistory.cshtml", new tbl_ContactHistory())
+<div id="info-data-contacthistory"></div>
+
+<!----- document ----->
+@Html.Partial("~/Views/TourOtherTab/_Partial_InsertDocument.cshtml", new tbl_DocumentFile())
+<div id="info-data-doc"></div>
+
+@Html.Partial("_Partial_InsertTaskTour")
+<div id="info-data-task"></div>
+<div id="info-status"></div>
+
+<!----- chương trình ----->
+@Html.Partial("~/Views/TourOtherTab/_Partial_InsertProgram.cshtml", new tbl_DocumentFile())
+<div id="info-data-program"></div>
+
+<!----- hợp đồng ----->
+@Html.Partial("~/Views/TourOtherTab/_Partial_InsertContract.cshtml", new tbl_Contract())
+<div id="info-data-contract"></div>
+
+<!----- đánh giá ----->
+@Html.Partial("~/Views/TourOtherTab/_Partial_InsertMark.cshtml", new tbl_ReviewTour())
+
+<!----- công nợ đối tác ----->
+@Html.Partial("~/Views/TourOtherTab/_Partial_InsertCongNoDoiTac.cshtml", new tbl_LiabilityPartner())
+<div id="info-data-liabilitypartner"></div>
+
+<!----- công nợ khách hàng ----->
+@Html.Partial("~/Views/TourOtherTab/_Partial_InsertCongNoKhachHang.cshtml", new tbl_LiabilityCustomer())
+<div id="info-data-liabilitycustomer"></div>
+
+<!----- sự kiện ----->
+@Html.Partial("~/Views/TourService/_Partial_InsertEvent.cshtml")
+<div id="info-data-eventservice"></div>
+
+<!----- nhà hàng ----->
+@Html.Partial("~/Views/TourService/_Partial_InsertRestaurant.cshtml", new tbl_Partner())
+<div id="info-data-restaurantservice"></div>
+
+<!----- khách sạn ----->
+@Html.Partial("~/Views/TourService/_Partial_InsertHotel.cshtml", new tbl_Partner())
+<div id="info-data-hotelservice"></div>
+
+<!----- vận chuyển ----->
+@Html.Partial("~/Views/TourService/_Partial_InsertTransport.cshtml", new tbl_Partner())
+<div id="info-data-transportservice"></div>
+
+<!----- vé máy bay ----->
+@Html.Partial("~/Views/TourService/_Partial_InsertPlane.cshtml", new tbl_Partner())
+<div id="info-data-planeservice"></div>
+
+<!----- land tour ----->
+@Html.Partial("~/Views/TourService/_Partial_InsertLandtour.cshtml")
+<div id="info-data-landtourservice"></div>
+
+<!----- báo giá ----->
+@Html.Partial("~/Views/TourOtherTab/_Partial_InsertQuotation.cshtml", new tbl_Quotation())
+<div id="info-data-quotation"></div>
+
+@Html.Partial("_Partial_InsertServiceTour")
+@Html.Partial("_Partial_AddServices")
+<div id="info-detail-service"></div>
+@Html.Partial("_Partial_ImportCustomer")
+<div id="info-data-customer"></div>
+
+<!----- báo giá ----->
+@Html.Partial("_Partial_UpdateVisa", new tbl_CustomerVisa())
+<div id="info-data-visa"></div>
+
+<!----- hướng dẫn viên ----->
+@Html.Partial("~/Views/TourOtherTab/_Partial_InsertGuide.cshtml", new TourGuideViewModel())
+<div id="info-data-guide"></div>
+
+@section scripts{
+    <script src="~/Scripts/controller/tourbidding.js"></script>
+    <script src="~/Scripts/controller/tourother.js"></script>
+    <script src="~/Scripts/controller/tourservice.js"></script>
+    <script src="~/Scripts/numeral.min.js"></script>
+    <script>
+        $('#btnAddCongNo').click(function () {
+            var num = $('.clonedInputCongNo').length, // how many "duplicatable" input fields we currently have
+                newNum = new Number(num + 1),      // the numeric ID of the new input field being added
+                newElem = $('#entryCongNo' + num).clone().attr('id', 'entryCongNo' + newNum).fadeIn('slow'); // create the new element via clone(), and manipulate it's ID using newNum value
+            // manipulate the name/id values of the input inside the new element
+            newElem.find('.congnocurrencyfirst').attr('id', 'insert-currencyfirst-congno' + newNum).attr('name', 'FirstCurrencyType' + newNum);
+            newElem.find('.congnopartner').attr('id', 'insert-partner-congno' + newNum).attr('name', 'PartnerId' + newNum);
+            newElem.find('.dichvupartner').attr('id', 'insert-partner-dichvu' + newNum).attr('name', 'ServiceId' + newNum);
+            newElem.find('.congnofirst').attr('name', 'FirstPayment' + newNum).val('').attr('id', 'FirstPayment' + newNum);
+            newElem.find('.congnomethod').attr('id', 'insert-method-congno' + newNum).attr('name', 'PaymentMethod' + newNum);
+            newElem.find('.congnosecond').attr('name', 'SecondPayment' + newNum).val('').attr('id', 'SecondPayment' + newNum);
+            newElem.find('.congnoprice').attr('name', 'ServicePrice' + newNum).val('').attr('id', 'ServicePrice' + newNum);
+            newElem.find('.congnoremaining').attr('name', 'TotalRemaining' + newNum).val('').attr('id', 'TotalRemaining' + newNum);
+            newElem.find('.congnonote').attr('id', 'insert-note-congnodt' + newNum).attr('name', 'Note' + newNum).val('');
+            newElem.find('.collapsedt').attr('data-target', '#demo-congnodt' + newNum);
+            newElem.find('.optioncongno').attr('id', 'demo-congnodt' + newNum);
+            newElem.find('.titleoption').text('OPTION ' + newNum);
+
+            // insert the new element after the last "duplicatable" input field
+            $('#entryCongNo' + num).after(newElem);
+            $("#insert-partner-congno" + newNum).select2();
+            $("#insert-partner-dichvu" + newNum).select2();
+            $("#insert-method-congno" + newNum).select2();
+            $("#insert-currencyfirst-congno" + newNum).select2();
+            CKEDITOR.replace("insert-note-congnodt" + newNum);
+            $("#countOptionCongNo").val(newNum);
+
+            for (var i = 1; i < newNum; i++) {
+                $("#entryCongNo" + newNum + " #select2-insert-currencyfirst-congno" + i + "-container").parent().parent().parent().remove();
+                $("#entryCongNo" + newNum + " #select2-insert-partner-congno" + i + "-container").parent().parent().parent().remove();
+                $("#entryCongNo" + newNum + " #select2-insert-partner-dichvu" + i + "-container").parent().parent().parent().remove();
+                $("#entryCongNo" + newNum + " #select2-insert-method-congno" + i + "-container").parent().parent().parent().remove();
+                $("#entryCongNo" + newNum).find("#cke_insert-note-congnodt" + i).remove();
+            }
+
+            $('#insert-partner-dichvu' + newNum).change(function () {
+                $.getJSON('/TourOtherTab/LoadPartner/' + $('#edit-partner-dichvu' + newNum).val(), function (data) {
+                    var items = "<option value='0'>-- Chọn đối tác --</option>";
+                    $.each(data, function (i, ward) {
+                        items += "<option value='" + ward.Value + "'>" + ward.Text + "</option>";
+                    });
+                    $('#edit-partner-congno' + newNum).html(items);
+                });
+            });
+
+            // enable the "remove" button
+            $('#btnDelCongNo').attr('disabled', false);
+
+            $(".Icndt").change(function () {
+                var num = $('.clonedInputCongNo').length;
+                for (var i = 1; i <= num; i++) {
+                    var tong = $("#ServicePrice" + i).val();
+                    var dot1 = $("#FirstPayment" + i).val();
+                    var dot2 = $("#SecondPayment" + i).val();
+                    $("#TotalRemaining" + i).val(tong - dot1 - dot2);
+                }
+            })
+        });
+
+        $('#btnDelCongNo').click(function () {
+            // confirmation
+            var num = $('.clonedInputCongNo').length;
+            // how many "duplicatable" input fields we currently have
+            $('#entryCongNo' + num).slideUp('slow', function () {
+                $(this).remove();
+                // if only one element remains, disable the "remove" button
+                if (num - 1 === 1)
+                    $('#btnDelCongNo').attr('disabled', true);
+                // enable the "add" button
+                $('#btnAddCongNo').attr('disabled', false).prop('value', "add section");
+            });
+            return false;
+
+            $('#btnAddCongNo').attr('disabled', false);
+        });
+        $('#btnDelCongNo').attr('disabled', true);
+
+        $(".Icndt").change(function () {
+            var num = $('.clonedInputCongNo').length;
+            for (var i = 1; i <= num; i++) {
+                var tong = $("#ServicePrice" + i).val();
+                var dot1 = $("#FirstPayment" + i).val();
+                var dot2 = $("#SecondPayment" + i).val();
+                $("#TotalRemaining" + i).val(tong - dot1 - dot2);
+            }
+        })
+
+        function btnImportCustomer() {
+            if ($("table#tableDictionary").find('tr.oneselected').length === 0) {
+                alert("Vui lòng chọn 1 tour!");
+            }
+            else {
+                var dataPost = { id: $("table#tableDictionary").find('tr.oneselected').find("input[type='checkbox']").val() };
+                $.ajax({
+                    type: "POST",
+                    url: '/TourBiddingManage/GetIdTour',
+                    data: JSON.stringify(dataPost),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (data) {
+                        $("#modal-import-customer").modal("show");
+                    }
+                });
+            }
+        }
+        //fileImport customer
+        $('#fileImport').change(function () {
+            var data = new FormData();
+            data.append('FileName', $('#fileImport')[0].files[0]);
+
+            var ajaxRequest = $.ajax({
+                type: "POST",
+                url: '/TourBiddingManage/ImportFile',
+                contentType: false,
+                processData: false,
+                data: data
+            });
+
+            ajaxRequest.done(function (xhr, textStatus) {
+                // Onsuccess
+            });
+            ajaxRequest.success(function (data) {
+                $("#listItemIdI").val("");
+                $("#import-data-customer").html(data);
+            })
+        });
+
+        function updateNote(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/TourBiddingManage/CustomerNote',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#info-data-visa").html(data);
+                    CKEDITOR.replace("edit-note-tour");
+                    $("#modal-update-note").modal('show');
+                }
+            });
+        }
+
+        function updateCustomer(id) {
+            var dataPost = { id: id };
+
+            $.ajax({
+                type: "POST",
+                url: '/TourBiddingManage/CustomerInfomation',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#info-data-customer").html(data);
+
+                    /*** visa-passport ***/
+                    $("#country-edit-cmnd").select2();
+                    $("#country-edit-passport").select2();
+
+                    /*** doanh nghiệp ***/
+                    $("#edit-address-company").select2();
+                    $("#edit-nhomkh-company").select2();
+                    $("#edit-nguonden-company").select2();
+                    $("#edit-company").select2();
+                    $("#edit-customer-career").select2();
+
+                    /*** cá nhân ***/
+                    $("#edit-personal-quydanh").select2();
+                    $("#edit-address-personal").select2();
+                    $("#edit-nghenghiep-personal").select2();
+                    $("#edit-nhomkh-personal").select2();
+                    $("#edit-nguonden-personal").select2();
+
+                    /*** người liên hệ ***/
+                    $("#edit-customer-contact").select2();
+                    $("#edit-quydanh-contact").select2();
+                    $("#edit-address-contact").select2();
+
+                    ///*** modal ***/
+                    CKEDITOR.replace("edit-note-company");
+                    CKEDITOR.replace("edit-note-personal");
+                    CKEDITOR.replace("edit-note-contact");
+                    $("#modal-edit-customer").modal("show");
+
+                    ///*** duplicate form visa (edit) ***/
+                    $(function () {
+                        $('#btnAddE').click(function () {
+                            var num = $('.clonedInputE').length, // how many "duplicatable" input fields we currently have
+                                newNum = new Number(num + 1),      // the numeric ID of the new input field being added
+                                newElem = $('#entryE' + num).clone().attr('id', 'entryE' + newNum).fadeIn('slow'); // create the new element via clone(), and manipulate it's ID using newNum value
+                            // manipulate the name/id values of the input inside the new element
+
+                            newElem.find('.visacardE').attr('name', 'VisaNumber' + newNum).val('');
+                            newElem.find('.ngaycapvisaE').attr('id', 'ngaycapvisaE' + newNum).attr('name', 'CreatedDateVisa' + newNum).val('');
+                            newElem.find('.ngayhethanvisaE').attr('id', 'ngayhethanvisaE' + newNum).attr('name', 'ExpiredDateVisa' + newNum).val('');
+                            newElem.find('.countryvisaE').attr('id', 'countryvisaE' + newNum).attr('name', 'TagsId' + newNum).val('');
+
+                            // insert the new element after the last "duplicatable" input field
+                            $('#entryE' + num).after(newElem);
+                            //$("#ngaycapvisaE" + newNum).datepicker();
+                            //$("#ngayhethanvisaE" + newNum).datepicker();
+                            $("#countryvisaE" + newNum).select2();
+
+                            for (var i = 1; i < newNum; i++) {
+                                $("#entryE" + newNum + " #select2-countryvisaE" + i + "-container").parent().parent().parent().remove();
+                            }
+
+                            // enable the "remove" button
+                            $('#btnDelE').attr('disabled', false);
+
+                        });
+
+                        $('#btnDelE').click(function () {
+                            // confirmation
+                            var num = $('.clonedInputE').length;
+                            // how many "duplicatable" input fields we currently have
+                            $('#entryE' + num).slideUp('slow', function () {
+                                $(this).remove();
+                                // if only one element remains, disable the "remove" button
+                                if (num - 1 === 1)
+                                    $('#btnDelE').attr('disabled', true);
+                                // enable the "add" button
+                                $('#btnAddE').attr('disabled', false).prop('value', "add section");
+                            });
+                            return false;
+
+                            $('#btnAddE').attr('disabled', false);
+                        });
+                        $('#btnDelE').attr('disabled', true);
+                    });
+                }
+            });
+        }
+
+        function deleteCustomer(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/TourBiddingManage/DeleteCustomer',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    var obj = jQuery.parseJSON(data);
+                    if (obj.Succeed) {
+                        alert(obj.Message);
+                        if (obj.IsPartialView) {
+                            table.replaceWith(obj.View);
+                        }
+                        else {
+                            if (obj.RedirectTo != null && obj.RedirectTo != "") {
+                                window.location.href = obj.RedirectTo;
+                            }
+                        }
+                    }
+                    else {
+                        alert(obj.Message);
+                    }
+                }
+            });
+        }
+
+        function capNhatKH() {
+            if ($("table#tableDictionary").find('tr.oneselected').length === 0) {
+                alert("Vui lòng chọn 1 tour!");
+            }
+            else {
+                var dataPost = { id: $("table#tableDictionary").find('tr.oneselected').find("input[type='checkbox']").val() };
+                $.ajax({
+                    type: "POST",
+                    url: '/TourBiddingManage/CapNhatKH',
+                    data: JSON.stringify(dataPost),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (data) {
+                        var obj = jQuery.parseJSON(data);
+                        if (obj.Succeed) {
+                            alert(obj.Message);
+                            if (obj.IsPartialView) {
+                                table.replaceWith(obj.View);
+                            }
+                            else {
+                                if (obj.RedirectTo != null && obj.RedirectTo != "") {
+                                    window.location.href = obj.RedirectTo;
+                                }
+                            }
+                        }
+                        else {
+                            alert(obj.Message);
+                        }
+                    }
+                });
+            }
+        }
+
+        //////////////////////////////
+
+        $("#tbl-data-import").on("change", ".cbItem", function () {
+            var ItemID = $(this).val();
+            var currentlistItemID = $("#listItemIdI").val();
+            var stringBranchID = "";
+            if ($(this).prop('checked')) {
+                currentlistItemID += ItemID + ",";
+                $("#listItemIdI").val(currentlistItemID);
+            } else {
+                $("#listItemIdI").val(currentlistItemID.replace(ItemID + ",", ""));
+            }
+        });
+        function DeleteImport() {
+            if ($("#listItemIdI").val() == "") {
+                alert("Vui lòng chọn mục cần xóa !");
+                return false;
+            }
+            var dataPost = { listItemId: $("#listItemIdI").val() };
+            $.ajax({
+                type: "POST",
+                url: '/TourBiddingManage/DeleteImport',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#import-data-customer").html(data);
+                    $("#listItemIdI").val("");
+                }
+            });
+        }
+        function SaveImport() {
+            $.ajax({
+                type: "POST",
+                url: '/TourBiddingManage/SaveImport',
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#modal-import-customer").modal("hide");
+                    alert("Đã lưu!");
+                    $("#khachhang").html(data);
+                }
+            });
+        }
+    </script>
+}

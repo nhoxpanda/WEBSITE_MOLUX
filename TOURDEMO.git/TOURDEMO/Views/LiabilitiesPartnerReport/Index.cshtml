@@ -1,0 +1,134 @@
+﻿@using CRM.Core
+@using TOURDEMO.Utilities
+@{
+    ViewBag.Title = "Thống kê doanh thu - công nợ đối tác";
+    int i = 0;
+}
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>THỐNG KÊ DOANH THU - CÔNG NỢ ĐỐI TÁC</h1>
+        </div>
+        <!-- END PAGE TITLE -->
+
+    </div>
+    <!-- END PAGE HEAD-->
+    <div class="note note-info">
+        @using (Html.BeginForm("ExportExcel", "LiabilitiesPartnerReport", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Kỳ báo cáo</label>
+                    <select class="form-control" id="ddlKyBaoCao" style="width: 100%" name="kybaocao">
+                        @foreach (var item in LoadData.KyBaoCaoList())
+                        {
+                            <option value="@i">@item</option>
+                            i++;
+                        }
+                    </select>
+                </div>
+                <div id="startEndDate">
+                    @{
+                        DateTime dateFrom = DateTime.Now.AddYears(-2);
+                        DateTime dateTo = new DateTime(DateTime.Now.Year, 12, 31);
+                    }
+                    <div class="col-md-3">
+                        <label>Từ ngày</label>
+                        <input type="date" id="txtStartDate" value="@dateFrom.ToString("yyyy-MM-dd")" class="form-control" name="tungay" required />
+                    </div>
+                    <div class="col-md-3">
+                        <label>Đến ngày</label>
+                        <input type="date" id="txtEndDate" value="@dateTo.ToString("yyyy-MM-dd")" class=" form-control" name="denngay" required />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Loại tour</label>
+                    <select class="form-control" id="ddlLoaiTour" style="width: 100%" name="loai">
+                        <option value="0">-- Tất cả --</option>
+                        @foreach (var item in LoadData.TourTypeList())
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label>Vị trí</label>
+                    <select class="form-control" id="ddlViTri" style="width: 100%" name="vitri">
+                        <option value="0">-- Tất cả --</option>
+                        @foreach (var item in LoadData.DropdownlistLocation())
+                        {
+                            <option value="@item.Id">@item.Tags</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-6" style="margin-top: 23px;">
+                    <a class="btn btn-default" href="@Url.Action("Index", "LiabilitiesPartnerReport")"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                    <button class="btn btn-success" type="button" id="btnSearch"><i class="fa fa-search"></i>&nbsp;Tìm</button>
+                    <button class="btn btn-primary" type="submit" id="export"><i class="icon-action-undo"></i>&nbsp;Export</button>
+                    <input type="hidden" id="listItemId" name="listItemId" />
+                    <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo"><i class="icon-book-open"></i>&nbsp;Ẩn/Hiện cột</button>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row collapse" id="demo">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body" id="data-customer">
+                    <div class="row">
+                        <div class="col-md-2 col-xs-2 col-sm-2">
+                            <ul>
+                                <li><a class="toggle-vis" data-column="1" style="color: #333; font-weight: bold">Code tour</a></li>
+                                <li><a class="toggle-vis" data-column="2" style="color: #333; font-weight: bold">Tên tour</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-xs-2 col-sm-2">
+                            <ul>
+                                <li><a class="toggle-vis" data-column="3" style="color: #333; font-weight: bold">Điểm đến</a></li>
+                                <li><a class="toggle-vis" data-column="4" style="color: #333; font-weight: bold">Tên đối tác</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-xs-2 col-sm-2">
+                            <ul>
+                                <li><a class="toggle-vis" data-column="5" style="color: #333; font-weight: bold">Dịch vụ</a></li>
+                                <li><a class="toggle-vis" data-column="10" style="color: #333; font-weight: bold">Điều hành</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-xs-3 col-sm-3">
+                            <ul>
+                                <li><a class="toggle-vis" data-column="7" style="color: #333; font-weight: bold">Tổng GT dịch vụ</a></li>
+                                <li><a class="toggle-vis" data-column="8" style="color: #333; font-weight: bold">Tổng GT thanh toán</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-xs-3 col-sm-3">
+                            <ul>
+                                <li><a class="toggle-vis" data-column="9" style="color: #333; font-weight: bold">Tổng GT còn lại</a></li>
+                                <li><a class="toggle-vis" data-column="6" style="color: #333; font-weight: bold">Ngày khởi hành</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body" id="data-tour">
+                    @Html.Action("_Partial_ListTourReport", "LiabilitiesPartnerReport")
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE BASE CONTENT -->
+</div>
+
+@section scripts{
+    <script src="~/Scripts/controller/reportlibpartner.js"></script>
+}

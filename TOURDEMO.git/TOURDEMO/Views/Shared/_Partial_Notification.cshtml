@@ -1,0 +1,12 @@
+﻿@using TOURDEMO.Utilities
+@using CRM.Core
+@model tbl_AppointmentHistory
+
+<div id="id-notification">@Model.Id</div>
+<div id="title-notification">@Model.Title</div>
+<div id="body-notification">
+    Ngày hẹn: @string.Format("{0:dd-MM-yy hh:mm tt}", Model.Time)
+    Khách hàng: @(Model.CustomerId != null ? Model.tbl_Customer.FullName : "")
+    Tour: @(Model.TourId != null ? Model.tbl_Tour.Name : "")
+    Ghi chú: @Html.Raw(Model.Note)
+</div>

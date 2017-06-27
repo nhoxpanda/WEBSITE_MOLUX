@@ -1,0 +1,86 @@
+﻿@using TOURDEMO.Utilities
+
+@{
+    ViewBag.Title = "Quản lý Chất lượng điều hành";
+}
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>CHẤT LƯỢNG ĐIỀU HÀNH</h1>
+        </div>
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="note note-info">
+        <div class="row">
+            <div class="col-md-6">
+                <select class="form-control" id="search-operator">
+                    <option value="0">Chọn người điều hành</option>
+                    @foreach (var item in LoadData.StaffList())
+                    {
+                        <option value="@item.Id">[@item.Code] @item.FullName </option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6">
+                <select class="form-control" id="search-tour">
+                    <option value="0">Chọn tour</option>
+                    @foreach (var item in LoadData.TourList())
+                    {
+                        <option value="@item.Id">[@item.Code] @item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-12 margintop10">
+                <a class="btn btn-default" href="@Url.Action("Index", "EvaluationOperatorManage")"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                @if (ViewBag.IsAdd != null && ViewBag.IsAdd)
+                {<button class="btn btn-primary" id="btnAdd" href="#modal-insert-evaluation" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>}
+                @if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+                { <button class="btn btn-warning" id="btnEdit"><i class="fa fa-pencil"></i>&nbsp;Sửa</button>}
+                @if (ViewBag.IsDelete != null && ViewBag.IsDelete)
+                {<button class="btn btn-danger" id="btnRemove"><i class="fa fa-remove"></i>&nbsp;Xóa</button>
+                <form action="@Url.Action("Delete", "EvaluationOperatorManage")" method="post" style="position:absolute">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="listItemId" name="listItemId" />
+                </form>}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body" id="data-evaluation">
+                    @Html.Action("_Partial_List", "EvaluationOperatorManage")
+                </div>
+            </div>
+            <div class="portlet light bordered" id="tabThongTinChiTiet">
+                <div class="portlet-body">
+                    <div class="tabbable-custom ">
+                        <ul class="nav nav-tabs ">
+                            <li class="active">
+                                <a href="#tab1" data-toggle="tab">Thông tin chi tiết</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="table-document">
+                                @Html.Action("Detail", "EvaluationOperatorManage")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (ViewBag.IsAdd != null && ViewBag.IsAdd)
+{
+    @Html.Partial("_Partial_Insert", new CRM.Core.tbl_Evaluation())
+}
+<div id="edit-evaluation"></div>
+
+@section scripts{
+    <script src="~/Scripts/controller/evaluationoperator.js"></script>
+}

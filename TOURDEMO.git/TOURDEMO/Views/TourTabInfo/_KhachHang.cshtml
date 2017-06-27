@@ -1,0 +1,101 @@
+﻿@using CRM.Core
+@using TOURDEMO.Utilities
+@model IEnumerable<tbl_Customer>
+<button class="btn btn-primary" onclick="btnImportCustomer()">Import KH</button>
+<button class="btn btn-warning" onclick="capNhatKH()">Cập nhật KH</button>
+@if (Model != null)
+{
+    bool temp = false;
+    int it = 0;
+    foreach (var item in Model)
+    {
+        it++;
+        if (item.IsTemp)
+        {
+            temp = true;
+        }
+        break;
+    }
+    if (temp)
+    {
+        if (ViewBag.IsImport != null && ViewBag.IsImport)
+        {<button class="btn btn-primary" onclick="btnImportCustomer()">Import KH</button>}
+        if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+        { <button class="btn btn-warning" onclick="capNhatKH()">Cập nhật KH</button>}
+    }
+    else if (it == 0)
+    {
+        if (ViewBag.IsImport != null && ViewBag.IsImport)
+        {<button class="btn btn-primary" onclick="btnImportCustomer()">Import KH</button>}
+        if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+        { <button class="btn btn-warning" onclick="capNhatKH()">Cập nhật KH</button>}
+    }
+}
+else
+{
+    if (ViewBag.IsImport != null && ViewBag.IsImport)
+    {<button class="btn btn-primary" onclick="btnImportCustomer()">Import KH</button>}
+    if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+    { <button class="btn btn-warning" onclick="capNhatKH()">Cập nhật KH</button>}
+}
+<br />
+<br />
+@*Khách hàng*@
+<div class="table-scrollable table-custom-format">
+    <table class="table table-striped table-bordered table-hover" id="table-customer">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>
+                    <input type="checkbox" id="allcheck" name="allcheck" onclick="SelectAllCheckCus()" />
+                </th>
+                <th>STT</th>
+                <th>Mã KH</th>
+                <th>Tên KH</th>
+                <th>Địa chỉ</th>
+                <th>Điện thoại</th>
+                <th>CMND</th>
+                <th>Passport</th>
+                <th>Ngày hiệu lực</th>
+                <th>Ngày hết hạn</th>
+                <th>Ghi chú</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                int i = 1;
+                foreach (var item in Model)
+                {
+                    <tr class="odd gradeX">
+                        <td>
+                            @if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+                            { <a style="cursor: pointer" onclick="updateCustomer(@item.Id)"><i class="fa fa-pencil"></i>&nbsp;Sửa</a><br />
+                                <a style="cursor: pointer" onclick="updateNote(@item.Id)"><i class="fa fa-pencil"></i>&nbsp;Ghi chú</a><br />}
+                            @if (item.IsTemp)
+                            {
+                                if (ViewBag.IsDelete != null && ViewBag.IsDelete)
+                                {<a style="cursor: pointer" onclick="deleteCustomer(@item.Id)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>}
+                            }
+                        </td>
+                        <td>
+                            <input type="checkbox" value="@item.Id" id="check@item.Id" name="check" onclick="CheckSelectCus()" />
+                        </td>
+                        <td style="text-align: center">@i</td>
+                        <td>@item.Code</td>
+                        <td>@item.FullName</td>
+                        <td>@item.Address</td>
+                        <td>@item.Phone</td>
+                        <td>@item.IdentityCard</td>
+                        <td>@item.PassportCard</td>
+                        <td>@string.Format("{0:dd-MM-yyyy}", item.CreatedDatePassport)</td>
+                        <td>@string.Format("{0:dd-MM-yyyy}", item.ExpiredDatePassport)</td>
+                        <td>@Html.Raw(item.NoteTour)</td>
+
+                    </tr>
+                            i++;
+                }
+            }
+        </tbody>
+    </table>
+</div>

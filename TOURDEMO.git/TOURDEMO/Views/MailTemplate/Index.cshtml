@@ -1,0 +1,89 @@
+﻿@using TOURDEMO.Models
+@using CRM.Core
+@model IEnumerable<CRM.Core.tbl_MailTemplates>
+
+@{
+    ViewBag.Title = "Cấu hình mẫu email";
+}
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>CẤU HÌNH MẪU EMAIL</h1>
+        </div>
+        <!-- END PAGE TITLE -->
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="note note-info">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="@Url.Action("Index", "MailTemplate")" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                @if (ViewBag.IsAdd != null && ViewBag.IsAdd)
+                {<a class="btn btn-primary" href="@Url.Action("Create", "MailTemplate")"><i class="fa fa-plus"></i>&nbsp;Thêm</a>}
+                @if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+                {<button class="btn btn-warning" id="btnEdit"><i class="fa fa-pencil"></i>&nbsp;Sửa</button>}
+                @if (ViewBag.IsDelete != null && ViewBag.IsDelete)
+                {<button class="btn btn-danger" id="btnRemove"><i class="fa fa-remove"></i>&nbsp;Xóa</button>
+                    <form action="@Url.Action("Delete", "MailTemplate")" method="post" style="position:absolute">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="listItemId" name="listItemId" />
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="table-responsive table-custom-format" id="tableDictionary-Wrapper">
+                        <table class="table table-bordered table-hover dataTable" id="tableDictionary">
+                            <thead>
+                                <tr>
+                                    <th class="width24"></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th class="table-checkbox">
+                                        <input type="checkbox" id="allcb" name="allcb" onclick="SelectAllCb()" />
+                                    </th>
+                                    <th>Tên biểu mẫu</th>
+                                    <th>Loại mẫu</th>
+                                    <th>Người tạo</th>
+                                    <th>Ngày tạo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="width24">
+                                            <input type="checkbox" id="cb@(item.Id)" class="cbItem" value="@item.Id" name="cb" onclick="CheckSelect()" />
+                                        </td>
+                                        <td>@item.Name</td>
+                                        <td>@item.tbl_MailCategory.CateName</td>
+                                        <td>@item.tbl_Staff.FullName</td>
+                                        <td>@string.Format("{0:dd/MM/yyyy}", item.CreateDate)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END PAGE BASE CONTENT -->
+</div>
+
+@section scripts{   
+    <script src="~/Scripts/controller/mailtemplate.js"></script>
+}

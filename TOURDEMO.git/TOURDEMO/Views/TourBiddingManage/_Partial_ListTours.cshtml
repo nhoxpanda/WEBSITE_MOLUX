@@ -1,0 +1,90 @@
+﻿@using TRAVELPLUS.Utilities
+@model IEnumerable<TRAVELPLUS.Models.TourListViewModel>
+@{
+    int i = 1;
+}
+
+<div class="table-scrollable table-custom-format" id="tableDictionary-Wrapper">
+    <table class="table table-bordered table-hover dataTable" id="tableDictionary">
+        <thead>
+            <tr>
+                <td class="width24"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                @*<td></td>
+                <td></td>*@
+            </tr>
+            <tr>
+                <th>
+                    <input type="checkbox" id="allcb" name="allcb" onclick="SelectAllCb()" />
+                </th>
+                <th>STT</th>
+                <th>Code tour</th>
+                <th>Tên tour</th>
+                <th>Tình trạng</th>
+                <th>Khách hàng</th>
+                <th>Nhân viên</th>
+                <th>Điều hành</th>
+                <th>Điểm đến</th>
+                <th>Số lượng</th>
+                <th>Ngày khởi hành</th>
+                <th>Ngày về</th>
+                <th>Thời gian</th>
+                <th>Hướng dẫn viên</th>
+                <th>Loại tour</th>
+                <th>Công nợ khách hàng</th>
+                <th>Công nợ đối tác</th>
+                @*<th>Thời gian gửi thầu</th>
+                <th>Ngày thông báo kết quả thầu</th>*@
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="width24">
+                            <input type="checkbox" value="@item.Id" id="cb@(item.Id)" class="cbItem" name="cb" onclick="CheckSelect()" />
+                        </td>
+                        <td  style="text-align: center">@i</td>
+                        <td class="textalignleft">@item.Code</td>
+                        <td class="textalignleft" style="width: 150px">@item.Name</td>
+                        <td style="@(item.Color != null ? "color: #fff; background-color: " + item.Color + "" : "")">@item.Status</td>
+                        <td class="textalignleft" style="width: 150px">@item.CustomerName</td>
+                        <td class="textalignleft">@item.Staff, @(item.Permission != null ? LoadData.LoadStaff(item.Permission) : "")</td>
+                        <td class="textalignleft">@item.Manager</td>
+                        <td class="textalignleft">@item.DestinationPlace</td>
+                        <td>@item.NumberCustomer</td>
+                        <td>@string.Format("{0:dd-MM-yyyy}", item.StartDate)</td>
+                        <td>@string.Format("{0:dd-MM-yyyy}", item.EndDate)</td>
+                        <td>@item.NumberDay</td>
+                        <td class="textalignleft">@item.TourGuide</td>
+                        <td>@item.TourType</td>
+                        <td id="cnkh@(item.Id)">@string.Format("{0:0,0}", item.CongNoKhachHang).Replace(",", ".")</td>
+                        <td id="cndt@(item.Id)">@string.Format("{0:0,0}", item.CongNoDoiTac).Replace(",", ".")</td>
+                        @*<td>@string.Format("{0:dd-MM-yyyy}", item.)</td>
+                        <td>@string.Format("{0:dd-MM-yyyy}", item.EndDate)</td>*@
+                    </tr>
+                    i++;
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,64 @@
+﻿@using TOURDEMO.Utilities
+@using CRM.Core
+@model tbl_Tour
+
+<div class="modal fade  bs-modal-lg" id="modal-edit-tourschedule" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Cập nhật ngày đi tour</h4>
+            </div>
+            @using (Ajax.BeginForm("UpdateScheduleTour", "TourSchedule", null, new AjaxOptions { OnFailure = "OnFailureScheduleTour", OnSuccess = "OnSuccessScheduleTour" }, new { @id = "frmUpdateTourSchedule" }))
+            {
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.Code)
+                @Html.HiddenFor(model => model.Name)
+                @Html.HiddenFor(model => model.StartPlace)
+                @Html.HiddenFor(model => model.DestinationPlace)
+                @Html.HiddenFor(model => model.StatusId)
+                @Html.HiddenFor(model => model.TypeTourId)
+                @Html.HiddenFor(model => model.CustomerId)
+                @Html.HiddenFor(model => model.NumberCustomer)
+                @Html.HiddenFor(model => model.NumberDay)
+                @Html.HiddenFor(model => model.StaffId)
+                @Html.HiddenFor(model => model.CreateStaffId)
+                @Html.HiddenFor(model => model.ContactId)
+                @Html.HiddenFor(model => model.Request)
+                @Html.HiddenFor(model => model.ContactId)
+                @Html.HiddenFor(model => model.ContactId)
+                @Html.HiddenFor(model => model.CreatedDate)
+                @Html.HiddenFor(model => model.Permission)
+                @Html.HiddenFor(model => model.IsDelete)
+                @Html.HiddenFor(model => model.IsUpdate)
+                @Html.HiddenFor(model => model.NoteFlight)
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3 col-md-3">Từ ngày</label>
+                                    <div class="col-lg-6 col-md-6">
+                                        @Html.TextBoxFor(model => model.StartDate, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-3 col-md-3">Đến ngày</label>
+                                    <div class="col-lg-6 col-md-6">
+                                        @Html.TextBoxFor(model => model.EndDate, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center" style="margin-bottom: 20px">
+                    <button type="submit" class="btn blue">Lưu</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                </div>
+            }
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

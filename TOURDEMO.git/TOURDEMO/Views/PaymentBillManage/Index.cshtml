@@ -1,0 +1,183 @@
+﻿@using CRM.Core
+@using TOURDEMO.Models
+@using TOURDEMO.Utilities
+@model IEnumerable<tbl_PaymentBill>
+@{
+    ViewBag.Title = "Quản lý Phiếu chi";
+    int i = 1;
+}
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>DANH SÁCH PHIẾU CHI</h1>
+        </div>
+        <!-- END PAGE TITLE -->
+
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="note note-info">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-left">
+                    <a class="btn btn-default" href="@Url.Action("Index", "PaymentBillManage")"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                    @if (ViewBag.IsAdd != null && ViewBag.IsAdd)
+                    {<button class="btn btn-primary" href="#modal-insert-bill" data-toggle="modal" id="btnAdd"><i class="fa fa-plus"></i>&nbsp;Thêm</button>}
+                    @if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+                    { <button class="btn btn-warning" id="btnEdit"><i class="fa fa-pencil"></i>&nbsp;Sửa</button>}
+                    @if (ViewBag.IsDelete != null && ViewBag.IsDelete)
+                    {
+                        <button class="btn btn-danger" id="btnRemove" onclick="confirm('Bạn có chắc chắn muốn xóa?');"><i class="fa fa-remove"></i>&nbsp;Xóa</button>
+                        <form action="@Url.Action("Delete", "PaymentBillManage")" method="post" style="position:absolute">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" id="listItemId" name="listItemId" />
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="table-scrollable table-custom-format" id="list-bill">
+                        <table class="table table-bordered table-hover dataTable" id="tableDictionary">
+                            <thead>
+                                <tr>
+                                    <th class="width24"></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th class="table-checkbox">
+                                        <input type="checkbox" id="allcb" name="allcb" onclick="SelectAllCb()" />
+                                    </th>
+                                    <th>#</th>
+                                    <th>Số phiếu</th>
+                                    <th>Người nhận</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Trạng thái</th>
+                                    <th>Lý do chi</th>
+                                    <th>Chứng từ gốc</th>
+                                    <th>Ngày nhập</th>
+                                    <th>Nhân viên nhập</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="odd gradeX">
+                                        <td class="width24">
+                                            <input type="checkbox" value="@item.Id" class="cbItem" name="cb" onclick="CheckSelect()" />
+                                        </td>
+                                        <td>@i</td>
+                                        <td>@item.Code</td>
+                                        <td>@item.Receiver</td>
+                                        <td>@item.Address</td>
+                                        <td>@(item.TotalPrice != null ? item.TotalPrice.Value.ToString("0,0").Replace(",",".") + " " + item.tbl_DictionaryCurrency.Name : "")</td>
+                                        <td>@(item.tbl_DictionaryStatus != null ? item.tbl_DictionaryStatus.Name : "")</td>
+                                        <td>@Html.Raw(item.Reason)</td>
+                                        <td><a href="~/Upload/file/@item.FileName">@item.FileName</a></td>
+                                        <td>@string.Format("{0:dd-MM-yyyy}", item.CreatedDate)</td>
+                                        <td>@item.tbl_Staff.FullName</td>
+                                    </tr>
+                                    i++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="tabbable-custom ">
+                        <ul class="nav nav-tabs ">
+                            <li class="active">
+                                <a href="#thongtinchitiet" data-toggle="tab" id="tabthongtinchitiet">Đợt thanh toán</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="thongtinchitiet" data-id="thongtinchitiet">
+                                @*Đợt thanh toán*@
+                                @Html.Action("_DotThanhToan", "PaymentBillPeriodManage")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_Partial_InsertPaymentBill", new tbl_PaymentBill())
+@Html.Partial("~/Views/PaymentBillPeriodManage/_Partial_InsertPaymentPeriod.cshtml", new tbl_PaymentBillPeriod())
+<div id="info-data-Payment"></div>
+@section scripts{
+    <script src="~/Scripts/controller/Paymentbill.js"></script>
+    <script>
+
+            // thêm đợt thanh toán
+            function insertPeriod() {
+                if ($("table#tableDictionary").find('tr.oneselected').length === 0) {
+                    alert("Vui lòng chọn 1 phiếu chi!");
+                }
+                else {
+                    var dataPost = { id: $("table#tableDictionary").find('tr.oneselected').find("input[type='checkbox']").val() };
+                    $.ajax({
+                        type: "POST",
+                        url: '/PaymentBillManage/GetIdPayment',
+                        data: JSON.stringify(dataPost),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "html",
+                        success: function (data) {
+                            $("#insert-paymentmethod").select2();
+                            $("#modal-insert-period").modal("show");
+                        }
+                    });
+                }
+            }
+            // sửa đợt thanh toán
+            function updatePeriod(id) {
+                var dataPost = { id: id };
+                $.ajax({
+                    type: "POST",
+                    url: '/PaymentBillPeriodManage/Edit',
+                    data: JSON.stringify(dataPost),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (data) {
+                        $("#info-data-Payment").html(data);
+                        $("#edit-paymentmethod").select2();
+                        $("#modal-edit-period").modal("show");
+                    }
+                });
+            }
+            // xóa đợt thanh toán
+            function deletePeriod(id) {
+                var dataPost = { id: id };
+                $.ajax({
+                    type: "POST",
+                    url: '/PaymentBillPeriodManage/Delete',
+                    data: JSON.stringify(dataPost),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (data) {
+                        $("#period" + id).hide();
+                    }
+                });
+            }
+    </script>
+}

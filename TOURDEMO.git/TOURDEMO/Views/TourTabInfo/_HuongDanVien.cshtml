@@ -1,0 +1,82 @@
+﻿@using TOURDEMO.Utilities
+@model IEnumerable<TOURDEMO.Models.GuideListViewModel>
+@{
+    int i = 1;
+    string domain = "https://view.officeapps.live.com/op/embed.aspx?src=" + Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
+
+<div class="table-scrollable table-custom-format">
+    @if (ViewBag.IsAdd != null && ViewBag.IsAdd)
+    { <button class="btn btn-primary" onclick="btnAddGuide()" id="btndocumentfile"><i class=" fa fa-plus"></i>&nbsp;Thêm</button>}
+    <br />
+    <br />
+    <div class="table-scrollable table-custom-format" id="table-document">
+        <table class="table table-striped table-bordered  table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>STT</th>
+                    <th>Ảnh HDV</th>
+                    <th>Họ tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Thẻ HDV</th>
+                    <th>Ngày đi</th>
+                    <th>Ngày về</th>
+                    <th>Tài liệu</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr class="odd gradeX" id="guide@(item.GuideId)">
+                            <td>
+                                @if (ViewBag.IsEdit != null && ViewBag.IsEdit)
+                                { <a style="cursor: pointer" onclick="updateGuide(@item.GuideId)"><i class="fa fa-pencil"></i>&nbsp;Sửa</a><br />}
+                                @if (ViewBag.IsDelete != null && ViewBag.IsDelete)
+                                { <a style="cursor: pointer" onclick="deleteGuide(@item.GuideId)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>}
+                            </td>
+                            <td style="text-align: center">@i</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.Image))
+                                {
+                                    <img class="img-responsive" src="/Upload/file/@item.Image" style="width: 150px" />
+                                }
+                                else
+                                {
+                                    <img class="img-responsive" src = "/Images/no-image.png"  style="width: 150px"/>
+                                }
+                            </td>
+                            <td>@item.Name</td>
+                            <td>@item.Birthday</td>
+                            <td>@item.CodeGuide</td>
+                            <td>@item.StartDate</td>
+                            <td>@item.EndDate</td>
+                            <td>
+                                @if (item.File.Count() > 0)
+                                {
+                                    foreach (var f in item.File.ToList())
+                                    {
+                                        string ext = Path.GetExtension(f.FileName);
+                                        ext = ext == null ? "" : ext.ToLower();
+                                        if (ext == ".pdf" || ext == ".jpg" || ext == ".png" || ext == ".txt")
+                                        {
+                                            <a target="_blank" href="/Upload/file/@f.FileName">@f.FileName</a>
+                                        }
+                                        else
+                                        {
+                                            <a target="_blank" href="@domain/Upload/file/@f.FileName">@f.FileName</a>
+                                        }
+                                        <br />
+                                    }
+                                }
+                            </td>
+                        </tr>
+                                i++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

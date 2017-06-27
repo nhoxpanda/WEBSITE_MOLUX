@@ -1,0 +1,62 @@
+﻿@using CRM.Core
+@model IEnumerable<tbl_VisaInfomation>
+@{
+    int i = 1;
+}
+
+<div class="table-responsive table-custom-format" id="tableDictionary-Wrapper">
+    <table class="table table-striped table-bordered table-hover dataTable" id="tableDictionary">
+        <thead>
+            <tr>
+                <th class="width24"></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th class="table-checkbox">
+                    <input type="checkbox" id="allcb" name="allcb" onclick="SelectAllCb()" />
+                </th>
+                <th>STT</th>
+                <th>Quốc gia</th>
+                <th>Loại visa</th>
+                <th>Phí visa</th>
+                <th>Phí dịch vụ (VNĐ)</th>
+                <th>Thời gian cấp trung bình (ngày)</th>
+                <th>Địa chỉ nộp</th>
+                <th>Địa chỉ lãnh sự quán</th>
+                <th>Giờ làm việc</th>
+                <th>Ghi chú</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="width24">
+                        <input type="checkbox" id="cb@(item.Id)" class="cbItem" value="@item.Id" name="cb" onclick="CheckSelect()" />
+                    </td>
+                    <td  style="text-align: center">@i</td>
+                    <td class="textalignleft">@(item.TagId != null ? item.tbl_Tags.Tag : "")</td>
+                    <td class="textalignleft">@(item.CategoryVisaId == null ? "" : item.tbl_DictionaryCategoryVisa.Name)</td>
+                    <td class="textalignleft">@string.Format("{0:0,0}", item.BasicPrice).Replace(",", ".") @item.tbl_DictionaryCurrency.Name</td>
+                    <td class="textalignleft">@string.Format("{0:0,0}", item.BasicService).Replace(",", ".") @item.tbl_DictionaryCurrencyService.Name</td>
+                    <td class="textalignleft">@item.NumberDay</td>
+                    <td class="textalignleft">@item.Address</td>
+                    <td class="textalignleft">@item.PlaceIn</td>
+                    <td class="textalignleft">@item.Time</td>
+                    <td class="textalignleft">@Html.Raw(item.Note)</td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+</div>
+

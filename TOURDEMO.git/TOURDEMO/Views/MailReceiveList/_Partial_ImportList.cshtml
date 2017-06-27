@@ -1,0 +1,62 @@
+﻿@using CRM.Enum
+@using CRM.Core
+@using TOURDEMO.Models
+@using TOURDEMO.Utilities
+@model IEnumerable<tbl_MailImport>
+<div class="modal fade  bs-modal-lg" id="modal-add-import" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Chọn danh sách email</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="table-scrollable table-custom-format">
+                        <table class="table table-bordered table-hover dataTable4" id="tableImport">
+                            <thead>
+                                <tr>
+                                    <th class="width24"></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th><input type="checkbox" id="allimport" name="allimport" /></th>
+                                    <th>Họ tên</th>
+                                    <th>Điện thoại</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr class="odd gradeX">
+                                            <td>
+                                                <input type="checkbox" value="@item.Id" class="checkAddImport" name="checkAddImport" />
+                                            </td>
+                                            <td>@item.Name</td>
+                                            <td>@item.Phone</td>
+                                            <td>@item.Email</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div align="center" style="margin-bottom: 20px">
+                <form action="@Url.Action("InsertImport", "MailReceiveList")" method="post" id="formAddImport" style="position:absolute">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="listItemIdAddImport" name="listItemIdAddImport" value="" />
+                </form>
+                <button type="submit" class="btn blue" id="btnLuuAddImport">Lưu</button>
+                <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+

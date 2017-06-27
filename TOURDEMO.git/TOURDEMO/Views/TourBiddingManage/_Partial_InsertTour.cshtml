@@ -1,0 +1,184 @@
+﻿@using CRM.Core
+@using TRAVELPLUS.Utilities
+@model TRAVELPLUS.Models.TourViewModel
+
+<div class="modal fade  bs-modal-lg" id="modal-insert-tour" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Thêm tour đấu thầu mới</h4>
+            </div>
+            @using (Html.BeginForm("Create", "TourBiddingManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Tên tour</label>
+                                    <div class="col-lg-10 col-md-10">
+                                        @Html.TextBoxFor(model => model.SingleTour.Name, new { @class = "form-control", })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Code tour</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <input type="text" class="form-control" name="SingleTour.Code" id="CodeTour" onchange="checkCodeTour()" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Ngày khởi hành</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextBoxFor(model => model.StartDateTour, new { type = "date", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Ngày về</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextBoxFor(model => model.EndDateTour, new { type = "date", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Khách hàng</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <select class="form-control" id="insert-customer-tour" style="width: 100%" name="SingleTour.CustomerId">
+                                            <option>-- Chọn khách hàng --</option>
+                                            @foreach (var item in LoadData.CustomerList())
+                                            {
+                                                <option value="@item.Id">@item.FullName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Số ngày</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextBoxFor(model => model.SingleTour.NumberDay, new { @class = "form-control", type = "number", min = "0" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Nơi đi</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <select class="form-control" id="insert-start-place" style="width: 100%" name="SingleTour.StartPlace">
+                                            @foreach (var item in LoadData.TinhThanhQuocGia())
+                                            {
+                                                <option value="@item.Id">@item.Tags</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Nơi đến</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <select class="form-control" id="insert-destination-place" style="width: 100%" name="SingleTour.DestinationPlace">
+                                            @foreach (var item in LoadData.TinhThanhQuocGia())
+                                            {
+                                                <option value="@item.Id">@item.Tags</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Loại tour</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        <select class="form-control" id="insert-type-tour" style="width: 100%" name="SingleTour.TypeTourId">
+                                            @foreach (var item in LoadData.TourTypeList())
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Điều hành</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        <select name="SingleTour.StaffId" id="insert-manager-tour" class="form-control" style="width: 100%">
+                                            @foreach (var item in LoadData.StaffList())
+                                            {
+                                                <option value="@item.Id">[@item.Code] @item.FullName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <label class="control-label col-lg-2 col-md-2">Số lượng khách</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        <input type="number" name="SingleTour.NumberCustomer" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Tình trạng</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        <select name="SingleTour.StatusId" id="insert-status-tour" class="form-control" style="width: 100%">
+                                            @foreach (var item in LoadData.StatusTourList())
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Phân quyền</label>
+                                    <div class="col-lg-10 col-md-10">
+                                        <select class="form-control" multiple="multiple" id="insert-permission-tour" style="width: 100%" name="SingleTour.Permission">
+                                            @foreach (var item in LoadData.StaffList())
+                                            {
+                                                <option value="@item.Id">@item.FullName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Chi tiết chuyến bay</label>
+                                    <div class="col-lg-10 col-md-10">
+                                        @Html.TextAreaFor(model => model.SingleTour.NoteFlight, new { @class = "form-control", id = "insert-noteflight-tour" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Ghi chú</label>
+                                    <div class="col-lg-10 col-md-10">
+                                        @Html.TextAreaFor(model => model.SingleTour.Request, new { @class = "form-control", id = "insert-request-tour" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Thời gian gửi thầu</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextBoxFor(model => model.SingleTour.BiddingDate, new { type = "date", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-4 col-md-4">Ngày thông báo kết quả thầu</label>
+                                    <div class="col-lg-8 col-md-8">
+                                        @Html.TextBoxFor(model => model.SingleTour.BiddingResultDate, new { type = "date", @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div align="center" style="margin-bottom: 20px">
+                    <button type="submit" class="btn blue">Lưu</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                </div>
+            }
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

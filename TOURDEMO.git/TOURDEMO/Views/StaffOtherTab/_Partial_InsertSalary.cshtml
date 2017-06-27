@@ -1,0 +1,89 @@
+﻿@using TOURDEMO.Utilities
+@using TOURDEMO.Models
+@model InsertSalaryDetail
+
+<div class="modal fade bs-modal-lg" id="modal-insert-salary" role="document" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Thêm đợt thay đổi lương</h4>
+            </div>
+            
+           
+            @using (Ajax.BeginForm("CreateSalary", "StaffOtherTab", null, new AjaxOptions { OnFailure = "OnFailureSalary", OnSuccess = "OnSuccessSalary", UpdateTargetId = "salary" }))
+            {
+                
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                @if (Session["idStaff"] != null)
+                                {
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="col-lg-3 col-md-3 text-right">Nhân viên</label>
+                                            <label class="col-lg-5 col-md-5">
+                                                @LoadData.GetStaffbyId(int.Parse(Session["idStaff"].ToString())).FullName
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="control-label col-lg-3 col-md-3">Hình thức</label>
+                                        <div class="col-lg-5 col-md-5">
+                                            @Html.DropDownListFor(model => model.staffSalaryDetail.IsIncrease, new List<SelectListItem>() { new SelectListItem() { Text = "Tăng", Value = "true" }, new SelectListItem() { Text = "Giảm", Value = "false" } }, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="control-label col-lg-3 col-md-3">Ngày áp dụng</label>
+                                        <div class="col-lg-5 col-md-5">
+                                            @Html.TextBoxFor(model => model.staffSalaryDetail.ApplyDate,new { @class = "form-control", @type="date" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="control-label col-lg-3 col-md-3">Số tiền tăng/giảm</label>
+                                        <div class="col-lg-5 col-md-5">
+                                            @Html.TextBoxFor(model => model.SoTienTang, new { @class = "form-control", @id = "valuechange", onkeypress = "return isNumberKey(event);" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center" style="margin-bottom: 20px">
+                    <button type="submit" class="btn blue">Lưu</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Content/ckeditor-basic/ckeditor.js"></script>
+<script src="~/Scripts/controller/staff.js"></script>
+<script src="~/Scripts/controller/staffothertab.js"></script>
+<script src="~/Scripts/controller/jquery.maskMoney.min.js"></script>
+<script src="~/Scripts/controller/jquery.number.js"></script>
+<script src="~/Scripts/controller/form-input-mask.js"></script>
+<script src="~/Scripts/controller/changecurrency.js"></script>
+<script src="~/Scripts/inputmask/inputmask.min.js"></script>
+<script src="~/Scripts/inputmask/inputmask.extensions.min.js"></script>
+<script src="~/Scripts/inputmask/jquery.inputmask.min.js"></script>
+<script src="~/Scripts/inputmask/inputmask.numeric.extensions.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#valuechange').number(true, 0);
+
+    })
+</script>

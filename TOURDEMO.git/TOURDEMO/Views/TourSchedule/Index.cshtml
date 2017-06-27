@@ -1,0 +1,120 @@
+﻿@using TOURDEMO.Utilities
+
+@{
+    ViewBag.Title = "Quản lý lịch tour";
+}
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>LỊCH TOUR</h1>
+        </div>
+        <!-- END PAGE TITLE -->
+
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="note note-info">
+        <div class="row">
+            <div class="col-md-2">
+                <label></label>
+                <a href="@Url.Action("Index", "TourSchedule")" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+            </div>
+            <div class="col-md-4">
+                <label>Từ ngày</label>
+                <input type="date" class="form-control" id="start-date" />
+            </div>
+            <div class="col-md-4">
+                <label>đến ngày</label>
+                <input type="date" class="form-control" id="end-date" />
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px">
+            <div class="col-md-4">
+                <label>Loại tour</label>
+                <select class="form-control" id="type-tour">
+                    <option value="-1">-- Loại tour --</option>
+                    @foreach (var item in LoadData.TourTypeList())
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Người điều hành</label>
+                <select class="form-control" id="leader-tour">
+                    <option value="0">-- Người điều hành --</option>
+                    @foreach (var item in LoadData.StaffList())
+                    {
+                        <option value="@item.Id">[@item.Code] @item.FullName</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Hướng dẫn viên</label>
+                <select class="form-control" id="guide-tour">
+                    <option value="0">-- Hướng dẫn viên --</option>
+                    @foreach (var item in LoadData.StaffList())
+                    {
+                        <option value="@item.Id">[@item.Code] @item.FullName</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="tabbable-custom ">
+                        <ul class="nav nav-tabs ">
+                            <li class="active">
+                                <a href="#dangluoi" data-toggle="tab" id="tabdangluoi">Dạng lưới</a>
+                            </li>
+                            <li>
+                                <a href="#danglich" data-toggle="tab" id="tabdanglich">Dạng lịch</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="dangluoi">
+                                @*Dạng lưới*@
+                                @Html.Action("_Partial_TourScheduleList", "TourSchedule")
+                            </div>
+                            <div class="tab-pane" id="danglich">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12" style="color:#fff">
+                                        @foreach (var item in LoadData.StatusTourList())
+                                        {
+                                            <span style="background-color: @item.Note; padding: 5px; margin-right: 5px">@item.Name</span>
+                                        }
+                                    </div>
+                                </div>
+                                <br />
+                                @*Dạng lịch*@
+                                <div id="calendar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- END PAGE BASE CONTENT -->
+</div>
+
+<!----- lịch đi tour ----->
+<div id="info-data-tourschedule"></div>
+
+@Styles.Render("~/Content/assets/global/plugins/fullcalendar/fullcalendar.min.css")
+
+@section scripts{
+<script src="~/Content/ckeditor-basic/ckeditor.js"></script>
+    <script src="~/Scripts/controller/tourschedule.js"></script>
+    <script src="~/Content/assets/global/plugins/fullcalendar/fullcalendar.min.js"></script>
+    <script src="~/Content/assets/global/plugins/fullcalendar/lang-all.js"></script>
+}

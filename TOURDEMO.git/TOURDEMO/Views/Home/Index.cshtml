@@ -1,0 +1,21 @@
+﻿@{
+ ViewBag.Title = "Administrator";
+}
+
+<p>
+    <a style="margin: 100px" href="#" onclick="getIP()">get IP</a>
+</p>
+
+@section scripts{
+    <script>
+        function clickactivetab(i) {
+            alert("tab: " + i);
+        }
+
+        function getIP() {
+            $.getJSON("http://mik.dip.vn/api/getip", function (data) {
+                alert(data);
+            });
+        }
+    </script>
+}

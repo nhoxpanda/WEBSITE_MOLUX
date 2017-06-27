@@ -1,0 +1,64 @@
+﻿@using TOURDEMO.Utilities
+@model CRM.Core.tbl_ContractReceipt
+
+<div class="modal fade  bs-modal-lg" id="modal-insert-receipt" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Phiếu thu</h4>
+            </div>
+            @using (Ajax.BeginForm("CreateReceipt", "ContractOtherTab", null, new AjaxOptions { OnFailure = "OnFailureReceipt", OnSuccess = "OnSuccessReceipt", UpdateTargetId = "phieuthu" }))
+            {
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Ngày nộp</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        @Html.TextBoxFor(model => model.ReceiptDate, new { @class = "form-control", type="date" })
+                                    </div>
+                                    <label class="control-label col-lg-2 col-md-2">Người nộp</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        @Html.TextBoxFor(model => model.Customer, new { @class = "form-control",  })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Khoản thu</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        @Html.TextBoxFor(model => model.ReceiptType, new { @class = "form-control",  })
+                                    </div>
+                                    <label class="control-label col-lg-2 col-md-2">Số tiền</label>
+                                    <div class="col-lg-2 col-md-2">
+                                        @Html.TextBoxFor(model => model.Price, new { @class = "form-control",  })
+                                    </div>
+                                    <div class="col-lg-2 col-md-2">
+                                        <select class="form-control" style="width: 100%" id="insert-currency-receipt" name="DictionaryId">
+                                            @foreach (var item in LoadData.CurrencyList())
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Ghi chú</label>
+                                    <div class="col-lg-10 col-md-10">
+                                        @Html.TextAreaFor(model => model.Note, new { @class = "form-control", id ="insert-note-receipt" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center" style="margin-bottom: 20px">
+                    <button type="submit" class="btn blue">Lưu</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                </div>
+            }
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

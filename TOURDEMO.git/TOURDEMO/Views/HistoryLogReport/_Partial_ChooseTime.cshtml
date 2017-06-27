@@ -1,0 +1,62 @@
+﻿@using CRM.Core
+@using TOURDEMO.Models
+@using TOURDEMO.Utilities
+@{
+    int i = 0;
+}
+
+<div class="modal fade" id="modal-choose-time" role="document" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Chọn thời gian để xóa</h4>
+            </div>
+            @using (Html.BeginForm("DeleteTime", "HistoryLogReport"))
+            {
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Kỳ báo cáo</label>
+                                    <div class="col-lg-10 col-md-10">
+                                        <select class="form-control" id="ddlBaoCao" style="width: 100%" name="kybaocao">
+                                            @foreach (var item in LoadData.KyBaoCaoList())
+                                            {
+                                                <option value="@i">@item</option>
+                                                i++;
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id="tungaydenngay">
+                                    @{
+                                            DateTime dateFrom = DateTime.Now.AddYears(-2);
+                                            DateTime dateTo = new DateTime(DateTime.Now.Year, 12, 31);
+                                    }
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Từ ngày</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            <input type="date" id="txtTuNgay" value="@dateFrom.ToString("yyyy-MM-dd")" class="form-control" name="tungay" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Đến ngày</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            <input type="date" id="txtDenNgay" value="@dateTo.ToString("yyyy-MM-dd")" class=" form-control" name="denngay" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center" style="margin-bottom: 20px">
+                    <button type="submit" class="btn blue" id="btnXoa">Xóa</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

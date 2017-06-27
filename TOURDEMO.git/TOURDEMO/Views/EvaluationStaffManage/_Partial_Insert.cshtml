@@ -1,0 +1,109 @@
+﻿
+@using CRM.Core
+@using TOURDEMO.Utilities
+@model tbl_Evaluation
+
+<div class="modal fade bs-modal-lg" id="modal-insert-evaluation" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Thêm mới đánh giá</h4>
+            </div>
+            @using (Html.BeginForm("Create", "EvaluationStaffManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Nhân viên</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        <select class="form-control" style="width: 100%" id="insert-staff" name="StaffId">
+                                            <option>-- Chọn Nhân viên --</option>
+                                            @foreach (var item in LoadData.StaffList())
+                                            {
+                                                <option value="@item.Id">@item.FullName</option>
+
+                                            }
+                                        </select>
+                                    </div>
+                                    <label class="control-label col-lg-2 col-md-2">Tour</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        <select class="form-control" style="width: 100%" id="insert-tour" name="TourId">
+                                            <option>-- Chọn tour --</option>
+                                            @foreach (var item in LoadData.TourList())
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Vùng miền</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        <select class="form-control" style="width: 100%" id="insert-area" name="AreaId">
+                                            <option>-- Chọn vùng miền --</option>
+                                            @foreach (var item in LoadData.AreaList())
+                                            {
+                                                <option value="@item.Id">@item.Tags</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <label class="control-label col-lg-2 col-md-2">Tỉnh thành</label>
+                                    <div class="col-lg-4 col-md-4">
+                                        <select class="form-control" style="width: 100%" id="insert-provice" name="ProvinceId"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2"></label>
+                                    <div class="col-md-10 col-lg-10">
+                                        <a id="btnAddD" class="btn btn-danger" style="cursor: pointer"><i class="fa fa-plus"></i></a>
+                                        <a id="btnDel" class="btn btn-default" style="cursor: pointer"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                                <div class="clonedInput" id="entry1">
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2 insert-title" id="insert-title">Tiêu chí đánh giá 1</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            <select class="form-control insert-evaluation" style="width: 100%" id="insert-evaluation1" name="EvaluationCriteriaId1">
+                                                @foreach (var item in LoadData.EvaluationCriteriaList())
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <label class="control-label col-lg-2 col-md-2">Điểm</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @*@Html.TextBoxFor(model => model.Point, new { @class = "form-control insert-point", id = "insert -point" })*@
+                                            <input type="number" name="EvaluationNote1" id="insert-point1" class="form-control insert-point" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Ghi chú</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            <input type="text" name="EvaluationNote1" id="insert-note1" class="form-control insert-note" />
+                                            @*@Html.TextBoxFor(model => model.Note, new { @class = "form-control insert-note", id = "insert-note" })*@
+                                        </div>
+                                    </div>
+                                    <hr />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2 col-md-2">Diễn giải</label>
+                                    <div class="col-lg-10 col-md-10">
+                                        @Html.TextAreaFor(model => model.Note, new { @class = "form-control", id = "insert-note" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center" style="margin-bottom: 20px">
+                    <input type="hidden" value="1" id="NumberEvaluation" name="NumberEvaluation" />
+                    <button type="submit" class="btn blue">Lưu</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

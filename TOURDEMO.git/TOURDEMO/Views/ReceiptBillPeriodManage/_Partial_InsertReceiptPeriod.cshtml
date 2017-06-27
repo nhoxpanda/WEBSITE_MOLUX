@@ -1,0 +1,60 @@
+﻿@using TOURDEMO.Utilities
+@using CRM.Core
+@model tbl_ReceiptBillPeriod
+
+<div class="modal fade" id="modal-insert-period" role="document" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Đợt thanh toán</h4>
+            </div>
+            @using (Ajax.BeginForm("Create", "ReceiptBillPeriodManage", null, new AjaxOptions { OnSuccess = "OnSuccessPeriod", UpdateTargetId = "thongtinchitiet" }))
+            {
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Đợt thanh toán</label>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.Period, new { @class = "form-control", type = "number" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Người nộp</label>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Số tiền</label>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Hình thức thanh toán</label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="insert-paymentmethod" name="PaymentMethodId" style="width: 100%">
+                                    @foreach (var item in LoadData.PaymentMethodList())
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Ngày nộp</label>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.Date, new { @class = "form-control", type = "date" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center" style="margin-bottom: 20px">
+                    <button type="submit" class="btn blue">Lưu</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

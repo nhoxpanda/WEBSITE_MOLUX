@@ -1,0 +1,65 @@
+﻿@using CRM.Enum
+@using CRM.Core
+@using TOURDEMO.Models
+@using TOURDEMO.Utilities
+@model IEnumerable<tbl_MailReceives>
+
+<div class="modal fade  bs-modal-lg" id="modal-add-receive" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Chọn danh sách nhận mail</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="table-scrollable table-custom-format">
+                        <table class="table table-bordered table-hover dataTable2" id="tableReveice">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th>Tên danh sách</th>
+                                    <th>Diễn giải</th>
+                                    <th>Người tạo</th>
+                                    <th>Ngày tạo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" id="cb@(item.Id)" class="cbItem" value="@item.Id" name="cb" />
+                                            </td>
+                                            <td>@item.Name</td>
+                                            <td>@Html.Raw(item.Description)</td>
+                                            <td>@item.tbl_Staff.FullName</td>
+                                            <td>@string.Format("{0:dd/MM/yyyy}", item.CreateDate)</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div align="center" style="margin-bottom: 20px">
+                <form action="@Url.Action("InsertReceive", "MailAutoSend")" method="post" id="formReceive" style="position:absolute">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="listItemIdAdd" name="listItemIdAdd" value="" />
+                </form>
+                <button type="submit" class="btn blue" id="btnLuuDS">Lưu</button>
+                <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

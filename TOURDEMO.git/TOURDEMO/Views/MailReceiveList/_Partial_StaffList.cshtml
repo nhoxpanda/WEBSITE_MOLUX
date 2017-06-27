@@ -1,0 +1,77 @@
+﻿@using CRM.Enum
+@using CRM.Core
+@using TOURDEMO.Models
+@using TOURDEMO.Utilities
+@model IEnumerable<tbl_Staff>
+<div class="modal fade  bs-modal-lg" id="modal-add-staff" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Chọn nhân viên</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="table-scrollable table-custom-format">
+                        <table class="table table-bordered table-hover dataTable2" id="tableStaff">
+                            <thead>
+                                <tr>
+                                    <th class="width24"></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th><input type="checkbox" id="allstaff" name="allstaff" /></th>
+                                    <th>Xưng hô</th>
+                                    <th>Họ tên</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Điện thoại</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Email</th>
+                                    <th>Phòng ban</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr class="odd gradeX">
+                                            <td>
+                                                <input type="checkbox" value="@item.Id" class="checkAddStaff" name="checkAddStaff" />
+                                            </td>
+                                            <td>@(item.NameTypeId != null ? item.tbl_DictionaryNameType.Name  : "")</td>
+                                            <td>@item.FullName</td>
+                                            <td>@(item.Birthday != null ? item.Birthday.Value.ToString("dd/MM/yyyy") : "")</td>
+                                            <td>@item.Phone</td>
+                                            <td>@item.Address</td>
+                                            <td>@item.Email</td>
+                                            <td>@(item.DepartmentId != null ? item.tbl_DictionaryDepartment.Name : "")</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div align="center" style="margin-bottom: 20px">
+                <form action="@Url.Action("InsertStaff", "MailReceiveList")" method="post" id="formAddStaff" style="position:absolute">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="listItemIdAddStaff" name="listItemIdAddStaff" value="" />
+                </form>
+                <button type="submit" class="btn blue" id="btnLuuAddStaff">Lưu</button>
+                <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>

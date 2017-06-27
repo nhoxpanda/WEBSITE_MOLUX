@@ -1,0 +1,35 @@
+﻿@using CRM.Core
+@model IEnumerable<tbl_AirlineTicket>
+
+<div class="table-scrollable table-custom-format">
+    @if (ViewBag.IsAdd != null && ViewBag.IsAdd)
+    {
+        <button class="btn btn-primary" onclick="btnCreateTicket()" id="btnCreateTicket"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+    }
+    <br />
+    <br />
+    <table class="table table-striped table-bordered table-hover" id="">
+        <thead>
+            <tr>
+                
+                <th>Ngày</th>
+                <th>Tên file</th>
+                <th>Ghi chú</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="odd gradeX">
+                    
+                    <td>@string.Format("{0:dd-MM-yyyy}", item.CreateDate )</td>
+                    <td>@item.FileName</td>
+                    <td>@item.Note</td>
+                    <td><button class="btn btn-danger" onclick="btnDeleteTicket(@item.Id)" id="btnCreateTicket"><i class="fa fa-remove"></i>&nbsp;Xóa</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

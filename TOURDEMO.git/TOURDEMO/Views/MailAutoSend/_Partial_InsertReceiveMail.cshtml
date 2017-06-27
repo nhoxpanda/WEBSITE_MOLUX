@@ -1,0 +1,34 @@
+﻿@using CRM.Core
+@model IEnumerable<tbl_MailReceives>
+@{
+    int i = 1;
+}
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Tên danh sách</th>
+            <th>Diễn giải</th>
+            <th>Người tạo</th>
+            <th>Ngày tạo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr class="odd gradeX" id="item-@item.Id">
+                    <td><a style="cursor: pointer" onclick="removeFromList(@i, @item.Id)"><i class="fa fa-trash"></i>&nbsp;Xóa</a></td>
+                    <td>@item.Name</td>
+                    <td>@Html.Raw(item.Description)</td>
+                    <td>@item.tbl_Staff.FullName</td>
+                    <td>@string.Format("{0:dd/MM/yyyy}", item.CreateDate)</td>
+                </tr>
+                i++;
+            }
+        }
+    </tbody>
+</table>
+

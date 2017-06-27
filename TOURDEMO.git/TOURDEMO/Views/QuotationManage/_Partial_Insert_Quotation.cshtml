@@ -1,0 +1,119 @@
+﻿@using CRM.Core;
+@using TOURDEMO.Utilities;
+@using TOURDEMO.Models;
+@model tbl_Quotation
+
+<div class="modal fade" id="modal-insert-quotation" role="document" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Thêm báo giá</h4>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Create", "QuotationManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Code báo giá</label>
+                                    <div class="col-md-4">
+                                        <input type="text" name="Code" id="Code" value="@GenerateCode.QuotationCode()" class="form-control"  readonly="readonly" />
+                                    </div>
+                                    <label class="control-label col-md-2">Code khách hàng</label>
+                                    <div class="col-md-4" id="cusList">
+                                        <select id="insert-code-customer" class="form-control" name="CustomerId" style="width: 100%">
+                                            @foreach (var item in LoadData.CustomerList())
+                                            {
+                                                <option value="@item.Id">@item.FullName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Quốc gia</label>
+                                    <div class="col-md-4">
+                                        <select id="insert-code-country" class="form-control" name="CountryId" style="width: 100%">
+                                            @foreach (var item in LoadData.DropdownlistCountry())
+                                            {
+                                                <option value="@item.Id">@item.Tags</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <label class="control-label col-md-2"></label>
+                                    <div class="col-md-4">
+                                        <a type="button" class="btn blue" id="addCustomer" href="#modal-insert-customer" data-toggle="modal">Thêm khách hàng</a>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">File attach</label>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.FileName, new { @class = "form-control", type = "file", @multiple = "multiple" })
+                                    </div>
+                                    <label class="control-label col-md-2">Tags</label>
+                                    <div class="col-md-4">
+                                        <select id="insert-tags" class="form-control" multiple="multiple" name="TagsId" style="width: 100%" >
+                                            @foreach (var item in LoadData.DropdownlistLocation())
+                                            {
+                                                <option value="@item.Id">@item.Tags</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Ngày báo giá</label>
+                                    <div class="col-md-4">
+                                        <input type="date" class="form-control" id="insert-ngaybaogia" name="QuotationDate" />
+                                    </div>
+                                    <label class="control-label col-md-2">Tổng giá trị</label>
+                                    <div class="col-md-2 col-lg-2">
+                                        @Html.TextBoxFor(model => model.PriceTour, new { @class = "form-control", @id="tonggiatribaogia" })
+                                    </div>
+                                    <div class="col-lg-2 col-md-2">
+                                        <select id="insert-currency" name="CurrencyId" style="width: 100%" class="form-control">
+                                            @foreach (var item in LoadData.CurrencyList())
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Hạn báo giá</label>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.ExpiredDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @id = "insert-note-numday", type = "date" })
+                                    </div>
+                                    <label class="control-label col-md-2">Người gửi báo giá</label>
+                                    <div class="col-md-4">
+                                        <select id="insert-staff-quotation" class="form-control" name="StaffQuotationId" style="width: 100%" >
+                                            @foreach (var item in LoadData.StaffList())
+                                            {
+                                                <option value="@item.Id">[@item.Code] @item.FullName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Ghi chú</label>
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.Note, new { @class = "form-control", @id = "insert-note-quotation" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div align="center" style="margin-bottom: 20px">
+                        <button type="submit" class="btn blue" id="btnLuuSua">Lưu</button>
+                        <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                    </div>
+                }
+            </div>
+            @*@Html.Partial("_Partial_InsertCustomer", new CustomerViewModel())*@
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>

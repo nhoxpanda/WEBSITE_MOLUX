@@ -1,0 +1,56 @@
+﻿@model TOURDEMO.Models.TaskViewModel
+
+<div class="tab-pane page-quick-sidebar-alerts" id="quick_sidebar_tab_3" style="max-height: 730px">
+    <div class="page-quick-sidebar-alerts-list">
+        <h3 class="list-heading">Nhiệm vụ hôm nay</h3>
+        <ul class="feeds list-items">
+            @foreach (var item in Model.TodayList)
+            {
+                <li onclick="DetailTask(@item.Id)" style="cursor: pointer">
+                    <div class="col1">
+                        <div class="cont">
+                            <div class="cont-col1">
+                                <div class="label label-sm label-info">
+                                    <i class="fa fa-briefcase"></i>
+                                </div>
+                            </div>
+                            <div class="cont-col2">
+                                <div class="desc">
+                                    @item.Title
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col2">
+                        <div class="date">@string.Format("{0:dd/MM/yyyy}", item.Time) </div>
+                    </div>
+                </li>
+            }
+        </ul>
+        <h3 class="list-heading">Nhiệm vụ ngày mai</h3>
+        <ul class="feeds list-items">
+            @foreach (var item in Model.TomorrowList)
+            {
+                <li onclick="DetailTask(@item.Id)" style="cursor: pointer">
+                    <div class="col1">
+                        <div class="cont">
+                            <div class="cont-col1">
+                                <div class="label label-sm label-info">
+                                    <i class="fa fa-briefcase"></i>
+                                </div>
+                            </div>
+                            <div class="cont-col2">
+                                <div class="desc">
+                                    @item.Title
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col2">
+                        <div class="date">@string.Format("{0:dd/MM/yyyy}", item.Time) </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

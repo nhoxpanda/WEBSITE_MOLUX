@@ -1,0 +1,564 @@
+﻿<!-- BEGIN SIDEBAR -->
+<div class="page-sidebar-wrapper">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar navbar-collapse collapse">
+        <!-- BEGIN SIDEBAR MENU -->
+        <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-user"></i>
+                    <span class="title">KHÁCH HÀNG</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "CustomersManage")' class="nav-link" >
+                            <span class="title">Quản lý khách hàng</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "CustomerGroupManage")' class="nav-link" >
+                            <span class="title">Nhóm khách hàng</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "CareerManage")' class="nav-link" >
+                            <span class="title">Ngành nghề</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "OriginManage")' class="nav-link" >
+                            <span class="title">Nguồn đến</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "MemberCardManage")' class="nav-link">
+                            <span class="title">Loại thẻ thành viên</span>
+                        </a>
+                    </li></ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-user-md"></i>
+                    <span class="title">NHÂN VIÊN</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "StaffManage")' class="nav-link" >
+                            <span class="title">Quản lý nhân viên</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "CandidateManage")' class="nav-link">
+                            <span class="title">Danh sách ứng viên</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "PositionManage")' class="nav-link" >
+                            <span class="title">Chức vụ</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "StaffGroupManage")' class="nav-link" >
+                            <span class="title">Nhóm</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "DepartmentManage")' class="nav-link" >
+                            <span class="title">Phòng ban</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "HeadquarterManage")' class="nav-link" >
+                            <span class="title">Trụ sở, chi nhánh</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "PermissionManage")' class="nav-link" >
+                            <span class="title">Phân quyền</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "ModuleManage")' class="nav-link" >
+                            <span class="title">Module</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link nav-toggle">
+                    <i class="fa fa-cc-visa"></i>
+                    <span class="title">VISA</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "ListVisaManage")' class="nav-link">
+                            <span class="title">Danh sách visa</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "DocumentaryVisaManage")' class="nav-link" >
+                            <span class="title">Tài liệu</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "InfomationVisaManage")' class="nav-link" >
+                            <span class="title">Thông tin Visa</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "StatusVisaManage")' class="nav-link" >
+                            <span class="title">Tình trạng Visa</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "VisaType")' class="nav-link" >
+                            <span class="title">Loại Visa</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link nav-toggle">
+                    <i class="fa fa-ticket"></i>
+                    <span class="title">VÉ MÁY BAY</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "AirlineManage")' class="nav-link">
+                            <span class="title">Hãng hàng không</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "TicketManage")' class="nav-link">
+                            <span class="title">Danh sách Vé máy bay</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "TicketType")' class="nav-link">
+                            <span class="title">Loại vé</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "TicketStatusManage")' class="nav-link">
+                            <span class="title">Tình trạng vé</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-male"></i>
+                    <span class="title">ĐỐI TÁC</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "PartnerManage")" class="nav-link" >
+                            <span class="title">Danh sách Đối tác</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "ServiceTypeManage")" class="nav-link" >
+                            <span class="title">Dịch vụ</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-file-text-o"></i>
+                    <span class="title">CHƯƠNG TRÌNH</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "ProgramsManage")" class="nav-link" >
+                            <span class="title">Danh sách Chương trình</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "ProcessStatusManage")" class="nav-link" >
+                            <span class="title">Trạng thái xử lý</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-briefcase"></i>
+                    <span class="title">HỢP ĐỒNG</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "ContractsManage")" class="nav-link" >
+                            <span class="title">Quản lý hợp đồng</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "ContractStatusManage")" class="nav-link" >
+                            <span class="title">Tình trạng</span>
+                        </a>
+                    </li>
+                    @*<li class="nav-item">
+                        <a href="@Url.Action("Index", "FormContract")" class="nav-link" >
+                            <span class="title">In biểu mẫu</span>
+                        </a>
+                    </li>*@
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-tag"></i>
+                    <span class="title">BÁO GIÁ</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href='@Url.Action("Index", "QuotationManage")' class="nav-link" >
+                            <span class="title">Quản lý báo giá</span>
+                        </a>
+                    </li>
+                    @*<li class="nav-item">
+                        <a href='@Url.Action("Index", "QuotationFormManage")' class="nav-link" >
+                            <span class="title">Mẫu báo giá</span>
+                        </a>
+                    </li>*@
+                </ul>
+            </li>
+            @*<li class="nav-item">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-rocket"></i>
+                        <span class="title">THẦU</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "ProgramsManage")" class="nav-link" >
+                                <span class="title">Quản lý thầu</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>*@
+            @*<li class="nav-item">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-external-link"></i>
+                        <span class="title">CƠ HỘI</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "OpportunityManage")" class="nav-link" >
+                                <span class="title">Quản lý cơ hội</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>*@
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-plane"></i>
+                    <span class="title">TOUR</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "TourManage")" class="nav-link" >
+                            <span class="title">Quản lý Tour</span>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                        <a href="@Url.Action("Index", "TourStatusManage")" class="nav-link" >
+                            <span class="title">Tình trạng tour</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-star-half-o"></i>
+                    <span class="title">ĐÁNH GIÁ CHẤT LƯỢNG</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "ReviewTour")" class="nav-link" >
+                            <span class="title">Đánh giá tour</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "EvaluationCriteria")" class="nav-link">
+                            <span class="title">Tiêu chí đánh giá</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "EvaluationPartner")" class="nav-link">
+                            <span class="title">Chất lượng đối tác</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "EvaluationGuideManage")" class="nav-link">
+                            <span class="title">Chất lượng hướng dẫn viên</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "EvaluationOperatorManage")" class="nav-link">
+                            <span class="title">Chất lượng điều hành</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "EvaluationStaffManage")" class="nav-link">
+                            <span class="title">Chất lượng nhân viên</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-calendar-check-o"></i>
+                    <span class="title">LỊCH HẸN</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "AppointmentManage")" class="nav-link" >
+                            <span class="title">Quản lý lịch hẹn</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "AppointmentType")" class="nav-link" >
+                            <span class="title">Loại lịch hẹn</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "TourSchedule")" class="nav-link" >
+                            <span class="title">Lịch tour</span>
+                        </a>
+                    </li>
+                    @*<li class="nav-item">
+                        <a href="@Url.Action("Index", "TourGuideSchedule")" class="nav-link" >
+                            <span class="title">Lịch hướng dẫn viên</span>
+                        </a>
+                    </li>*@
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-tasks"></i>
+                    <span class="title">NHIỆM VỤ</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "TaskManage")" class="nav-link" >
+                            <span class="title">Danh sách nhiệm vụ</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "TaskTypeManage")" class="nav-link" >
+                            <span class="title">Loại nhiệm vụ</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "TaskStatusManage")" class="nav-link" >
+                            <span class="title">Trạng thái</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "TaskPriorityManage")" class="nav-link" >
+                            <span class="title">Mức độ ưu tiên</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @*<li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-file-zip-o"></i>
+                    <span class="title">CHÍNH SÁCH</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "PromotionManage")" class="nav-link" >
+                            <span class="title">Chương trình khuyến mãi</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>*@
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-file-text"></i>
+                    <span class="title">TÀI LIỆU</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "DocumentManage")" class="nav-link " >
+                            <span class="title">Danh sách tài liệu</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "DocumentTypeManage")" class="nav-link" >
+                            <span class="title">Loại tài liệu</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-thumb-tack"></i>
+                    <span class="title">EMAIL MARKETING</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "MailImportManage")" class="nav-link">
+                            <span class="title">DS mail import</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "MailReceive")" class="nav-link">
+                            <span class="title">DS Nhận mail</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "MailTemplate")" class="nav-link">
+                            <span class="title">Mẫu email</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "MailCategory")" class="nav-link">
+                            <span class="title">Phân loại email</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "MailConfig")" class="nav-link">
+                            <span class="title">Cấu hình email gửi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "MailAutoSend")" class="nav-link">
+                            <span class="title">Gửi mail</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-file-zip-o"></i>
+                    <span class="title">BÁO CÁO THỐNG KÊ</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "ReportsManage")" class="nav-link">
+                            <span class="title">Tour</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "ContractReport")" class="nav-link">
+                            <span class="title">Hợp đồng</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "LiabilitiesPartnerReport")" class="nav-link">
+                            <span class="title">Doanh thu - Công nợ đối tác</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "LiabilitiesCustomerReport")" class="nav-link">
+                            <span class="title">Doanh thu - Công nợ khách hàng</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "OriginCustomerReport")" class="nav-link">
+                            <span class="title">Khách hàng theo nguồn đến</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "NewCustomerReport")" class="nav-link">
+                            <span class="title">Danh sách khách hàng mới</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "AppointmentCustomerReport")" class="nav-link">
+                            <span class="title">Lịch làm việc theo KH</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "ContractCustomerReport")" class="nav-link">
+                            <span class="title">Khách hàng đã giao dịch</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "HistoryLogReport")" class="nav-link">
+                            <span class="title">Nhật ký hệ thống</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-list-ul"></i>
+                    <span class="title">DANH MỤC</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "NationManage")" class="nav-link" >
+                            <span class="title">Dân tộc</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "ReligionManage")" class="nav-link" >
+                            <span class="title">Tôn giáo</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "ExchangeRates")" class="nav-link" >
+                            <span class="title">Tỷ giá</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Calculator", "CategoryManage")" class="nav-link" >
+                            <span class="title">Máy tính</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "CurrencyManage")" class="nav-link" >
+                            <span class="title">Loại tiền</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "FlightManage")" class="nav-link" >
+                            <span class="title">Chuyến bay</span>
+                        </a>
+                    </li>
+                    @*<li class="nav-item">
+                            <a href="@Url.Action("Calendar", "CategoryManage")" class="nav-link" >
+                                <span class="title">Lịch</span>
+                            </a>
+                        </li>*@
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "LocationTagsManage")" class="nav-link" >
+                            <span class="title">Vị trí địa lý</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "MapManage")" class="nav-link nav-toggle" >
+                    <i class="fa fa-map"></i>
+                    <span class="title">BẢN ĐỒ</span>
+                    <span class="arrow"></span>
+                </a>
+            </li>
+        </ul>
+        <!-- END SIDEBAR MENU -->
+    </div>
+    <!-- END SIDEBAR -->
+</div>
+<!-- END SIDEBAR -->

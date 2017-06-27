@@ -1,0 +1,41 @@
+﻿@using CRM.Core
+@using TOURDEMO.Utilities
+
+@model tbl_Partner
+@{ 
+    var index = 1;
+    string domain = "https://view.officeapps.live.com/op/embed.aspx?src=" + Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
+<div class="row">
+    @if (Model != null)
+    {
+        <div class="col-md-6">
+            <p><b>Code:</b> @Model.Code</p>
+            <p><b>Dịch vụ:</b> @(Model.DictionaryId != null ? Model.tbl_Dictionary.Name : "")</p>
+            <p><b>Đối tác:</b> @Model.Name</p>
+            <p><b>Địa chỉ:</b> @Model.Address, @(Model.TagsLocationId != null ? TOURDEMO.Utilities.LoadData.LocationTags(Model.TagsLocationId) : "")</p>
+            <p><b>Quy mô đối tác:</b> @Html.Raw(Model.QuyMoDoiTac)</p>
+            <p><b>Mã số thuế:</b> @Model.TaxCode</p>
+            <p><b>Thông tin STK:</b> @(Model.tbl_BankDetail.Count>0? Model.tbl_BankDetail.Count + " tài khoản" : "Chưa có tài khoản") </p>
+            @foreach (var i in Model.tbl_BankDetail)
+            {
+                <div style="margin-left:20px;">
+                    <p><b>Tên ngân hàng @(index):</b> @i.tbl_Bank.Name</p>
+                    <p><b>Số tài khoản @(index):</b> @i.tbl_Bank.Account</p>
+                    <p><b>Ghi chú @(index):</b> @i.tbl_Bank.Note</p>
+                    <br />
+                </div>
+                index++;
+            }
+        </div>
+        <div class="col-md-6">
+            <p><b>Giám đốc:</b> @Model.Director</p>
+            <p><b>NV liên hệ:</b> @Model.StaffContact</p>
+            <p><b>Điện thoại:</b> @Model.Phone</p>
+            <p><b>Email:</b> @Model.Email</p>
+            <p><b>Skype:</b> @Model.Skype</p>
+            <p><b>Giấy phép kinh doanh:</b> <a target="_blank" href="@domain/Upload/file/@Model.BusinessLicense">@Model.BusinessLicense</a></p>
+           
+        </div>
+    }
+</div>
