@@ -1,0 +1,282 @@
+﻿@{
+    ViewBag.Title = "Quản lý Nhân viên";
+}
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>DANH SÁCH NHÂN VIÊN</h1>
+        </div>
+        <!-- END PAGE TITLE -->
+
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BREADCRUMB -->
+    <ul class="page-breadcrumb breadcrumb">
+        <li>
+            <a href="index.html">Home</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span class="active">Page Layouts</span>
+        </li>
+    </ul>
+    <!-- END PAGE BREADCRUMB -->
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="note note-info">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <a href="~/Staff/Index" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                    <button class="btn btn-primary" href="#modal-insert-staff" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                    <button class="btn btn-warning" href="#modal-edit-staff" data-toggle="modal" id="btnEdit"><i class="fa fa-pencil"></i>&nbsp;Sửa</button>
+                    <button class="btn btn-danger" onclick="confirm('Bạn có chắc chắn xóa không?');" id="btnRemove"><i class="fa fa-remove"></i>&nbsp;Xóa</button>
+                    @*<a class="btn green" data-toggle="modal" href="#modal-import-staff"><i class="icon-action-redo"></i>&nbsp;Import</a>
+                    <label class="btn btn-info fileContainer">
+                        <a><i class="icon-action-undo"></i>&nbsp;<input type="file" name="Export" class="form-control" />&nbsp;Export</a>
+                    </label>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="table-scrollable table-custom-format">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="table-checkbox">
+                                        <input type="checkbox" id="allcb" name="allcb" onclick="SelectAllCb()" />
+                                    </th>
+                                    <th>Mã NV</th>
+                                    <th>Họ tên</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Cấp độ</th>
+                                    <th>Mức lương</th>
+                                    <th>Điện thoại</th>
+                                    <th>Số nội bộ</th>
+                                    <th>Email</th>
+                                    <th>CMND</th>
+                                    <th>Phòng ban</th>
+                                    <th>Khóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <input type="text" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" />
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                @for (int i = 0; i < 5; i++)
+                                {
+                                    <tr class="odd gradeX">
+                                        <td>
+                                            <input type="checkbox" id="cb@(i)" name="cb@(i)" onclick="CheckSelect()" />
+                                        </td>
+                                        <td>01014</td>
+                                        <td>Tên nhân viên</td>
+                                        <td>26/12/1991</td>
+                                        <td>Senior Coach</td>
+                                        <td>10.500.000</td>
+                                        <td>0939558336</td>
+                                        <td>01287570404</td>
+                                        <td><a href="#">emailUser@gmail.com</a></td>
+                                        <td>629847512</td>
+                                        <td>P. Kỹ thuật</td>
+                                        <td>
+                                            <input type="checkbox" id="lock@(i)" name="lock" />
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="tabbable-custom ">
+                        <ul class="nav nav-tabs ">
+                            <li class="active">
+                                <a href="#tab1" data-toggle="tab">Thông tin chi tiết </a>
+                            </li>
+                            <li>
+                                <a href="#tab2" data-toggle="tab">Lịch dạy</a>
+                            </li>
+                            <li>
+                                    <a href="#tab3" data-toggle="tab">Lịch sử đứng lớp</a>
+                                </li>
+                            @*<li>
+                                <a href="#tab3" data-toggle="tab">Cập nhật thay đổi</a>
+                            </li>*@
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab1">
+                                @*Thông tin chi tiết*@
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        Họ tên:
+                                        <br />
+                                        Ngày sinh:
+                                        <br />
+                                        Nguyên quán:
+                                        <br />
+                                        Địa chỉ:
+                                        <br />
+                                        CMND:
+                                        <br />
+                                        Ngày cấp:
+                                        <br />
+                                        Nơi cấp:
+                                        <br />
+                                        Số TKNH:
+                                        <br />
+                                    </div>
+                                    <div class="col-md-4">
+                                        Mã số:
+                                        <br />
+                                        Điện thoại:
+                                        <br />
+                                        Số nội bộ:
+                                        <br />
+                                        Email:
+                                        <br />
+                                        Chức vụ:
+                                        <br />
+                                        Phòng ban:
+                                        <br />
+                                        Trình độ chuyên môn: ví dụ(?)
+                                        <br />
+                                        Ngân hàng:
+                                        <br />
+                                    </div>
+                                    <div class="col-md-4">
+                                        Kinh nghiệm làm việc: 4 năm (?)
+                                        <br />
+                                        Ngày vào làm:
+                                        <br />
+                                        Ngày làm chính thức:
+                                        <br />
+                                        Chi nhánh:
+                                        <br />
+                                        Loại hợp đồng:
+                                        <br />
+                                        Hợp đồng từ ngày:
+                                        <br />
+                                        Hợp đồng đến ngày:
+                                        <br />
+                                        Số sổ BHXH:
+                                        <br />
+                                        Mã số thuế:
+                                        <br />
+                                        Ngày đăng ký thuế:
+                                        <br />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab2">
+                                @*Hồ sơ liên quan*@
+                                <div class="table-scrollable table-custom-format">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Ngày dạy</th>
+                                                <th>Tên lớp</th>
+                                                <th>Môn học</th>
+                                                <th>Thời gian</th>
+                                                <th>Ghi chú</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd gradeX">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab3">
+                                @*Lịch hẹn*@
+                                <div class="table-scrollable table-custom-format">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th><input type="checkbox" id="allcheck" name="allcheck" onclick="SelectAllCheckCus()" /></th>
+                                                <th>STT</th>
+                                                <th>Khóa học</th>
+                                                <th>Lớp học</th>
+                                                <th>Ngày bắt đầu</th>
+                                                <th>Ngày kết thúc</th>
+                                                <th>Đánh giá</th>
+                                                <th>Ghi chú</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd gradeX">
+                                                <td><input type="checkbox" id="check1" name="check" onclick="CheckSelectCus()" /></td>
+                                                <td>1</td>
+                                                <td>Tên khóa học</td>
+                                                <td>Tên lớp học</td>
+                                                <td>1/10/2016</td>
+                                                <td>2/12/2016</td>
+                                                <td>Đạt</td>
+                                                <td>Ghi chú</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END PAGE BASE CONTENT -->
+</div>
+
+@*@Html.Partial("_Partial_ImportStaff")
+@Html.Partial("_Partial_InsertStaff")
+@Html.Partial("_Partial_EditStaff")*@

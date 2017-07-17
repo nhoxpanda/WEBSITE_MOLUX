@@ -1,0 +1,67 @@
+﻿@model CRM_TTV.tbBookRoom
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbBookRoom</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dateBook)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateBook)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbRoom.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbRoom.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbTimeFrame.startTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbTimeFrame.startTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUser.fullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUser.fullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbClass.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbClass.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idbookRoom }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

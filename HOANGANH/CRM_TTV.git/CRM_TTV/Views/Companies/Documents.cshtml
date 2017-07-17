@@ -1,0 +1,119 @@
+﻿@model IEnumerable<CRM_TTV.tbCompanyFileAttach>
+@{
+    string domain = "https://view.officeapps.live.com/op/embed.aspx?src=" + Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+    string shortdomain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
+
+<button type="button" class="btn btn-primary" id="btnUploadFile"><i class="fa fa-upload"></i>&nbsp;Upload file</button>
+<br />
+<input type="hidden" id="idCompany" value="@ViewBag.idCompany" />
+<br />
+<table class="table table-hover table-responsive table-bordered table-hover">
+    <tr>
+        <th>#</th>
+        <th>
+            Tên file
+        </th>
+        <th>
+            Ngày nhập
+        </th>
+        <th>
+            NV nhập
+        </th>
+        <th>
+            Ghi chú
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr id="itemDocument@(item.idCompanyFileAttach)">
+            <td>
+                <button class="btn btn-danger btn-xs" onclick="editItem(@item.idCompanyFileAttach)"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                <button class="btn btn-default btn-xs" onclick="deleteItem(@item.idCompanyFileAttach)"><i class="fa fa-trash"></i>&nbsp;Xóa</button>
+            </td>
+            <td>
+                @{
+                    string ext = Path.GetExtension(item.fileName);
+                    ext = ext == null ? "" : ext.ToLower();
+                    if (ext == ".pdf" || ext == ".txt")
+                    {
+                        <a style="cursor:pointer" title="@item.fileName" onclick="viewFile(@item.idCompanyFileAttach)">@item.fileName</a><br />
+                        <input type="hidden" value="@shortdomain/Upload/Company/@item.fileName" id="txtLink@(item.idCompanyFileAttach)" />
+                    }
+                    else if (ext == ".jpg" || ext == ".png")
+                    {
+                        <a style="cursor:pointer" onclick="viewImage(@item.idCompanyFileAttach)">@item.fileName</a><br />
+                        <input type="hidden" value="@shortdomain/Upload/Company/@item.fileName" id="txtLink@(item.idCompanyFileAttach)" />
+                    }
+                    else
+                    {
+                        <a style="cursor:pointer" onclick="viewFile(@item.idCompanyFileAttach)"> @item.fileName </a><br />
+                        <input type="hidden" value="@domain/Upload/Company/@item.fileName" id="txtLink@(item.idCompanyFileAttach)" />
+                    }
+                    <input type="hidden" value="@shortdomain/Upload/Company/@item.fileName" id="txtDownload@(item.idCompanyFileAttach)" />
+                }
+            </td>
+            <td>
+                @string.Format("{0:dd-MM-yyyy}", item.postDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbCompany.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.note)
+            </td>
+        </tr>
+    }
+</table>
+
+<script>
+    /** popup form thêm tài liệu **/
+    $("#btnUploadFile").click(function () {
+        var dataPost = { 
+            id: $("#idCompany").val(),
+            tab: "Documents"
+        };
+        $.ajax({
+            type: "POST",
+            url: '/Companies/GetCompanyId',
+            data: JSON.stringify(dataPost),
+            contentType: "application/json; charset=utf-8",
+            dataType: "html",
+            success: function (data) {
+                $("#popupData").html(data);
+                $("#modal-insert-file").modal("show");
+            }
+        });
+    })
+
+    function editItem(id){
+        var dataPost = { id: id };
+        $.ajax({
+            type: "POST",
+            url: '/Companies/EditFile',
+            data: JSON.stringify(dataPost),
+            contentType: "application/json; charset=utf-8",
+            dataType: "html",
+            success: function (data) {
+                $("#popupData").html(data);
+                $("#modal-edit-file").modal("show");
+            }
+        });
+    }
+
+    function deleteItem(id){
+        var dataPost = { id: id };
+        $.ajax({
+            type: "POST",
+            url: '/Companies/DeleteFile',
+            data: JSON.stringify(dataPost),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                $("#itemDocument" + id).hide();
+                toastr.success("Đã xóa...!!!", "Success");
+            }
+        });
+    }
+
+</script>

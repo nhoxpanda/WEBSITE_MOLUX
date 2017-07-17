@@ -1,0 +1,319 @@
+﻿@{
+    ViewBag.Title = "Quản lý Hợp đồng";
+}
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>DANH SÁCH HỢP ĐỒNG</h1>
+        </div>
+        <!-- END PAGE TITLE -->
+
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BREADCRUMB -->
+    <ul class="page-breadcrumb breadcrumb">
+        <li>
+            <a href="index.html">Home</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span class="active">Page Layouts</span>
+        </li>
+    </ul>
+    <!-- END PAGE BREADCRUMB -->
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="note note-info">
+        <div class="row">
+            <div class="col-md-12">
+                <a class="btn btn-default" href="@Url.Action("Index", "ContractsManage")"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                <button class="btn btn-primary" id="btnAdd" href="#modal-insert-contract" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                <button class="btn btn-warning" id="btnEdit" href="#modal-edit-contract" data-toggle="modal"><i class="fa fa-pencil"></i>&nbsp;Sửa</button>
+                <button class="btn btn-danger" id="btnRemove" onclick="confirm('Bạn có chắc chắn muốn xóa không?');"><i class="fa fa-remove"></i>&nbsp;Xóa</button>
+                <button class="btn red" id="btnWork" href="#modal-work-contract" data-toggle="modal"><i class="fa fa-cogs"></i>&nbsp;Xử lý</button>
+                <button class="btn green" id="btnUserSupport" href="#modal-support-contract" data-toggle="modal"><i class="fa fa-user-plus"></i>&nbsp;Nhân viên hỗ trợ</button>
+                <label class="btn btn-info fileContainer">
+                    <a><i class="icon-action-undo"></i>&nbsp;<input type="file" name="Export" class="form-control" />&nbsp;Export</a>
+                </label>
+                <button class="btn grey" id="btnUpdate"><i class="fa fa-battery-half"></i>&nbsp;Lưu trạng thái</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="table-scrollable table-custom-format">
+                        <table class="table table-striped table-bordered table-hover" id="">
+                            <thead>
+                                <tr>
+                                    <th class="table-checkbox">
+                                        <input type="checkbox" id="allcb" name="allcb" onclick="SelectAllCb()" />
+                                    </th>
+                                    <th>Số HĐ</th>
+                                    <th>Mã HĐ</th>
+                                    <th>Ngày ký</th>
+                                    <th>Khách hàng</th>
+                                    <th>Trạng thái</th>
+                                    <th>Loại HD</th>
+                                    <th>NV Phụ trách</th>
+                                    <th>Hoa hồng(%)</th>
+                                    <th>Loại hình dịch vụ</th>
+                                    <th>Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < 5; i++)
+                                {
+                                    <tr class="odd gradeX">
+                                        <td>
+                                            <input type="checkbox" id="cb@(i)" name="cb" onclick="CheckSelect()" />
+                                        </td>
+                                        <td>HD-00407@(i)</td>
+                                        <td>098762@(i)</td>
+                                        <td>1/11/2015</td>
+                                        <td>DIP VIETNAM</td>
+                                        <td>
+                                            <select class="form-control" style="width: 150px">
+                                                <option>Bắt đầu</option>
+                                                <option>Đang xử lý</option>
+                                                <option>Hoàn thành</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            Ký mới</td>
+                                        <td>Quốc Tân</td>
+                                        <td><input type="number" class="form-control"></td>
+                                        <td>Loại dịch vụ</td>
+                                        <td></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="tabbable-custom ">
+                        <ul class="nav nav-tabs ">
+                            <li class="active">
+                                <a href="#tab1" data-toggle="tab">Thông tin hợp đồng</a>
+                            </li>
+                            <li>
+                                <a href="#tab2" data-toggle="tab">File / tài liệu</a>
+                            </li>
+                            <li>
+                                <a href="#tab4" data-toggle="tab">Công nợ</a>
+                            </li>
+                            <li>
+                                <a href="#tab5" data-toggle="tab">Lịch hẹn</a>
+                            </li>
+                            <li>
+                                <a href="#tab6" data-toggle="tab">Nhật ký xử lý</a>
+                            </li>
+                            <li>
+                                <a href="#tab7" data-toggle="tab">Phiếu thu</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab1">
+                                @*Thông tin hợp đồng*@
+                                <p>
+                                    Mã HD:
+                                    <br />
+                                    Ngày ký:
+                                    <br />
+                                    Tên hợp đồng:
+                                    <br />
+                                    Khách hàng / doanh nghiệp:
+                                    <br />
+                                    .....
+                                </p>
+                            </div>
+                            <div class="tab-pane" id="tab2">
+                                @*File đính kèm / tài liệu*@
+                                <div class="table-scrollable table-custom-format">
+                                    <table class="table table-striped table-bordered table-hover" id="">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Ký hiệu</th>
+                                                <th>Tên tài liệu</th>
+                                                <th>Diễn giải</th>
+                                                <th>Kích thước</th>
+                                                <th>Nhân viên nhập</th>
+                                                <th>Ngày cập nhật</th>
+                                                <th>#</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd gradeX">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><a href="#">Xem online</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab4">
+                                @*Công nợ*@
+                                <div class="table-scrollable table-custom-format">
+                                    <table class="table table-striped table-bordered table-hover" id="">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Mã công nợ</th>
+                                                <th>Thời hạn</th>
+                                                <th>Đã thu</th>
+                                                <th>Phải thu</th>
+                                                <th>Còn lại</th>
+                                                <th>Diễn giải</th>
+                                                <th>Ngày nhập</th>
+                                                <th>Người nhập</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd gradeX">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab5">
+                                @*Lịch hẹn*@
+                                <div class="table-scrollable table-custom-format">
+                                    <table class="table table-striped table-bordered table-hover" id="">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Tiêu đề</th>
+                                                <th>Người thực hiện</th>
+                                                <th>Địa điểm</th>
+                                                <th>Diễn giải</th>
+                                                <th>Ngày bắt đầu</th>
+                                                <th>Ngày kết thúc</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd gradeX">
+                                                <td>1</td>
+                                                <td>Chốt HĐ CRM</td>
+                                                <td>Võ Ái Duy</td>
+                                                <td>Công ty DIP VIETNAM</td>
+                                                <td>KH sang làm việc về quy trình xử lý và các chức năng. Chốt hợp đồng CRM.</td>
+                                                <td>1/11/2015</td>
+                                                <td>2/11/2015</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab6">
+                                @*Nhật ký xử lý*@
+                                <div class="table-scrollable table-custom-format">
+                                    <table class="table table-striped table-bordered table-hover" id="">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Ngày xử lý</th>
+                                                <th>Trạng thái</th>
+                                                <th>Diễn giải</th>
+                                                <th>Nhân viên quản lý</th>
+                                                <th>Người nhập</th>
+                                                <th>Ngày nhập</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd gradeX">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab7">
+                                @*Phiếu thu*@
+                                <div class="table-scrollable table-custom-format">
+                                    <table class="table table-striped table-bordered table-hover" id="">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Số phiếu</th>
+                                                <th>Ngày thu</th>
+                                                <th>Diễn giải</th>
+                                                <th>Người nộp</th>
+                                                <th>Đơn vị</th>
+                                                <th>Người thu</th>
+                                                <th>Số tiền</th>
+                                                <th>Chứng từ gốc</th>
+                                                <th>Người nhập</th>
+                                                <th>Ngày nhập</th>
+                                                <th>Người sửa</th>
+                                                <th>Ngày sửa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd gradeX">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END PAGE BASE CONTENT -->
+</div>
+
+@*@Html.Partial("_Partial_InsertContract")
+@Html.Partial("_Partial_EditContract")
+@Html.Partial("_Partial_WorkContract")
+@Html.Partial("_Partial_SupportContract")*@
+
+@section scripts{
+    <script>
+        CKEDITOR.replace("insert-note-contract");
+        CKEDITOR.replace("edit-note-contract");
+        CKEDITOR.replace("insert-note-workcontract");
+    </script>
+}

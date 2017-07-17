@@ -1,0 +1,73 @@
+﻿@model CRM_TTV.tbBookRoom
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbBookRoom</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dateBook)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateBook)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbRoom.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbRoom.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbTimeFrame.startTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbTimeFrame.startTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUser.fullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUser.fullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbClass.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbClass.name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,107 @@
+﻿@model CRM_TTV.tbClass
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbClass</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.timeStudy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timeStudy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.saveOff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.saveOff)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbCategory.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbCategory.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbCompany.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbCompany.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbEducation.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbEducation.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbLever.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbLever.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbScience.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbScience.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbServicePack.listIdSubject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbServicePack.listIdSubject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbSpecialized.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbSpecialized.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idClass }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

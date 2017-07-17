@@ -1,0 +1,235 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>QUẢN LÝ LỚP HỌC</h1>
+        </div>
+        <!-- END PAGE TITLE -->
+
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BREADCRUMB -->
+    <ul class="page-breadcrumb breadcrumb">
+        <li>
+            <a href="index.html">Home</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span class="active">Page Layouts</span>
+        </li>
+    </ul>
+    <!-- END PAGE BREADCRUMB -->
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="note note-info">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-default" onclick="location.reload(true);"><i class="fa fa-refresh"></i>&nbsp;Nạp</button>
+                <button class="btn btn-primary" data-toggle="modal" controller="Roles" id="btnCreate" href="#modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                <button class="btn btn-warning" id="btnEdit" controller="Roles" data-toggle="modal" href="#modal"><i class="fa fa-pencil"></i>&nbsp;Sửa</button>
+                <button class="btn btn-danger" id="btnRemove" controller="Roles" onclick="confirm('Bạn có chắc chắn xóa không?');"><i class="fa fa-remove"></i>&nbsp;Xóa</button>
+                <button class="btn btn-primary" data-toggle="modal" controller="Students" id="btnCreate1" onclick="loadPartial('Students', 'Create')" href="#modal"><i class="fa fa-plus"></i>&nbsp;Đăng ký học</button>
+                <a class="btn green" data-toggle="modal" href="#modal-import-customer"><i class="icon-action-redo"></i>&nbsp;Import</a>
+                <label class="btn btn-info fileContainer">
+                    <a><i class="icon-action-undo"></i>&nbsp;<input type="file" name="Export" class="form-control" />&nbsp;Export</a>
+                </label>
+                <button class="btn grey-cascade" controller="Roles" data-toggle="modal" id="btnSearch"><i class="fa fa-search"></i>&nbsp;Search</button>
+                <!--<button class="btn red"><i class="fa fa-cog"></i>&nbsp;Xử lý</button>-->
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="table-responsive table-custom-format">
+
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="portlet green-meadow box">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="fa fa-cogs"></i>Checkable Tree
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse">
+                                            </a>
+                                            <a href="#portlet-config" data-toggle="modal" class="config">
+                                            </a>
+                                            <a href="javascript:;" class="reload">
+                                            </a>
+                                            <a href="javascript:;" class="remove">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <form id="myForm" class="portlet-body">
+                                        <select id="roles" name='roles'></select>
+                                        <input type='text' id='ngu' name='ngu' />
+                                        <div id="tree_2" class="tree-demo">
+                                        </div>
+                                        <br />
+                                        <button type="button" onclick="myFunction()" class="btn purple"><i class="fa fa-check"></i> Submit</button>
+                                        <h3>create dinamic buttom form actionx</h3>
+                                        <div id="dinamicButom"></div>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <p><tt id="results"></tt></p>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+                    @Html.Raw(ViewBag.Paging);
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*Pupup modal inset update delete*@
+    <div class="modal fade bs-modal-lg" id="modal" role="document" aria-hidden="true"></div>
+    
+
+</div>
+@section Scripts {
+    <script src="~/Content/assets/pages/scripts/ui-tree.js"></script>
+    <script src="~/Content/assets/global/plugins/jstree/dist/jstree.min.js"></script>
+    <script src="~/Content/assets/global/scripts/metronic.js"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            // initiate layout and plugins
+            Metronic.init(); // init metronic core components
+            Layout.init(); // init current layout
+            Demo.init(); // init demo features
+            UITree.init();
+        });
+    </script>
+
+
+
+
+
+    <script>
+        var host = 'http://localhost:53803/';
+    </script>
+
+    <script>
+        function myFunction() {
+            var str = $("#myForm").serialize();
+            $("#results").text(str);
+            alert($('#tree_2').jstree(true).get_selected());
+
+        }
+
+        $('#roles').change(function () {
+            var id = $('#roles option:selected').attr('value');
+            $('#tree_2').jstree("deselect_all");
+            $.get(host + 'Roles/GetRole/' + id, function (data) {
+                $("#tree_2").jstree("select_node", JSON.parse(data));
+            });
+
+        });
+    </script>
+
+    <script>
+        $.getJSON(host + 'Roles/GetRoleType', function (jData) {
+            $.each(jData, function (index, item) {
+                $("#roles").append(
+                    $("<option/>").val(item.ID).text(item.name)
+                );
+            });
+        });
+    </script>
+
+    <script>
+        $.getJSON(host + '/Roles/UserMenuRole/user_4', function (jData) {
+            //TẠO MENU ĐỘNG THEO QUYỀN CỦA USER
+            var buildUL = function (parent, items) {
+                $.each(items, function () {
+                    if (this.id.indexOf("-A-") == -1) {
+                        // create LI element and append it to the parent element.
+                        if (this.children && this.children.length > 0) {
+                            if (!this.id.startsWith("F-")) {
+                                var li = $('<li><a href="#"><i class="icon-home"></i><span class="title">' + this.text + '</span><span class="arrow"></span></a></li>');
+                            }
+                            else {
+                                var li = $('<li><a href="' + this.redirect + '"><i class="icon-home"></i><span class="title">' + this.text + '</span></a></li>');
+                            }
+                        }
+                        else {
+                            var li = $('<li><a href="' + this.redirect + '"><i class="icon-home"></i><span class="title">' + this.text + '</span></a></li>');
+                        }
+
+                        li.appendTo(parent);
+
+                        // if there are sub items, call the buildUL function.
+                        if (this.children && this.children.length > 0) {
+
+                            var ul = $('<ul class="sub-menu"></ul>');
+                            ul.appendTo(li);
+                            buildUL(ul, this.children);
+                        }
+                    }
+                });
+            }
+            var ul = $('<ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200"></ul>');
+            ul.appendTo("#dinamicMenu");
+            buildUL(ul, jData);
+        });
+
+    </script>
+
+    <script>
+@*<!-- KHONG XÓA create dinamic buttom form action -->*@
+        //TestObj = [{"id":"M-1","text":"Quản lý user","icon":"fa fa-folder icon-state-default","redirect":null,"state":null,"children":[{"id":"F-4","text":"1.1 Danh sách user","icon":"fa fa-check icon-state-success","redirect":"/danh_sach_user","state":{"urlRequest":"#","actionID":0,"selected":true,"opened":false},"children":[{"id":"F-4-A-1","text":"Insert","icon":null,"redirect":null,"state":{"urlRequest":"action1.html","actionID":1,"selected":true,"opened":false},"children":null},{"id":"F-4-A-2","text":"Update","icon":null,"redirect":null,"state":{"urlRequest":"action2.html","actionID":2,"selected":true,"opened":false},"children":null}]},{"id":"F-5","text":"1.2 Quan ly khach hang","icon":null,"redirect":"/quan_ly_kh","state":null,"children":[{"id":"F-5-A-2","text":"Update","icon":null,"redirect":null,"state":{"urlRequest":"action2.html","actionID":2,"selected":true,"opened":false},"children":null},{"id":"F-5-A-3","text":"Delete","icon":null,"redirect":null,"state":{"urlRequest":"action3.html","actionID":3,"selected":true,"opened":false},"children":null}]}]},{"id":"M-2","text":"Quản lý khóa học","icon":"fa fa-warning icon-state-warning","redirect":null,"state":null,"children":[{"id":"F-9","text":"Danh sách khóa học","icon":null,"redirect":"/danhSachKhoaHoc","state":null,"children":[{"id":"F-9-A-5","text":"Export","icon":null,"redirect":null,"state":{"urlRequest":"action5.html","actionID":5,"selected":true,"opened":false},"children":null}]}]}];
+
+        function getObjects(obj, key, val) {
+            var objects = [];
+            for (var i in obj) {
+                if (!obj.hasOwnProperty(i)) continue;
+                if (typeof obj[i] == 'object') {
+                    objects = objects.concat(getObjects(obj[i], key, val));
+                } else if (i == key && obj[key] == val) {
+                    objects.push(obj);
+                }
+            }
+            return objects;
+        };
+        //console.log(getObjects(TestObj, 'redirect', '/danh_sach_user'));
+        $.getJSON(host + '/Roles/UserMenuRole/user_4', function (jData) {
+            $.each(getObjects(jData, 'redirect', '/danh_sach_user'), function (i, item) {
+                $.each(item.children, function (i, action) {
+                    if (action.state.selected == true) {
+                        $('#dinamicButom').append($('<button id="' + action.id + '" type="button" class="btn purple"><i class="fa fa-check"></i>' + action.text + '</button>'));
+                    }
+                });
+            });
+        });
+
+
+
+
+        
+    </script>
+}
+

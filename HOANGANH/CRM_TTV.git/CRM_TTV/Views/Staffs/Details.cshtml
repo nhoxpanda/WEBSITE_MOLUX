@@ -1,0 +1,179 @@
+﻿@model CRM_TTV.tbUser
+
+<div class="form-horizontal">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-4"><strong>Mã nhân viên</strong></label>
+                <label class="col-md-8">@Model.code</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Họ tên</strong></label>
+                <label class="col-md-8">@Model.fullName</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Ngày sinh</strong></label>
+                <label class="col-md-8">@string.Format("{0:dd-MM-yyyy}", Model.birthDay)</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Điện thoại 1</strong></label>
+                <label class="col-md-8">@Model.phone</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Điện thoại 2</strong></label>
+                <label class="col-md-8">@Model.phone2</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Số nội bộ</strong></label>
+                <label class="col-md-8">@Model.InternalNumber</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Quê quán</strong></label>
+                <label class="col-md-8">@Model.homeTown</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Địa chỉ thường trú</strong></label>
+                <label class="col-md-8">@Model.resident</label>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4"><strong>Nơi ở hiện tại</strong></label>
+                <label class="col-md-8">@Model.address</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Quốc tịch</strong></label>
+                <label class="col-md-8">@Model.citizenship</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Passport</strong></label>
+                <label class="col-md-8">@Model.passport</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Ngày hiệu lực</strong></label>
+                <label class="col-md-8">@string.Format("{0:dd-MM-yyyy}", Model.dateIssued)</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Nơi cấp</strong></label>
+                <label class="col-md-8">@Model.locationIssued</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Giới tính</strong></label>
+                <label class="col-md-8">@(Model.sex == true ? "Nam" : "Nữ")</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Chi nhánh</strong></label>
+                <label class="col-md-8">@(Model.tbCompany != null ? Model.tbCompany.name : "")</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Tình trạng hôn nhân</strong></label>
+                <label class="col-md-8">@(Model.married == true ? "Đã kết hôn" : "Độc thân")</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Email</strong></label>
+                <label class="col-md-8">@Model.email</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Skype</strong></label>
+                <label class="col-md-8">@Model.skype</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Facebook</strong></label>
+                <label class="col-md-8">@Model.facebook</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Ngày khoá TK</strong></label>
+                <label class="col-md-8">@string.Format("{0:dd-MM-yyyy}", Model.dateLock)</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Tài khoản ngân hàng</strong></label>
+                <label class="col-md-8">@Model.banking</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-4"><strong>Nguyện vọng</strong></label>
+                <label class="col-md-8">@Model.aspiration</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Kinh nghiệm</strong></label>
+                <label class="col-md-8">@Model.experience</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Nơi thử việc</strong></label>
+                <label class="col-md-8">@Model.trainingPlaces</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Đã tập yoga</strong></label>
+                <label class="col-md-8">@(Model.yogaLearned ? "Rồi" : "Chưa")</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Điểm thưởng</strong></label>
+                <label class="col-md-8">@Model.bonusScore</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Điểm tích lũy</strong></label>
+                <label class="col-md-8">@Model.accumulativePoint</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Lương</strong></label>
+                <label class="col-md-8">@Model.salary</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Đang làm việc</strong></label>
+                <label class="col-md-8">
+                    <input type="checkbox" disabled="disabled" @(Model.working == true ? "checked" : "") />
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Bán thời gian</strong></label>
+                <label class="col-md-8">
+                    <input type="checkbox" disabled="disabled" @(Model.partTime == true ? "checked" : "") />
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Ngày vào làm</strong></label>
+                <label class="col-md-8">@string.Format("{0:dd-MM-yyyy}", Model.dateToWork)</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Ngày kết thúc thử việc</strong></label>
+                <label class="col-md-8">@string.Format("{0:dd-MM-yyyy}", Model.dateTrialEnds)</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Tình trạng</strong></label>
+                <label class="col-md-8">@Model.state</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Số HĐLD</strong></label>
+                <label class="col-md-8">@Model.codeHDLD</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Ngày hiệu lực</strong></label>
+                <label class="col-md-8">@string.Format("{0:dd-MM-yyyy}", Model.IssuedDateHDLD)</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Ngày bắt đầu</strong></label>
+                <label class="col-md-8">@string.Format("{0:dd-MM-yyyy}", Model.HDLDStartDate)</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Ngày kết thúc</strong></label>
+                <label class="col-md-8">@string.Format("{0:dd-MM-yyyy}", Model.HDLDEndDate)</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Số BHXH</strong></label>
+                <label class="col-md-8">@Model.codeBHXH</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Mã số thuế</strong></label>
+                <label class="col-md-8">@Model.taxCode</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Ngày đăng ký MST</strong></label>
+                <label class="col-md-8">@string.Format("{0:dd-MM-yyyy}", Model.DateRegisterTaxCode)</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Nơi đăng ký MST</strong></label>
+                <label class="col-md-8">@Model.locationRegisterTaxCode</label>
+            </div>
+        </div>
+    </div>
+</div>

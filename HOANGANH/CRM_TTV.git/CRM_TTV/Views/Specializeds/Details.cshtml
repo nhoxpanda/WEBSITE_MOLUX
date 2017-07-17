@@ -1,0 +1,75 @@
+﻿@model CRM_TTV.tbSpecialized
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbSpecialized</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.del)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.del)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbEducation.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbEducation.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idSpecialized }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

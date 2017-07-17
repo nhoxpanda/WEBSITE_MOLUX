@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CRM_TTV.tbClass>
+
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>
+            Tên lớp
+        </th>
+        <th>
+            Giờ học
+        </th>
+        <th>
+            Ưu đãi
+        </th>
+        <th>
+            Ghi chú
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th>
+            Chi nhánh
+        </th>
+        <th>
+            Chương trình
+        </th>
+        <th>
+            Cấp độ
+        </th>
+        <th>
+            Khóa học
+        </th>
+        <th>
+            Gói dịch vụ
+        </th>
+        <th>
+            Chuyên ngành
+        </th>
+        <th>
+            Huấn luyện viên
+        </th>
+        <th>
+            Nhân viên
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.timeStudy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.saveOff)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbCategory.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbCompany.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbEducation.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbLever.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbScience.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbServicePack.listIdSubject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbSpecialized.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbUser.fullName)
+        </td>
+    </tr>
+}
+</table>

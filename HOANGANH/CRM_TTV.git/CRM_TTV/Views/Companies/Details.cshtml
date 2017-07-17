@@ -1,0 +1,42 @@
+﻿@model CRM_TTV.tbCompany
+
+<div class="form-horizontal">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-4"><strong>Chi nhánh</strong></label>
+                <label class="col-md-8">@Model.name</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Mã số thuế</strong></label>
+                <label class="col-md-8">@Model.taxCode</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Địa chỉ</strong></label>
+                <label class="col-md-8">@Model.address</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Điện thoại</strong></label>
+                <label class="col-md-8">@Model.phone</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-4"><strong>Email</strong></label>
+                <label class="col-md-8">@Model.email</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Website</strong></label>
+                <label class="col-md-8">@Model.website</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>TK ngân hàng</strong></label>
+                <label class="col-md-8">@Model.banking</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4"><strong>Ngày nhập</strong></label>
+                <label class="col-md-8">@string.Format("{0:dd-MM-yyyy}", Model.createDate)</label>
+            </div>
+        </div>
+    </div>
+</div>

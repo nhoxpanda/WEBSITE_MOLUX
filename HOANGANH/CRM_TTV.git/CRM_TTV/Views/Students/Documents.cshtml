@@ -1,0 +1,122 @@
+﻿@model IEnumerable<CRM_TTV.tbStudentFileAttach>
+@{
+    string domain = "https://view.officeapps.live.com/op/embed.aspx?src=" + Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+    string shortdomain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
+
+<button type="button" class="btn btn-primary" id="btnUploadFile"><i class="fa fa-upload"></i>&nbsp;Upload file</button>
+<br />
+<input type="hidden" id="idStudent" value="@ViewBag.idStudent" />
+<br />
+<table class="table table-hover table-responsive table-bordered table-hover">
+    <tr>
+        <th>#</th>
+        <th>
+            Tên file
+        </th>
+        <th>
+            Loại file
+        </th>
+        <th>
+            Ngày nhập
+        </th>
+        <th>
+            NV nhập
+        </th>
+        <th>
+            Ghi chú
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr id="itemTab@(item.idStudentFileAttach)">
+            <td>
+                <button class="btn btn-danger btn-xs" onclick="editItem(@item.idStudentFileAttach)"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                <button class="btn btn-default btn-xs" onclick="deleteItem(@item.idStudentFileAttach)"><i class="fa fa-trash"></i>&nbsp;Xóa</button>
+            </td>
+            <td>
+                @{
+                    string ext = Path.GetExtension(item.fileName);
+                    ext = ext == null ? "" : ext.ToLower();
+                    if (ext == ".pdf" || ext == ".txt")
+                    {
+                        <a style="cursor:pointer" title="@item.fileName" onclick="viewFile(@item.idStudentFileAttach)">@item.fileName</a><br />
+                        <input type="hidden" value="@shortdomain/Upload/Student/@item.fileName" id="txtLink@(item.idStudentFileAttach)" />
+                    }
+                    else if (ext == ".jpg" || ext == ".png")
+                    {
+                        <a style="cursor:pointer" onclick="viewImage(@item.idStudentFileAttach)">@item.fileName</a><br />
+                        <input type="hidden" value="@shortdomain/Upload/Student/@item.fileName" id="txtLink@(item.idStudentFileAttach)" />
+                    }
+                    else
+                    {
+                        <a style="cursor:pointer" onclick="viewFile(@item.idStudentFileAttach)"> @item.fileName </a><br />
+                        <input type="hidden" value="@domain/Upload/Student/@item.fileName" id="txtLink@(item.idStudentFileAttach)" />
+                    }
+                    <input type="hidden" value="@shortdomain/Upload/Student/@item.fileName" id="txtDownload@(item.idStudentFileAttach)" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbCategory.name)
+            </td>
+            <td>
+                @string.Format("{0:dd-MM-yyyy}", item.postDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbStudent.tbUser.fullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.note)
+            </td>
+        </tr>
+    }
+</table>
+
+<script>
+    /** popup form thêm tài liệu **/
+    $("#btnUploadFile").click(function () {
+        var dataPost = { id: $("#idStudent").val() };
+        $.ajax({
+            type: "POST",
+            url: '/Students/GetStudentId',
+            data: JSON.stringify(dataPost),
+            contentType: "application/json; charset=utf-8",
+            dataType: "html",
+            success: function (data) {
+                $("#popupData").html(data);
+                $("#modal-insert-file").modal("show");
+            }
+        });
+    })
+
+    function editItem(id){
+        var dataPost = { id: id };
+        $.ajax({
+            type: "POST",
+            url: '/Students/EditFile',
+            data: JSON.stringify(dataPost),
+            contentType: "application/json; charset=utf-8",
+            dataType: "html",
+            success: function (data) {
+                $("#popupData").html(data);
+                $("#modal-edit-file").modal("show");
+            }
+        });
+    }
+
+    function deleteItem(id){
+        var dataPost = { id: id };
+        $.ajax({
+            type: "POST",
+            url: '/Students/DeleteFile',
+            data: JSON.stringify(dataPost),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                $("#itemTab" + id).hide();
+                toastr.success("Đã xóa...!!!", "Success");
+            }
+        });
+    }
+
+</script>

@@ -1,0 +1,166 @@
+﻿@model CRM_TTV.tbClass
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title">Cập nhật lớp học</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal">
+                <div class="row">
+                    <div class="col-md-12 margintop10">
+                        <div class="table-responsive table-custom-format">
+                            @using (Html.BeginForm("Classesxxxx", "Edit", FormMethod.Post, new { id = "form1" }))
+                            {
+                                //Html.BeginForm()
+                                //Html.BeginForm(null, null, FormMethod.Post, new { id = "signupform" })
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(model => model.idClass)
+                                <div class="form-horizontal">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Chi nhánh</label>
+                                        <div class="col-md-9">
+                                            @Html.DropDownList("idCompany", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.idCompany, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Chương trình</label>
+                                        <div class="col-md-9">
+                                            @Html.DropDownList("idEducation", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.idEducation, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Chuyên ngành</label>
+                                        <div class="col-md-9">
+                                            @Html.DropDownList("idSpecialized", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.idSpecialized, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Gói dịch vụ</label>
+                                        <div class="col-md-9">
+                                            @Html.DropDownList("idServicePack", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.idServicePack, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Khóa học</label>
+                                        <div class="col-md-9">
+                                            @Html.DropDownList("idScience", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.idScience, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Cấp độ</label>
+                                        <div class="col-md-9">
+                                            @Html.DropDownList("idLever", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.idLever, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Tên lớp học</label>
+                                        <div class="col-md-9">
+                                            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                            @Html.EditorFor(model => model.timeStudy, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Ưu đãi</label>
+                                        <div class="col-md-9">
+                                            @Html.EditorFor(model => model.saveOff, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.saveOff, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Ghi chú</label>
+                                        <div class="col-md-9">
+                                            @Html.EditorFor(model => model.note, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            }
+
+                            @using (Html.BeginForm("Classes", "Edit", FormMethod.Post, new { id = "form2" }))
+                            {
+                                <div class="form-group">
+                                    <div class="col-md-2 control-label">Ngày dạy</div>
+                                    <div class="col-md-9">
+                                        @for (int i = 2; i < 9; i++)
+                                        {
+                                            string val = i.ToString();
+                                            string name = "Thứ " + i;
+                                            if (i == 8)
+                                            {
+                                                name = "Chủ nhật";
+                                                val = "CN";
+                                            }
+
+                                            if (Model.timeStudy.Contains(Convert.ToString(val)))
+                                            {
+                                                <label style="margin: 7px 10px 0 0"><input type="checkbox" checked="checked" name="DateOfWeek" value="@val">@name</label>
+                                            }
+                                            else
+                                            {
+                                                <label style="margin: 7px 10px 0 0"><input type="checkbox" name="DateOfWeek" value="@val">@name</label>
+
+                                            }
+                                        }
+                                        @*<label><input type="checkbox" name="DateOfWeek" value="2">Thứ 2</label>
+                                            <label><input type="checkbox" name="DateOfWeek" value="3">Thứ 3</label>
+                                            <label><input type="checkbox" name="DateOfWeek" value="4">Thứ 4</label>
+                                            <label><input type="checkbox" name="DateOfWeek" value="5">Thứ 5</label>
+                                            <label><input type="checkbox" name="DateOfWeek" value="6">Thứ 6</label>
+                                            <label><input type="checkbox" name="DateOfWeek" value="7">Thứ 7</label>
+                                            <label><input type="checkbox" name="DateOfWeek" value="0">Chủ nhật</label>*@
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button class="btn yellow"><i class="fa fa-floppy-o"></i>&nbsp;Lưu</button>
+                                    <button class="btn grey" data-dismiss="modal"><i class="fa fa-ban"></i>&nbsp;Đóng</button>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        var listIdChecked = $('#timeStudy').val();
+        alert(listIdChecked);
+
+        $('#form2 input[type=checkbox]').each(function () {
+            if (listIdChecked.indexOf($(this).val()) != -1) {
+                $(this).prop("checked", true);
+            }
+        });
+    </script>
+}

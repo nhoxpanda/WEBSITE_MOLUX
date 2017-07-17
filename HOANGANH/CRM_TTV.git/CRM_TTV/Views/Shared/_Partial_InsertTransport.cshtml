@@ -1,0 +1,131 @@
+﻿<div class="modal fade bs-modal-lg" id="modal-insert-transport" role="document" aria-hidden="true" ng-controller="itemCtrl">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Vận chuyển</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-lg-2 col-md-2">Khách hàng</label>
+                                <div class="col-lg-10 col-md-10">
+                                    <select id="insert-customer-transport-pricetag" style="width: 100%">
+                                        <option value="1">-----------</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-2 col-md-2">Tour</label>
+                                <div class="col-lg-10 col-md-10">
+                                    <select id="insert-tour-transport-pricetag" style="width: 100%">
+                                        <option value="1">-----------</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-md-12" ng-repeat="trans in items">
+                                <div class="portlet light bordered">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <a data-toggle="collapse" data-target="#demo-transport{{trans}}" style="cursor: pointer" class="btn btn-default"><i class="fa fa-plus"></i></a>
+                                            <span class="caption-subject bold uppercase font-purple">OPTION {{trans}}</span>
+                                        </div>
+                                        <div class="actions">
+                                            <button style="cursor: pointer" class="btn btn-danger" ng-show="$last" ng-click="removeItem()"><i class="fa fa-times"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body" id="demo-transport{{trans}}">
+                                        <div class="form-horizontal">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-lg-2 col-md-2">Công ty</label>
+                                                        <div class="col-lg-10 col-md-10">
+                                                            <input ng-model="trans.name" name="tb{{trans}}" type="text" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" ng-controller="subitemCtrl">
+                                                    <div class="form-group" ng-repeat="cus in subitems">
+                                                        <div class="col-md-offset-1 col-md-1">
+                                                            <button class="btn btn-default" ng-show="$last" ng-click="addNewItem1()"> <i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                        <label class="control-label col-lg-3 col-md-3">Nhóm khách hàng</label>
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <input ng-model="cus.name" name="tb{{cus}}" type="text" class="form-control" />
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2">
+                                                            <button class="btn btn-default" data-toggle="modal" href="#modal-setup-useringroup"><i class="fa fa-cog"></i></button>
+                                                        </div>
+                                                        <div class="col-lg-1 col-md-1">
+                                                            <button class="btn btn-default" ng-show="$last" ng-click="removeItem1()"><i class="fa fa-times"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-lg-2 col-md-2">Tuyến</label>
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <input ng-model="trans.name" name="tb{{trans}}" type="text" class="form-control" />
+                                                        </div>
+                                                        <label class="control-label col-lg-2 col-md-2">File</label>
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <input ng-model="trans.name" name="tb{{trans}}" type="text" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-lg-2 col-md-2">Giá</label>
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <input ng-model="trans.name" name="tb{{trans}}" type="text" class="form-control" />
+                                                        </div>
+                                                        <label class="control-label col-lg-2 col-md-2">Thời gian</label>
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <input ng-model="trans.name" name="tb{{trans}}" type="text" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-lg-2 col-md-2">Người liên hệ</label>
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <input ng-model="trans.name" name="tb{{trans}}" type="text" class="form-control" />
+                                                        </div>
+                                                        <label class="control-label col-lg-2 col-md-2">Điện thoại</label>
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <input ng-model="trans.name" name="tb{{trans}}" type="text" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-lg-2 col-md-2">Ghi chú</label>
+                                                        <div class="col-lg-10 col-md-10">
+                                                            <textarea ng-model="trans.name" name="ta{{trans}}" class="form-control" id="NoteTransport"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div align="center" style="margin-bottom: 20px">
+                <button type="button" class="btn btn-success" ng-click="addNewItem()">Thêm option</button>
+                <button type="button" class="btn blue" id="btnLuuFunction">Lưu</button>
+                <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
