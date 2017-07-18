@@ -1,0 +1,471 @@
+.product{
+	width: 100%;
+}
+.pro_con{
+	width: 20%;
+	float: left;
+	border: 1px solid #ebecec;
+	box-sizing: border-box;
+	border-collapse: collapse;
+	position: relative;
+}
+.pro_con_image{
+	width: 100%;
+	height: 155px;
+	overflow: hidden;
+	text-align: center;
+	position: relative;
+}
+.pro_con_image img{
+	max-height: 100%;
+	max-width: 100%;
+	object-fit: cover;
+}
+
+.thongtin_pro{
+	width: 100%;
+}
+.thongtin_pro_left{
+	width: 70%;
+	float: left;
+}
+.thongtin_pro_right{
+	width: 30%;
+	float: right;
+}
+.name_pro{
+	font-size: 14px;
+	color: #231f20;
+	font-weight: bold;
+	margin: 10px 0 0 20px;
+}
+.gia_pro{
+	color: red;
+	font-size: 14px;
+	margin: 2px 0 0 20px;
+	font-weight: bold;
+}
+.thongtin_pro li{
+	list-style: none;
+	font-size: 12px;
+	margin: 5px 0;
+}
+.thongtin_pro ul{
+	margin: 15px 0 0 0;
+}
+.thongtin_pro li p{
+	color: #818181;
+	text-decoration: none;
+    width: 83%;
+    display: block;
+    float: right;
+}
+.thongtin_pro li:before{
+    color:#818181;
+	content: "●";
+	margin: 0 5px 0 15px;
+}
+.icon_khuyenmai{
+	width: 33px;
+	height: 32px;
+	background-position: -160px 0;
+	margin: 10px 0 0 15px;
+}
+.btn_mua,.btn_pk{
+	text-decoration: none;
+	color: white;
+	border-radius: 5px;
+	padding: 6px 0;
+	width: 60px;
+	font-size: 12px;
+	text-align: center;
+	text-transform: uppercase;
+	display: block;
+	margin: 15px 0 15px 0;
+background: #fa9308; /* Old browsers */
+background: -moz-linear-gradient(top,  #fa9308 0%, #fa6f1c 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #fa9308 0%,#fa6f1c 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #fa9308 0%,#fa6f1c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fa9308', endColorstr='#fa6f1c',GradientType=0 ); /* IE6-9 */
+
+}
+.top_con {
+	width: 100%;
+}
+.top_con{
+	border-top: 1px solid #e9e9ea;
+	border-bottom: 1px solid #e9e9ea;
+	box-sizing: border-box;
+}
+.top_con p{
+	padding: 12px 0;
+	font-size: 14px;
+	float: left;
+}
+.top_con a{
+	text-decoration: none;
+	font-size: 14px;
+	color: #c69a39;
+	margin: 12px 0 12px 15px;
+	display: inline-block;
+}
+.pro_con_image:hover .mask{
+	opacity: 1;
+	visibility: visible;
+	top:0;
+}
+.bre{
+	width: 50px;
+	position: absolute;
+	left: 0;
+	margin:5px 0 0 10px;
+}
+.mask{
+	position: absolute;
+	left: 0;
+	background:rgba(255, 255, 255, 0.95);
+	color: #555;
+	width: 100%;
+	height: 100%;
+	text-align: left;
+	opacity: 0;
+    top: 0;
+	visibility: hidden;
+	transition: 0.6s all ease;
+}
+.pro_con_image:hover .mask{
+	opacity: 1;
+	visibility: visible;
+}
+.mask p{
+	margin: 5px 0 5px 15px;
+	font-size: 13px;
+}
+.mask p:first-child{
+	margin: 15px 0 5px 15px;
+}
+.mask1{
+	background:rgba(224, 224, 224, 0.91);
+	color: black;
+	opacity: 0;
+	visibility: hidden;
+	top: 200px;
+}
+.mask1 p:before{
+	content: "-";
+	float: left;
+	font-size: 13px;
+	margin: 0 5px;
+}
+.ser_image:hover .mask1{
+	opacity: 1;
+	top: 0;
+	visibility: visible;
+}
+.mask-title {
+    width: 100%;
+    padding: 0px 10px;
+    height: 40px;
+    margin: 5px 0px;
+    overflow: hidden;
+}
+.mask-title .icon {
+    height: 40px;
+    width: 40px;
+    float: left;
+    background: #c69a39 url(http://mobilecity.vn/Content/themes/img/icon-mobilecity-care.png) no-repeat center center;
+    border-radius: 2px;
+}
+.mask-title .text {
+    height: 40px;
+    line-height: 40px;
+    width: calc(100% - 45px);
+    float: right;
+    color: #c69a39;
+    font-size: 16px;
+    font-weight: bold;
+}
+.mask-list {
+    margin: 10px 0px;
+}
+.mask-list li {
+    display: block;
+    padding: 0px 10px;
+    margin-top: 2px;
+    color: #555;
+    font-size: 12px;
+}
+.mask-list li:before {
+    color: #888;
+    content: "●";
+    margin: 0 5px 0 0;
+}
+.mask-link {
+    display: block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0px 5px;
+    border-radius: 2px;
+    background: #c69a39;
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    position: absolute;
+    left: 10px;
+    bottom: 0px;
+}
+.moi,.hot{
+	color: white;
+	padding: 3px 0;
+	width: 100%;
+	border-radius: 3px;
+	font-size: 14px;
+	margin: 5px 0;
+	display: block;
+	
+}
+.hot{
+	background: #f04e30;
+}
+.moi{
+	background: #c69a39;
+}
+.top_con select{
+	float: right;
+	margin: 12px 0;
+	color: #58595b;
+	border: none;
+	outline: none;
+}
+.intro_cate{
+	width: 100%;
+    padding: 15px 0px;
+}
+.intro_cate .intro_cate_title {
+	font-size: 16px;
+    line-height: 1.3em;
+}
+.intro_cate .intro_cate_content {
+	font-size: 14px;
+    padding: 10px 0px;
+    position: relative;
+    height: 32px;
+}
+.intro_cate .intro_cate_content .intro_cate_more {
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    padding: 0px 5px;
+    position: absolute;
+    top: 2px;
+    right: 0px;
+    background: #fff;
+}
+.news{
+	width: 100%;
+	border-top: 1px solid #f1f1f1;
+	margin: 20px 0 0 0;
+}
+.new_con{
+	width: 50%;
+	float: left;
+	margin: 20px 0 10px 0;
+}
+.news_img{
+	height: 135px;
+	width: 135px;
+	overflow: hidden;
+	float: left;
+	margin: 10px;
+	position: relative;
+	text-align: center;
+}
+.news_img:hover img{
+	-webkit-filter: grayscale(50%); /* Chrome, Safari, Opera */
+    filter: grayscale(50%);
+}
+
+.news_img img{
+	max-height: 100%;
+	max-width: 100%;
+	object-fit: cover;
+	transition: 0.5s all ease;
+}
+.right_new_home{
+	width: 430px;
+	float: right;
+}
+.title_new_home a{
+	font-size: 16px;
+	color: #2b2b2b;
+	display: block;
+	font-weight: bold;
+	margin: 20px 0 7px 0;
+	text-decoration: none;
+}
+.detail_new_home{
+	font-size: 14px;
+	color: #58595b;
+}
+.icon_fan{
+	background-position: -328px -44px;
+	width:20px;
+	height: 27px;
+	float: left;
+	margin: 0 15px 0 0;
+}
+.fan_app{
+
+	float: right;
+	padding:3px 10px;
+	box-sizing: border-box;
+	border:1px solid #c69a39;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.fan_app p{
+	float: left;
+	margin: 5px 0 0 0;
+	color: #c69a39;
+	font-size: 15px;
+}
+.filter_wrap {
+    display: block;
+    float: right;
+    width: 100%;
+    background: #fff;
+}
+.filter {
+    display: block;
+    width: calc(100% - 2px);
+    height: 36px;
+    border: 1px solid #ddd;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    list-style: none;
+}
+.filter li {
+   float: left;
+   position: relative;
+   color: #333;
+   height: 34px;
+   margin-right: 18px;
+   list-style: none;
+}
+.filter li.first-li {
+   background: #eee;
+   padding: 0 0 0 5px;
+   font-size: 13px;
+   overflow: hidden;
+}
+.icon-arrfilter {
+   display: inline-block;
+   line-height: 34px;
+   vertical-align: middle;
+   background: url(http://mobilecity.vn/Content/themes/img/icon_arrfilter.png) no-repeat right 1px;
+   width: 16px;
+   height: 37px;
+   margin-top: -3px;
+}
+.filter li a {
+   display: block;
+   font-size: 13px;
+   color: #333;
+   padding: 7px 8px;
+   white-space: nowrap;
+   margin: 0 !important
+}
+.filter li .dropfilter {
+   display: none;
+   position: absolute;
+   top: 34px;
+   left: 0;
+   right: 0;
+   z-index: 999;
+   width: 200px;
+   overflow: hidden;
+   background: #fff;
+   border: 1px solid #d7d7d7;
+   border-top: 0;
+}
+.last-li .dropfilter {
+    top: 100% !important;
+    right: -19px !important;
+    border-top: 1px !important;
+    left: auto !important;
+}
+.dropfilter li {
+   height: auto;
+   float: none;
+   margin-right: 0;
+}
+.dropfilter li a {
+   padding-left: 25px!important;
+   background: #fff;
+}
+.dropfilter li a.checked {
+   background: #f5f5f5;
+   font-weight: 700;
+}
+.dropfilter li a.checked:before {
+    font: normal normal normal 14px/1 FontAwesome;
+   content: '\f00c';
+   float: left;
+   font-weight: normal;
+   font-size: 16px;
+   margin-left: -17px;
+   color: #888;
+}
+.filter li.last-li {
+   float: right;
+   margin-right: 18px;
+}
+.filter li .totalkm {
+   background: red;
+   padding: 3px 5px;
+   border-radius: 50%;
+   width: 24px;
+   color: #fff;
+   font-weight: 700;
+   margin-right: 5px;
+}
+.arrdown {
+   border-left: 5px solid transparent;
+   border-right: 5px solid transparent;
+   border-top: 5px solid #888;
+   display: inline-block;
+   width: 0;
+   height: 0;
+   position: absolute;
+   right: -10px;
+   top: 12px;
+   vertical-align: top;
+}
+.filter li .tcolum {
+   width: 360px;
+}
+.tcolum li.nofloat {
+   float: none!important;
+   width: 100%!important;
+}
+.filter li .tcolum li {
+   float: left;
+   width: 33%;
+}
+.filter li:hover .dropfilter {
+   display: block;
+}
+.phone{
+    width: 120px;
+    float: none;
+    margin: 0 auto;
+    height:120px;
+    display: none;
+}
+.content{
+    margin:0 0 20px 0;
+}
+.name_pro a{
+    color:#333;
+}

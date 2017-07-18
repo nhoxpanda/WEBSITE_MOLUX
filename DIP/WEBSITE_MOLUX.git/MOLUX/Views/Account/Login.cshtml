@@ -1,0 +1,49 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+@model LoginViewModel
+@{
+    var config = ConfigWebsite.Data();
+    ViewBag.Title = "Đăng nhập | " + config.MetaTitle;
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li itemscope=""><a itemprop="url" title="Trang chủ"><span itemprop="title">Trang chủ</span></a></li>
+        <li itemprop="child"><a itemprop="url" href="" title="Đăng nhập"><span itemprop="title">Đăng nhập</span></a></li>
+    </ol>
+</div>
+<div class="row bg-white">
+    <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 bg-white mgTop">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="login-box-body">
+                <p class="login-box-msg"><strong>Đăng nhập</strong></p>
+                <div class="form-group has-feedback">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Tên đăng nhập..." })
+                    <span class="fa fa-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Mật khẩu..." })
+                    <span class="fa fa-lock form-control-feedback"></span>
+                </div>
+                <div class="row" style="margin: 20px -3px;">
+                    <div class="col-xs-9">
+                        <div class="checkbox icheck">
+                            <label>
+                                @Html.CheckBoxFor(m => m.RememberMe) Ghi nhớ?
+                            </label>
+                        </div>
+                        <label>
+                            <a href="/dang-ky" title="Đăng ký tài khoản mới!">Đăng ký tài khoản mới!</a>
+                        </label>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-3">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fa fa-send"></i></button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </div>
+        }
+    </div>
+</div>

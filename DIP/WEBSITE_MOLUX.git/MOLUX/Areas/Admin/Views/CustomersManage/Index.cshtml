@@ -1,0 +1,63 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+@model IEnumerable<Customer>
+@{
+    ViewBag.Title = "Danh sách khách hàng";
+}
+
+@{int i = 1;}
+
+<section class="content-header">
+    <h1>
+        Danh sách khách hàng
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Danh sách khách hàng</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="callout callout-info lead">
+                        <a href="@Url.Action("Index", "CustomersManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <table id="tableDictionary" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Code</th>
+                                <th>Họ tên</th>
+                                <th>Điện thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>Email</th>
+                            </tr>
+                            <tr>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="rowItem@(item.RowID)">
+                                    <td>@i</td>
+                                    <td>@item.Code</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Address @Customers.GetCityName(item.City_Code) @Customers.GetCountryName(item.Country_Code)</td>
+                                    <td>@item.Email</td>
+                                </tr>
+                                i++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

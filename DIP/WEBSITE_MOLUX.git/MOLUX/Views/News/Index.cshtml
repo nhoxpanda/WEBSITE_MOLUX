@@ -1,0 +1,71 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+@model IEnumerable<web_getChildCateNews_Result>
+
+@{
+    var cate = Model.FirstOrDefault();
+    if (cate != null)
+    {
+        ViewBag.Title = cate.MetaTitle;
+        ViewBag.MetaDescription = cate.MetaDesc;
+    }
+}
+
+<!--Breadcrumb-->
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a itemprop="url" title="Trang chủ"><span itemprop="title">Trang chủ</span></a></li>
+        <li><a itemprop="url" href="/tin-tuc/c@(cate.Id)/@Common.MakeUrlSlug(cate.Title)" title="@(cate != null ? cate.Title : "Tin tức")"><span itemprop="title">@(cate != null ? cate.Title : "Tin tức") </span></a></li>
+    </ol>
+</div>
+<!--End Breadcrumb-->
+
+@foreach (var item in Model)
+{
+    var newsList = News.NewsList(item.Id).ToList();
+    <div class="row bg-white">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="title-news-page">
+                <a href="/tin-tuc/c@(item.Id)/@Common.MakeUrlSlug(item.Title)" class="top-news flLeft">@item.Title</a>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-white">
+        <div class="big-news">
+            @{
+                var firstItem = newsList.FirstOrDefault();
+                if (firstItem != null)
+                {
+                    <div class="col-lg-6 col-md-9 col-sm-12 col-xs-12">
+                        <div class="main-news">
+                            <div class="main-news">
+                                <div class="img-main-news">
+                                    <a href="/tin-tuc/d@(firstItem.Id)/@Common.MakeUrlSlug(firstItem.Title)" title="@firstItem.Title">
+                                        <img src="~/Images/News/@firstItem.Image" alt="@firstItem.Title">
+                                    </a>
+                                </div>
+                                <a href="/tin-tuc/d@(firstItem.Id)/@Common.MakeUrlSlug(firstItem.Title)" class="tit-main-news">@firstItem.Title</a>
+                                <div class="des-main-news">
+                                    @Html.Raw(firstItem.Description)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-9 col-sm-12 col-xs-12 border-rb">
+                        @foreach (var news in newsList.Where(p => p.Id != firstItem.Id))
+                        {
+                            <div class="news-second flLeft">
+                                <div class="img-news-second flLeft">
+                                    <a href="/tin-tuc/d@(news.Id)/@Common.MakeUrlSlug(news.Title)" title="@news.Title">
+                                        <img src="~/Images/News/@news.Image" alt="@news.Title" width="92" height="69">
+                                    </a>
+                                </div>
+                                <a href="/tin-tuc/d@(news.Id)/@Common.MakeUrlSlug(news.Title)" class="tit-news-second">@news.Title</a>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </div>
+                }

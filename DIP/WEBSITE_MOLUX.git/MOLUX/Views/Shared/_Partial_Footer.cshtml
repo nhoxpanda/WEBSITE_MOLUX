@@ -1,0 +1,85 @@
+﻿@using MOLUX.Helper
+@{
+    var config = ConfigWebsite.Data();
+}
+<div class="row">
+    @Html.Action("_Partial_Partner", "PartialView")
+    <div class="col-lg-12 col-sm-12 col-md-12 info">
+        @foreach (var item in ConfigWebsite.LoadContentFooter().Where(p => p.TypeId == 0).OrderBy(p => p.Orders))
+        {
+            <div class="col-lg-2 col-sm-3 col-md-2 col-xs-12 info">
+                <div class="col-info1">
+                    <div class="title-info">
+                        @item.Name
+                    </div>
+                    @foreach (var ch in ConfigWebsite.LoadContentFooter().Where(p => p.TypeId == item.Id).OrderBy(p => p.Orders))
+                    {
+                        <a href="@ch.Link" title="@ch.Name">@ch.Name</a>
+                    }
+                </div>
+            </div>
+        }
+        <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 info">
+            <div class="col-info1">
+                <div class="title-info">
+                    ĐĂNG KÝ NHẬN BẢN TIN
+                </div>
+                @using (Ajax.BeginForm("SubscribeEmail", "Home", null, new AjaxOptions { OnSuccess = "OnSuccessSubscribe" }))
+                {
+                    <div class="input-group" style="margin-left: 0">
+                        <input type="email" class="form-control" name="txtSubscribeEmail" placeholder="Nhập email để nhận bản tin khuyến mãi">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default btn-subscrice" type="button" id="btnSubscribe">
+                                <i class="fa fa-send"></i>
+                            </button>
+                        </div>
+                    </div>
+                }
+                <div class="title-info" style="padding-top: 20px;">
+                    LIÊN KẾT VỚI CHÚNG TÔI
+                </div>
+                <div class="social-footer">
+                    <ul class="flLeft">
+                        @foreach (var item in ConfigWebsite.SocialList())
+                        {
+                            <li>
+                                <a class="flLeft" href="@item.URL" target="_blank" title="@item.Name">
+                                    <img src="~/Images/Logo/@item.Icon" title="@item.Name" alt="@item.Name" />
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <h2 class="footer-slogan">
+                <strong>
+                    <a href="/" title="KÊNH MUA SẮM TRỰC TUYẾN UY TÍN GIÁ TỐT HÀNG ĐẦU VIỆT NAM">MOLUX.VN</a> - KÊNH MUA SẮM TRỰC TUYẾN UY TÍN GIÁ TỐT HÀNG ĐẦU VIỆT NAM
+                </strong>
+            </h2>
+            <div class="col-md-8">
+                <div class="textwidget">
+                    <p><strong style="padding-right: 10px;">Copyright &copy; @config.CompanyName</strong></p>
+                    <p><strong style="padding-right: 10px;">Giấy chứng nhận:&nbsp;</strong>@config.LicenseProvince</p>
+                    <p><strong style="padding-right: 10px;">Giấy phép:&nbsp;</strong>@config.LicenseNumber</p>
+                    <p><strong style="padding-right: 10px;">Hà Nội:&nbsp;</strong>@config.Address1 <a href="@config.GoogleMap1" title="@config.Address1" target="_blank" style="color: #e6c804 !important; display: inline">(Bản đồ)</a></p>
+                    <p><strong style="padding-right: 10px;">Quảng Ninh:&nbsp;</strong>@config.Address2 <a href="@config.GoogleMap2" title="@config.Address2" target="_blank" style="color: #e6c804 !important; display: inline">(Bản đồ)</a></p>
+                    <p><strong style="padding-right: 10px;">Điện thoại:&nbsp;</strong>@config.PhonePurchase - @config.CustomerService</p>
+                    <p><strong style="padding-right: 10px;">Email:&nbsp;</strong>@config.Email1</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="textwidget">
+                    <p><strong style="padding-right: 10px;">Dấu đã thông báo</strong></p>
+                    <p><strong style="padding-right: 10px;">
+                           <img class="img img-responsive" src="~/Images/Logo/@config.LogoBCT" />    
+                        </strong></p>
+                    <p><strong style="padding-right: 10px;">Hotline:&nbsp;</strong><text style="font-size: 20px; color: #fbda01">@config.Hotline</text></p>
+                    <p style="padding-right: 10px;">(Mua hàng bấm phím @config.TitleFooter1)</p>
+                </div>
+            </div>
+        </div>
+        @Html.Action("_Partial_PaymentMethod", "PartialView")
+    </div>
+</div>

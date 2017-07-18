@@ -1,0 +1,48 @@
+﻿@using MOLUX.Helper
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ConfigWebsite.Data().MetaKeyword" />
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/assets/css/main.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/flexslider.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/jquery.bxslider.min.css" rel="stylesheet" />
+    <link href="~/Content/notify-master/css/notify.css" rel="stylesheet" />
+    <link href="~/Content/notify-master/css/prettify.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/style-custom.css" rel="stylesheet" />
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <div class="container" id="body-website">
+        @Html.Partial("_Partial_Header")
+        @Html.Action("_Partial_Advertisement", "PartialView")
+        @RenderBody()
+        @Html.Partial("_Partial_Footer")
+    </div>
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    <script src="~/Content/assets/js/jquery-1.12.0.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Content/assets/js/lib.js"></script>
+    <!--owl carousel-->
+    <script src="~/Content/assets/js/owl.carousel.min.js"></script>
+    <!--flexy menu-->
+    <script src="~/Content/assets/js/flexy-menu.min.js"></script>
+    <!--main script-->
+    <script src="~/Content/assets/js/main.js"></script>
+    <script src="~/Content/notify-master/js/notify.js"></script>
+    <script src="~/Content/notify-master/js/prettify.js"></script>
+    <script src="~/Content/assets/js/jquery.flexslider.js"></script>
+    <script src="~/Scripts/jquery.bxslider.min.js"></script>
+    @RenderSection("scripts", required: false)
+    <script>
+        //quảng cáo
+        $(function () { var o = $("#sidebar,#sidebar2").offset(), i = 150; $(window).scroll(function () { $(window).scrollTop() > o.top ? $("#sidebar,#sidebar2").stop().animate({ marginTop: $(window).scrollTop() - o.top + i }) : $("#sidebar,#sidebar2").stop().animate({ marginTop: 0 }) }) });
+    </script>
+</body>
+</html>

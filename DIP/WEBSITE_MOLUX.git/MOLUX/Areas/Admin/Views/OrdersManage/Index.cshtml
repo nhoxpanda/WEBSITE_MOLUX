@@ -1,0 +1,104 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+@model IEnumerable<Sales_Order_Master>
+@{
+    ViewBag.Title = "Danh sách đơn hàng";
+    BMSMoluxHongKongEntities _db = new BMSMoluxHongKongEntities();
+}
+
+@{int i = 1;}
+
+<section class="content-header">
+    <h1>
+        Danh sách đơn hàng
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Danh sách đơn hàng</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="callout callout-info lead">
+                        <a href="@Url.Action("Index", "OrdersManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <table id="tableDictionary" class="table table-bordered table-striped">
+                        <thead>
+                            <tr style="cursor: pointer">
+                                <th>STT</th>
+                                <th>Mã đơn hàng</th>
+                                <th>Mã KH</th>
+                                <th>Họ tên</th>
+                                <th>Điện thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>Tổng cộng</th>
+                                <th>Hình thức thanh toán</th>
+                                <th>Ngày đặt hàng</th>
+                                <th>Ngày giao hàng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="rowItem@(item.RowID)">
+                                    <td>
+                                        <input type="hidden" name="RowID" id="RowID" value="@item.Code" />
+                                        @i
+                                    </td>
+                                    <td>@item.Code</td>
+                                    <td>@item.Customer_Code</td>
+                                    <td>@(Customers.GetCustomer(item.Customer_Code) != null ? Customers.GetCustomer(item.Customer_Code).Name : "")</td>
+                                    <td>@(Customers.GetCustomer(item.Customer_Code) != null ? Customers.GetCustomer(item.Customer_Code).Phone : "")</td>
+                                    <td>@(Customers.GetCustomer(item.Customer_Code) != null ? Customers.GetCustomer(item.Customer_Code).Address : "")</td>
+                                    <td style="text-align: right">@string.Format("{0:0,0₫}", _db.Sales_Order_Detail.Where(p => p.Sales_Order_Code == item.Code).Sum(p => p.Amount)).Replace(",", ".")</td>
+                                    <td>@Customers.GetPaymentName(item.Payment_Method_Code)</td>
+                                    <td>@string.Format("{0:dd/MM/yyyy}", item.Created_Date)</td>
+                                    <td>@string.Format("{0:dd/MM/yyyy}", item.Ship_Date)</td>
+                                </tr>
+                                i++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-body" id="order-data"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        $('#tableDictionary tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                $("#bodymain").loading({ overlay: true, base: 0.6 });
+                var ids = $(this).find("td:first input[type=hidden]").val();
+                var dataPost = {
+                    code: $(this).find("td:first input[type=hidden]").val()
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: '/OrdersManage/Detail',
+                    data: JSON.stringify(dataPost),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (data) {
+                        $("#order-data").html(data);
+                        console.log(data);
+                    }
+                });
+            }
+        });
+    </script>
+}

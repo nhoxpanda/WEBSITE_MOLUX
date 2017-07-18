@@ -1,0 +1,99 @@
+﻿@model MOLUX.Areas.Admin.Models.MenuViewModel
+@{
+    ViewBag.Title = "Danh sách chuyên mục tin tức";
+}
+
+<section class="content-header">
+    <h1>
+        Danh sách chuyên mục tin tức
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Danh sách chuyên mục tin tức</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="callout callout-info lead">
+                        <a href="@Url.Action("Category", "MenuManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                        <a href="@Url.Action("AddCategory", "MenuManage")" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Thêm mới</a>
+                    </div>
+                </div>
+                <div class="box-body" id="data-customer">
+                    <table id="tableDictionary" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th> # </th>
+                                <th> Tên category </th>
+                                <th> Menu cha </th>
+                                <th> MetaTitlte </th>
+                                <th> MetaDescription </th>
+                                <th> Actions </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (var i = 0; i < Model.listCate.Count; i++)
+                            {
+                                <tr class="odd gradeX">
+                                    <td> @(i + 1) </td>
+                                    <td> @Model.listCate[i].Title </td>
+                                    @if (Model.listMenu.SingleOrDefault(p => p.Id == Model.listCate[i].ParentId) != null)
+                                    {
+                                        <td>@Model.listMenu.SingleOrDefault(p => p.Id == Model.listCate[i].ParentId).Title</td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+                                    <td>@Model.listCate[i].MetaTitle</td>
+                                    <td>@Model.listCate[i].MetaDesc</td>
+                                    <td>
+                                        <a class="btn btn-xs btn-warning" href="/Admin/MenuManage/EditCategory/@Model.listCate[i].Id">
+                                            <i class="fa fa-pencil"></i>&nbsp;Sửa
+                                        </a>
+                                        <button class="btn btn-xs btn-danger" type="button" onclick="DeleteCate(@Model.listCate[i].Id);">
+                                            <i class="fa fa-trash"></i>&nbsp;Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script src="~/Scripts/myscript.js"></script>
+    <link href="~/Content/myCSS.css" rel="stylesheet" />
+    <script>
+        function changeIsShowCate(id) {
+            $.ajax({
+                url: "/MenuManage/ChangeIsShow",
+                data: { menuID: id },
+                type: "POST",
+                success: function (data) {
+                    if (data.result)
+                        window.location.href = "/Admin/MenuManage/Category";
+                }
+            });
+        }
+        function DeleteCate(id) {
+            $.ajax({
+                url: "/MenuManage/DeleteMenu",
+                data: { menuID: id },
+                type: "POST",
+                success: function (data) {
+                    if (data.result)
+                        window.location.href = "/Admin/MenuManage/Category";
+                }
+            });
+        }
+    </script>
+}

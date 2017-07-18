@@ -1,0 +1,531 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.MetaDesc">
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/jquery.sharer.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/myCSS.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    
+    <div class="container body-content">
+        <div class="row bg-blue2">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 login-header">
+                <ul id="ctl00_header1_login" class="flRight">
+                    <li class="hidden-xs hidden-sm"><a href="/login">Đăng nhập</a></li>
+                    <li class="hidden-md hidden-sm hidden-xm so-doc">|</li>
+                    <li class="hidden-xs hidden-sm"><a href="/register">Đăng ký</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- logo -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-blue">
+                <div class="col-lg-5 col-md-4 col-xm-5 col-sm-5 col-xs-12 logo">
+                    <a class="a-logo" href="/">
+                        <img src="~/Images/logo-molux.jpg" alt="Hệ thống điện máy Trần Anh" style="width: 300px" />
+                    </a>
+                </div>
+                <div class="col-lg-7 col-md-8 col-xm-8 col-sm-7 col-xs-12 hidden-xs menu-logo">
+                    <a class="hidden-ss hidden-sm" href="/tin-tuc/gioi-thieu-cong-ty/gioi-thieu-chung-n1">Giới thiệu</a>
+                    <a class="hidden-ss hidden-sm" href="/tin-tuc/tin-tuc-c701">Tin tức</a>
+                    <a class="hidden-ss" href="/tin-tuc/review-san-pham-c1166">Review</a>
+                    <a class="hidden-ss" href="/tin-tuc/review-san-pham-c1166">Sản phẩm</a>
+                    <a class="hidden-ss" href="/tin-tuc/kinh-nghiem-hay-c1214">Kinh nghiệm hay</a>
+                    <a class="hidden-ss" href="/tin-tuc/qua-tang-nhat-ban-c1222">Hỗ trợ</a>
+                    <a class="hidden-ss hidden-sm" href="/tuyen-dung">Tuyển dụng</a>
+                </div>
+                @*<div class="topnav" id="myTopnav">
+                    <a href="#home">Home</a>
+                    <a href="#news">News</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#about">About</a>
+                </div>*@
+                
+            </div>
+        </div>
+        <!-- share facebook -->
+        <div class="row support-header">
+            <div class="col-lg-4 hidden-md hidden-sm hidden-xs">
+                <div class="social-buttons"></div>
+            </div>
+            <div class="col-lg-8 hidden-md hidden-sm hidden-xs">
+                <p class="hotline">Mua hàng: <strong>1900 545 546</strong> - Hotline: <strong>0963 64 9191</strong> - CSKH: <strong>1900 545 545</strong></p>
+            </div>
+        </div>
+        <!-- menu -->
+        <div class="row">
+            <div class="category">
+                <div id="ctl00_topbar1_colmd" class="col-lg-2 col-md-3 hidden-sm hidden-xs hidden-toggler">
+                    <div class="tit-list" id="hidden-toggler">
+                        <span class="icomnu homepage hidden-sm hidden-xs">
+                            <em></em>
+                            <em></em>
+                            <em></em>
+                        </span>
+                        <a title="Trang chủ" href="javascript:;">Danh mục sản phẩm</a>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-9 col-sm-9 col-xs-11">
+                    <div class="search-pro">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="txtSearch" placeholder="Từ khóa tìm kiếm..." onkeypress="if (event.keyCode == 13) document.getElementById('btnSearch').click();" />
+                            <span class="input-group-btn">
+                                <button id="btnSearch" class="btn searchbtn" type="button"> <span class="icon-search"></span> </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+                    <div class="cart">
+                        <strong>
+                            <a rel="nofollow" href="/quan-ly-gio-hang">
+                                <i class="fa fa-shopping-cart"></i>&nbsp;Giỏ hàng
+                            </a> 0
+                        </strong>
+                        <span class="icon-cart"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- category -->
+        <div class="row menu-flex">
+            <div class="menu-banner-video">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12 padLeftNo">
+                    <ul class="flexy-menu orange vertical" id="hidden" style="display: block;">
+                        <li class="showhide" style="display: none;"><span class="icon"><em></em><em></em><em></em></span></li>
+                        <li class="flexymenuli" style="">
+                            <a class="icon-cate" href="/dien-lanh-cid388" title="Điện lạnh tại Trần Anh">
+                                ĐÈN NỘI THẤT
+                            </a>
+                            <ul class="flexy-menu-box" style="display: none;">
+                                <div class="flexy-menu-inner">
+                                    <a href="/dien-lanh-cid388" class="menu-top-red" title="Điện lạnh tại Trần Anh">
+                                        Sản
+                                        phẩm điện lạnh
+                                    </a> <a href="/dien-lanh/dieu-hoa-cid537" title="Điều hòa">Điều hòa</a>
+                                    <a href="/dien-lanh/tu-lanh-cid399" title="Tủ lạnh">Tủ lạnh</a> <a href="/dien-lanh/may-giat-cid404" title="Máy giặt">Máy giặt</a> <a href="/dien-lanh/may-say-quan-ao-cid540" title="Máy sấy quần áo">
+                                        Máy sấy quần áo
+                                    </a> <a href="/dien-lanh/tu-mat-cid557" title="Tủ mát">Tủ mát</a>
+                                    <a href="/dien-lanh/tu-dong-cid559" title="Tủ đông">Tủ đông</a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/dien-lanh/tu-lanh-cid399" class="menu-top-red" title="Tủ lạnh chính hãng tại Trần Anh">
+                                        Tủ lạnh theo hãng
+                                    </a> <a href="/dien-lanh/tu-lanh-hitachi-cid399-pr0-br144" title="Tủ lạnh Hitachi">
+                                        Tủ lạnh Hitachi
+                                    </a> <a href="/dien-lanh/tu-lanh-electrolux-cid399-pr0-br252" title="Tủ lạnh Electrolux">
+                                        Tủ lạnh Electrolux
+                                    </a> <a href="/dien-lanh/tu-lanh-panasonic-cid399-pr0-br154" title="Tủ lạnh Panasonic">
+                                        Tủ lạnh Panasonic
+                                    </a> <a href="/dien-lanh/tu-lanh-lg-cid399-pr0-br120" title="Tủ lạnh LG">
+                                        Tủ lạnh LG
+                                    </a> <a href="/dien-lanh/tu-lanh-samsung-cid399-pr0-br121" title="Tủ lạnh Samsung">
+                                        Tủ lạnh Samsung
+                                    </a> <a href="/dien-lanh/tu-lanh-toshiba-cid399-pr0-br156" title="Tủ lạnh Toshiba">
+                                        Tủ lạnh Toshiba
+                                    </a> <a href="/dien-lanh/tu-lanh-sharp-cid399-pr0-br131" title="Tủ lạnh Sharp">
+                                        Tủ lạnh Sharp
+                                    </a> <a href="/dien-lanh/tu-lanh-mitsubishi-electric-cid399-pr0-br483" title="Tủ lạnh Mitshubishi">Tủ lạnh Mitsubishi Electric</a>
+                                    <a href="/dien-lanh/tu-lanh-haier-cid399-pr0-br316" title="Tủ lạnh Haier">Tủ lạnh Haier</a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/dien-lanh/may-giat-cid404" title="Máy giặt chính hãng tại Trần Anh" class="menu-top-red">
+                                        Máy giặt theo hãng
+                                    </a> <a href="/dien-lanh/may-giat-toshiba-cid404-pr0-br156" title="Máy giặt Toshiba">
+                                        Máy giặt Toshiba
+                                    </a> <a href="/dien-lanh/may-giat-sanyo-cid404-pr0-br140" title="Máy giặt Sanyo">
+                                        Máy giặt Sanyo
+                                    </a> <a href="/dien-lanh/may-giat-hitachi-cid404-pr0-br144" title="Máy giặt Hitachi">
+                                        Máy giặt Hitachi
+                                    </a> <a href="/dien-lanh/may-giat-lg-cid404-pr0-br120" title="Máy giặt LG">
+                                        Máy giặt LG
+                                    </a> <a href="/dien-lanh/may-giat-samsung-cid404-pr0-br121" title="Máy giặt Samsung">
+                                        Máy giặt Samsung
+                                    </a> <a href="/dien-lanh/may-giat-panasonic-cid404-pr0-br154" title="Máy giặt Panasonic">
+                                        Máy giặt Panasonic
+                                    </a> <a href="/dien-lanh/may-giat-electrolux-cid404-pr0-br252" title="Máy giặt Electrolux">Máy giặt Electrolux</a>
+                                    <a href="/dien-lanh/may-giat-midea-cid404-pr0-br277" title="Máy giặt Midea">
+                                        Máy giặt
+                                        Midea
+                                    </a> <a href="/dien-lanh/may-giat-aqua-cid404-pr0-br530" title="Máy giặt Aqua">
+                                        Máy giặt Aqua
+                                    </a> <a href="/dien-lanh/may-giat-sharp-cid404-pr0-br131" title="Máy giặt Sharp">
+                                        Máy giặt Sharp
+                                    </a> <a href="/dien-lanh/may-giat-bosch-cid404-pr0-br464" title="Máy giặt Bosch">
+                                        Máy giặt Bosch
+                                    </a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/dien-lanh/dieu-hoa-cid537" title="Điều hòa chính hãng tại Trần Anh" class="menu-top-red">
+                                        Điều hòa theo hãng
+                                    </a> <a href="/dien-lanh/dieu-hoa-panasonic-cid537-pr0-br154" title="Điều hòa Panasonic">
+                                        Điều hòa Panasonic
+                                    </a> <a href="/dien-lanh/dieu-hoa-daikin-cid537-pr0-br275" title="Điều hòa Daikin">
+                                        Điều hòa Daikin
+                                    </a> <a href="/dien-lanh/dieu-hoa-lg-cid537-pr0-br120" title="Điều hòa LG">
+                                        Điều hòa LG
+                                    </a> <a href="/dien-lanh/dieu-hoa-samSung-cid537-pr0-br121" title="Điều hòa SamSung">
+                                        Điều hòa SamSung
+                                    </a> <a href="/dien-lanh/dieu-hoa-mitsubishi-electric-cid537-pr0-br483" title="Điều hòa Mitshubishi">Điều hòa Mitsubishi Electric</a>
+                                    <a href="/dien-lanh/dieu-hoa-sharp-cid537-pr0-br131" title="Điều hòa Sharp">
+                                        Điều hòa
+                                        Sharp
+                                    </a> <a href="/dien-lanh/dieu-hoa-electrolux-cid537-pr0-br252" title="Điều hòa Electrolux">
+                                        Điều hòa Electrolux
+                                    </a> <a href="/dien-lanh/dieu-hoa-media-cid537-pr0-br277" title="Điều hòa Media">
+                                        Điều hòa Media
+                                    </a> <a href="/dien-lanh/dieu-hoa-tcl-cid537-pr0-br253" title="Điều hòa TCL">
+                                        Điều hòa TCL
+                                    </a> <a href="/dien-lanh/dieu-hoa-gree-cid537-pr0-br452" title="Điều hòa Gree">
+                                        Điều hòa Gree
+                                    </a> <a href="/dien-lanh/dieu-hoa-hitachi-cid537-pr0-br144" title="Điều hòa Hitachi">
+                                        Điều hòa Hitachi
+                                    </a> <a href="/dien-lanh/dieu-hoa-toshiba-cid537-pr0-br156" title="Điều hòa Toshiba">
+                                        Điều hòa Toshiba
+                                    </a>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="flexymenuli" style="">
+                            <a class="icon-cate" href="/do-gia-dung-cid390" title="Đồ gia dụng tại Trần Anh">
+                                ĐÈN NGOẠI THẤT
+                            </a>
+                            <ul class="flexy-menu-box" style="display: none;">
+                                <div class="flexy-menu-inner list3">
+                                    <a href="/do-gia-dung-cid390" class="menu-top-red" title="Đồ dùng gia đình tại Trần Anh">
+                                        Đồ dùng gia đình
+                                    </a> <a href="/do-gia-dung/quat-mat-cid408" title="Quạt mát">Quạt mát</a>
+                                    <a href="/do-gia-dung/ban-la-cid411" title="Bàn là">Bàn là</a> <a href="/do-gia-dung/may-say-toc--la-toc-cid412" title="Máy sấy tóc là tóc">Máy sấy tóc - Là tóc</a> <a href="/do-gia-dung/may-hut-bui-cid413" title="Máy hút bụi">Máy hút bụi</a> <a href="/do-gia-dung/binh-tam-nuoc-nong-cid403" title="Bình tắm nước nóng">Bình tắm nước nóng</a> <a href="/do-gia-dung/cay-nuoc-nong--lanh-cid418" title="Cây nước nóng - lạnh">Cây nước nóng - lạnh</a> <a href="/do-gia-dung/may-loc-nuoc--phu-kien-cid419" title="Máy lọc nước - Phụ kiện">Máy lọc nước - Phụ kiện</a>
+                                    <a href="/do-gia-dung/may-hut-am--may-phun-am-cid416" title="Máy hút ẩm - Máy phun ẩm">
+                                        Máy hút ẩm - Máy phun ẩm
+                                    </a> <a href="/do-gia-dung/den-dien--den-sac-cid1092" title="Đèn điện - Đèn sạc">
+                                        Đèn điện - Đèn sạc
+                                    </a> <a href="/do-gia-dung/binh-thuy--sieu-toc-cid433" title="Bình thủy - siêu tốc">
+                                        Bình thủy - siêu tốc
+                                    </a> <a href="/do-gia-dung/may-phat-dien--may-bom-nuoc-cid588" title="Máy phát điện - Máy bơm nước">Máy phát điện - Máy bơm</a>
+                                    <a href="/do-gia-dung/may-suoi-cid1093" title="Máy sưởi">Máy sưởi</a>
+                                </div>
+                                <div class="flexy-menu-inner list3">
+                                    <a href="/do-gia-dung-cid390" title="Đồ dùng nhà bếp tại Trần Anh" class="menu-top-red">
+                                        Đồ dùng nhà bếp
+                                    </a> <a href="/do-gia-dung/noi-com-dien-cid437" title="Nồi cơm điện">
+                                        Nồi cơm điện
+                                    </a> <a href="/do-gia-dung/noi-ap-suat-cid436" title="Nồi áp suất">
+                                        Nồi áp
+                                        suất
+                                    </a> <a href="/do-gia-dung/bep-ga-cid431" title="Bếp ga">Bếp ga</a>
+                                    <a href="/do-gia-dung/may-hut-mui-cid429" title="Máy hút mùi">Máy hút mùi</a> <a href="/do-gia-dung/bep-dien-tu-cid430" title="Bếp điện từ">Bếp điện từ</a> <a href="/do-gia-dung/bep-hong-ngoai-cid593" title="Bếp hồng ngoại">Bếp hồng ngoại</a> <a href="/do-gia-dung/lo-vi-song-cid441" title="Lò vi sóng">Lò vi sóng</a> <a href="/do-gia-dung/lo-nuong--vi-nuong-cid439" title="Lò nướng - Vỉ nướng">Lò nướng - Vỉ nướng</a> <a href="/do-gia-dung/noi-lau-dien-cid438" title="Nồi lẩu điện">Nồi lẩu điện</a> <a href="/do-gia-dung/bo-noi--noi-don--noi-u-cid564" title="Bộ nồi - Nồi đơn - Nồi ủ">Bộ nồi - Nồi đơn - Nồi ủ</a>
+                                    <a href="/do-gia-dung/chao-cid434" title="Chảo">Chảo</a> <a href="/do-gia-dung/may-say-bat--rua-bat-cid586" title="Máy sấy bát - rửa bát">Máy sấy bát - rửa bát</a> <a href="/do-gia-dung/may-xay--may-ep-cid563" title="Máy xay - Máy ép">Máy xay - Máy ép</a>
+                                </div>
+                                <div class="flexy-menu-inner list3">
+                                    <a href="/do-gia-dung-cid390" title="Quạt theo hãng" class="menu-top-red">
+                                        Quạt theo
+                                        hãng
+                                    </a> <a href="/do-gia-dung/quat-mat-panasonic-cid408-pr0-br154" title="Quạt Panasonic">
+                                        Quạt Panasonic
+                                    </a> <a href="/do-gia-dung/quat-mat-mitsubishi-electric-cid408-pr0-br483" title="Quạt Mitsubishi Electric">Quạt Mitsubishi Electric</a> <a href="/do-gia-dung/quat-mat-kdk-cid408-pr0-br414" title="Quạt KDK">Quạt KDK</a> <a href="/do-gia-dung/quat-mat-vinawind-cid408-pr0-br542" title="Quạt Vinawind">Quạt Vinawind</a> <a href="/do-gia-dung/quat-mat-kangaroo-cid408-pr0-br287" title="Quạt Kangaroo">Quạt Kangaroo</a> <a href="/do-gia-dung/quat-mat-asia-cid408-pr0-br370" title="Quạt Asia">Quạt Asia</a> <a href="/do-gia-dung/quat-mat-asia-cid408-pr0-br392" title="Quạt Tiross">Quạt Tiross</a> <a href="/do-gia-dung/quat-mat-asia-cid408-pr0-br277" title="Quạt Midea">Quạt Midea</a> <a href="/do-gia-dung/quat-mat-asia-cid408-pr0-br252" title="Quạt Electrolux">Quạt Electrolux</a>
+                                    <a href="/do-gia-dung/quat-phun-suong--hoi-nuoc-cid573" title="Quạt phun sương - hơi nước" class="menu-top-red">Quạt phun sương - Hơi nước</a> <a href="/do-gia-dung/quat-mat-asia-cid408-pr0-br287" title="Quạt phun sương Kangaroo">Quạt phun sương Kangaroo</a> <a href="/do-gia-dung/quat-mat-asia-cid408-pr0-br263" title="Quạt phun sương Sanaky">Quạt phun sương Sanaky</a> <a href="/do-gia-dung/quat-mat-asia-cid408-pr0-br289" title="Quạt phun sương Sunhouse">Quạt phun sương Sunhouse</a>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="flexymenuli" style="">
+                            <a class="icon-cate" href="/dien-tu-am-thanh-cid389" title="Điện tử âm thanh tại Trần Anh">
+                                THIẾT BỊ TRANG TRÍ
+                            </a>
+                            <ul class="flexy-menu-box" style="display: none;">
+                                <div class="flexy-menu-inner">
+                                    <a href="/dien-tu-am-thanh/tivi-led-cid533" class="menu-top-red" title="Tivi LED bán tại Trần Anh">
+                                        Tivi LED
+                                    </a> <a href="/dien-tu-am-thanh/tivi-led-sony-cid533-pr0-br155" title="TiVi Sony">
+                                        Tivi LED Sony
+                                    </a> <a href="/dien-tu-am-thanh/tivi-led-samsung-cid533-pr0-br121" title="TiVi Samsung">
+                                        Tivi LED Samsung
+                                    </a> <a href="/dien-tu-am-thanh/tivi-led-lg-cid533-pr0-br120" title="TiVi LG">
+                                        Tivi LED LG
+                                    </a> <a href="/dien-tu-am-thanh/tivi-led-toshiba-cid533-pr0-br156" title="TiVi Toshiba">
+                                        Tivi LED Toshiba
+                                    </a> <a href="/dien-tu-am-thanh/tivi-led-tcl-cid533-pr0-br253" title="TiVi TCL">
+                                        Tivi LED TCL
+                                    </a> <a href="/dien-tu-am-thanh/tivi-led-sharp-cid533-pr0-br131" title="TiVi Sharp">
+                                        Tivi LED Sharp
+                                    </a> <a href="/dien-tu-am-thanh/tivi-led-panasonic-cid533-pr0-br154" title="TiVi LED Panasonic">Tivi LED Panasonic</a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/dien-tu-am-thanh/tivi-3d-smart-cid1103" class="menu-top-red" title="Tivi 3D Smart chính hãng tại Trần Anh">
+                                        Tivi 3D/Smart
+                                    </a><a href="/dien-tu-am-thanh/tivi-3d-smart-sony-cid1103-pr0-br155" title="Tivi 3D Smart Sony">Tivi 3D Smart Sony</a> <a href="/dien-tu-am-thanh/tivi-3d-smart-samsung-cid1103-pr0-br121" title="Tivi 3D Smart Samsung">Tivi 3D Smart Samsung</a> <a href="/dien-tu-am-thanh/tivi-3d-smart-lg-cid1103-pr0-br120" title="Tivi 3D Smart LG">Tivi 3D Smart LG</a> <a href="/dien-tu-am-thanh/tivi-3d-smart-toshiba-cid1103-pr0-br156" title="Tivi 3D Smart Toshiba">Tivi 3D Smart Toshiba</a> <a href="/dien-tu-am-thanh/tivi-3d-smart-tcl-cid1103-pr0-br253" title="Tivi 3D Smart TCL">Tivi 3D Smart TCL</a> <a href="/dien-tu-am-thanh/tivi-3d-smart-sharp-cid1103-pr0-br131" title="Tivi 3D Smart Sharp">Tivi 3D Smart Sharp</a>
+                                    <a href="/dien-tu-am-thanh/tivi-3d-smart-panasonic-cid1103-pr0-br154" title="Tivi 3D Smart Panasonic">
+                                        Tivi 3D Smart Panasonic
+                                    </a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/dien-tu-am-thanh/tivi-ultra-hd-cid1105" class="menu-top-red" title="Tivi Ultra HD tại Trần Anh">
+                                        Tivi Ultra HD
+                                    </a> <a href="/dien-tu-am-thanh/tivi-ultra-hd-sony-cid1105-pr0-br155" title="Tivi Ultra HD Sony">Tivi Ultra HD Sony</a> <a href="/dien-tu-am-thanh/tivi-ultra-hd-samsung-cid1105-pr0-br121" title="Tivi Ultra HD Samsung">Tivi Ultra HD Samsung</a> <a href="/dien-tu-am-thanh/tivi-ultra-hd-lg-cid1105-pr0-br120" title="Tivi Ultra HD LG">Tivi Ultra HD LG</a> <a href="/dien-tu-am-thanh/tivi-ultra-hd-toshiba-cid1105-pr0-br156" title="Tivi Ultra HD Toshiba">Tivi Ultra HD Toshiba</a> <a href="/dien-tu-am-thanh/tivi-ultra-hd-tcl-cid1105-pr0-br253" title="Tivi Ultra HD TCL">Tivi Ultra HD TCL</a> <a href="/dien-tu-am-thanh/tivi-ultra-hd-panasonic-cid1105-pr0-br154" title="Tivi Ultra HD Panasonic">Tivi Ultra HD Panasonic</a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/dien-tu-am-thanh-cid389" class="menu-top-red" title="Sản phẩm điện tử khác tại Trần Anh">
+                                        Sản phẩm điện tử khác
+                                    </a> <a href="/dien-tu-am-thanh/tivi-oled-lg-cid1106-pr0-br120" title="Tivi OLED LG">Tivi OLED LG</a> <a href="/dien-tu-am-thanh/hi-end-cid1048" title="Hi-End">Hi-End</a> <a href="/dien-tu-am-thanh/karaoke-cid1049" title="Karaoke">
+                                        Karaoke
+                                    </a> <a href="/dien-tu-am-thanh/dan-home-theater-cid392" title="Dàn Home Theater ">
+                                        Dàn Home Theater
+                                    </a><a href="/dien-tu-am-thanh/dau-dvd-cid393" title="Đầu DVD">
+                                        Đầu
+                                        DVD
+                                    </a> <a href="/dien-tu-am-thanh/multimedia-cid1050" title="Multimedia">Multimedia</a>
+                                    <a href="/dien-tu-am-thanh/phu-kien-cid560" title="Phụ kiện">Phụ kiện</a> <a href="/dien-tu-am-thanh/cassette-cid529" title="Cassette">Cassette</a>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="flexymenuli" style="">
+                            <a class="icon-cate" href="/dien-thoai-cid12" title="Điện thoại">
+                                THIẾT BỊ PHÒNG TẮM
+                            </a>
+                            <ul class="flexy-menu-box" style="display: none;">
+                                <div class="flexy-menu-inner">
+                                    <a href="/dien-thoai/dien-thoai-di-dong-cid338" class="menu-top-red" title="Điện thoại di động chính hãng tại Trần Anh">
+                                        Điện thoại di động
+                                    </a> <a href="/dien-thoai/dien-thoai-di-dong-samsung-cid338-pr0-br121" title="Điện thoại Samsung">Điện thoại Samsung</a> <a href="/dien-thoai/dien-thoai-di-dong-nokia-cid338-pr0-br122" title="Điện thoại Nokia">Điện thoại Nokia</a> <a href="/dien-thoai/dien-thoai-di-dong-lg-cid338-pr0-br120" title="Điện thoại LG">Điện thoại LG</a> <a href="/dien-thoai/dien-thoai-di-dong-sony-cid338-pr0-br155" title="Điện thoại Sony">Điện thoại Sony</a> <a href="/dien-thoai/dien-thoai-di-dong-htc-cid338-pr0-br226" title="Điện thoại HTC">Điện thoại HTC</a> <a href="/dien-thoai/dien-thoai-di-dong-iphone-cid338-pr0-br386" title="Điện thoại iPhone">Điện thoại iPhone</a> <a href="/dien-thoai/dien-thoai-di-dong-mobistar-cid338-pr0-br166" title="Điện thoại Mobistar">Điện thoại Mobistar</a>
+                                    <a href="/dien-thoai/dien-thoai-di-dong-lenovo-cid338-pr0-br153" title="Điện thoại Lenovo">
+                                        Điện thoại Lenovo
+                                    </a> <a href="/dien-thoai/dien-thoai-di-dong-qmobile-cid338-pr0-br229" title="Điện thoại Qmobile">Điện thoại Qmobile</a> <a href="/dien-thoai/dien-thoai-di-dong-asus-cid338-pr0-br141" title="Điện thoại ASUS">Điện thoại ASUS</a> <a href="/dien-thoai/dien-thoai-di-dong-fpt-cid338-pr0-br273" title="Điện thoại FPT">Điện thoại FPT</a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/dien-thoai/dien-thoai-di-dong-gionee-cid338-pr0-br467" title="Điện thoại GIONEE">
+                                        Điện thoại GIONEE
+                                    </a> <a href="/dien-thoai/dien-thoai-di-dong-huawei-cid338-pr0-br469" title="Điện thoại Huawei">Điện thoại Huawei</a> <a href="/dien-thoai/dien-thoai-di-dong-oppo-cid338-pr0-br270" title="Điện thoại Oppo">Điện thoại Oppo</a> <a href="/dien-thoai/dien-thoai-di-dong-philips-cid338-pr0-br138" title="Điện thoại Philips">Điện thoại Philips</a> <a href="/dien-thoai/dien-thoai-di-dong-blackberry-cid338-pr0-br438" title="Điện thoại BlackBerry">Điện thoại BlackBerry</a> <a href="/dien-thoai/dien-thoai-di-dong-microsoft-cid338-pr0-br220" title="Điện thoại Microsoft">Điện thoại Microsoft</a> <a href="/dien-thoai/dien-thoai-di-dong-masstel-cid338-pr0-br537" title="Điện thoại Masstel">Điện thoại Masstel</a> <a href="/dien-thoai/dien-thoai-di-dong-bavapen-cid338-pr0-br539" title="Điện thoại BAVAPEN">Điện thoại BAVAPEN</a>
+                                    <a href="/dien-thoai/dien-thoai-di-dong-wiko-cid338-pr0-br556" title="Điện thoại Wiko">
+                                        Điện thoại Wiko
+                                    </a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/dien-thoai/phu-kien-dien-thoai-cid328" class="menu-top-red" title="Phụ kiện điện thoại chính hãng">
+                                        Phụ kiên điện thoại
+                                    </a> <a href="/dien-thoai/pin-battery-dien-thoai-cid331" title="Pin (Battery) điện thoại">
+                                        Pin (Battery)
+                                    </a> <a href="/dien-thoai/bao-da-dien-thoai-cid333" title="Bao da điện thoại">
+                                        Bao da điện thoại
+                                    </a> <a href="/dien-thoai/sac-dien-thoai-cid332" title="Sạc điện thoại">
+                                        Sạc điện thoại
+                                    </a> <a href="/dien-thoai/cap-noi--tai-nghe-cid334" title="Cáp nối - Tai nghe">
+                                        Cáp nối - Tai nghe
+                                    </a> <a href="/dien-thoai/khac-cid1053" title="Phụ kiện điện thoại khác">
+                                        Phụ kiện điện thoại khác
+                                    </a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/dien-thoai/dien-thoai-co-dinh-cid339" class="menu-top-red" title="Điện thoại cố định tại Trần Anh">
+                                        Điện thoại cố định
+                                    </a> <a href="/dien-thoai/dien-thoai-co-dinh-panasonic-cid339-pr0-br154" title="Điện thoại cố định Panasonic">Panasonic</a> <a href="/dien-thoai/dien-thoai-co-dinh-nippon-cid339-pr0-br246" title="Điện thoại cố định nippon">Nippon</a>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="flexymenuli" style="">
+                            <a class="icon-cate" href="/thiet-bi-so-cid562" title="Kỹ thuật số">
+                                BỒN TẮM
+                            </a>
+                            <ul class="flexy-menu-box" style="display: none;">
+                                <div class="flexy-menu-inner">
+                                    <a href="/ky-thuat-so/may-anh-so-cid8" class="menu-top-red" title="Máy Ảnh Giá Rẻ phân phối tại Trần Anh">
+                                        Máy ảnh số
+                                    </a> <a href="/ky-thuat-so/may-anh-so-canon-cid8-pr0-br145" title="Máy ảnh Canon">
+                                        Máy ảnh Canon
+                                    </a> <a href="/ky-thuat-so/may-anh-so-nikon-cid8-pr0-br147" title="Máy ảnh nikon">
+                                        Máy ảnh Nikon
+                                    </a> <a href="/ky-thuat-so/may-anh-so-sony-cid8-pr0-br155" title="Máy ảnh sony">
+                                        Máy ảnh Sony
+                                    </a> <a href="/ky-thuat-so/may-anh-so-samsung-cid8-pr0-br121" title="Máy ảnh samsung">
+                                        Máy ảnh Samsung
+                                    </a> <a href="/ky-thuat-so/may-anh-so-fujifilm-cid8-pr0-br143" title="Máy ảnh fujifilm">
+                                        Máy ảnh Fujifilm
+                                    </a> <a href="/ky-thuat-so/ong-kinh-cid607" title="Ống kính">Ống kính</a>
+                                    <a href="/ky-thuat-so/chan-may-anh-cid1072" title="Chân máy ảnh">Chân máy ảnh</a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/ky-thuat-so/may-quay-sony-cid68-pr0-br155" title="Máy quay Sony">
+                                        Máy quay
+                                        Sony
+                                    </a> <a href="/ky-thuat-so/may-nghe-nhac-sony-cid242-pr0-br155" title="Máy nghe nhạc Sony">
+                                        Máy nghe nhạc Sony
+                                    </a> <a href="/ky-thuat-so/may-nghe-nhac-jvj-cid242-pr0-br124" title="Máy nghe nhạc JVJ">Máy nghe nhạc JVJ</a> <a href="/ky-thuat-so/may-ghi-am-sony-cid343-pr0-br155" title="Máy ghi âm Sony">Máy ghi âm Sony</a> <a href="/ky-thuat-so/may-ghi-am-jvj-cid343-pr0-br124" title="Máy ghi âm JVJ">Máy ghi âm JVJ</a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/thiet-bi-so-cid562" class="menu-top-red" title="Phụ kiện máy ảnh">
+                                        Phụ kiện
+                                        máy ảnh
+                                    </a> <a href="/ky-thuat-so/sac-pin-cid1074" title="Sạc pin">Sạc pin</a>
+                                    <a href="/ky-thuat-so/pin-cid611" title="Pin">Pin</a> <a href="/ky-thuat-so/bao-da-may-anh-may-quay-cid609" title="Bao da máy ảnh máy quay ">Bao da máy ảnh máy quay </a><a href="/ky-thuat-so/the-nho-cid608" title="Thẻ nhớ">Thẻ nhớ</a>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="flexymenuli" style="">
+                            <a class="icon-cate" href="/laptop-tablet/laptop-cid9" title="Laptop chính hãng">
+                                CABIN TẮM
+                            </a>
+                            <ul class="flexy-menu-box">
+                                <div class="flexy-menu-inner">
+                                    <a href="/laptop-tablet/laptop-cid2" class="menu-top-red" title="Laptop tại Trần Anh">
+                                        Laptop theo hãng
+                                    </a> <a href="/laptop/laptop-dell-cid2-pr0-br146/?od=ton_des" title="Laptop Dell">
+                                        Laptop Dell
+                                    </a> <a href="/laptop/laptop-acer-cid2-pr0-br152/?od=ton_des" title="Laptop Acer">
+                                        Laptop Acer
+                                    </a> <a href="/laptop/laptop-asus-cid2-pr0-br141/?od=ton_des" title="Laptop Asus">
+                                        Laptop Asus
+                                    </a> <a href="/laptop/laptop-hp-cid2-pr0-br149/?od=ton_des" title="Laptop HP">
+                                        Laptop HP
+                                    </a> <a href="/laptop/laptop-lenovo-cid2-pr0-br153/?od=ton_des" title="Laptop Lenovo">
+                                        Laptop Lenovo
+                                    </a> <a href="/laptop/laptop-toshiba-cid2-pr0-br156/?od=ton_des" title="Laptop Toshiba">
+                                        Laptop Toshiba
+                                    </a> <a href="/laptop/laptop-toshiba-cid2-pr0-br405/?od=ton_des" title="Laptop MSI">
+                                        Laptop MSI
+                                    </a> <a href="/laptop/laptop-apple-cid2-pr0-br166/?od=ton_des" title="MacBook">
+                                        MacBook
+                                    </a> <a href="/tag/laptop-doanh-nghiep" title="Laptop doanh nghiệp">
+                                        Laptop doanh
+                                        nghiệp
+                                    </a> <a href="/tag/laptop-sinh-vien" title="Laptop sinh viên">Laptop sinh viên</a>
+                                    <a href="/tag/2-in-1" title="Laptop 2 in 1">Laptop 2 in 1</a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/laptop-tablet/laptop/phu-kien-laptop-cid349" class="menu-top-red" title="Phụ kiện laptop">
+                                        Phụ kiện laptop
+                                    </a> <a href="/laptop-tablet/laptop/phu-kien-laptop-khac-cid350" title="Phụ kiện laptop khác">
+                                        Phụ kiện laptop khác
+                                    </a> <a href="/laptop-tablet/laptop/tui-xach-balo-cid351" title="Túi xách, balo">
+                                        Túi xách, balo
+                                    </a> <a href="/laptop-tablet/laptop/ram-cid353" title="Ram laptop">
+                                        Ram
+                                        laptop
+                                    </a> <a href="/tag/elecom" title="Phụ kiện elecom">Phụ kiện elecom</a>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="flexymenuli" style="">
+                            <a class="icon-cate" href="/laptop-tablet/tablet-cid1142" title="Máy tính bảng giá rẻ">
+                                VÁCH KÍN TẮM
+                            </a>
+                            <ul class="flexy-menu-box" style="display: none;">
+                                <div class="flexy-menu-inner list3">
+                                    <a href="/laptop-tablet/tablet-cid600" class="menu-top-red" title="Tablet chính hãng tại  Trần Anh">
+                                        Máy tính bảng theo hãng
+                                    </a> <a href="/laptop-tablet/tablet-apple-cid600-pr0-br166" title="Tablet Apple">Tablet Apple</a> <a href="/laptop-tablet/tablet-samsung-cid600-pr0-br121" title="Tablet Samsung">Tablet Samsung</a> <a href="/laptop-tablet/tablet-asus-cid600-pr0-br141" title="Tablet Asus">Tablet Asus</a> <a href="/laptop-tablet/tablet-acer-cid600-pr0-br152" title="Tablet Acer">Tablet Acer</a> <a href="/laptop-tablet/tablet-sony-cid600-pr0-br155" title="Tablet Sony">Tablet Sony</a> <a href="/laptop-tablet/tablet-cony-cid600-pr0-br453" title="Tablet Coby">Tablet Coby</a> <a href="/laptop-tablet/tablet-dell-cid600-pr0-br146" title="Tablet DELL">Tablet DELL</a> <a href="/laptop-tablet/tablet-hp-cid600-pr0-br149" title="Tablet HP">Tablet HP</a> <a href="/laptop-tablet/tablet-masstel-cid600-pr0-br537" title="Tablet Masstel">Tablet Masstel</a>
+                                    <a href="/laptop-tablet/tablet-lenovo-cid600-pr0-br153" title="Tablet Lenovo">
+                                        Tablet
+                                        Lenovo
+                                    </a>
+                                </div>
+                                <div class="flexy-menu-inner list3">
+                                    <a href="/laptop-tablet/phu-kien-tablet-may-tinh-bang--cid1055" class="menu-top-red" title="Phụ kiện Tablet">Phụ kiện Tablet</a> <a href="/laptop-tablet/tui-xach-cho-tablet-cid1056" title="Túi xách cho Tablet">Túi xách cho Tablet</a> <a href="/laptop-tablet/case-op-lung-cid1057" title="Case, ốp lưng">Case, ốp lưng</a> <a href="/phu-kien-tablet/case-op-lung-ozaki-cid1057-pr0-br447" title="Case, ốp lưng Ozaki">Case, ốp lưng Ozaki</a> <a href="/phu-kien-tablet/case-op-lung-trexta-cid1057-pr0-br448" title="Case, ốp lưng Trexta">Case, ốp lưng Trexta</a> <a href="/phu-kien-tablet/case-op-lung-verus-cid1057-pr0-br449" title="Case, ốp lưng Verus">Case, ốp lưng Verus</a> <a href="/phu-kien-tablet/case-op-lung-samsung-cid1057-pr0-br121" title="Case, ốp lưng samsung">Case, ốp lưng Samsung</a>
+                                    <a href="/phu-kien-tablet/case-op-lung-tucano-cid1057-pr0-br441" title="Case, ốp lưng tucano">
+                                        Case, ốp lưng Tucano
+                                    </a> <a href="/phu-kien-tablet/case-op-lung-baseus-cid1057-pr0-br511" title="Case, ốp lưng baseus">Case, ốp lưng Baseus</a> <a href="/phu-kien-tablet/case-op-lung-updating-cid1057-pr0-br505" title="Case, ốp lưng khác">Case, ốp lưng khác</a>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="flexymenuli" style="">
+                            <a class="icon-cate" href="/may-tinh-linh-kien-cid10" title="Máy tính linh kiện chính hãng">
+                                THIẾT BỊ NHÀ TẮM
+                            </a>
+                            <ul class="flexy-menu-box">
+                                <div class="flexy-menu-inner">
+                                    <a href="/may-tinh-linh-kien/may-tinh-de-ban-cid3" class="menu-top-red" title="Máy tính để bàn - PC">
+                                        Máy tính để bàn - PC
+                                    </a> <a href="/may-tinh-linh-kien/may-tinh-de-ban-may-tinh-tran-anh-cid3-pr0-br175" title="Máy tính để bàn Trần Anh">Máy tính Trần Anh</a> <a href="/may-tinh-linh-kien/may-tinh-de-ban-dell-cid3-pr0-br146" title="Máy tính để bàn Dell">Máy tính DELL</a> <a href="/may-tinh-linh-kien/may-tinh-de-ban-hp-cid3-pr0-br149" title="Máy tính để bàn HP">Máy tính HP</a> <a href="/may-tinh-linh-kien/may-tinh-de-ban-lenovo-cid3-pr0-br153" title="Máy tính để bàn Lenovo">Máy tính LENOVO</a> <a href="/may-tinh-linh-kien/may-tinh-de-ban-asus-cid3-pr0-br141" title="Máy tính để bàn Asus">Máy tính ASUS</a> <a href="/may-tinh-linh-kien/may-tinh-de-ban-acer-cid3-pr0-br152" title="Máy tính để bàn Acer">Máy tính ACER</a> <a href="/may-tinh-linh-kien/may-tinh-de-ban-intel-cid3-pr0-br151" title="Máy tính để bàn intel">Máy tính INTEL</a>
+                                    <a href="/may-tinh-linh-kien/may-tinh-all-in-one-cid1135" class="menu-top-red" title="Máy tính All IN ONE">
+                                        Máy tính All IN ONE
+                                    </a> <a href="/may-tinh-linh-kien/may-tinh-all-in-one-hp-cid1135-pr0-br149" title="Máy tính All IN ONE HP">Máy tính AiO HP</a> <a href="/may-tinh-linh-kien/may-tinh-all-in-one-dell-cid1135-pr0-br146" title="Máy tính All IN ONE Dell">Máy tính AiO DELL</a> <a href="/may-tinh-linh-kien/may-tinh-all-in-one-lenovo-cid1135-pr0-br153" title="Máy tính All IN ONE Lenovo">Máy tính AiO LENOVO</a> <a href="/may-tinh-linh-kien/may-tinh-all-in-one-acer-cid1135-pr0-br152/" title="Máy tính All IN ONE Acer">Máy tính AiO ACER</a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/may-tinh-linh-kien/san-pham-game--net-cid1168" class="menu-top-red" title="Sản phẩm Game - Net">
+                                        Sản phẩm Game - Net
+                                    </a> <a href="san-pham-game--net/may-tinh-game--net-cid1169" title="Máy tính Game Net">
+                                        Máy tính Game Net
+                                    </a> <a href="/san-pham-game--net/linh-kien--phu-kien-cid1170" title="Linh kiện Phụ kiện">
+                                        Linh kiện Phụ kiện
+                                    </a> <a href="/san-pham-game--net/ban-ghe-game--net-cid605" title="Bàn ghế Game Net">
+                                        Bàn ghế Game Net
+                                    </a> <a href="/may-tinh-linh-kien/san-pham-doanh-nghiep-du-an-cid1107" class="menu-top-red" title="SP doanh nghiệp - Dự án">SP doanh nghiệp - Dự án</a>
+                                    <a href="/may-tinh-linh-kien/san-pham-danh-cho-doanh-nghiep/may-chu-cid1110" title="Máy chủ - SERVER">
+                                        Máy chủ - SERVER
+                                    </a> <a href="/sp-doanh-nghiep--du-an/may-tram--workstation-cid1137" title="Máy trạm - Workstation">Máy trạm - Workstation</a> <a href="/sp-doanh-nghiep--du-an/may-tinh-doanh-nghiep-cid1108" title="Máy tính doanh nghiệp">Máy tính doanh nghiệp</a> <a href="/sp-doanh-nghiep--du-an/thiet-bi-mang--network-cid1112" title="Thiết bị mạng - Nnetwork">Thiết bị mạng - Network</a> <a href="/sp-doanh-nghiep--du-an/may-in--printer-cid1109" title="Máy in - Printer">Máy in - Printer</a> <a href="/sp-doanh-nghiep--du-an/he-thong-luu-tru-cid1111" title="Hệ thống lưu trữ">Hệ thống lưu trữ</a> <a href="/sp-doanh-nghiep--du-an/linh-kien-may-chu-cid1116" title="Linh kiện máy chủ">Linh kiện máy chủ</a> <a href="/may-tinh-linh-kien/phan-mem-may-tinh-cid148" class="menu-top-red" title="Phần mềm máy tính">Phần mềm máy tính</a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/may-tinh-linh-kien-cid10" class="menu-top-red" title="Linh kiện máy tính chính hãng tại Trần Anh">
+                                        Linh kiện máy tính
+                                    </a> <a href="/may-tinh-linh-kien/bo-vi-xu-ly--cpu-cid11" title="Bộ vi xử lý - CPU">
+                                        Bộ vi xử lý - CPU
+                                    </a> <a href="/may-tinh-linh-kien/bo-mach-chu--mainboard-cid27" title="Bo mạch chủ - Mainboard">Bo mạch chủ - Mainboard</a> <a href="/may-tinh-linh-kien/ram-may-tinh-cid30" title="RAM máy tính">Bộ nhớ trong - RAM</a> <a href="/thiet-bi-luu-tru/o-cung--hdd-cid29" title="Ổ đĩa cứng - HDD">Ổ đĩa cứng - HDD</a> <a href="/thiet-bi-luu-tru/o-cung--ssd-cid1059" title="Ổ cứng - SSD">Ổ cứng - SSD</a> <a href="/may-tinh-linh-kien/cac-man-hinh--vga-card-cid34" title="Card màn hình - VGA Card">Card màn hình - VGA</a>
+                                    <a href="/may-tinh-linh-kien/nguon-psu-cid133" title="Nguồn - Power Supply">
+                                        Nguồn -
+                                        PSU
+                                    </a> <a href="/thiet-bi-luu-tru/o-dia-quang-odd-cid31" title="Ổ đĩa quang - ODD ">
+                                        Ổ đĩa quang - ODD
+                                    </a><a href="/may-tinh-linh-kien/vo-may-tinh--case-cid39" title="Vỏ máy tính - Case">
+                                        Vỏ máy tính - Case
+                                    </a> <a href="/may-tinh-linh-kien/ban-phim--keyboard-cid36" title="Bàn phím - Keyboard">
+                                        Bàn phím - Keyboard
+                                    </a> <a href="/may-tinh-linh-kien/chuot-may-tinh--mouse-cid37" title="Chuột máy tính - Mouse">Chuột máy tính - Mouse</a> <a href="/may-tinh-linh-kien/loa-vi-tinh-cid40" title="Loa vi tính">Loa vi tính</a>
+                                </div>
+                                <div class="flexy-menu-inner">
+                                    <a href="/may-tinh-linh-kien/man-hinh-may-tinh-cid28" class="menu-top-red" title="Màn hình máy tính">
+                                        Màn hình máy tính
+                                    </a> <a href="/may-tinh-linh-kien/man-hinh-may-tinh-samsung-cid28-pr0-br121" title="Màn hình máy tính Samsung">Màn hình SAMSUNG</a> <a href="/may-tinh-linh-kien/man-hinh-may-tinh-lg-cid28-pr0-br120" title="Màn hình máy tính LG">Màn hình LG</a> <a href="/may-tinh-linh-kien/man-hinh-may-tinh-dell-cid28-pr0-br146" title="Màn hình máy tính Dell">Màn hình DELL</a> <a href="/may-tinh-linh-kien/man-hinh-may-tinh-hp-cid28-pr0-br149" title="Màn hình máy tính HP">Màn hình HP</a> <a href="/may-tinh-linh-kien/man-hinh-may-tinh-acer-cid28-pr0-br152" title="Màn hình máy tính Acer">Màn hình ACER</a> <a href="/may-tinh-linh-kien/man-hinh-may-tinh-asus-cid28-pr0-br141" title="Màn hình máy tính Asus">Màn hình ASUS</a> <a href="/may-tinh-linh-kien/man-hinh-may-tinh-philips-cid28-pr0-br138" title="Màn hình máy tính Philips">Màn hình PHILIPS</a>
+                                    <a href="/may-tinh-linh-kien/man-hinh-may-tinh-aoc-cid28-pr0-br185" title="Màn hình máy tính AOC">
+                                        Màn hình AOC
+                                    </a> <a href="/may-tinh-linh-kien/man-hinh-may-tinh-lenovo-cid28-pr0-br153" title="Màn hình máy tính Lenovo">Màn hình LENOVO</a>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="flexymenuli nostyle" style="">
+                            <a class="icon-cate mg-left" href="/khuyen-mai-tran-anh.htm" title="Chương trình khuyến mại">
+                                CT KHUYẾN MÃI
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Menu -->
+                <div class="col-lg-10 col-md-9 col-sm-9 padRno">
+                    <div class="banner-slider">
+                        <div id="owl-slide" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
+                            <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 9590px; left: 0px; display: block; transition: all 400ms ease; transform: translate3d(-4110px, 0px, 0px);"><div class="owl-item" style="width: 685px;"><div class="item"><a href="https://www.trananh.vn/khuyenmai.htm" target="_blank"><img class="lazyOwl" width="685" height="385" alt="Khuyến mại hàng tuần tại siêu thị điện máy Trần Anh" src="https://slide.trananh.com.vn/trananh/2017/04/26/banner-web(2).jpg" style="display: block;"></a></div></div><div class="owl-item" style="width: 685px;"><div class="item"><a href="https://www.trananh.vn/khuyenmai.htm" target="_blank"><img class="lazyOwl" width="685" height="385" alt="Khuyến mại hàng tuần tại siêu thị điện máy Trần Anh" src="https://slide.trananh.com.vn/trananh/2017/05/04/1.jpg" style="display: block;"></a></div></div><div class="owl-item" style="width: 685px;"><div class="item"><a href="https://www.trananh.vn/khuyenmai.htm" target="_blank"><img class="lazyOwl" width="685" height="385" alt="Khuyến mại hàng tuần tại siêu thị điện máy Trần Anh" src="https://slide.trananh.com.vn/trananh/2017/05/04/2.jpg" style="display: block;"></a></div></div><div class="owl-item" style="width: 685px;"><div class="item"><a href="https://www.trananh.vn/dien-tu-am-thanh/tivi-3dsmart-sony-cid1103-pr0-br155/?od=ton_des" target="_blank"><img class="lazyOwl" width="685" height="385" alt="Khuyến mại hàng tuần tại siêu thị điện máy Trần Anh" src="https://slide.trananh.com.vn/trananh/2017/04/20/banner-web.jpg" style="display: block;"></a></div></div><div class="owl-item" style="width: 685px;"><div class="item"><a href="http://trananh.vn/khuyen-mai-nganh-dien-tu.htm" target="_blank"><img class="lazyOwl" width="685" height="385" alt="Khuyến mại hàng tuần tại siêu thị điện máy Trần Anh" src="https://slide.trananh.com.vn/trananh/2017/04/29/bannerqled_web.jpg" style="display: block;"></a></div></div><div class="owl-item" style="width: 685px;"><div class="item"><a href="https://www.trananh.vn/dien-lanh/dieu-hoa-cid537" target="_blank"><img class="lazyOwl" width="685" height="385" alt="Khuyến mại hàng tuần tại siêu thị điện máy Trần Anh" src="https://slide.trananh.com.vn/trananh/2017/04/10/untitled-1.jpg" style="display: block;"></a></div></div><div class="owl-item" style="width: 685px;"><div class="item"><a href="https://www.trananh.vn/tin-tuc/khuyen-mai-tai-tran-anh/uu-dai-dac-biet-mua-hang-tra-gop-lai-suat-0-dip-sinh-nhat-tran-anh-15-tuoi-n44584" target="_blank"><img class="lazyOwl" width="685" height="385" alt="Khuyến mại hàng tuần tại siêu thị điện máy Trần Anh" style="display: block;" src="https://slide.trananh.com.vn/trananh/2017/03/14/tragop_banner(1).jpg"></a></div></div></div></div>
+                            <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page active"><span class=""></span></div></div><div class="owl-buttons"><div class="owl-prev">◄</div><div class="owl-next">►</div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery.sharer.js"></script>
+    <script src="~/Scripts/myscript.js"></script>
+    @RenderSection("scripts", required: false)
+    <script>
+        $(".social-buttons").sharer({
+            "networks": ["facebook", "<a href='http://www.jqueryscript.net/tags.php?/twitter/'>twitter</a>", "tumblr", "googleplus", "pinterest"],
+            "template": $('<a class="sharer-icon" />'),
+            "class": "sharer-icon-%network.id%",
+            "label": "Share on %network.name%",
+            "title": null, // custom the title of you page.
+            "description": null, // custom the description of you page.
+            "url": null // custom the URL of you page.
+        })
+    </script>
+
+</body>
+</html>

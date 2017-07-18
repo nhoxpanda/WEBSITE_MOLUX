@@ -1,0 +1,899 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BMSMoluxHongKongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Country Code" Type="varchar" MaxLength="50" />
+    <Property Name="State Code" Type="varchar" MaxLength="50" />
+    <Property Name="Latitude" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="Longitude" Type="decimal" Precision="18" Scale="3" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Intrastat Code" Type="varchar" MaxLength="50" />
+    <Property Name="Default" Type="int" />
+    <Property Name="Latitude" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="Longitude" Type="decimal" Precision="18" Scale="3" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Fax" Type="varchar" MaxLength="50" />
+    <Property Name="Country Code" Type="varchar" MaxLength="50" />
+    <Property Name="City Code" Type="varchar" MaxLength="50" />
+    <Property Name="Contact Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Contact Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Bill Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Ship Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Customer Posting Code" Type="varchar" MaxLength="50" />
+    <Property Name="Customer Group" Type="varchar" MaxLength="50" />
+    <Property Name="Payment Terms Code" Type="varchar" MaxLength="50" />
+    <Property Name="Tax ID" Type="varchar" MaxLength="50" />
+    <Property Name="Credit Limit" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Clocked" Type="int" />
+    <Property Name="Picture" Type="varchar" MaxLength="200" />
+    <Property Name="Purchaser Code" Type="varchar" MaxLength="50" />
+    <Property Name="Primary Customer Code" Type="varchar" MaxLength="50" />
+    <Property Name="Contact Code" Type="varchar" MaxLength="50" />
+    <Property Name="Branch Code" Type="varchar" MaxLength="50" />
+    <Property Name="Created Date" Type="datetime" />
+    <Property Name="User Login" Type="varchar" MaxLength="50" />
+    <Property Name="Search Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Payment Method" Type="varchar" MaxLength="50" />
+    <Property Name="Currency Code" Type="varchar" MaxLength="50" />
+    <Property Name="Shipment Method" Type="varchar" MaxLength="50" />
+    <Property Name="Company Size" Type="int" />
+    <Property Name="HR Bussiness Group" Type="varchar" MaxLength="50" />
+    <Property Name="Date Of Issue" Type="date" />
+    <Property Name="Place Of Issue" Type="nvarchar" MaxLength="250" />
+    <Property Name="Date Of Constitutive" Type="date" />
+    <Property Name="Website" Type="nvarchar" MaxLength="250" />
+    <Property Name="Industry Code" Type="varchar" MaxLength="50" />
+    <Property Name="Lead Source" Type="varchar" MaxLength="50" />
+    <Property Name="Lead Status" Type="varchar" MaxLength="50" />
+    <Property Name="Process" Type="int" />
+    <Property Name="Modified Date" Type="date" />
+    <Property Name="User Modified" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Approve User" Type="varchar" MaxLength="50" />
+    <Property Name="Approve Date" Type="date" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Chance Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="County Code" Type="varchar" MaxLength="50" />
+    <Property Name="Latitude" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="Longitude" Type="decimal" Precision="18" Scale="3" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Item Posting Code" Type="varchar" MaxLength="50" />
+    <Property Name="Item Group" Type="varchar" MaxLength="50" />
+    <Property Name="Inventory Unit" Type="varchar" MaxLength="50" />
+    <Property Name="Purchase Unit" Type="varchar" MaxLength="50" />
+    <Property Name="Sale Unit" Type="varchar" MaxLength="50" />
+    <Property Name="Location Code" Type="varchar" MaxLength="50" />
+    <Property Name="Purchase Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Sale Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Standard Cost" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Credit points" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Item Category Code" Type="varchar" MaxLength="50" />
+    <Property Name="Brand" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Maximum Inventory" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Safety Stock Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Nonstock" Type="int" />
+    <Property Name="Inventory Value Zero" Type="int" />
+    <Property Name="Manufacturer Code" Type="varchar" MaxLength="50" />
+    <Property Name="Country of Origin Code" Type="varchar" MaxLength="50" />
+    <Property Name="Purchase Code" Type="varchar" MaxLength="50" />
+    <Property Name="Country Purchased Code" Type="varchar" MaxLength="50" />
+    <Property Name="Lot Size" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Scrap %" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Gross Weight" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Net Weight" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Picture" Type="varchar" MaxLength="50" />
+    <Property Name="BOM Code" Type="varchar" MaxLength="50" />
+    <Property Name="Version Bom Code" Type="varchar" MaxLength="50" />
+    <Property Name="BOR Code" Type="varchar" MaxLength="50" />
+    <Property Name="Version BOR Code" Type="varchar" MaxLength="50" />
+    <Property Name="Critical" Type="int" />
+    <Property Name="Period Of Guarantee" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Expiration Date" Type="datetime" />
+    <Property Name="Price Type" Type="int" />
+    <Property Name="Currency Code" Type="varchar" MaxLength="50" />
+    <Property Name="Branch Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Shelf No_" Type="nvarchar" MaxLength="50" />
+    <Property Name="Units per Parcel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phys Invt Counting Period Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Last Counting Period Update" Type="datetime" />
+    <Property Name="Next Counting Period" Type="datetime" />
+    <Property Name="Lot No" Type="varchar" MaxLength="50" />
+    <Property Name="Recipe" Type="nvarchar" MaxLength="50" />
+    <Property Name="Code 2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Error Code" Type="varchar" MaxLength="50" />
+    <Property Name="MFG Date" Type="varchar" MaxLength="50" />
+    <Property Name="Time MFC" Type="varchar" MaxLength="50" />
+    <Property Name="Overhead Rate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="WIP Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="WIP Completion %" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Equivalant Finished Quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Last Unit Cost Calc_ Date" Type="datetime" />
+    <Property Name="Last Direct Cost" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Indirect Cost %" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Allocated Cost" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Clocked" Type="int" />
+    <Property Name="Location HR Title Code" Type="varchar" MaxLength="50" />
+    <Property Name="Item Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="W" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="QAQC" Type="int" />
+    <Property Name="QAQC Routing Code" Type="varchar" MaxLength="50" />
+    <Property Name="QAQC Routing Version" Type="varchar" MaxLength="50" />
+    <Property Name="NhietDo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Bar Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Item Parent" Type="varchar" MaxLength="50" />
+    <Property Name="Point" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Price PC" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Create Date" Type="datetime" />
+    <Property Name="Edit Date" Type="datetime" />
+    <Property Name="MetaTitle" Type="nvarchar(max)" />
+    <Property Name="MetaDescription" Type="nvarchar(max)" />
+    <Property Name="ShortDesc" Type="nvarchar(max)" />
+    <Property Name="IsSale" Type="bit" Nullable="false" />
+    <Property Name="IsNew" Type="bit" Nullable="false" />
+    <Property Name="MadeIn" Type="nvarchar" MaxLength="200" />
+    <Property Name="Brand Code" Type="nchar" MaxLength="50" />
+    <Property Name="Volume" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="List Price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Branch price 1" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Branch Price 2(KVBH)" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Import Price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Import Tax %" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Discount %" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Warranty Date" Type="date" />
+    <Property Name="Price PP1" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Price PP2(KVBH)" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Gia Xuat Chi Nhanh" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Orders" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Item Category">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Parent Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="MetaTitle" Type="nvarchar(max)" />
+    <Property Name="MetaDescription" Type="nvarchar(max)" />
+    <Property Name="ICON" Type="nvarchar" MaxLength="50" />
+    <Property Name="Orders" Type="int" />
+  </EntityType>
+  <EntityType Name="Manufacturer">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="250" />
+    <Property Name="Picture" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Payment Method">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Note" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsWeb" Type="bit" Nullable="false" />
+    <Property Name="Logo" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Price Level">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="From Date" Type="date" />
+    <Property Name="To Date" Type="date" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Source Type" Type="int" />
+    <Property Name="Type" Type="int" />
+    <Property Name="Source Code" Type="varchar" MaxLength="250" />
+    <Property Name="User Login" Type="varchar" MaxLength="50" />
+    <Property Name="Approve User" Type="varchar" MaxLength="50" />
+    <Property Name="Branch Code" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="Price Level Detail">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Price Level" Type="varchar" MaxLength="50" />
+    <Property Name="Item Code" Type="varchar" MaxLength="50" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Qty" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Type" Type="int" />
+    <Property Name="Price Type" Type="int" />
+    <Property Name="Document Type" Type="int" />
+    <Property Name="Item Code 2" Type="varchar" MaxLength="50" />
+    <Property Name="Qty 2" Type="int" />
+  </EntityType>
+  <EntityType Name="Sales Order Detail">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sales Order Code" Type="varchar" MaxLength="50" />
+    <Property Name="Sales Quote Order Code" Type="varchar" MaxLength="50" />
+    <Property Name="Item Code" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Qty" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Qty Back Order" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Qty Ordered" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Qty To Order" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Qty Exported Inventory" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Currency Code" Type="varchar" MaxLength="50" />
+    <Property Name="Currency Factor" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Rate (LCY)" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Amount (LCY)" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="User Login" Type="varchar" MaxLength="50" />
+    <Property Name="Branch Code" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Clocked" Type="int" />
+    <Property Name="Unit Of Measure" Type="varchar" MaxLength="50" />
+    <Property Name="Qty_ per Unit of Measure" Type="decimal" Precision="18" Scale="7" />
+    <Property Name="Line" Type="int" />
+    <Property Name="Qty Returned" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Qty Invoiced" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Qty Customsed" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Prive Level" Type="varchar" MaxLength="50" />
+    <Property Name="Tolerance" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Lot Size" Type="varchar" MaxLength="50" />
+    <Property Name="Location Code" Type="varchar" MaxLength="50" />
+    <Property Name="% Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Discounted Cash" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Amount After Discounted" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Amount (LCY) After Discounted" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Type" Type="int" />
+    <Property Name="SizeId" Type="int" />
+    <Property Name="ColorId" Type="int" />
+    <Property Name="Duration" Type="int" />
+  </EntityType>
+  <EntityType Name="Sales Order Master">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Customer Code" Type="varchar" MaxLength="50" />
+    <Property Name="Bill Customer Code" Type="varchar" MaxLength="50" />
+    <Property Name="Ship Customer Code" Type="varchar" MaxLength="50" />
+    <Property Name="Bill Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Bill Address 2" Type="nvarchar" MaxLength="250" />
+    <Property Name="Bill Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Bill Fax" Type="varchar" MaxLength="50" />
+    <Property Name="Bill Email" Type="varchar" MaxLength="50" />
+    <Property Name="Ship Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Ship Address 2" Type="nvarchar" MaxLength="250" />
+    <Property Name="Ship Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Ship Fax" Type="varchar" MaxLength="50" />
+    <Property Name="Ship Email" Type="varchar" MaxLength="50" />
+    <Property Name="Payment Terms Code" Type="varchar" MaxLength="50" />
+    <Property Name="Due Date" Type="date" />
+    <Property Name="Saler Code" Type="varchar" MaxLength="50" />
+    <Property Name="Ship Date" Type="date" />
+    <Property Name="Shipment Method Code" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="int" />
+    <Property Name="User Login" Type="varchar" MaxLength="50" />
+    <Property Name="Approve User" Type="varchar" MaxLength="50" />
+    <Property Name="Branch Code" Type="varchar" MaxLength="50" />
+    <Property Name="Sale Note" Type="nvarchar" MaxLength="250" />
+    <Property Name="Sale Rep" Type="varchar" MaxLength="50" />
+    <Property Name="Document Type" Type="int" />
+    <Property Name="Payment Method Code" Type="varchar" MaxLength="50" />
+    <Property Name="Currency Code" Type="varchar" MaxLength="50" />
+    <Property Name="Currency Factor" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Ship" Type="int" />
+    <Property Name="Invoice" Type="int" />
+    <Property Name="Ship Term" Type="int" />
+    <Property Name="Created Date" Type="date" />
+    <Property Name="Your Reference" Type="varchar" MaxLength="50" />
+    <Property Name="Sales Order Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ship Type" Type="int" />
+    <Property Name="CheckTop" Type="int" />
+    <Property Name="L/C Date" Type="smalldatetime" />
+    <Property Name="Sales Quote Order Code" Type="varchar" MaxLength="50" />
+    <Property Name="Location Code" Type="varchar" MaxLength="50" />
+    <Property Name="IsBanLe" Type="int" />
+  </EntityType>
+  <EntityType Name="web_Cart">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CartId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="ColorId" Type="int" />
+    <Property Name="Type" Type="int" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="SizeId" Type="int" />
+  </EntityType>
+  <EntityType Name="web_Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="OpenTime" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="web_ConfigWebsite">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="500" />
+    <Property Name="PhonePurchase" Type="nvarchar" MaxLength="50" />
+    <Property Name="Hotline" Type="nvarchar" MaxLength="50" />
+    <Property Name="CustomerService" Type="nvarchar" MaxLength="50" />
+    <Property Name="Logo" Type="nvarchar" MaxLength="500" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="500" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="500" />
+    <Property Name="Email1" Type="nvarchar" MaxLength="300" />
+    <Property Name="Email2" Type="nvarchar" MaxLength="300" />
+    <Property Name="TitleFooter1" Type="nvarchar" MaxLength="300" />
+    <Property Name="TitleFooter2" Type="nvarchar" MaxLength="300" />
+    <Property Name="MetaTitle" Type="nvarchar(max)" />
+    <Property Name="MetaDescription" Type="nvarchar(max)" />
+    <Property Name="MetaKeyword" Type="nvarchar(max)" />
+    <Property Name="GoogleMap1" Type="nvarchar(max)" />
+    <Property Name="GoogleMap2" Type="nvarchar(max)" />
+    <Property Name="EmbedGoogleMap1" Type="nvarchar(max)" />
+    <Property Name="EmbedGoogleMap2" Type="nvarchar(max)" />
+    <Property Name="LogoBCT" Type="nvarchar" MaxLength="500" />
+    <Property Name="LicenseNumber" Type="nvarchar" MaxLength="200" />
+    <Property Name="LicenseDate" Type="datetime" />
+    <Property Name="LicenseProvince" Type="nvarchar" MaxLength="100" />
+    <Property Name="IconSale" Type="nvarchar" MaxLength="200" />
+    <Property Name="IconNew" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="web_Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="web_Footer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Link" Type="nvarchar(max)" />
+    <Property Name="Orders" Type="int" />
+    <Property Name="TypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="web_ItemImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" />
+    <Property Name="Image" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="web_ItemSizeColor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" />
+    <Property Name="SizeColorId" Type="int" />
+    <Property Name="Type" Type="int" />
+    <Property Name="Note" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="web_ItemTechnical">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" />
+    <Property Name="TechnicalId" Type="int" />
+    <Property Name="Note" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="web_News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar" MaxLength="500" />
+    <Property Name="NewsCategoryId" Type="int" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="UrlCustom" Type="nvarchar(max)" />
+    <Property Name="Orders" Type="int" />
+    <Property Name="MetaTitle" Type="nvarchar(max)" />
+    <Property Name="MetaDesc" Type="nvarchar(max)" />
+    <Property Name="IsShow" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Views" Type="int" />
+  </EntityType>
+  <EntityType Name="web_NewsCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="UrlCustom" Type="nvarchar(max)" />
+    <Property Name="Orders" Type="int" />
+    <Property Name="MetaTitle" Type="nvarchar(max)" />
+    <Property Name="MetaDesc" Type="nvarchar(max)" />
+    <Property Name="IsShow" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Type" Type="int" />
+  </EntityType>
+  <EntityType Name="web_Partner">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Logo" Type="nvarchar" MaxLength="500" />
+    <Property Name="Orders" Type="int" />
+  </EntityType>
+  <EntityType Name="web_PaymentMethod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Logo" Type="nvarchar" MaxLength="500" />
+    <Property Name="Orders" Type="int" />
+    <Property Name="URL" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="web_SizeColor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Type" Type="int" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="web_Slider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="500" />
+    <Property Name="Link" Type="nvarchar" MaxLength="500" />
+    <Property Name="Orders" Type="int" />
+    <Property Name="Type" Type="int" />
+    <Property Name="IsShow" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="web_SocialNetwork">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Icon" Type="nvarchar" MaxLength="500" />
+    <Property Name="URL" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="web_Technical">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Note" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Sales Order Detail_web_SizeColor">
+    <End Role="web_SizeColor" Type="Self.web_SizeColor" Multiplicity="0..1" />
+    <End Role="Sales Order Detail" Type="Self.Sales Order Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="web_SizeColor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales Order Detail">
+        <PropertyRef Name="SizeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales Order Detail_web_SizeColor1">
+    <End Role="web_SizeColor" Type="Self.web_SizeColor" Multiplicity="0..1" />
+    <End Role="Sales Order Detail" Type="Self.Sales Order Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="web_SizeColor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales Order Detail">
+        <PropertyRef Name="ColorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_web_Cart_Item">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="web_Cart" Type="Self.web_Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="RowID" />
+      </Principal>
+      <Dependent Role="web_Cart">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_web_Cart_web_SizeColor1">
+    <End Role="web_SizeColor" Type="Self.web_SizeColor" Multiplicity="0..1" />
+    <End Role="web_Cart" Type="Self.web_Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="web_SizeColor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="web_Cart">
+        <PropertyRef Name="ColorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_web_Cart_web_SizeColor2">
+    <End Role="web_SizeColor" Type="Self.web_SizeColor" Multiplicity="0..1" />
+    <End Role="web_Cart" Type="Self.web_Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="web_SizeColor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="web_Cart">
+        <PropertyRef Name="SizeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_web_ItemImage_Item">
+    <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+    <End Role="web_ItemImage" Type="Self.web_ItemImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="RowID" />
+      </Principal>
+      <Dependent Role="web_ItemImage">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_web_ItemSizeColor_Item">
+    <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+    <End Role="web_ItemSizeColor" Type="Self.web_ItemSizeColor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="RowID" />
+      </Principal>
+      <Dependent Role="web_ItemSizeColor">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_web_ItemSizeColor_web_SizeColor">
+    <End Role="web_SizeColor" Type="Self.web_SizeColor" Multiplicity="0..1" />
+    <End Role="web_ItemSizeColor" Type="Self.web_ItemSizeColor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="web_SizeColor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="web_ItemSizeColor">
+        <PropertyRef Name="SizeColorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_web_ItemTechnical_Item">
+    <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+    <End Role="web_ItemTechnical" Type="Self.web_ItemTechnical" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="RowID" />
+      </Principal>
+      <Dependent Role="web_ItemTechnical">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_web_ItemTechnical_web_Technical">
+    <End Role="web_Technical" Type="Self.web_Technical" Multiplicity="0..1" />
+    <End Role="web_ItemTechnical" Type="Self.web_ItemTechnical" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="web_Technical">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="web_ItemTechnical">
+        <PropertyRef Name="TechnicalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_web_News_web_NewsCategory">
+    <End Role="web_NewsCategory" Type="Self.web_NewsCategory" Multiplicity="0..1" />
+    <End Role="web_News" Type="Self.web_News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="web_NewsCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="web_News">
+        <PropertyRef Name="NewsCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fnSplit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sInputList" Type="varchar" Mode="In" />
+    <Parameter Name="sDelimiter" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="item" Type="varchar" MaxLength="8000" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="sp_LoadPostByMenuID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="menuID" Type="int" Mode="In" />
+    <Parameter Name="cateID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_LoadPostFromMenuID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="menuID" Type="int" Mode="In" />
+    <Parameter Name="cateID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_MultiSearchItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="keyWork" Type="nvarchar" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="sortCriteria" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Test2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_testproc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="menuID" Type="int" Mode="In" />
+    <Parameter Name="cateID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SplitRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="code" Type="varchar" Mode="In" />
+    <Parameter Name="text" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="position" Type="int" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="8000" />
+          <Property Name="LoValue" Type="varchar" MaxLength="100" />
+          <Property Name="HiValue" Type="varchar" MaxLength="100" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="String" Type="nvarchar" Mode="In" />
+    <Parameter Name="Delimiter" Type="nchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Id" Type="bigint" />
+          <Property Name="Data" Type="nvarchar" MaxLength="4000" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="web_get15ProductOther" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_get15ProductSameCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="cateCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="web_get15ProductSameManufacturer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="manuCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="web_getAllItemLevel2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cateID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getAllItemLevel2Filter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cateID" Type="int" Mode="In" />
+    <Parameter Name="manuCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="sortCriteria" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="web_getAllManufacturerList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="web_getAllNewsByCate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getAllPartner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="web_getAllPaymentMethod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="web_getAllSliders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="web_getCategoryLevel3ByLevel2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getChildCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getChildCateNews" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_GetCompanyById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getConfigWebsite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="web_getFooterByType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getHeaderMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="web_getItemCategoryById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getLevel3Category" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getMultiSearchItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="keyWork" Type="nvarchar" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="sortCriteria" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="web_getParentCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="web_getProductAdminFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="keyword" Type="nvarchar" Mode="In" />
+    <Parameter Name="cateCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="manuCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="web_getProductByCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cateCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="web_getProductByCategoryFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cateCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="manuCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="sortCriteria" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="web_getProductDifferenceCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="cate" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getProductSameCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="cate" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getRecursiveItemCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getSameLevelCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getSliderByType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getTop5Item" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cateID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getTop5ItemLevel1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cateID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getTop5ItemLevel2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cateID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="web_getTop5ItemLevel3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cateCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="web_PaymentMethodList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="web_SocialNetworkList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="BMSMoluxHongKongModelStoreContainer">
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Item Category" EntityType="Self.Item Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment Method" EntityType="Self.Payment Method" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Price Level" EntityType="Self.Price Level" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Price Level Detail" EntityType="Self.Price Level Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sales Order Detail" EntityType="Self.Sales Order Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sales Order Master" EntityType="Self.Sales Order Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_Cart" EntityType="Self.web_Cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_Company" EntityType="Self.web_Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_ConfigWebsite" EntityType="Self.web_ConfigWebsite" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_Contact" EntityType="Self.web_Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_Footer" EntityType="Self.web_Footer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_ItemImage" EntityType="Self.web_ItemImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_ItemSizeColor" EntityType="Self.web_ItemSizeColor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_ItemTechnical" EntityType="Self.web_ItemTechnical" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_News" EntityType="Self.web_News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_NewsCategory" EntityType="Self.web_NewsCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_Partner" EntityType="Self.web_Partner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_PaymentMethod" EntityType="Self.web_PaymentMethod" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_SizeColor" EntityType="Self.web_SizeColor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_Slider" EntityType="Self.web_Slider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_SocialNetwork" EntityType="Self.web_SocialNetwork" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_Technical" EntityType="Self.web_Technical" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Sales Order Detail_web_SizeColor" Association="Self.FK_Sales Order Detail_web_SizeColor">
+      <End Role="web_SizeColor" EntitySet="web_SizeColor" />
+      <End Role="Sales Order Detail" EntitySet="Sales Order Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales Order Detail_web_SizeColor1" Association="Self.FK_Sales Order Detail_web_SizeColor1">
+      <End Role="web_SizeColor" EntitySet="web_SizeColor" />
+      <End Role="Sales Order Detail" EntitySet="Sales Order Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_web_Cart_Item" Association="Self.FK_web_Cart_Item">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="web_Cart" EntitySet="web_Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_web_Cart_web_SizeColor1" Association="Self.FK_web_Cart_web_SizeColor1">
+      <End Role="web_SizeColor" EntitySet="web_SizeColor" />
+      <End Role="web_Cart" EntitySet="web_Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_web_Cart_web_SizeColor2" Association="Self.FK_web_Cart_web_SizeColor2">
+      <End Role="web_SizeColor" EntitySet="web_SizeColor" />
+      <End Role="web_Cart" EntitySet="web_Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_web_ItemImage_Item" Association="Self.FK_web_ItemImage_Item">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="web_ItemImage" EntitySet="web_ItemImage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_web_ItemSizeColor_Item" Association="Self.FK_web_ItemSizeColor_Item">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="web_ItemSizeColor" EntitySet="web_ItemSizeColor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_web_ItemSizeColor_web_SizeColor" Association="Self.FK_web_ItemSizeColor_web_SizeColor">
+      <End Role="web_SizeColor" EntitySet="web_SizeColor" />
+      <End Role="web_ItemSizeColor" EntitySet="web_ItemSizeColor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_web_ItemTechnical_Item" Association="Self.FK_web_ItemTechnical_Item">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="web_ItemTechnical" EntitySet="web_ItemTechnical" />
+    </AssociationSet>
+    <AssociationSet Name="FK_web_ItemTechnical_web_Technical" Association="Self.FK_web_ItemTechnical_web_Technical">
+      <End Role="web_Technical" EntitySet="web_Technical" />
+      <End Role="web_ItemTechnical" EntitySet="web_ItemTechnical" />
+    </AssociationSet>
+    <AssociationSet Name="FK_web_News_web_NewsCategory" Association="Self.FK_web_News_web_NewsCategory">
+      <End Role="web_NewsCategory" EntitySet="web_NewsCategory" />
+      <End Role="web_News" EntitySet="web_News" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

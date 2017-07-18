@@ -1,0 +1,99 @@
+﻿@model MOLUX.Areas.Admin.Models.MenuViewModel
+@{
+    ViewBag.Title = "AddMenu";
+}
+
+<h3 class="page-title">
+    Thêm Menu
+</h3>
+<!-- END PAGE TITLE-->
+<!-- END PAGE HEADER-->
+<!-- BEGIN EXAMPLE TABLE PORTLET-->
+
+
+<div class="row" style="margin-left:30px;">
+    <div class="col-md-12">
+        @using (Html.BeginForm("AddMenu", "MenuManage", FormMethod.Post, new { @class = "form-horizontal", role = "form", @dirty = "true" }))
+        {
+        
+            <div class="profile-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet light ">
+                            <div class="portlet-title tabbable-line">
+                                <div class="caption caption-md">
+                                    <i class="icon-globe theme-font hide"></i>
+                                    <span class="caption-subject font-blue-madison bold uppercase">Profile</span>
+                                </div>
+                                @*<ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#tab_1_1" data-toggle="tab">Info</a>
+                                    </li>
+
+                                </ul>*@
+                            </div>
+                            <div class="portlet-body">
+                                <div class="tab-content">
+                                    <!-- PERSONAL INFO TAB -->
+                                    <div class="tab-pane active" id="tab_1_1">
+                                        <div class="form-group">
+                                            <label class="control-label">Tên menu <span class="text-red" style="color:red;">*</span></label>
+                                            
+                                            @Html.TextBoxFor(x => Model.menu.Title, new {  @class = "form-control", @placeholder = "Tên menu", @maxlength = "50" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Ghi chú</label>
+                                            @Html.TextBoxFor(x => Model.menu.Note, new { @class = "form-control", @placeholder = "Ghi chú", @maxlength = "50" })
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Meta</label>
+                                            @Html.TextBoxFor(x => Model.menu.MetaTitle, new { @class = "form-control", @placeholder = "Meta", @maxlength = "50" })
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Mô tả meta</label>
+                                            @Html.TextBoxFor(x => Model.menu.MetaDesc, new { @class = "form-control", @placeholder = "Mô tả meta", @maxlength = "50" })
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Link</label>
+                                            @Html.TextBoxFor(x => Model.menu.UrlCustom, new { @class = "form-control", @placeholder = "Link", @maxlength = "50" })
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Menu cha</label>
+                                            @Html.DropDownListFor(x => Model.menu.ParentId, Model.listMenuItem, "Menu cha", new { @class = "selectpicker show-tick form-control", @id = "parent_selected", style = "font-weight: 400;" })
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Số thứ tự</label>
+                                            @Html.TextBoxFor(x => Model.menu.Orders, new { @class = "form-control", @placeholder = "STT", @maxlength = "50" })
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Hiển thị</label>
+                                            @Html.RadioButtonFor(x => Model.menu.IsShow, "True", new { @id = "IsShowY", @checked = true }) Hiển thị
+                                            @Html.RadioButtonFor(x => Model.menu.IsShow, "False", new { @id = "IsShowN" }) Ẩn
+
+                                        </div>
+                                    </div>
+                                    <!-- END PERSONAL INFO TAB -->
+                                    <!-- PRIVACY SETTINGS TAB -->
+                                    <!-- END PRIVACY SETTINGS TAB -->
+                                    <div class="margiv-top-10">
+                                        <input class="btn green" type="submit" id="" value="Thêm menu" />
+                                        <a href="@Url.Action("Index", "DVT")" class="btn default"> Cancel </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- END PROFILE CONTENT -->
+        }
+    </div>
+</div>

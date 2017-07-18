@@ -1,0 +1,177 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+@model ShoppingCartViewModel
+@{
+    ViewBag.Title = "Quản lý giỏ hàng";
+    int i = 1;
+    var cus = Model.SingleCustomer != null ? Model.SingleCustomer : new Customer();
+}
+
+<!--Breadcrumb-->
+<div class="row">
+    <ol class="breadcrumb">
+        <li itemscope=""><a itemprop="url" title="Trang chủ"><span itemprop="title">Trang chủ</span></a></li>
+        <li itemprop="child"><a itemprop="url" href="#" title="Giỏ hàng"><span itemprop="title">Giỏ hàng của bạn</span></a></li>
+    </ol>
+</div>
+<!--End Breadcrumb-->
+@if (Model.CartItems.Count() > 0)
+{
+    <div class="row bg-white">
+        <div class="col-md-12">
+            <div class="cart-page">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px">STT</th>
+                            <th>SẢN PHẨM</th>
+                            <th>MÀU SẮC</th>
+                            <th>KÍCH THƯỚC</th>
+                            <th>SỐ LƯỢNG</th>
+                            <th>GIÁ BÁN</th>
+                            <th>THÀNH TIỀN</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.CartItems)
+                        {
+                            <tr id="item@(item.Id)">
+                                <td style="width: 40px">@i</td>
+                                <td style="white-space: nowrap">@item.Item.Name</td>
+                                <td>@(item.ColorId != null ? item.web_SizeColor.Name : "")</td>
+                                <td>@(item.SizeId != null ? item.web_SizeColor1.Name : "")</td>
+                                <td><input type="number" class="form-control" onchange="updateQuantity(@item.Id)" id="quantity@(item.Id)" value="@item.Count" /></td>
+                                <td id="price@(item.Id)" class="price-cart">@string.Format("{0:0,0₫}", item.Item.Sale_Price != null ? item.Item.Sale_Price : 0).Replace(",", ".")</td>
+                                <td id="total@(item.Id)" class="price-cart">@string.Format("{0:0,0₫}", item.Item.Sale_Price != null ? item.Count * item.Item.Sale_Price : 0).Replace(",", ".")</td>
+                                <td style="text-align: center">
+                                    <a style="cursor: pointer" onclick="removeFromCart(@item.Id)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                        <tr>
+                            <td colspan="4" style="text-align: right"><strong>Tổng cộng:</strong></td>
+                            <td id="cartTotal" class="price-cart">@string.Format("{0:0,0₫}", Model.CartTotal).Replace(",", ".")</td>
+                            <td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-white">
+        @using (Ajax.BeginForm("Buy", "Orders", null, new AjaxOptions { OnFailure = "OnFailure", OnSuccess = "OnSuccess" }, new { @class = "form-horizontal" }))
+        {
+            <div class="form-group">
+                <div class="title-login col-md-12">THÔNG TIN KHÁCH HÀNG</div>
+            </div>
+            <div class="col-md-offset-1 col-md-5">
+                <div class="form-group">
+                    <label class="control-label col-md-3"></label>
+                    <label class="col-md-9"><span class="red2">(*)</span> bắt buộc nhập</label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Họ và tên <span class="red2">(*)</span></label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="FullName" required value="@cus.Name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Điện thoại <span class="red2">(*)</span></label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="Phone" required value="@cus.Phone" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Địa chỉ <span class="red2">(*)</span></label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="Address" required value="@cus.Address" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Quốc gia </label>
+                    <div class="col-md-4">
+                        <select name="Country" class="form-control" id="ddlCountry">
+                            <option>-- Quốc gia --</option>
+                            @foreach (var item in Customers.CountryList())
+                            {
+                                <option value="@item.Code" @(cus != null && cus.Country_Code == item.Code ? "selected" : "")>@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <label class="control-label col-md-2">Tỉnh/TP </label>
+                    <div class="col-md-3">
+                        @if (cus != null)
+                        {
+                            <select name="City" class="form-control" id="ddlCity">
+                                @foreach (var item in Customers.CityList(cus.Country_Code))
+                                {
+                                    <option value="@item.Code" @(cus.City_Code != null && cus.City_Code == item.Code ? "selected" : "")>@item.Name</option>
+                                }
+                            </select>
+                        }
+                        else
+                        {
+                            <select name="City" class="form-control" id="ddlCity"></select>
+                        }
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Email <span class="red2">(*)</span></label>
+                    <div class="col-md-9">
+                        <input type="email" class="form-control" name="Email" required value="@cus.Email" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Ngày giao hàng</label>
+                    <div class="col-md-9">
+                        <input type="date" name="ShipDate" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label class="col-md-12">Hình thức thanh toán</label>
+                </div>
+                <div class="form-group">
+                    @foreach (var item in ViewBag.PaymentMethodWeb)
+                    {
+                        <label class="form-control" style="border: 1px solid #ccc; height: 100%; padding: 0">
+                            <table class="paymentmethod">
+                                <tr>
+                                    <td><input type="radio" name="PaymentMethod" id="PaymentMethod@(item.RowID)" value="@item.Code" /></td>
+                                    <td class="pm-logo"><img src="~/Images/Logo/@item.Logo" /></td>
+                                    <td>
+                                        <strong>@item.Name</strong><br />
+                                        @item.Note
+                                    </td>
+                                </tr>
+                            </table>
+                        </label>
+                    }
+                </div>
+            </div>
+            <div class="col-md-offset-1 col-md-10">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <textarea name="Note" class="form-control" style="height: 100px" placeholder="Ghi chú..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" align="center" style="margin: 20px;">
+                <input type="submit" class="btn btn-primary" name="btnBuy" value="Gửi đơn hàng" />
+                <a href="/" class="btn btn-primary">Tiếp tục chọn sản phẩm</a>
+            </div>
+        }
+    </div>
+    <div id="frmNotice"></div>
+}
+else
+{
+    <h4 class="notice-cart">CHƯA CÓ SẢN PHẨM NÀO TRONG GIỎ HÀNG.</h4>
+}
+
+@section scripts{
+    <script src="~/Content/assets/js/shoppingcart.js"></script>
+}

@@ -1,0 +1,101 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+@model Customer
+@{
+    var config = ConfigWebsite.Data();
+    ViewBag.Title = "Quản lý thông tin tài khoản | " + config.MetaTitle;
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li itemscope=""><a itemprop="url" title="Trang chủ"><span itemprop="title">Trang chủ</span></a></li>
+        <li itemprop="child"><a itemprop="url" href="#" title="Quản lý thông tin tài khoản"><span itemprop="title">Quản lý thông tin tài khoản</span></a></li>
+    </ol>
+</div>
+<div class="row bg-white">
+    <div class="col-lg-offset-2 col-lg-8 col-md-8 col-md-offset-2 bg-white mgTop">
+        @using (Ajax.BeginForm("Index", "Customer", null, new AjaxOptions { OnSuccess = "OnSuccessUpdateAccount" }, new { @class = "form-horizontal", role = "form" }))
+        {
+            <div class="form-group">
+                <div class="title-login col-md-12">THÔNG TIN KHÁCH HÀNG</div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4"></label>
+                <label class="col-md-5"><span class="red2">(*)</span> bắt buộc nhập</label>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Tên đăng nhập</label>
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.User_Login, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Họ và tên <span class="red2">(*)</span></label>
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @required = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Điện thoại <span class="red2">(*)</span></label>
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @required = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Địa chỉ <span class="red2">(*)</span></label>
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @required = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Quốc gia </label>
+                <div class="col-md-2">
+                    <select name="Country_Code" class="form-control" id="ddlCountry">
+                        <option>-- Chọn quốc gia --</option>
+                        @foreach (var item in Customers.CountryList())
+                        {
+                            <option value="@item.Code" @(Model.Country_Code != null && Model.Country_Code == item.Code ? "selected" : "")>@item.Name</option>
+                        }
+                    </select>
+                </div>
+                <label class="control-label col-md-1">Tỉnh/TP </label>
+                <div class="col-md-2">
+                    <select name="City_Code" class="form-control" id="ddlCity">
+                        @if (!string.IsNullOrEmpty(Model.Country_Code))
+                        {
+                            foreach (var item in Customers.CityList(Model.Country_Code))
+                            {
+                                <option value="@item.Code" @(Model.City_Code != null && Model.City_Code == item.Code ? "selected" : "")>@item.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Email <span class="red2">(*)</span></label>
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @required = "required" })
+                </div>
+            </div>
+            <div class="col-md-12" align="center" style="margin: 20px;">
+                <input type="submit" class="btn btn-primary" name="btnSave" value="Lưu" />
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#ddlCountry").change(function () {
+            $.getJSON('/Orders/GetCityList?code=' + $('#ddlCountry').val(), function (data) {
+                var items = '<option>-- Chọn Tỉnh/TP --</option>';
+                $.each(data, function (i, gd) {
+                    items += "<option value='" + gd.Value + "'>" + gd.Text + "</option>";
+                });
+                $('#ddlCity').html(items);
+            });
+        });
+        function OnSuccessUpdateAccount() {
+            $.notify("Thành công! Đã lưu dữ liệu!", { animationType: "scale", color: "#fff", background: "#00C907", icon: "check" });
+        }
+    </script>
+}

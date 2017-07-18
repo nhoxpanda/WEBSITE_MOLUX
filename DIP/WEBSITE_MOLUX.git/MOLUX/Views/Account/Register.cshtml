@@ -1,0 +1,85 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+@model RegisterViewModel
+@{
+    var config = ConfigWebsite.Data();
+    ViewBag.Title = "Đăng ký | " + config.MetaTitle;
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li itemscope=""><a itemprop="url" title="Trang chủ"><span itemprop="title">Trang chủ</span></a></li>
+        <li itemprop="child"><a itemprop="url" href="" title="Đăng ký"><span itemprop="title">Đăng ký</span></a></li>
+    </ol>
+</div>
+<div class="row bg-white">
+    <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 bg-white mgTop">
+        @using (Ajax.BeginForm("Register", "Account", null, new AjaxOptions { OnSuccess = "OnSuccessRegister" }, new { @class = "form-horizontal", role = "form" }))
+        {
+            <div class="login-box-body">
+                <p class="login-box-msg"><strong>Đăng ký tài khoản</strong></p>
+                @Html.AntiForgeryToken()
+                <div class="form-group has-feedback">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Tên đăng nhập (địa chỉ mail)", @type = "email" })
+                    <span class="fa fa-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Mật khẩu..." })
+                    <span class="fa fa-lock form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Nhập lại Mật khẩu..." })
+                    <span class="fa fa-key form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Họ tên..." })
+                    <span class="fa fa-id-card form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Địa chỉ..." })
+                    <span class="fa fa-road form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <select name="Country_Code" class="form-control" id="ddlCountry">
+                        <option>-- Chọn quốc gia --</option>
+                        @foreach (var item in Customers.CountryList())
+                        {
+                            <option value="@item.Code">@item.Name</option>
+                        }
+                    </select>
+                    <span class="fa fa-globe form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <select name="City_Code" class="form-control" id="ddlCity">
+                        <option>-- Chọn tỉnh thành --</option>
+                    </select>
+                    <span class="fa fa-map-marker form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Điện thoại..." })
+                    <span class="fa fa-phone form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fa fa-send"></i></button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#ddlCountry").change(function () {
+            $.getJSON('/Orders/GetCityList?code=' + $('#ddlCountry').val(), function (data) {
+                var items = '<option>-- Chọn Tỉnh/TP --</option>';
+                $.each(data, function (i, gd) {
+                    items += "<option value='" + gd.Value + "'>" + gd.Text + "</option>";
+                });
+                $('#ddlCity').html(items);
+            });
+        });
+        function OnSuccessRegister() {
+            $.notify("Đăng ký tài khoản thành công!", { animationType: "scale", color: "#fff", background: "#00C907", icon: "check" });
+            window.location.href = '/';
+        }
+    </script>
+}

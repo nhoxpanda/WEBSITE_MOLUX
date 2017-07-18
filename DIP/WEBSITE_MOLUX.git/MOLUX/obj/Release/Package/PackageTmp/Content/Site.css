@@ -1,0 +1,127 @@
+﻿.cd-container {
+    width: 90%;
+    max-width: 768px;
+    margin: 2em auto;
+}
+
+    .cd-container::after {
+        /* clearfix */
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+/* --------------------------------
+
+Main components
+
+----------------------------------*/
+.cd-top {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    right: 10px;
+    bottom: 280px;
+    visibility: hidden;
+    position: fixed;
+    opacity: 0;
+    z-index: 100;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    /* image replacement properties */
+    background-image: url('/Content/themes/img/all_icon.png');
+    background-position: -228px -26px;
+    -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+    -moz-transition: opacity .3s 0s, visibility 0s .3s;
+    transition: opacity .3s 0s, visibility 0s .3s;
+}
+
+    .cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+        -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+        -moz-transition: opacity .3s 0s, visibility 0s 0s;
+        transition: opacity .3s 0s, visibility 0s 0s;
+    }
+
+    .cd-top.cd-is-visible {
+        /* the button becomes visible */
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .cd-top.cd-fade-out {
+        /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+        opacity: .9;
+    }
+
+.no-touch .cd-top:hover {
+    background-color: #1E5799 !important;
+    opacity: 1 !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .cd-top {
+        right: 5px !important;
+        bottom: 70px !important;
+    }
+}
+
+.intro_cate .intro_cate_title {
+    font-size: 16px;
+    line-height: 1.3em;
+}
+
+.intro_cate {
+    width: 100%;
+    padding: 15px 0px;
+}
+
+.cursorpointer {
+    cursor: pointer;
+}
+
+.top_web_center h1 {
+    font-size: 13px;
+    color: red;
+    width: 25%;
+    float: left;
+    padding: 14px 0;
+}
+
+.more_pro h2 {
+    font-size: 18px;
+}
+
+.top_web_center p {
+    padding: 14px 0;
+}
+
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}

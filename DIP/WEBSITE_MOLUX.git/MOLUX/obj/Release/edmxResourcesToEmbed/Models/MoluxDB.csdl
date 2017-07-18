@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BMSMoluxHongKongModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="web_Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="web_News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NewsCategoryId" Type="Int32" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="UrlCustom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Orders" Type="Int32" />
+    <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MetaDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="web_NewsCategory" Relationship="Self.FK_web_News_web_NewsCategory" FromRole="web_News" ToRole="web_NewsCategory" />
+  </EntityType>
+  <EntityType Name="web_NewsCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="UrlCustom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Orders" Type="Int32" />
+    <Property Name="MetaTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MetaDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="web_News" Relationship="Self.FK_web_News_web_NewsCategory" FromRole="web_NewsCategory" ToRole="web_News" />
+  </EntityType>
+  <Association Name="FK_web_News_web_NewsCategory">
+    <End Role="web_NewsCategory" Type="Self.web_NewsCategory" Multiplicity="0..1" />
+    <End Role="web_News" Type="Self.web_News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="web_NewsCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="web_News">
+        <PropertyRef Name="NewsCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BMSMoluxHongKongEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="web_Contact" EntityType="Self.web_Contact" />
+    <EntitySet Name="web_News" EntityType="Self.web_News" />
+    <EntitySet Name="web_NewsCategory" EntityType="Self.web_NewsCategory" />
+    <AssociationSet Name="FK_web_News_web_NewsCategory" Association="Self.FK_web_News_web_NewsCategory">
+      <End Role="web_NewsCategory" EntitySet="web_NewsCategory" />
+      <End Role="web_News" EntitySet="web_News" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<MOLUX.Models.web_Company>
+@{
+    ViewBag.Title = "Danh sách phòng kinh doanh";
+}
+
+@{int i = 1;}
+
+<section class="content-header">
+    <h1>
+        Danh sách phòng kinh doanh
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Danh sách phòng kinh doanh</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="callout callout-info lead">
+                        <a href="@Url.Action("BusinessDepartment", "ConfigManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <table id="tableDictionary" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Phòng kinh doanh</th>
+                                <th>Địa chỉ</th>
+                                <th>Di động</th>
+                                <th>Điện thoại bàn</th>
+                                <th>Email</th>
+                                <th>Giờ mở cửa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="rowItem@(item.Id)">
+                                    <td>
+                                        <a class="btn btn-warning btn-xs cursorpointer" onclick="editItem(@item.Id)"><i class="fa fa-edit"></i>&nbsp;Sửa</a>
+                                    </td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Address</td>
+                                    <td>@item.Mobile</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.OpenTime</td>
+                                </tr>
+                                i++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="data-edit"></div>
+
+@section scripts{
+    <script>
+        function editItem(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ConfigManage/EditCompany',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#data-edit").html(data);
+                    $("#modal-update-company").modal("show");
+                }
+            });
+        }
+
+    </script>
+}

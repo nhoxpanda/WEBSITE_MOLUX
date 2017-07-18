@@ -1,0 +1,102 @@
+﻿@model IEnumerable<MOLUX.Models.Manufacturer>
+@{
+    ViewBag.Title = "Danh sách thương hiệu";
+}
+
+@{int i = 1;}
+
+<section class="content-header">
+    <h1>
+        Danh sách thương hiệu
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Danh sách thương hiệu</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="callout callout-info lead">
+                        <a href="@Url.Action("Index", "ManufactureManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                        <a href="#modal-insert-manufacturer" data-toggle="modal" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Thêm</a>
+                    </div>
+                </div>
+                <div class="box-body" id="data-customer">
+                    <table id="tableDictionary" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>STT</th>
+                                <th>CODE</th>
+                                <th>Tên thương hiệu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="rowItem@(item.RowID)">
+                                    <td>
+                                        <a class="btn btn-xs btn-warning cursorpointer" onclick="editItem(@item.RowID)"><i class="fa fa-pencil"></i>&nbsp;Sửa</a>
+                                        <a class="btn btn-xs btn-danger cursorpointer" onclick="deleteItem(@item.RowID)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>
+                                    </td>
+                                    <td>@i</td>
+                                    <td>@item.Code</td>
+                                    <td>@item.Name</td>
+                                </tr>
+                                i++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@Html.Partial("_Partial_Insert", new MOLUX.Models.Manufacturer())
+<div id="data-edit"></div>
+
+@section scripts{
+    <script>
+        function editItem(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ManufactureManage/Edit',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#data-edit").html(data);
+                    $("#modal-edit-manufacturer").modal("show");
+                }
+            });
+        }
+
+        function deleteItem(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ManufactureManage/Delete',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data == "1") {
+                        $("#rowItem" + id).hide();
+                    }
+                    else {
+                        alert("Lỗi, không xóa được, thương hiệu đang được sử dụng!");
+                    }
+                },
+                error: function (data) {
+                    alert("Lỗi, không xóa được, thương hiệu đang được sử dụng!");
+                }
+            });
+        }
+    </script>
+}

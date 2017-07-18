@@ -1,0 +1,181 @@
+﻿@using MOLUX.Helper
+@using MOLUX.Models
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList<web_getProductByCategoryFilter_Result>
+@{
+    var cate = ViewBag.CateViewModel as CateViewModel;
+    ViewBag.Title = cate.MetaTitle;
+    ViewBag.MetaDescription = cate.MetaDescription;
+}
+<style>
+    .image-wrapper p {
+        margin: 0;
+    }
+</style>
+
+<!--Breadcrumb-->
+<div class="row">
+    <ol class="breadcrumb">
+        <li itemscope=""><a itemprop="url" title="Trang chủ"><span itemprop="title">Trang chủ</span></a></li>
+        <li itemprop="child"><a itemprop="url" href="" title="@cate.TitleName"><span itemprop="title">@cate.TitleName</span></a></li>
+    </ol>
+</div>
+<!--End Breadcrumb-->
+<!--Slider-->
+@Html.Action("_Partial_Slider2", "Home")
+<!--End Slider-->
+<!--list-cate-->
+<div class="row bg-white">
+    <div class="list-cate">
+        @foreach (var item in cate.CategoryLevel3)
+        {
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 col-xm-3 padLeftNo">
+                <li class="sc_item">
+                    <div class="sc_bar">
+                        <h3>
+                            <a title="@item.Name" href="/san-pham/li@(item.RowID)-@(item.Code)/@Common.MakeUrlSlug(item.Name)?sort=0&manufacturer=0">@item.Name</a>
+                        </h3>
+                    </div>
+                </li>
+            </div>
+        }
+    </div>
+</div>
+<!--End list-cate-->
+<div class="row bg-white">
+    <div class="title-case col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-9 col-md-9 col-sm-7 col-xs-12 border-bt flRight padRightNo ">
+            <div class="btn-group ddlsortview">
+                <select class="btn-view btn-group dropup ddlsort" id="ddlSort" style="height: 27px;">
+                    <option selected="selected" value="0">Sắp xếp</option>
+                    <option value="asc">Giá tăng dần</option>
+                    <option value="desc">Giá giảm dần</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12 padLeftNo padRightNo">
+            <div class="title-cate">
+                <h1><a>Bộ Lọc Sản Phẩm</a></h1>
+            </div>
+        </div>
+    </div>
+    <!--col-left-->
+    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+        <!--- manufacturer -->
+        <div class="box_browse">
+            <div class="box-tab toggle-btn" data-toggle="collapse" data-target="#menu-brand">
+                Theo thương hiệu<span class="caret hidden-lg hidden-md  hidden-sm"></span>
+            </div>
+            <ul id="menu-brand" class="bb_content collapse out">
+                @foreach (var m in cate.Manufacturer)
+                {
+                    <li class="li_item_brand">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h3>››<a href="/san-pham/li@(cate.Id)-@(cate.Code)/@(cate.CateName)?sort=@(cate.SortCode)&manufacturer=@(Common.MakeUrlSlug(m.Code))&page=@(cate.Page)" title="@m.Name" class="@(Request.QueryString["manufacturer"] == m.Code.ToLower() ? "selected" : "")">@m.Name</a></h3>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                }
+            </ul>
+        </div>
+        <!-- end manufacturer -->
+        <!-- category left -->
+        <div class="box_browse">
+            <div class="box-tab toggle-btn" data-toggle="collapse" data-target="#menu-category">
+                Loại sản phẩm<span class="caret hidden-lg hidden-md hidden-sm"></span>
+            </div>
+            <ul id="menu-category" class="bb_content collapse out">
+                @foreach (var c in cate.CategoryLevel3)
+                {
+                    <li class="li_item_brand">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h3>››<a href="/san-pham/li@(c.RowID)-@(c.Code)/@(Common.MakeUrlSlug(c.Name))?sort=@(cate.SortCode)&manufacturer=@(cate.ManuCode)&page=@(cate.Page)" title="@c.Name">@c.Name</a></h3>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                }
+            </ul>
+        </div>
+        <!-- end category left -->
+    </div>
+    <!--End col-left-->
+    <!--col-right-->
+    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 paddingLNone paddingRNone">
+        <div class="list-categories">
+            <!--View grid-->
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-3 col-sm-4 col-ssm-4 col-xs-6 col-ss-12 border-rb border-lb grid-product">
+                    <div class="product">
+                        <div class="img-pro-hot">
+                            <div class="fixed-image owl-item">
+                                <a href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)" title="@item.Name">
+                                    <div class="image-wrapper">
+                                        @if (item.IsNew == true || item.IsSale == true)
+                                        {
+                                            <p class="salenew hidden-xs">
+                                                <img src="~/Images/Logo/@(item.IsSale == true ? ConfigWebsite.Data().IconSale : ConfigWebsite.Data().IconNew)" class="m-lazy img-responsive" title="" alt="" style="width: 40px" />
+                                            </p>
+                                        }
+                                        <img src="http://103.53.231.68:400/MCS/@item.Picture" onerror="this.src='/Images/Products/noimage.gif'" alt="@item.Name" height="200" width="200">
+                                        @if (!string.IsNullOrEmpty(item.LogoManufacturer))
+                                        {
+                                            <p class="manufacturer hidden-xs">
+                                                <img src="~/Images/Manufacturer/@item.LogoManufacturer" class="m-lazy img-responsive" title="" alt="" style="width: 80px" />
+                                            </p>
+                                        }
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product-name">
+                            <a title="@item.Name" href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)">@item.Name</a>
+                        </div>
+                        <div class="col-md-12 nk-price-section clearfix">
+                            <div class="col-md-7" style="text-align: left">
+                                <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ</span>
+                            </div>
+                            <div class="col-md-5" style="text-align: right; padding-right: 5px;">
+                                <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Purchase_Price).Replace(",", ".")</span>đ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!--End View grid-->
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"></div>
+    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 paddingLNone paddingRNone" align="right">
+        @if (Model.Count() > 0)
+        {
+            @Html.PagedListPager(Model, page => "/san-pham/li" + cate.Id + "-" + cate.Code + "/" + cate.CateName + "?sort=" + cate.SortCode + "&manufacturer=" + cate.ManuCode + "&page=" + page)
+        }
+    </div>
+    <!--End col-right-->
+</div>
+
+@section scripts{
+    <script>
+        $("#ddlSort").change(function () {
+            window.location.href = "/san-pham/li@(cate.Id)-@cate.Code/@cate.CateName?sort=" + $("#ddlSort").val() + "&manufacturer=@cate.ManuCode&page=@cate.Page";
+        });
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        };
+        $("#ddlSort").val(getURLParameter("sort"));
+    </script>
+}

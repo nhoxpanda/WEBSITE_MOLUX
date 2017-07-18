@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MOLUX | @ViewBag.Title</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+    @Styles.Render("~/Content/AdminBeeRem")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/header")
+    <style>
+        .cursorpointer {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="hold-transition skin-blue " id="bodymain">
+    <div class="wrapper" id="wrapper">
+        @Html.Partial("_Partial_Header")
+        <!-- Left side column. contains the logo and sidebar -->
+        @Html.Partial("_Partial_Navigation")
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            @RenderBody()
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 1.0.0
+            </div>
+            <strong>Copyright &copy; @DateTime.Now.Year <a href="/">MoLux</a>.</strong> All rights reserved.
+        </footer>
+        <div class="control-sidebar-bg"></div>
+    </div>
+    @Scripts.Render("~/bundles/footer")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(function () {
+            var url = window.location.href.substr(window.location.href.lastIndexOf("/") + 1);
+            $('[href$="' + url + '"]').parents().addClass("active");
+        });
+    </script>
+</body>
+</html>

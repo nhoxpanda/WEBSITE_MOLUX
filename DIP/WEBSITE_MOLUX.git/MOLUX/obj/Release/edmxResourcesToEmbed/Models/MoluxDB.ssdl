@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BMSMoluxHongKongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="web_Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="web_News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar" MaxLength="500" />
+    <Property Name="NewsCategoryId" Type="int" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="UrlCustom" Type="nvarchar(max)" />
+    <Property Name="Orders" Type="int" />
+    <Property Name="MetaTitle" Type="nvarchar(max)" />
+    <Property Name="MetaDesc" Type="nvarchar(max)" />
+    <Property Name="IsShow" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="web_NewsCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="UrlCustom" Type="nvarchar(max)" />
+    <Property Name="Orders" Type="int" />
+    <Property Name="MetaTitle" Type="nvarchar(max)" />
+    <Property Name="MetaDesc" Type="nvarchar(max)" />
+    <Property Name="IsShow" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_web_News_web_NewsCategory">
+    <End Role="web_NewsCategory" Type="Self.web_NewsCategory" Multiplicity="0..1" />
+    <End Role="web_News" Type="Self.web_News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="web_NewsCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="web_News">
+        <PropertyRef Name="NewsCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BMSMoluxHongKongModelStoreContainer">
+    <EntitySet Name="web_Contact" EntityType="Self.web_Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_News" EntityType="Self.web_News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="web_NewsCategory" EntityType="Self.web_NewsCategory" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_web_News_web_NewsCategory" Association="Self.FK_web_News_web_NewsCategory">
+      <End Role="web_NewsCategory" EntitySet="web_NewsCategory" />
+      <End Role="web_News" EntitySet="web_News" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

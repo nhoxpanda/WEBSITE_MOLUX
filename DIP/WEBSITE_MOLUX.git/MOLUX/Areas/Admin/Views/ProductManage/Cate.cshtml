@@ -1,0 +1,120 @@
+﻿@using MOLUX.Models
+@model IEnumerable<Item_Category>
+
+@{
+    ViewBag.Title = "Quản lý danh mục sản phẩm";
+}
+
+<section class="content-header">
+    <h1>
+        Quản lý danh mục sản phẩm
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Quản lý danh mục sản phẩm</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="callout callout-info lead">
+                        <a href="@Url.Action("Cate", "ProductManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                        <a href="#modal-insert-manufacturer" data-toggle="modal" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Thêm</a>
+                    </div>
+                </div>
+                <div class="box-body" id="data-customer">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th colspan="3">Danh mục sản phẩm</th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var pr in Model.Where(p => p.Parent_Code == "0" || p.Parent_Code == null).OrderBy(p => p.Orders))
+                            {
+                                <tr id="rowItem@(pr.RowID)">
+                                    <td colspan="3">@(pr.Orders)-&nbsp;[@pr.Code] @pr.Name</td>
+                                    <td>
+                                        <a class="btn btn-xs btn-warning cursorpointer" onclick="editItem(@pr.RowID)"><i class="fa fa-pencil"></i>&nbsp;Sửa</a>
+                                        <a class="btn btn-xs btn-danger cursorpointer" onclick="deleteItem(@pr.RowID)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>
+                                    </td>
+                                </tr>
+                                foreach (var ch in Model.AsEnumerable().Where(p => p.Parent_Code == pr.RowID.ToString()).OrderBy(p => p.Orders))
+                                {
+                                    <tr id="rowItem@(ch.RowID)">
+                                        <td></td>
+                                        <td colspan="2">@(pr.Orders).@(ch.Orders)-&nbsp;[@ch.Code] @ch.Name</td>
+                                        <td>
+                                            <a class="btn btn-xs btn-warning cursorpointer" onclick="editItem(@ch.RowID)"><i class="fa fa-pencil"></i>&nbsp;Sửa</a>
+                                            <a class="btn btn-xs btn-danger cursorpointer" onclick="deleteItem(@ch.RowID)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>
+                                        </td>
+                                    </tr>
+                                    foreach (var li in Model.AsEnumerable().Where(p => p.Parent_Code == ch.RowID.ToString()).OrderBy(p => p.Orders))
+                                    {
+                                        <tr id="rowItem@(li.RowID)">
+                                            <td></td>
+                                            <td></td>
+                                            <td>@(pr.Orders).@(ch.Orders).@(li.Orders)-&nbsp;[@li.Code] @li.Name</td>
+                                            <td>
+                                                <a class="btn btn-xs btn-warning cursorpointer" onclick="editItem(@li.RowID)"><i class="fa fa-pencil"></i>&nbsp;Sửa</a>
+                                                <a class="btn btn-xs btn-danger cursorpointer" onclick="deleteItem(@li.RowID)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@Html.Partial("_Partial_Insert", new Item_Category())
+<div id="data-edit"></div>
+
+@section scripts{
+    <script>
+        function editItem(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ProductManage/EditCate',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#data-edit").html(data);
+                    $("#modal-edit-manufacturer").modal("show");
+                }
+            });
+        }
+
+        function deleteItem(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ProductManage/DeleteCate',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data == "1") {
+                        $("#rowItem" + id).hide();
+                    }
+                    else {
+                        alert("Lỗi, không xóa được, thương hiệu đang được sử dụng!");
+                    }
+                },
+                error: function (data) {
+                    alert("Lỗi, không xóa được, thương hiệu đang được sử dụng!");
+                }
+            });
+        }
+    </script>
+}

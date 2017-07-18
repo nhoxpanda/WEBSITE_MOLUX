@@ -1,0 +1,2342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BMSMoluxHongKongModelStoreContainer" CdmEntityContainer="BMSMoluxHongKongEntities">
+    <EntitySetMapping Name="City">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Country_Code" ColumnName="Country Code" />
+          <ScalarProperty Name="State_Code" ColumnName="State Code" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Country">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Intrastat_Code" ColumnName="Intrastat Code" />
+          <ScalarProperty Name="Default" ColumnName="Default" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customer">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Country_Code" ColumnName="Country Code" />
+          <ScalarProperty Name="City_Code" ColumnName="City Code" />
+          <ScalarProperty Name="Contact_Name" ColumnName="Contact Name" />
+          <ScalarProperty Name="Contact_Phone" ColumnName="Contact Phone" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Bill_Address" ColumnName="Bill Address" />
+          <ScalarProperty Name="Ship_Address" ColumnName="Ship Address" />
+          <ScalarProperty Name="Customer_Posting_Code" ColumnName="Customer Posting Code" />
+          <ScalarProperty Name="Customer_Group" ColumnName="Customer Group" />
+          <ScalarProperty Name="Payment_Terms_Code" ColumnName="Payment Terms Code" />
+          <ScalarProperty Name="Tax_ID" ColumnName="Tax ID" />
+          <ScalarProperty Name="Credit_Limit" ColumnName="Credit Limit" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="Purchaser_Code" ColumnName="Purchaser Code" />
+          <ScalarProperty Name="Primary_Customer_Code" ColumnName="Primary Customer Code" />
+          <ScalarProperty Name="Contact_Code" ColumnName="Contact Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created Date" />
+          <ScalarProperty Name="User_Login" ColumnName="User Login" />
+          <ScalarProperty Name="Search_Name" ColumnName="Search Name" />
+          <ScalarProperty Name="Payment_Method" ColumnName="Payment Method" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Shipment_Method" ColumnName="Shipment Method" />
+          <ScalarProperty Name="Company_Size" ColumnName="Company Size" />
+          <ScalarProperty Name="HR_Bussiness_Group" ColumnName="HR Bussiness Group" />
+          <ScalarProperty Name="Date_Of_Issue" ColumnName="Date Of Issue" />
+          <ScalarProperty Name="Place_Of_Issue" ColumnName="Place Of Issue" />
+          <ScalarProperty Name="Date_Of_Constitutive" ColumnName="Date Of Constitutive" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="Industry_Code" ColumnName="Industry Code" />
+          <ScalarProperty Name="Lead_Source" ColumnName="Lead Source" />
+          <ScalarProperty Name="Lead_Status" ColumnName="Lead Status" />
+          <ScalarProperty Name="Process" ColumnName="Process" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified Date" />
+          <ScalarProperty Name="User_Modified" ColumnName="User Modified" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Approve_User" ColumnName="Approve User" />
+          <ScalarProperty Name="Approve_Date" ColumnName="Approve Date" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Chance_Code" ColumnName="Chance Code" />
+          <ScalarProperty Name="County_Code" ColumnName="County Code" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Item">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.Item">
+        <MappingFragment StoreEntitySet="Item">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Item_Category">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.Item_Category">
+        <MappingFragment StoreEntitySet="Item Category">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Parent_Code" ColumnName="Parent Code" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Manufacturer">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.Manufacturer">
+        <MappingFragment StoreEntitySet="Manufacturer">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payment_Method">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.Payment_Method">
+        <MappingFragment StoreEntitySet="Payment Method">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="IsWeb" ColumnName="IsWeb" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Price_Level">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.Price_Level">
+        <MappingFragment StoreEntitySet="Price Level">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="From_Date" ColumnName="From Date" />
+          <ScalarProperty Name="To_Date" ColumnName="To Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Source_Type" ColumnName="Source Type" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Source_Code" ColumnName="Source Code" />
+          <ScalarProperty Name="User_Login" ColumnName="User Login" />
+          <ScalarProperty Name="Approve_User" ColumnName="Approve User" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Price_Level_Detail">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.Price_Level_Detail">
+        <MappingFragment StoreEntitySet="Price Level Detail">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Price_Level" ColumnName="Price Level" />
+          <ScalarProperty Name="Item_Code" ColumnName="Item Code" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Document_Type" ColumnName="Document Type" />
+          <ScalarProperty Name="Item_Code_2" ColumnName="Item Code 2" />
+          <ScalarProperty Name="Qty_2" ColumnName="Qty 2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sales_Order_Detail">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.Sales_Order_Detail">
+        <MappingFragment StoreEntitySet="Sales Order Detail">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Sales_Order_Code" ColumnName="Sales Order Code" />
+          <ScalarProperty Name="Sales_Quote_Order_Code" ColumnName="Sales Quote Order Code" />
+          <ScalarProperty Name="Item_Code" ColumnName="Item Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Qty_Back_Order" ColumnName="Qty Back Order" />
+          <ScalarProperty Name="Qty_Ordered" ColumnName="Qty Ordered" />
+          <ScalarProperty Name="Qty_To_Order" ColumnName="Qty To Order" />
+          <ScalarProperty Name="Qty_Exported_Inventory" ColumnName="Qty Exported Inventory" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Currency_Factor" ColumnName="Currency Factor" />
+          <ScalarProperty Name="Rate__LCY_" ColumnName="Rate (LCY)" />
+          <ScalarProperty Name="Amount__LCY_" ColumnName="Amount (LCY)" />
+          <ScalarProperty Name="User_Login" ColumnName="User Login" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Unit_Of_Measure" ColumnName="Unit Of Measure" />
+          <ScalarProperty Name="Qty__per_Unit_of_Measure" ColumnName="Qty_ per Unit of Measure" />
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="Qty_Returned" ColumnName="Qty Returned" />
+          <ScalarProperty Name="Qty_Invoiced" ColumnName="Qty Invoiced" />
+          <ScalarProperty Name="Qty_Customsed" ColumnName="Qty Customsed" />
+          <ScalarProperty Name="Prive_Level" ColumnName="Prive Level" />
+          <ScalarProperty Name="Tolerance" ColumnName="Tolerance" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="C__Discount" ColumnName="% Discount" />
+          <ScalarProperty Name="Discounted_Cash" ColumnName="Discounted Cash" />
+          <ScalarProperty Name="Amount_After_Discounted" ColumnName="Amount After Discounted" />
+          <ScalarProperty Name="Amount__LCY__After_Discounted" ColumnName="Amount (LCY) After Discounted" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+          <ScalarProperty Name="ColorId" ColumnName="ColorId" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sales_Order_Master">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.Sales_Order_Master">
+        <MappingFragment StoreEntitySet="Sales Order Master">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Customer_Code" ColumnName="Customer Code" />
+          <ScalarProperty Name="Bill_Customer_Code" ColumnName="Bill Customer Code" />
+          <ScalarProperty Name="Ship_Customer_Code" ColumnName="Ship Customer Code" />
+          <ScalarProperty Name="Bill_Address" ColumnName="Bill Address" />
+          <ScalarProperty Name="Bill_Address_2" ColumnName="Bill Address 2" />
+          <ScalarProperty Name="Bill_Phone" ColumnName="Bill Phone" />
+          <ScalarProperty Name="Bill_Fax" ColumnName="Bill Fax" />
+          <ScalarProperty Name="Bill_Email" ColumnName="Bill Email" />
+          <ScalarProperty Name="Ship_Address" ColumnName="Ship Address" />
+          <ScalarProperty Name="Ship_Address_2" ColumnName="Ship Address 2" />
+          <ScalarProperty Name="Ship_Phone" ColumnName="Ship Phone" />
+          <ScalarProperty Name="Ship_Fax" ColumnName="Ship Fax" />
+          <ScalarProperty Name="Ship_Email" ColumnName="Ship Email" />
+          <ScalarProperty Name="Payment_Terms_Code" ColumnName="Payment Terms Code" />
+          <ScalarProperty Name="Due_Date" ColumnName="Due Date" />
+          <ScalarProperty Name="Saler_Code" ColumnName="Saler Code" />
+          <ScalarProperty Name="Ship_Date" ColumnName="Ship Date" />
+          <ScalarProperty Name="Shipment_Method_Code" ColumnName="Shipment Method Code" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="User_Login" ColumnName="User Login" />
+          <ScalarProperty Name="Approve_User" ColumnName="Approve User" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Sale_Note" ColumnName="Sale Note" />
+          <ScalarProperty Name="Sale_Rep" ColumnName="Sale Rep" />
+          <ScalarProperty Name="Document_Type" ColumnName="Document Type" />
+          <ScalarProperty Name="Payment_Method_Code" ColumnName="Payment Method Code" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Currency_Factor" ColumnName="Currency Factor" />
+          <ScalarProperty Name="Ship" ColumnName="Ship" />
+          <ScalarProperty Name="Invoice" ColumnName="Invoice" />
+          <ScalarProperty Name="Ship_Term" ColumnName="Ship Term" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created Date" />
+          <ScalarProperty Name="Your_Reference" ColumnName="Your Reference" />
+          <ScalarProperty Name="Sales_Order_Code" ColumnName="Sales Order Code" />
+          <ScalarProperty Name="Ship_Type" ColumnName="Ship Type" />
+          <ScalarProperty Name="CheckTop" ColumnName="CheckTop" />
+          <ScalarProperty Name="L_C_Date" ColumnName="L/C Date" />
+          <ScalarProperty Name="Sales_Quote_Order_Code" ColumnName="Sales Quote Order Code" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="IsBanLe" ColumnName="IsBanLe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_Cart">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_Cart">
+        <MappingFragment StoreEntitySet="web_Cart">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CartId" ColumnName="CartId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="ColorId" ColumnName="ColorId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_Company">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_Company">
+        <MappingFragment StoreEntitySet="web_Company">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="OpenTime" ColumnName="OpenTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_ConfigWebsite">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_ConfigWebsite">
+        <MappingFragment StoreEntitySet="web_ConfigWebsite">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="PhonePurchase" ColumnName="PhonePurchase" />
+          <ScalarProperty Name="Hotline" ColumnName="Hotline" />
+          <ScalarProperty Name="CustomerService" ColumnName="CustomerService" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Email1" ColumnName="Email1" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="TitleFooter1" ColumnName="TitleFooter1" />
+          <ScalarProperty Name="TitleFooter2" ColumnName="TitleFooter2" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
+          <ScalarProperty Name="GoogleMap1" ColumnName="GoogleMap1" />
+          <ScalarProperty Name="GoogleMap2" ColumnName="GoogleMap2" />
+          <ScalarProperty Name="EmbedGoogleMap1" ColumnName="EmbedGoogleMap1" />
+          <ScalarProperty Name="EmbedGoogleMap2" ColumnName="EmbedGoogleMap2" />
+          <ScalarProperty Name="LogoBCT" ColumnName="LogoBCT" />
+          <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+          <ScalarProperty Name="LicenseDate" ColumnName="LicenseDate" />
+          <ScalarProperty Name="LicenseProvince" ColumnName="LicenseProvince" />
+          <ScalarProperty Name="IconSale" ColumnName="IconSale" />
+          <ScalarProperty Name="IconNew" ColumnName="IconNew" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_Contact">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_Contact">
+        <MappingFragment StoreEntitySet="web_Contact">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_Footer">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_Footer">
+        <MappingFragment StoreEntitySet="web_Footer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_ItemImage">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_ItemImage">
+        <MappingFragment StoreEntitySet="web_ItemImage">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_ItemSizeColor">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_ItemSizeColor">
+        <MappingFragment StoreEntitySet="web_ItemSizeColor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="SizeColorId" ColumnName="SizeColorId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_ItemTechnical">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_ItemTechnical">
+        <MappingFragment StoreEntitySet="web_ItemTechnical">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="TechnicalId" ColumnName="TechnicalId" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_News">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_News">
+        <MappingFragment StoreEntitySet="web_News">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="NewsCategoryId" ColumnName="NewsCategoryId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="UrlCustom" ColumnName="UrlCustom" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Views" ColumnName="Views" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_NewsCategory">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_NewsCategory">
+        <MappingFragment StoreEntitySet="web_NewsCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="UrlCustom" ColumnName="UrlCustom" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_Partner">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_Partner">
+        <MappingFragment StoreEntitySet="web_Partner">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_PaymentMethod">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_PaymentMethod">
+        <MappingFragment StoreEntitySet="web_PaymentMethod">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_SizeColor">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_SizeColor">
+        <MappingFragment StoreEntitySet="web_SizeColor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_Slider">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_Slider">
+        <MappingFragment StoreEntitySet="web_Slider">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_SocialNetwork">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_SocialNetwork">
+        <MappingFragment StoreEntitySet="web_SocialNetwork">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="web_Technical">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_Technical">
+        <MappingFragment StoreEntitySet="web_Technical">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="BMSMoluxHongKongModel.Store.fnSplit" FunctionImportName="fnSplit">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.fnSplit_Result">
+          <ScalarProperty Name="item" ColumnName="item" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="BMSMoluxHongKongModel.Store.SplitRange" FunctionImportName="SplitRange">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.SplitRange_Result">
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="LoValue" ColumnName="LoValue" />
+          <ScalarProperty Name="HiValue" ColumnName="HiValue" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="BMSMoluxHongKongModel.Store.SplitString" FunctionImportName="SplitString">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.SplitString_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_LoadPostByMenuID" FunctionName="BMSMoluxHongKongModel.Store.sp_LoadPostByMenuID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.sp_LoadPostByMenuID_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="NewsCategoryId" ColumnName="NewsCategoryId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="UrlCustom" ColumnName="UrlCustom" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Views" ColumnName="Views" />
+          <ScalarProperty Name="ChuyenMuc" ColumnName="ChuyenMuc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_LoadPostFromMenuID" FunctionName="BMSMoluxHongKongModel.Store.sp_LoadPostFromMenuID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.sp_LoadPostFromMenuID_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="NewsCategoryId" ColumnName="NewsCategoryId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="UrlCustom" ColumnName="UrlCustom" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Views" ColumnName="Views" />
+          <ScalarProperty Name="ChuyenMuc" ColumnName="ChuyenMuc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_MultiSearchItem" FunctionName="BMSMoluxHongKongModel.Store.sp_MultiSearchItem">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.sp_MultiSearchItem_Result">
+          <ScalarProperty Name="SortingRowNumber" ColumnName="SortingRowNumber" />
+          <ScalarProperty Name="TotalRowCount" ColumnName="TotalRowCount" />
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="Splitdata" ColumnName="Splitdata" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Test2" FunctionName="BMSMoluxHongKongModel.Store.sp_Test2" />
+    <FunctionImportMapping FunctionImportName="sp_testproc" FunctionName="BMSMoluxHongKongModel.Store.sp_testproc">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.sp_testproc_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="NewsCategoryId" ColumnName="NewsCategoryId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="UrlCustom" ColumnName="UrlCustom" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Views" ColumnName="Views" />
+          <ScalarProperty Name="ChuyenMuc" ColumnName="ChuyenMuc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_get15ProductOther" FunctionName="BMSMoluxHongKongModel.Store.web_get15ProductOther">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_get15ProductOther_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_get15ProductSameCategory" FunctionName="BMSMoluxHongKongModel.Store.web_get15ProductSameCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_get15ProductSameCategory_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_get15ProductSameManufacturer" FunctionName="BMSMoluxHongKongModel.Store.web_get15ProductSameManufacturer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_get15ProductSameManufacturer_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getAllItemLevel2" FunctionName="BMSMoluxHongKongModel.Store.web_getAllItemLevel2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getAllItemLevel2_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getAllItemLevel2Filter" FunctionName="BMSMoluxHongKongModel.Store.web_getAllItemLevel2Filter">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getAllItemLevel2Filter_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getAllManufacturerList" FunctionName="BMSMoluxHongKongModel.Store.web_getAllManufacturerList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getAllManufacturerList_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getAllNewsByCate" FunctionName="BMSMoluxHongKongModel.Store.web_getAllNewsByCate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getAllNewsByCate_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="NewsCategoryId" ColumnName="NewsCategoryId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="UrlCustom" ColumnName="UrlCustom" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Views" ColumnName="Views" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getAllPartner" FunctionName="BMSMoluxHongKongModel.Store.web_getAllPartner">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getAllPartner_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getAllPaymentMethod" FunctionName="BMSMoluxHongKongModel.Store.web_getAllPaymentMethod">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getAllPaymentMethod_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getAllSliders" FunctionName="BMSMoluxHongKongModel.Store.web_getAllSliders">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getAllSliders_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getCategoryLevel3ByLevel2" FunctionName="BMSMoluxHongKongModel.Store.web_getCategoryLevel3ByLevel2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getCategoryLevel3ByLevel2_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Parent_Code" ColumnName="Parent Code" />
+          <ScalarProperty Name="RowIDLevel1" ColumnName="RowIDLevel1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getChildCategory" FunctionName="BMSMoluxHongKongModel.Store.web_getChildCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getChildCategory_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Parent_Code" ColumnName="Parent Code" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getChildCateNews" FunctionName="BMSMoluxHongKongModel.Store.web_getChildCateNews">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getChildCateNews_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="UrlCustom" ColumnName="UrlCustom" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_GetCompanyById" FunctionName="BMSMoluxHongKongModel.Store.web_GetCompanyById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_GetCompanyById_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="OpenTime" ColumnName="OpenTime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getConfigWebsite" FunctionName="BMSMoluxHongKongModel.Store.web_getConfigWebsite">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getConfigWebsite_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="PhonePurchase" ColumnName="PhonePurchase" />
+          <ScalarProperty Name="Hotline" ColumnName="Hotline" />
+          <ScalarProperty Name="CustomerService" ColumnName="CustomerService" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Email1" ColumnName="Email1" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="TitleFooter1" ColumnName="TitleFooter1" />
+          <ScalarProperty Name="TitleFooter2" ColumnName="TitleFooter2" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
+          <ScalarProperty Name="GoogleMap1" ColumnName="GoogleMap1" />
+          <ScalarProperty Name="GoogleMap2" ColumnName="GoogleMap2" />
+          <ScalarProperty Name="EmbedGoogleMap1" ColumnName="EmbedGoogleMap1" />
+          <ScalarProperty Name="EmbedGoogleMap2" ColumnName="EmbedGoogleMap2" />
+          <ScalarProperty Name="LogoBCT" ColumnName="LogoBCT" />
+          <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+          <ScalarProperty Name="LicenseDate" ColumnName="LicenseDate" />
+          <ScalarProperty Name="LicenseProvince" ColumnName="LicenseProvince" />
+          <ScalarProperty Name="IconSale" ColumnName="IconSale" />
+          <ScalarProperty Name="IconNew" ColumnName="IconNew" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getFooterByType" FunctionName="BMSMoluxHongKongModel.Store.web_getFooterByType">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getFooterByType_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getHeaderMenu" FunctionName="BMSMoluxHongKongModel.Store.web_getHeaderMenu">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getHeaderMenu_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="UrlCustom" ColumnName="UrlCustom" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getItemCategoryById" FunctionName="BMSMoluxHongKongModel.Store.web_getItemCategoryById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getItemCategoryById_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Parent_Code" ColumnName="Parent Code" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getLevel3Category" FunctionName="BMSMoluxHongKongModel.Store.web_getLevel3Category">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getLevel3Category_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Parent_Code" ColumnName="Parent Code" />
+          <ScalarProperty Name="RowIDLevel1" ColumnName="RowIDLevel1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getMultiSearchItem" FunctionName="BMSMoluxHongKongModel.Store.web_getMultiSearchItem">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getMultiSearchItem_Result">
+          <ScalarProperty Name="SortingRowNumber" ColumnName="SortingRowNumber" />
+          <ScalarProperty Name="TotalRowCount" ColumnName="TotalRowCount" />
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="Splitdata" ColumnName="Splitdata" />
+          <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getParentCategory" FunctionName="BMSMoluxHongKongModel.Store.web_getParentCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getParentCategory_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Parent_Code" ColumnName="Parent Code" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getProductAdminFilter" FunctionName="BMSMoluxHongKongModel.Store.web_getProductAdminFilter">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getProductAdminFilter_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getProductByCategory" FunctionName="BMSMoluxHongKongModel.Store.web_getProductByCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getProductByCategory_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getProductByCategoryFilter" FunctionName="BMSMoluxHongKongModel.Store.web_getProductByCategoryFilter">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getProductByCategoryFilter_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getProductDifferenceCategory" FunctionName="BMSMoluxHongKongModel.Store.web_getProductDifferenceCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getProductDifferenceCategory_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="NewsCategoryId" ColumnName="NewsCategoryId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="UrlCustom" ColumnName="UrlCustom" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Views" ColumnName="Views" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getProductSameCategory" FunctionName="BMSMoluxHongKongModel.Store.web_getProductSameCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getProductSameCategory_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="NewsCategoryId" ColumnName="NewsCategoryId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="UrlCustom" ColumnName="UrlCustom" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDesc" ColumnName="MetaDesc" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Views" ColumnName="Views" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getRecursiveItemCategory" FunctionName="BMSMoluxHongKongModel.Store.web_getRecursiveItemCategory" />
+    <FunctionImportMapping FunctionImportName="web_getSameLevelCategory" FunctionName="BMSMoluxHongKongModel.Store.web_getSameLevelCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getSameLevelCategory_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Parent_Code" ColumnName="Parent Code" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getSliderByType" FunctionName="BMSMoluxHongKongModel.Store.web_getSliderByType">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getSliderByType_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getTop5Item" FunctionName="BMSMoluxHongKongModel.Store.web_getTop5Item">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getTop5Item_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getTop5ItemLevel1" FunctionName="BMSMoluxHongKongModel.Store.web_getTop5ItemLevel1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getTop5ItemLevel1_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getTop5ItemLevel2" FunctionName="BMSMoluxHongKongModel.Store.web_getTop5ItemLevel2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getTop5ItemLevel2_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_getTop5ItemLevel3" FunctionName="BMSMoluxHongKongModel.Store.web_getTop5ItemLevel3">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_getTop5ItemLevel3_Result">
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+          <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+          <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+          <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+          <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+          <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+          <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+          <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+          <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+          <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+          <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+          <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+          <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+          <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+          <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+          <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+          <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+          <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+          <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+          <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+          <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+          <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+          <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+          <ScalarProperty Name="Critical" ColumnName="Critical" />
+          <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+          <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+          <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+          <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+          <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+          <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+          <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+          <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+          <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+          <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+          <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+          <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+          <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+          <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+          <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+          <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+          <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+          <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+          <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+          <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+          <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+          <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+          <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+          <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+          <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+          <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+          <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+          <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+          <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+          <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+          <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+          <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="List_Price" ColumnName="List Price" />
+          <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+          <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+          <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+          <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+          <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+          <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+          <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+          <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+          <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_PaymentMethodList" FunctionName="BMSMoluxHongKongModel.Store.web_PaymentMethodList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_PaymentMethodList_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Orders" ColumnName="Orders" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="web_SocialNetworkList" FunctionName="BMSMoluxHongKongModel.Store.web_SocialNetworkList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.web_SocialNetworkList_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

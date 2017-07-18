@@ -1,0 +1,15 @@
+﻿@using MOLUX.Models;
+@model IEnumerable<web_getAllPaymentMethod_Result>
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 info">
+    <div class="list-bank">
+        <div class="title-info">
+            HÌNH THỨC THANH TOÁN
+        </div>
+        @foreach (var item in Model)
+        {
+            <span class="img-bank1">
+                <img src="~/Images/PaymentMethod/@item.Logo" class="img-responsive" />
+            </span>
+        }
+    </div>
+</div>

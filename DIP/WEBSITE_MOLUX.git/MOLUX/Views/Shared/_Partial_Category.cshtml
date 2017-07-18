@@ -1,0 +1,31 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+<!--Catalog-->
+<!-- Menu -->
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12 padLeftNo" id="menu-desktop">
+    <ul class="flexy-menu orange vertical" id="hidden">
+        @foreach (var level1 in Category.CategoryParent().ToList())
+        {
+            <li class="flexymenuli">
+                <a class="icon-cate" href="/san-pham/pr@(level1.RowID)-@(level1.Code)/@Common.MakeUrlSlug(level1.Name)" title="@level1.Name">@level1.Name</a>
+                <ul class="flexy-menu-box">
+                    @foreach (var level2 in Category.CategoryChild(level1.RowID).ToList())
+                    {
+                        <div class="flexy-menu-inner">
+                            <a href="/san-pham/ch@(level1.RowID)-@(level1.Code)/@Common.MakeUrlSlug(level1.Name)?sort=0&manufacturer=0" class="menu-top-red" title="@level2.Name">@level2.Name</a>
+                            @foreach (var level3 in Category.CategoryChild(level2.RowID))
+                            {
+                                <a href="/san-pham/li@(level2.RowID)-@(level2.Code)/@Common.MakeUrlSlug(level2.Name)?sort=0&manufacturer=0" title="@level3.Name">@level3.Name</a>
+                            }
+                        </div>
+                    }
+                </ul>
+            </li>
+        }
+        <li class="flexymenuli nostyle">
+            <a class="icon-cate mg-left" href="/san-pham-khuyen-mai" title="Sản phẩm khuyến mãi">SP khuyến mãi</a>
+        </li>
+    </ul>
+</div>
+<!-- End Menu -->
+<!--End Catalog-->

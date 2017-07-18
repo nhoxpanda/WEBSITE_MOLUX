@@ -1,0 +1,53 @@
+﻿@using MOLUX.Helper
+@model MOLUX.Models.web_Footer
+
+<div id="modal-insert-manufacturer" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm mới</h4>
+            </div>
+            @using (Html.BeginForm("Create", "ConfigManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-12 col-lg-12">Danh mục</label>
+                            <div class="col-md-12 col-lg-12">
+                                <select name="TypeId" class="form-control">
+                                    @foreach (var item in ConfigWebsite.LoadContentFooter().Where(P => P.TypeId == 0))
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12 col-lg-12">Tiêu đề</label>
+                            <div class="col-md-12 col-lg-12">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12 col-lg-12">Link</label>
+                            <div class="col-md-12 col-lg-12">
+                                @Html.TextBoxFor(model => model.Link, new { @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12 col-lg-12">Sắp xếp</label>
+                            <div class="col-md-12 col-lg-12">
+                                @Html.TextBoxFor(model => model.Orders, new { @class = "form-control", @required = "required", @type = "number" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

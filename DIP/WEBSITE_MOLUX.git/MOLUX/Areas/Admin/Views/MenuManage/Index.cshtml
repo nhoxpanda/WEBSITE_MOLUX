@@ -1,0 +1,124 @@
+﻿@model MOLUX.Areas.Admin.Models.MenuViewModel
+@{
+    ViewBag.Title = "Danh sách menu hiển thị";
+}
+
+<section class="content-header">
+    <h1>
+        Danh sách menu hiển thị
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Danh sách menu hiển thị</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="callout callout-info lead">
+                        <a href="@Url.Action("Index", "MenuManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                        <a href="@Url.Action("AddMenu", "MenuManage")" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Thêm mới</a>
+                    </div>
+                </div>
+                <div class="box-body" style="margin-bottom: 30px">
+                    <header>
+                        <nav id='cssmenu'>
+                            <div id="head-mobile"></div>
+                            <div class="button"></div>
+                            <ul style="margin: 0">
+                                @foreach (var item in Model.listMenuHomePage)
+                                {
+                                    <li id="itemMenu">
+                                        <a href='#'>@item.Title</a>
+                                    </li>
+                                }
+                            </ul>
+                        </nav>
+                    </header>
+                </div>
+                <div class="box-body" id="data-customer">
+                    <table id="tableDictionary" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th> # </th>
+                                <th> Tên menu </th>
+                                <th> Số thứ tự </th>
+                                <th> MetaTitle </th>
+                                <th> MetaDescription </th>
+                                <th> Hiển thị </th>
+                                <th> Actions </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (var i = 0; i < Model.listMenu.Count; i++)
+                            {
+                                <tr class="odd gradeX">
+                                    <td> @(i + 1) </td>
+                                    <td> @Model.listMenu[i].Title </td>
+                                    <td>@Model.listMenu[i].Orders</td>
+                                    <td>@Model.listMenu[i].MetaTitle</td>
+                                    <td>@Model.listMenu[i].MetaDesc</td>
+                                    <td>@Model.listMenu[i].IsShow</td>
+                                    <td>
+                                        <a class="btn btn-xs btn-warning" href="/Admin/MenuManage/EditMenu/@Model.listMenu[i].Id">
+                                            <i class="fa fa-pencil"></i>&nbsp;Sửa
+                                        </a>
+                                        @if (Model.listMenu[i].IsShow ?? true)
+                                        {
+                                            <button id="btnVisible" class="btn btn-xs green dropdown-toggle" type="button" onclick="changeIsShow(@Model.listMenu[i].Id);">
+                                                Ẩn
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button id="btnVisible" class="btn btn-xs green dropdown-toggle" type="button" onclick="changeIsShow(@Model.listMenu[i].Id);">
+                                                Hiển thị
+                                            </button>
+                                        }
+                                        <button class="btn btn-xs btn-danger" type="button" onclick="DeleteMenu(@Model.listMenu[i].Id);">
+                                            <i class="fa fa-trash"></i>&nbsp;Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+
+    <script src="~/Scripts/myscript.js"></script>
+    <link href="~/Content/myCSS.css" rel="stylesheet" />
+    <script>
+        function changeIsShow(id) {
+            $.ajax({
+                url: "/MenuManage/ChangeIsShow",
+                data: { menuID: id },
+                type: "POST",
+                success: function (data) {
+                    if (data.result)
+                        window.location.href = "/Admin/MenuManage/Index";
+                }
+            });
+        }
+        function DeleteMenu(id) {
+            $.ajax({
+                url: "/MenuManage/DeleteMenu",
+                data: { menuID: id },
+                type: "POST",
+                success: function (data) {
+                    if (data.result)
+                        window.location.href = "/Admin/MenuManage/Index";
+                }
+            });
+        }
+        $("ul li#itemMenu:first").addClass("active");
+    </script>
+}

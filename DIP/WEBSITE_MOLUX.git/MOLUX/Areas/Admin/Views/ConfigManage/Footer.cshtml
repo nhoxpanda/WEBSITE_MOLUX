@@ -1,0 +1,111 @@
+﻿@using MOLUX.Helper
+@using MOLUX.Models
+@model IEnumerable<web_Footer>
+@{
+    ViewBag.Title = "Cấu hình footer";
+    var footer = ViewBag.Footer as web_ConfigWebsite;
+}
+
+@{int i = 1;}
+
+<section class="content-header">
+    <h1>
+        Cấu hình footer
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Cấu hình footer</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="callout callout-info lead">
+                        <a href="@Url.Action("Footer", "ConfigManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                        <a href="#modal-insert-manufacturer" data-toggle="modal" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Thêm</a>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        @foreach (var item in Model.Where(p => p.TypeId == 0).OrderBy(p => p.Orders))
+                        {
+                            <tr>
+                                <td colspan="3">
+                                    <input type="text" class="form-control" id="txtTitleFooter@(item.Id)" value="@item.Name" onchange="saveTitleFooter(@item.Id)" />
+                                </td>
+                            </tr>
+                            foreach (var child in Model.Where(p => p.TypeId == item.Id).OrderBy(p => p.Orders).ToList())
+                            {
+                                <tr id="rowItem@(child.Id)">
+                                    <td>
+                                        <a class="btn btn-xs btn-warning cursorpointer" onclick="editItem(@child.Id)"><i class="fa fa-pencil"></i>&nbsp;Sửa</a>
+                                        <a class="btn btn-xs btn-danger cursorpointer" onclick="deleteItem(@child.Id)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>
+                                    </td>
+                                    <td>@child.Orders</td>
+                                    <td>@child.Name (@child.Link)</td>
+                                </tr>
+                                i++;
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@Html.Partial("_Partial_Insert", new MOLUX.Models.web_Footer())
+<div id="data-edit"></div>
+
+@section scripts{
+    <script>
+        function editItem(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ConfigManage/Edit',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#data-edit").html(data);
+                    $("#modal-edit-manufacturer").modal("show");
+                }
+            });
+        }
+
+        function deleteItem(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ConfigManage/Delete',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#rowItem" + id).hide();
+                }
+            });
+        }
+
+        function saveTitleFooter(id) {
+            var dataPost = {
+                id: id,
+                title: $("#txtTitleFooter" + id).val()
+            };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ConfigManage/SaveTitleFooter',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+
+                },
+            });
+        }
+    </script>
+}

@@ -1,0 +1,17 @@
+﻿@using MOLUX.Models
+@model IEnumerable<web_getSliderByType_Result>
+
+<!--Slider-->
+<div class="row bg-white mgBottom">
+    <div id="owl-slide-product" class="owl-carousel">
+        @foreach (var item in Model)
+        {
+            <div class="item">
+                <a href="@item.Link" target="_blank">
+                    <img class="lazyOwl" width="598" height="180" data-src="/Images/Slider/@item.Image" alt="@item.Image" />
+                </a>
+            </div>
+        }
+    </div>
+</div>
+<!--End Slider-->

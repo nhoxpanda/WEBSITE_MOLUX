@@ -1,0 +1,55 @@
+﻿@model MOLUX.Models.web_Company
+
+<div id="modal-update-company" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Cập nhật</h4>
+            </div>
+            @using (Html.BeginForm("UpdateCompany", "ConfigManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 col-lg-2">Phòng kinh doanh</label>
+                            <div class="col-md-4 col-lg-4">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control"})
+                            </div>
+                            <label class="col-md-2 col-lg-2">Mở cửa</label>
+                            <div class="col-md-4 col-lg-4">
+                                @Html.TextBoxFor(model => model.OpenTime, new { @class = "form-control"})
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 col-lg-2">Địa chỉ</label>
+                            <div class="col-md-4 col-lg-4">
+                                @Html.TextBoxFor(model => model.Address, new { @class = "form-control"})
+                            </div>
+                            <label class="col-md-2 col-lg-2">Email</label>
+                            <div class="col-md-4 col-lg-4">
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control"})
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 col-lg-2">Di động</label>
+                            <div class="col-md-4 col-lg-4">
+                                @Html.TextBoxFor(model => model.Mobile, new { @class = "form-control"})
+                            </div>
+                            <label class="col-md-2 col-lg-2">Điện thoại bàn</label>
+                            <div class="col-md-4 col-lg-4">
+                                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

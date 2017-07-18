@@ -1,0 +1,41 @@
+﻿@model MOLUX.Models.web_Partner
+
+<div id="modal-insert-manufacturer" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm mới</h4>
+            </div>
+            @using (Html.BeginForm("Create", "PartnerManage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-12 col-lg-12">Logo</label>
+                            <div class="col-md-12 col-lg-12">
+                                @Html.TextBoxFor(model => model.Logo, new { @class = "form-control", type = "file", @required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12 col-lg-12">Link</label>
+                            <div class="col-md-12 col-lg-12">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12 col-lg-12">Sắp xếp</label>
+                            <div class="col-md-12 col-lg-12">
+                                @Html.TextBoxFor(model => model.Orders, new { @class = "form-control", @required = "required", @type = "number" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

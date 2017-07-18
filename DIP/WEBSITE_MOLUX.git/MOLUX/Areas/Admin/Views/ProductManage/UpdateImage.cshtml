@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Danh sách hình ảnh";
+}
+
+<style>
+    .dz-message {
+        cursor: pointer;
+    }
+
+    .dz-success-mark, .dz-error-mark, .dz-details {
+        display: none;
+    }
+</style>
+
+<section class="content-header">
+    <h1>
+        Danh sách hình sản phẩm "@ViewBag.Name"
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Danh sách hình sản phẩm "@ViewBag.Name"</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="callout callout-info lead">
+                        <a href="~/Admin/ProductManage/UpdateImage/@ViewBag.ID" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="jumbotron">
+                        @using (Html.BeginForm("SaveUploadedFile", "ProductManage", FormMethod.Post, new { enctype = "multipart/form-data", @class = "dropzone", @id = "dropzoneForm", @style = "text-align: center" }))
+                        {
+                            <input type="hidden" value="@ViewBag.ID" name="ID" id="txtID" />
+                                <div class="fallback">
+                                    <input name="file" type="file" multiple />
+                                    <input type="submit" value="Upload" name="btnSubmit" />
+                                </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script>
+        Dropzone.options.dropzoneForm = {
+            acceptedFiles: "image/*",
+            addRemoveLinks: true,
+            init: function () {
+                var thisDropzone = this;
+                var dataPost = { id: $("#txtID").val() };
+                $.ajax({
+                    type: "POST",
+                    url: '/Admin/ProductManage/GetAttachments',
+                    data: JSON.stringify(dataPost),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.Data != '') {
+
+                            $.each(data.Data, function (index, item) {
+                                //// Create the mock file:
+                                var mockFile = {
+                                    name: item.ItemId,
+                                    size: item.Id
+                                };
+
+                                // Call the default addedfile event handler
+                                thisDropzone.emit("addedfile", mockFile);
+
+                                // And optionally show the thumbnail of the file:
+                                thisDropzone.emit("thumbnail", mockFile, item.Image);
+
+                                // If you use the maxFiles option, make sure you adjust it to the
+                                // correct amount:
+                                //var existingFileCount = 1; // The number of files already uploaded
+                                //myDropzone.options.maxFiles = myDropzone.options.maxFiles - existingFileCount;
+
+                            });
+                        }
+                    }
+                });
+                this.on("removedfile", function (file) {
+                    var dataPost = { id: file.size };
+                    $.ajax({
+                        type: "POST",
+                        url: '/Admin/ProductManage/RemoveImage',
+                        data: JSON.stringify(dataPost),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) { }
+                    });
+                });
+            },
+        };
+    </script>
+}

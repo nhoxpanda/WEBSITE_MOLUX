@@ -1,0 +1,114 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+@model web_News
+
+@{
+    ViewBag.Title = Model.MetaTitle;
+    ViewBag.MetaDescription = Model.MetaDesc;
+    var news = ViewBag.NewsViewModel as NewsViewModel;
+}
+
+<!--Breadcrumb-->
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a itemprop="url" title="Trang chủ"><span itemprop="title">Trang chủ</span></a></li>
+        <li><a itemprop="url" href="/tin-tuc/d@(Model.Id)/@Common.MakeUrlSlug(Model.Title)" title="@Model.Title"><span itemprop="title">@Model.Title </span></a></li>
+    </ol>
+</div>
+<div class="row bg-white">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+        <div id="content">
+            <div class="news-main">
+                <div class="tit-news-main">
+                    @Model.Title
+                </div>
+                <div class="time-post">
+                    @string.Format("{0:hh:mm dd/MM/yyyy}", Model.CreatedDate)
+                </div>
+                <div class="news-content">
+                    @Html.Raw(Model.Content)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <aside class="sticky hidden-md hidden-sm hidden-xs">
+            <div class="relate-news">
+                <div class="box_browse">
+                    <div class="box-tab-news">
+                        <b>
+                            <span>Bài viết</span>
+                        </b>
+                    </div>
+                    <ul class="bb_content-news">
+                        @foreach (var li in news.ListCategory)
+                        {
+                            <li><a href="/tin-tuc/c@(li.Id)/@Common.MakeUrlSlug(li.Title)" title="@li.Title">@li.Title</a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="box_browse">
+                    <div class="box-tab-news">
+                        <b>TIN TỨC ĐƯỢC QUAN TÂM</b>
+                    </div>
+                    <ul class="bb_content-news">
+                        @foreach (var item in news.ListViews)
+                        {
+                            <div class="sm-img-news">
+                                <a href="/tin-tuc/d@(item.Id)/@Common.MakeUrlSlug(item.Title)" title="@item.Title">
+                                    <img src="~/Images/News/@item.Image" alt="@item.Title" width="92" height="69">
+                                </a> <a href="/tin-tuc/d@(item.Id)/@Common.MakeUrlSlug(item.Title)" class="sm-tit-news">@item.Title</a>
+                            </div>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+<div class="row">
+    <div class="title-same-news">
+        Tin cùng chuyên mục
+    </div>
+    <div class="list-news-top2 res_othercatenews">
+        @foreach (var item in news.SameProduct)
+        {
+            <div class="col-lg-15 col-lg-3">
+                <div class="inner-list-news">
+                    <div class="img-list-news">
+                        <a href="/tin-tuc/d@(item.Id)/@Common.MakeUrlSlug(item.Title)" title="@item.Title">
+                            <img src="~/Images/News/@item.Image" alt="@item.Title" style="width: 223px; height: 148px;" class="img-responsive">
+                        </a>
+                    </div>
+                    <a href="/tin-tuc/d@(item.Id)/@Common.MakeUrlSlug(item.Title)" class="tit-list-news">@item.Title</a>
+                    <span class="count-news">
+                        @string.Format("{0:hh:mm dd/MM/yyyy}", item.CreatedDate)
+                    </span>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="title-same-news">
+        Tin tức khác
+    </div>
+    <div class="list-news-top2 res_othernews">
+       @foreach (var item in news.DifferenceProduct)
+       {
+        <div class="col-lg-15 col-lg-3">
+            <div class="inner-list-news">
+                <div class="img-list-news">
+                    <a href="/tin-tuc/d@(item.Id)/@Common.MakeUrlSlug(item.Title)" title="@item.Title">
+                        <img src="~/Images/News/@item.Image" alt="@item.Title" style="width: 223px; height: 148px;" class="img-responsive">
+                    </a>
+                </div>
+                <a href="/tin-tuc/d@(item.Id)/@Common.MakeUrlSlug(item.Title)" class="tit-list-news">@item.Title</a>
+                <span class="count-news">
+                    @string.Format("{0:hh:mm dd/MM/yyyy}", item.CreatedDate)
+                </span>
+            </div>
+        </div>
+       }
+    </div>
+</div>

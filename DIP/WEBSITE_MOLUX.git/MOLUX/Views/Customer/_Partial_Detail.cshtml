@@ -1,0 +1,48 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+@model IEnumerable<Sales_Order_Detail>
+@{
+    int i = 1;
+    BMSMoluxHongKongEntities _db = new BMSMoluxHongKongEntities();
+}
+<div id="modal-order-detail" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="background: #fff">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><strong>DANH SÁCH SẢN PHẨM</strong></h4>
+            </div>
+            <div class="modal-body">
+                <table id="tableDictionary" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Code</th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="rowItem@(item.RowID)">
+                                <td>@i</td>
+                                <td>@item.Item_Code</td>
+                                <td>@_db.Item.FirstOrDefault(p => p.Code == item.Item_Code).Name</td>
+                                <td style="text-align: right">@string.Format("{0:##}", item.Qty)</td>
+                                <td style="text-align: right">@string.Format("{0:0,0₫}", item.Rate).Replace(",", ".")</td>
+                                <td style="text-align: right">@string.Format("{0:0,0₫}", item.Amount).Replace(",", ".")</td>
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

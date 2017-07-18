@@ -1,0 +1,159 @@
+﻿@using MOLUX.Helper
+@{ 
+    var config = ConfigWebsite.Data();
+}
+<!-- Login -->
+<div class="row bg-blue2">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 login-header">
+        <ul class="flLeft">
+            <li class="hidden-xs hidden-sm"><a href="@config.GoogleMap1" title="Molux Hong Kong" target="_blank"><i class="fa fa-globe"></i>&nbsp;Molux Hong Kong</a></li>
+            <li class="hidden-xs hidden-sm"><a href="@config.GoogleMap2" title="Molux Việt Nam" target="_blank"><i class="fa fa-globe"></i>&nbsp;Molux Việt Nam</a></li>
+        </ul>
+        <ul class="flRight">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="hidden-xs hidden-sm"><a href="/quan-ly-tai-khoan" title="Quản lý tài khoản">Quản lý tài khoản</a></li>
+                <li class="hidden-md hidden-sm hidden-xm so-doc">|</li>
+                    <li class="hidden-xs hidden-sm"><a href="/quan-ly-don-hang" title="Quản lý đơn hàng">Quản lý đơn hàng</a></li>
+                    <li class="hidden-md hidden-sm hidden-xm so-doc">|</li>
+                    <li class="hidden-xs hidden-sm"><a href="javascript:document.getElementById('logoutForm').submit()" title="Đăng xuất">Đăng xuất</a></li>
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+                }
+            }
+            else
+            {
+                <li class="hidden-xs hidden-sm">
+                    <a href="/dang-nhap"> Đăng nhập</a>
+                </li>
+                <li class="hidden-md hidden-sm hidden-xm so-doc">|</li>
+                <li class="hidden-xs hidden-sm"><a href="/dang-ky"> Đăng ký</a></li>
+            }
+        </ul>
+    </div>
+</div>
+<!-- End Login -->
+<!--logo - menu header-->
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-blue" id="header-bg">
+        <div class="col-lg-5 col-md-4 col-xm-5 col-sm-5 col-xs-12 logo">
+            <a class="a-logo" href="/">
+                <img width="250" alt="molux.vn" src="~/Content/assets/images/logo-footer.png" />
+            </a>
+        </div>
+        <div class="col-lg-7 col-md-8 col-xm-8 col-sm-7 col-xs-12 hidden-xs menu-logo">
+            @foreach (var item in Category.HeaderMenu())
+            {
+                <a class="hidden-ss hidden-sm" href="/tin-tuc/p@(item.Id)/@Common.MakeUrlSlug(item.Title)" title="@item.Title">@item.Title</a>
+            }
+            <a class="hidden-ss hidden-sm" href="/lien-he" title="Liên hệ">Liên hệ</a>
+        </div>
+    </div>
+</div>
+<!--End logo - menu header-->
+<!--social-->
+<div class="row support-header">
+    <ul class="flLeft">
+        @foreach (var item in ConfigWebsite.SocialList())
+        {
+            <li>
+                <a class="sup-a flLeft" href="@item.URL" target="_blank" title="@item.Name">
+                    <img src="~/Images/Logo/@item.Icon" title="@item.Name" alt="@item.Name" />
+                </a>
+            </li>
+        }
+    </ul>
+    <ul class="flRight">
+        <li>Mua hàng: <span>@ConfigWebsite.Data().PhonePurchase</span></li>
+        <li>Hotline: <span>@ConfigWebsite.Data().Hotline</span></li>
+        <li>CSKH: <span>@ConfigWebsite.Data().CustomerService</span></li>
+    </ul>
+</div>
+<!--End social-->
+<!-- category - search - cart-->
+<div class="row">
+    <div class="category">
+        <div class="col-lg-2 col-md-3 hidden-sm hidden-xs hidden-toggler">
+            <div class="tit-list" id="hidden-toggler">
+                <span class="icomnu homepage hidden-sm hidden-xs">
+                    <em></em>
+                    <em></em>
+                    <em></em>
+                </span>
+                <a title="Trang chủ" href="javascript:;">Danh mục sản phẩm</a>
+            </div>
+        </div>
+
+        <div id="menu-mobile" class="col-lg-2 col-sm-3 col-xs-1">
+            <div class="btn-group">
+                <button type="button" class="menupro" data-toggle="dropdown">
+                    <span class="icomnu"><em></em><em></em><em></em></span>
+                    <p>Danh mục sản phẩm</p>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    @foreach (var parent in Category.CategoryParent())
+                    {
+                        <li><a href="/san-pham/pr@(parent.RowID)-@(parent.Code)/@Common.MakeUrlSlug(parent.Name)" class="menu-mobile sgtop"><i class="iconmobile-dl"></i>@parent.Name</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-7 col-md-9 col-sm-9 col-xs-11">
+            <div class="search-pro">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="txtSearch" placeholder="Từ khóa tìm kiếm..." onkeypress="if (event.keyCode == 13) document.getElementById('btnSearch').click();" onkeyup="searchSuggest(event);" autocomplete="off">
+                    <div id="search_suggest" style="z-index: 299999; visibility: hidden; position: absolute; left: 0; top: 48px">
+                    </div>
+                    <span class="input-group-btn">
+                        <button id="btnSearch" class="btn searchbtn" type="button" onclick="searchRedirect();"><span class="icon-search"></span></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+            <div class="cart">
+                <a rel="nofollow" href="/gio-hang">GIỎ HÀNG</a>
+                <span id="countTotal">
+                    @Html.Action("_Partial_CartCount", "ShoppingCart")
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End category - search - cart-->
+<!--Catalog-->
+<div class="row menu-flex">
+    <div class="menu-banner-video">
+        <!-- Menu -->
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12 padLeftNo" id="menu-desktop">
+            <ul class="flexy-menu orange vertical" id="hidden">
+                @foreach (var level1 in Category.CategoryParent().ToList())
+                {
+                    <li class="flexymenuli">
+                        <a class="icon-cate" href="/san-pham/pr@(level1.RowID)-@(level1.Code)/@Common.MakeUrlSlug(level1.Name)" title="@level1.Name">@level1.Name</a>
+                        <ul class="flexy-menu-box">
+                            @foreach (var level2 in Category.CategoryChild(level1.RowID).ToList())
+                            {
+                                <div class="flexy-menu-inner">
+                                    <a href="/san-pham/ch@(level1.RowID)-@(level1.Code)/@Common.MakeUrlSlug(level1.Name)?sort=0&manufacturer=0" class="menu-top-red" title="@level2.Name">@level2.Name</a>
+                                    @foreach (var level3 in Category.CategoryChild(level2.RowID))
+                                    {
+                                        <a href="/san-pham/li@(level2.RowID)-@(level2.Code)/@Common.MakeUrlSlug(level2.Name)?sort=0&manufacturer=0" title="@level3.Name">@level3.Name</a>
+                                    }
+                                </div>
+                            }
+                        </ul>
+                    </li>
+                }
+                <li class="flexymenuli nostyle">
+                    <a class="icon-cate mg-left" href="/san-pham-khuyen-mai" title="Sản phẩm khuyến mãi">SP khuyến mãi</a>
+                </li>
+            </ul>
+        </div>
+        <!-- End Menu -->
+    </div>
+</div>
+<!--End Catalog-->

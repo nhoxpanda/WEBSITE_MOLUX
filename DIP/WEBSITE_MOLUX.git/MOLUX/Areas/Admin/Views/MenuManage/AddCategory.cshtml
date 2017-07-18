@@ -1,0 +1,78 @@
+﻿@model MOLUX.Areas.Admin.Models.MenuViewModel
+@{
+    ViewBag.Title = "Thêm chuyên mục tin tức";
+}
+
+<section class="content-header">
+    <h1>
+        Thêm chuyên mục tin tức
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Thêm chuyên mục tin tức</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("AddCategory", "MenuManage", FormMethod.Post, new { @class = "form-horizontal", role = "form", @dirty = "true" }))
+            {
+                <div class="box">
+                    <div class="box-header">
+                        <div class="callout callout-info lead">
+                            <a href="@Url.Action("AddCategory", "MenuManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-save"></i>&nbsp;Lưu</button>
+                            <a href="@Url.Action("Category", "MenuManage")" class="btn btn-warning"><i class="fa fa-times"></i>&nbsp;Hủy</a>
+                        </div>
+                    </div>
+                    <div class="box-body" id="data-customer">
+                        <div class="form-horizontal">
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Tên category <span class="text-red" style="color:red;">*</span></label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextBoxFor(x => Model.menu.Title, new { @class = "form-control", @placeholder = "Tên category", @maxlength = "50", @required = "required" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Menu</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.DropDownListFor(x => Model.menu.ParentId, Model.listMenuItem, "Chọn Menu", new { @class = "selectpicker show-tick form-control", @id = "parent_selected", style = "font-weight: 400;" })
+                                        </div>
+                                    </div>
+                                    @*<div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Hiển thị</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.RadioButtonFor(x => Model.menu.IsShow, "True", new { @id = "IsShowY", @checked = true }) Hiển thị
+                                            @Html.RadioButtonFor(x => Model.menu.IsShow, "False", new { @id = "IsShowN" }) Ẩn
+                                        </div>
+                                    </div>*@
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">MetaTitle</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextBoxFor(x => Model.menu.MetaTitle, new { @class = "form-control", @placeholder = "Meta", @maxlength = "50" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">MetaDescription</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextBoxFor(x => Model.menu.MetaDesc, new { @class = "form-control", @placeholder = "Mô tả meta", @maxlength = "50" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Ghi chú</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextAreaFor(x => Model.menu.Note, new { @class = "form-control", @placeholder = "Ghi chú", @maxlength = "50" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

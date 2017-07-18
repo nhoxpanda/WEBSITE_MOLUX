@@ -1,0 +1,93 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+@model IEnumerable<Sales_Order_Master>
+
+@{
+    var config = ConfigWebsite.Data();
+    ViewBag.Title = "Quản lý đơn hàng | " + config.MetaTitle;
+    BMSMoluxHongKongEntities _db = new BMSMoluxHongKongEntities();
+    int i = 1;
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li itemscope=""><a itemprop="url" title="Trang chủ"><span itemprop="title">Trang chủ</span></a></li>
+        <li itemprop="child">
+            <a itemprop="url" href="#" title="Quản lý đơn hàng">
+                <span itemprop="title">Quản lý đơn hàng</span>
+            </a>
+        </li>
+    </ol>
+</div>
+<div class="row bg-white">
+    <div class="col-lg-12 col-md-12 bg-white mgTop">
+        <table class="table table-responsive table-hover table-striped" id="tableDictionary">
+            <caption><strong>DANH SÁCH ĐƠN HÀNG</strong></caption>
+            <thead>
+                <tr style="cursor: pointer">
+                    <th>STT</th>
+                    <th>Mã đơn hàng</th>
+                    <th>Mã KH</th>
+                    <th>Họ tên</th>
+                    <th>Điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Tổng cộng</th>
+                    <th>Hình thức thanh toán</th>
+                    <th>Ngày đặt hàng</th>
+                    <th>Ngày giao hàng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr id="rowItem@(item.RowID)" style="cursor: pointer">
+                        <td>
+                            <input type="hidden" name="RowID" id="RowID" value="@item.Code" />
+                            @i
+                        </td>
+                        <td>@item.Code</td>
+                        <td>@item.Customer_Code</td>
+                        <td>@(Customers.GetCustomer(item.Customer_Code) != null ? Customers.GetCustomer(item.Customer_Code).Name : "")</td>
+                        <td>@(Customers.GetCustomer(item.Customer_Code) != null ? Customers.GetCustomer(item.Customer_Code).Phone : "")</td>
+                        <td>@(Customers.GetCustomer(item.Customer_Code) != null ? Customers.GetCustomer(item.Customer_Code).Address : "")</td>
+                        <td style="text-align: right">@string.Format("{0:0,0₫}", _db.Sales_Order_Detail.Where(p => p.Sales_Order_Code == item.Code).Sum(p => p.Amount)).Replace(",", ".")</td>
+                        <td>@Customers.GetPaymentName(item.Payment_Method_Code)</td>
+                        <td>@string.Format("{0:dd/MM/yyyy}", item.Created_Date)</td>
+                        <td>@string.Format("{0:dd/MM/yyyy}", item.Ship_Date)</td>
+                    </tr>
+                    i++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="order-data"></div>
+
+@section scripts{
+    <script>
+        $('#tableDictionary tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                $('#tableDictionary tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                var dataPost = {
+                    code: $(this).find("td:first input[type=hidden]").val()
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Customer/OrdersDetail',
+                    data: JSON.stringify(dataPost),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (data) {
+                        $("#order-data").html(data);
+                        $("#modal-order-detail").modal("show");
+                    }
+                });
+            }
+        });
+    </script>
+}

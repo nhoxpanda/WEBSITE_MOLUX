@@ -1,0 +1,70 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList<web_getAllNewsByCate_Result>
+
+@{
+    var cate = ViewBag.NewsCategory as web_NewsCategory;
+    ViewBag.Title = cate.MetaTitle;
+    ViewBag.MetaDescription = cate.MetaDesc;
+    var list = ViewBag.ListCategory as IEnumerable<web_NewsCategory>;
+}
+
+<!--Breadcrumb-->
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a itemprop="url" title="Trang chủ"><span itemprop="title">Trang chủ</span></a></li>
+        <li><a itemprop="url" href="/tin-tuc/c@(cate.Id)/@Common.MakeUrlSlug(cate.Title)" title="@cate.Title"><span itemprop="title">@cate.Title </span></a></li>
+    </ol>
+</div>
+<!--End Breadcrumb-->
+<div class="row bg-white">
+    <div class="news-list">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padLeftNo">
+                <div class="title-news-page">
+                    <span class="top-news flLeft">@cate.Title</span>
+                </div>
+                @foreach (var item in Model)
+                {
+                    <div class="list-news-2">
+                        <a href="/tin-tuc/d@(item.Id)/@Common.MakeUrlSlug(item.Title)" title="@item.Title" class="img-list-news-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <img src="~/Images/News/@item.Image" alt="@item.Title" class="img-responsive">
+                        </a>
+                        <div class="content-list-news-2 col-lg-9 col-md-9 col-sm-9">
+                            <div class="tit-list-news-2">
+                                <a href="/tin-tuc/d@(item.Id)/@Common.MakeUrlSlug(item.Title)">@item.Title</a>
+                            </div>
+                            <div class="time-post-news">
+                                @string.Format("{0:hh:mm dd/MM/yyyy}", item.CreatedDate)
+                            </div>
+                            <div class="des-list-news-2">
+                                @Html.Raw(item.Description)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                }
+                <div class="col-lg-12 order">
+                    <div class="col-lg-offset-9 flRight">
+                        @Html.PagedListPager(Model, page => "/tin-tuc/c" + cate.Id + "/" + Common.MakeUrlSlug(cate.Title) + "?page=" + page)  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 hidden-xs hidden-sm col-md-3">
+            <div class="box_browse">
+                <div class="box-tab-news">
+                    <b><span>@cate.Title</span></b>
+                </div>
+                <ul class="bb_content-news">
+                    @foreach (var li in list)
+                    {
+                        <li><a href="/tin-tuc/c@(li.Id)/@Common.MakeUrlSlug(li.Title)" title="@li.Title">@li.Title</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

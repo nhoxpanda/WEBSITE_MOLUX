@@ -1,0 +1,257 @@
+.left_content{
+	width: 69%;
+	float: left;
+}
+.right_content{
+	width: 29%;
+	float: right;
+}
+.top_left_content{
+	width: 100%;
+}
+.left_top_left_content{
+	width: 70%;
+	float: left;
+}
+.right_top_left_content{
+	float: right;
+	width: 28%;
+}
+.left_top_left_content h3{
+	font-size: 20px;
+}
+.right_top_left_content article,.left_top_left_content article{
+	width: 100%;
+	margin: 0 0 5px 0;
+}
+.right_news p a{
+    color:#c69a39;
+    font-style: normal;
+}
+.img_news_1{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	text-align: center;
+}
+.img_news_1 img{
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: cover;
+}
+.detail_new_1{
+	width: 100%;
+	margin:10px 0;
+}
+.detail_new_1 a,.right_top_left_content a{
+	text-decoration: none;
+	color: #424242;
+}
+.detail_new_1 p{
+	line-height: 1.3em;
+	font-size: 14px;
+	color: #4a4a4a;
+}
+.img_new_2{
+	width: 100%;
+	height: auto;
+	text-align: center;
+	overflow: hidden;
+	margin: 0 0 10px 0;	
+}
+.img_new_2 img{
+	max-width: 100%;
+	
+	object-fit: cover;
+}
+.right_top_left_content article{
+	padding: 15px 0;
+	margin: 0;
+	border-bottom: 1px solid #ddd;
+	box-sizing: border-box;
+}
+.right_top_left_content article:nth-child(1) h3{
+	font-size: 16px;
+	font-weight: bold;
+}
+.right_top_left_content article h3{
+	font-size: 16px;
+	font-weight: normal;
+}
+.right_top_left_content article:first-child{
+	padding: 0 0 15px 0;
+}
+.right_top_left_content article:last-child{
+	border: none;
+}
+.bottom_left_content{
+	width: 100%;
+	border-top: 1px solid #ddd;
+	padding: 10px 0 0 0;
+}
+.bottom_left_content article{
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+	box-sizing: border-box;
+	padding: 15px 0;
+}
+.bottom_left_content article:last-child{
+	border:none;
+}
+.bottom_left_content h3{
+	font-size: 16px;
+	color: #424242;
+	margin: 2px 0 5px 0;
+}
+/*------------------- css right content -------------------*/
+.right_news{
+	width: 69%;
+	float: right;
+}
+.right_news p:nth-child(2){
+	font-size: 14px;
+	color: #333;
+	font-style: italic;
+}
+.right_news p:nth-child(3){
+	font-size: 14px;
+	color: #4a4a4a;
+	line-height: 1.4em;
+	margin: 5px 0;
+}
+.right_news a{
+	text-decoration: none;
+	color: #333;
+}
+.img_news_3{
+	width: 242px;
+	height: 140px;
+	overflow: hidden;
+	text-align: center;
+	float: left;
+}
+.img_news_3 img{
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: cover;
+}
+.danhmuc{
+	width: 100%;
+}
+.title_danhmuc{
+	width: 100%;
+	font-size: 16px;
+	text-transform: uppercase;
+	border-bottom: 2px solid #c69a39;
+	box-sizing: border-box;
+	font-weight: bold;
+	color: #c69a39;
+	padding: 6px 0 6px 10px;
+}
+.sp_new{
+	width: 100%;
+	padding: 15px;
+	border-bottom: 1px solid #ddd;
+	box-sizing: border-box;
+}
+.sp_new:last-child{
+	border: none;
+}
+.img_sp_new{
+	width: 29%;
+	float: left;
+	height:80px;
+	overflow: hidden;
+	text-align: center;
+}
+.img_sp_new img{
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: cover;
+}
+.detail_sp_new{
+	width: 69%;
+	float: right;
+}
+.detail_sp_new p:nth-child(1){
+	font-size: 17px;
+	color: #ddd;
+	margin: 10px 0 5px 0;
+}
+.detail_sp_new a{
+	text-decoration: none;
+	color: #212121;
+}
+.detail_sp_new p:nth-child(2){
+	font-size: 14px;
+	color: red;
+}
+.khuyenmai{
+	width: 100%;
+}
+.khuyenmai article:nth-child(1){
+	width: 100%;
+	margin: 10px 0;
+	border-bottom: 1px solid #ddd;
+	padding: 0 0 15px 0;
+}
+.khuyenmai article{
+	width: 50%;
+	float: left;
+	margin: 10px 0;	
+}
+.khuyenmai article:nth-child(1) .img_km{
+	height: 191px;
+}
+.img_km{
+	width: 100%;
+	height:100px;
+	overflow: hidden;
+	text-align: center;
+}
+.img_km img{
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: cover;
+}
+.khuyenmai article a{
+	text-decoration: none;
+	font-size: 14px;
+	color: #333;
+	font-weight:normal;
+	display: block;
+	margin: 10px 0 0 0;
+}
+.khuyenmai article:first-child a{
+	font-weight: bold;
+}
+.top_con{
+	border-top: 1px solid #e9e9ea;
+	border-bottom: 1px solid #e9e9ea;
+	box-sizing: border-box;
+    margin:0 0 25px 0;
+}
+.top_con p{
+	padding: 12px 0;
+	font-size: 14px;
+	float: left;
+}
+.top_con a{
+	text-decoration: none;
+	font-size: 14px;
+	color: #c69a39;
+	margin: 12px 0 12px 15px;
+	display: inline-block;
+}
+.intro_cate p{
+	font-size: 14px;
+	margin: 12px 0;
+	float: left;
+    width: 100%;
+}
+.intro_cate a{
+	text-decoration: none;
+	color: #c69a39;
+	float: right;
+	margin: 0 20px 0 0;
+}

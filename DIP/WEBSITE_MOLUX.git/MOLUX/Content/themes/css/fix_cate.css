@@ -1,0 +1,224 @@
+.top_con {
+	width: 100%;
+    height: 42px;
+}
+.top_con{
+	border-top: 1px solid #e9e9ea;
+	border-bottom: 1px solid #e9e9ea;
+	box-sizing: border-box;
+}
+.top_con p{
+	padding: 12px 0;
+	font-size: 14px;
+	float: left;
+}
+.top_con a{
+	text-decoration: none;
+	font-size: 14px;
+	color: #c69a39;
+	margin: 12px 0 12px 15px;
+	display: inline-block;
+}
+.top_con select{
+	float: right;
+	margin: 12px 0;
+	color: #58595b;
+	border: none;
+	outline: none;
+}
+.intro_cate{
+	width: 100%;
+    padding: 15px 0px;
+}
+.intro_cate .intro_cate_title {
+	font-size: 16px;
+    line-height: 1.3em;
+}
+.intro_cate .intro_cate_content {
+	font-size: 14px;
+    padding: 10px 0px;
+    position: relative;
+    height: 32px;
+}
+.intro_cate .intro_cate_content .intro_cate_more {
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    padding: 0px 5px;
+    position: absolute;
+    top: 2px;
+    right: 0px;
+    background: #fff;
+}
+.ser{
+	width: 100%;
+}
+.ser_con{
+	width: 20%;
+	float: left;
+	border: 1px solid #ebecec;
+	box-sizing: border-box;
+}
+.ser_title{
+	font-size: 14px;
+	color: #58595b;
+	margin: 15px 0;
+}
+.nam_ser a{
+	text-decoration: none;
+	font-size: 14px;
+	color: #231f20;
+	font-weight: bold;
+}
+.left_ser{
+	text-align: left;
+	width: 60%;
+	float: left;
+	margin: 10px 0 10px 15px;
+}
+.right_ser{
+	width: 30%;
+	float: right;
+	margin: 40px 0 0 0;
+}
+.right_ser a{
+	margin: 0;
+}
+.ser_image{
+	width: 100%;
+	height: 150px;
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+}
+.ser_image img{
+	max-height: 100%;
+	max-width: 100%;
+	object-fit: cover;
+	transition: 0.5s all ease;
+}
+.ser_image:hover img{
+	-webkit-filter: blur(1px); /* Chrome, Safari, Opera */
+    filter: blur(1px);
+}
+.ser_image:hover .mask{
+	opacity: 1;
+	visibility: visible;
+	top: 0;
+}
+.sale_pr{
+	font-size: 14px;
+	color: #727272;
+	font-weight: bold;
+	
+}
+.per{
+	text-decoration: line-through;
+}
+.left_ser .gia_pro{
+	margin: 4px 0;
+	font-size: 14px;
+}
+.btn_mua{
+	text-decoration: none;
+	color: white;
+	border-radius: 5px;
+	padding: 6px 0;
+	width: 60px;
+	font-size: 12px;
+	text-align: center;
+	text-transform: uppercase;
+	display: block;
+	margin: 15px 0 15px 0;
+background: #fa9308; /* Old browsers */
+background: -moz-linear-gradient(top,  #fa9308 0%, #fa6f1c 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #fa9308 0%,#fa6f1c 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #fa9308 0%,#fa6f1c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fa9308', endColorstr='#fa6f1c',GradientType=0 ); /* IE6-9 */
+
+}
+.gia_pro{
+	color: red;
+}
+.news{
+	width: 100%;
+	border-top: 1px solid #f1f1f1;
+	margin: 20px 0 0 0;
+}
+.new_con{
+	width: 50%;
+	float: left;
+	margin: 20px 0 10px 0;
+}
+.news_img{
+	height: 135px;
+	width: 135px;
+	overflow: hidden;
+	float: left;
+	margin: 10px;
+	position: relative;
+	text-align: center;
+}
+.news_img:hover img{
+	-webkit-filter: grayscale(50%); /* Chrome, Safari, Opera */
+    filter: grayscale(50%);
+}
+
+.news_img img{
+	max-height: 100%;
+	max-width: 100%;
+	object-fit: cover;
+	transition: 0.5s all ease;
+}
+.right_new_home{
+	width: 430px;
+	float: right;
+}
+.title_new_home a{
+	font-size: 16px;
+	color: #2b2b2b;
+	display: block;
+	font-weight: bold;
+	margin: 20px 0 7px 0;
+	text-decoration: none;
+}
+.detail_new_home{
+	font-size: 14px;
+	color: #58595b;
+}
+.mask{
+	position: absolute;
+	left: 0;
+	top: 200px;
+	background:rgba(224, 224, 224, 0.91);
+	width: 100%;
+	height: 100%;
+	color: black;
+	text-align: left;
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.6s all ease;
+}
+.mask p{
+	margin: 5px 0 5px 15px;
+	font-size: 13px;
+}
+.mask p:before{
+	content: "-";
+	float: left;
+	font-size: 13px;
+	margin: 0 5px;
+}
+.mask p:first-child{
+	margin: 15px 0 5px 15px;
+}
+.phone{
+    width: 120px;
+    float: none;
+    margin: 0 auto;
+    height:120px;
+    display: none;
+}
+.content{
+    margin:0 0 20px 0;
+}

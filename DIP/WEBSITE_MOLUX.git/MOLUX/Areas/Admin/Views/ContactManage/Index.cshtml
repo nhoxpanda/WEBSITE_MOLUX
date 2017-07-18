@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MOLUX.Models.web_Contact>
+@{
+    ViewBag.Title = "Danh sách khách hàng đăng ký nhận bản tin";
+}
+
+@{int i = 1;}
+
+<section class="content-header">
+    <h1>
+        Danh sách khách hàng đăng ký nhận bản tin
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Danh sách khách hàng đăng ký nhận bản tin</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="callout callout-info lead">
+                        <a href="@Url.Action("Index", "ContactManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                    </div>
+                </div>
+                <div class="box-body" id="data-customer">
+                    <table id="tableDictionary" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Email</th>
+                                <th>Ngày đăng ký</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="rowItem@(item.Id)">
+                                    <td>@i</td>
+                                    <td>@item.Email</td>
+                                    <td>@string.Format("{0:dd/MM/yyyy}", item.CreatedDate)</td>
+                                </tr>
+                                i++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

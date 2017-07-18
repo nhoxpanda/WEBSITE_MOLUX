@@ -1,0 +1,122 @@
+﻿@model MOLUX.Areas.Admin.Models.PostViewModel
+@{
+    ViewBag.Title = "Cập nhật bài viết - tin tức";
+}
+
+<section class="content-header">
+    <h1>
+        Cập nhật bài viết - tin tức
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Cập nhật bài viết - tin tức</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("EditPost", "PostManage", FormMethod.Post, new { @class = "form-horizontal", role = "form", @dirty = "true", enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(model => model.post.Id)
+                @Html.HiddenFor(model => model.post.Image)
+                @Html.HiddenFor(model => model.post.IsDelete)
+                @Html.HiddenFor(model => model.post.IsShow)
+                @Html.HiddenFor(model => model.post.CreatedDate)
+                @Html.HiddenFor(model => model.post.Views)
+                @Html.HiddenFor(model => model.post.Orders)
+                @Html.HiddenFor(model => model.post.ParentId)
+                @Html.HiddenFor(model => model.post.NewsCategoryId)
+                <div class="box">
+                    <div class="box-header">
+                        <div class="callout callout-info lead">
+                            <a href="@Url.Action("EditPost", "PostManage", new { id = Model.post.Id })" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                            <button type="submit" class="btn btn-danger" name="btnLuu"><i class="fa fa-save"></i>&nbsp;Lưu</button>
+                            <a href="@Url.Action("Index", "PostManage")" class="btn btn-warning"><i class="fa fa-times"></i>&nbsp;Hủy</a>
+                        </div>
+                    </div>
+                    <div class="box-body" id="data-customer">
+                        <div class="form-horizontal">
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Tiêu đề <span class="text-red" style="color:red;">*</span></label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextBoxFor(x => Model.post.Title, new { @class = "form-control", @placeholder = "Tên bài viết", @maxlength = "50" })
+                                        </div>
+                                    </div>
+                                    @*<div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Menu</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(x => Model.Temp, Model.listMenuItem, "Chọn Menu", new { @class = "selectpicker show-tick form-control", @id = "menu_selected", style = "font-weight: 400;" })
+                                        </div>
+                                        <label class="control-label col-lg-2 col-md-2">Chuyên mục</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            @Html.DropDownListFor(x => Model.post.NewsCategoryId, Model.listCateItem, "Chọn chuyên mục", new { @class = "selectpicker show-tick form-control", @id = "cate_selected", style = "font-weight: 400;" })
+                                        </div>
+                                    </div>*@
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Hình đại diện</label>
+                                        <div class="col-lg-4 col-md-4">
+                                            <img src="~/Images/News/@Model.post.Image" class="img-responsive" style="width: 200px" />
+                                            <input type="file" name="Image" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Mô tả ngắn</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextAreaFor(x => Model.post.Description, new { @class = "form-control", @placeholder = "Mô tả ngắn" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">MetaTitle</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextBoxFor(x => Model.post.MetaTitle, new { @class = "form-control", @placeholder = "Meta", @maxlength = "50" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">MetaDescription</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextBoxFor(x => Model.post.MetaDesc, new { @class = "form-control", @placeholder = "Mô tả meta", @maxlength = "50" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-2 col-md-2">Nội dung</label>
+                                        <div class="col-lg-10 col-md-10">
+                                            @Html.TextAreaFor(x => Model.post.Content, new { @id = "contentPost", @class = "form-control", @placeholder = "Nội dung", @maxlength = "50" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@section scripts {
+<script src="~/CKEditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("contentPost");
+
+        $("#menu_selected").change(function () {
+            var id = Number($('#menu_selected option:selected').val());
+            $.ajax({
+                url: "/PostManage/LoadCate",
+                data: { ID: id },
+                type: "GET",
+                success: function (data) {
+                    var arr = $.parseJSON(JSON.stringify(data.listCateItem));
+                    $("#cate_selected").empty();
+                    $("#cate_selected").append($("<option></option>").val("0").html("Chọn chuyên mục"));
+                    $.each(arr, function (i, obj) {
+                        $("#cate_selected").append($("<option></option>").val(obj.Value).html(obj.Text));
+                    });
+                }
+            });
+        });
+    </script>
+}
+

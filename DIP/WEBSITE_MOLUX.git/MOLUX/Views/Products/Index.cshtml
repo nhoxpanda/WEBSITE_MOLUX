@@ -1,0 +1,104 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+@model ProductViewModel
+
+@{
+    var cate = ViewBag.Item_Category as Item_Category;
+    ViewBag.Title = cate.MetaTitle;
+    ViewBag.MetaDescription = cate.MetaDescription;
+}
+<!--Breadcrumb-->
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a itemprop="url" title="Trang chủ"><span itemprop="title">Trang chủ</span></a></li>
+        <li><a itemprop="url" href="#" title=""><span itemprop="title">@cate.Name</span></a></li>
+    </ol>
+</div>
+<!--End Breadcrumb-->
+<!--Slider-->
+@Html.Action("_Partial_Slider2", "Home")
+<!--End Slider-->
+
+<div class="row bg-white">
+    <div class="list-cate">
+        @foreach (var item in Model.Level2)
+        {
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 col-xm-3 padLeftNo">
+                <li class="sc_item">
+                    <div class="sc_bar">
+                        <h3>
+                            <a title="@item.Name" href="/san-pham/ch@(item.RowID)-@(item.Code)/@Common.MakeUrlSlug(item.Name)?sort=0&manufacturer=0">@item.Name</a>
+                        </h3>
+                    </div>
+                </li>
+            </div>
+        }
+    </div>
+</div>
+
+@foreach (var parent in Model.Level2)
+{
+    <div class="row hidden-lg mgTop mgBottom">
+        <span class="title-tag-m">
+            <a href="/san-pham/ch@(parent.RowID)-@(parent.Code)/@Common.MakeUrlSlug(parent.Name)?sort=0&manufacturer=0">@parent.Name</a>
+        </span>
+    </div>
+    <div class="row bg-white product-list">
+        <div class="title-product">
+            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12 hidden-xs hidden-sm hidden-md padLeftNo padRightNo">
+                <div class="title">
+                    <a href="/san-pham/ch@(parent.RowID)-@(parent.Code)/@Common.MakeUrlSlug(parent.Name)?sort=0&manufacturer=0">@parent.Name</a>
+                </div>
+            </div>
+            <div class="col-lg-10 col-md-9 col-sm-9 hidden-xs hidden-sm hidden-md border-bt">
+                <div class="title-list-product">
+                    <ul>
+                        @foreach (var child in Category.CategoryChild(parent.RowID))
+                        {
+                            <li><a href="/san-pham/li@(child.RowID)-@(child.Code)/@Common.MakeUrlSlug(child.Name)?sort=0&manufacturer=0" title="@child.Name">@child.Name</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-white">
+        <div class="col-lg-12 list-nm">
+            @foreach (var item in Product.ProductLevel2(parent.RowID))
+            {
+                <div class="col-lg-15 col-lg-3 col-md-2 col-sm-2 col-xs-4 border-rb border-home product">
+                    <div class="fixed-image-auto-height owl-item">
+                        <a href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)" title="@item.Name">
+                            <div class="image-wrapper">
+                                @if (item.IsNew == true || item.IsSale == true)
+                                {
+                                    <p class="salenew hidden-xs">
+                                        <img src="~/Images/Logo/@(item.IsSale == true ? ConfigWebsite.Data().IconSale : ConfigWebsite.Data().IconNew)" class="m-lazy img-responsive" title="" alt="" style="width: 40px" />
+                                    </p>
+                                }
+                                <img src="http://103.53.231.68:400/MCS/@item.Picture" onerror="this.src='/Images/Products/noimage.gif'" class="m-lazy img-responsive" alt="@item.Name" style="padding: 10px">
+                                @if (!string.IsNullOrEmpty(item.LogoManufacturer))
+                                {
+                                    <p class="manufacturer hidden-xs">
+                                        <img src="~/Images/Manufacturer/@item.LogoManufacturer" class="m-lazy img-responsive" title="" alt="" style="width: 80px" />
+                                    </p>
+                                }
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-name">
+                        <a title="@item.Name" href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)">@item.Name</a>
+                    </div>
+                    <div class="col-md-12 nk-price-section clearfix">
+                        <div class="col-md-7" style="text-align: left">
+                            <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ</span>
+                        </div>
+                        <div class="col-md-5" style="text-align: right; padding-right: 5px;">
+                            <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Purchase_Price).Replace(",", ".")</span>đ</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

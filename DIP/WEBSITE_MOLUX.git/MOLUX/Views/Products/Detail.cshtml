@@ -1,0 +1,357 @@
+﻿@using MOLUX.Models
+@using MOLUX.Helper
+@model Item
+
+@{
+    var ProductViewModel = ViewBag.ProductViewModel as ProductViewModel;
+    ViewBag.Title = Model.MetaTitle;
+    ViewBag.MetaDescription = Model.MetaDescription;
+}
+@section styles{
+    <link href="~/Content/xzoom/xzoom.css" rel="stylesheet" />
+    <link href="~/Content/xzoom/magnific-popup.css" rel="stylesheet" />
+    <style>
+        ul li.product {
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        input[type=number]::-webkit-inner-spin-button {
+            opacity: 1;
+        }
+
+        .quantity {
+            margin: 11px 0;
+        }
+    </style>
+}
+<!--Breadcrumb-->
+<div class="row">
+    <ol class="breadcrumb">
+        <li itemscope=""><a itemprop="url" title="Trang chủ"><span itemprop="title">Trang chủ</span></a></li>
+        <li itemprop="child"><a itemprop="url" href="" title="@Model.Name"><span itemprop="title">@Model.Name</span></a></li>
+    </ol>
+</div>
+<!--End Breadcrumb-->
+<div class="row bg-white">
+    <div class="col-lg-12 bg-white mgTop">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 tit-des-detail">
+            <div class="img-product-detail col-lg-6 col-md-6 col-sm-6 col-xs-12 paddingLNone">
+                <div style="padding: 0 20px 20px 20px;" class="xzoom-container">
+                    <img class="img-responsive img-thumbnail xzoom" id="xzoom-magnific" onerror="this.src='/Images/Products/noimage.gif'" src="http://103.53.231.68:400/MCS/@Model.Picture" xoriginal="http://103.53.231.68:400/MCS/@Model.Picture" />
+                    <ul class="xzoom-thumbs bxslider" id="bxsliderImages">
+                        <li>
+                            <a href="http://103.53.231.68:400/MCS/@Model.Picture">
+                                <img class="xzoom-gallery5 xzoom-gallery" width="80" src="http://103.53.231.68:400/MCS/@Model.Picture" xpreview="http://103.53.231.68:400/MCS/@Model.Picture">
+                            </a>
+                        </li>
+                        @foreach (var item in Model.web_ItemImage)
+                        {
+                            <li>
+                                <a href="/Images/Products/@item.Image">
+                                    <img class="xzoom-gallery5 xzoom-gallery" width="80" src="/Images/Products/@item.Image">
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="info-product-detail col-lg-6 col-md-6 col-sm-6 col-xs-12 paddingLNone paddingRNone">
+                <div class="bg-white">
+                    <div class="info-price">
+                        <h1><span>@Model.Name</span></h1>
+                        <div class="modeldetail">
+                            <ul>
+                                <li><b>Mã sản phẩm: </b>@Model.Code</li>
+                                <li><b>Xuất xứ: </b>Chính hãng</li>
+                                <li><b>Hãng sản xuất: </b><a href="#" title="@Model.Name @Model.Manufacturer_Code">@Model.Manufacturer_Code</a></li>
+                                <li>
+                                    @Html.Raw(Model.ShortDesc)
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="func_stock">
+                            <div class="avaiable"><span class="icon-avai"></span><p>Còn hàng | </p></div>
+                            <div class="info-wan">
+                                <span class="icon-wan"></span>
+                                <p>
+                                    Bảo hành: 24 tháng
+                                    @*<a class="csbaohanh" target="_blank" href="/tin-tuc/chinh-sach/chinh-sach-bao-hanh-tran-anh-n516" title="Chính sách bảo hành">Chính sách bảo hành</a>*@<a class="csbaohanh" target="_blank" href="/tin-tuc/chinh-sach/chinh-sach-bao-hanh-tran-anh-n516" title="Chính sách bảo hành"></a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="price-city">
+                            <p>
+                                Chọn màu sắc:
+                            </p>
+                            <div class="dropdown">
+                                <select class="dropbtn" name="ddlColor" id="ddlColor">
+                                    @foreach (var item in ProductViewModel.Color)
+                                    {
+                                        <option value="@item.SizeColorId">@item.web_SizeColor.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <p>
+                                Chọn kích thước:
+                            </p>
+                            <div class="dropdown">
+                                <select class="dropbtn" name="ddlSize" id="ddlSize">
+                                    @foreach (var item in ProductViewModel.Size)
+                                    {
+                                        <option value="@item.SizeColorId">@item.web_SizeColor.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="price-detail">
+                            <div class="price-dt1">
+                            </div>
+                            <div class="price-dt2">
+                                <div class="">
+                                    <small class="real-price">
+                                        @string.Format("{0:0,0đ}", Model.Sale_Price).Replace(",", ".")
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="price-vat">
+                                @string.Format("{0:0,0₫}", Model.Purchase_Price).Replace(",", ".")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ba-button">
+                        <ul>
+                            <li style="width: 80px;">
+                                <div class="quantity">
+                                    <input type="number" min="1" max="30" step="1" value="1" class="form-control" style="width: 60px; height: 32px" />
+                                </div>
+                            </li>
+                            <li>
+                                <a style="cursor: pointer" onclick="addToCart(@Model.RowID)" class="buynow calltobuy" title="Mua luôn @Model.Name">
+                                    Thêm vào giỏ
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <!-- tab mô tả sản phẩm - thông số kỹ thuật -->
+            <div class="tabbable" style="padding: 5px;">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#mota" data-toggle="tab">Mô tả sản phẩm</a>
+                    </li>
+                    <li>
+                        <a href="#thongso" data-toggle="tab">Thông số kỹ thuật</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="mota">
+                        <div class="product-content">
+                            @Html.Raw(Model.Description)
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="thongso">
+                        <div class="product-content">
+                            Thông số kỹ thuật
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+            <div class="relate-product">
+                <div class="title-product-detail">
+                    <div class="title tit-relate-product">
+                        <a>SẢN PHẨM KHÁC</a>
+                    </div>
+                </div>
+                <div class="slider relate-product-inner slick-initialized slick-slider">
+                    <div aria-live="polite" class="slick-list draggable">
+                        <ul class="slick-track bxslider" id="bxsliderProduct" role="listbox" style="opacity: 1;">
+                            @foreach (var item in ProductViewModel.TheOther)
+                            {
+                                <li class="col-lg-12 col-md-12 col-sm-12 border-rb border-home product">
+                                    <div class="fixed-image-auto-height owl-item">
+                                        <a href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)" title="@item.Name">
+                                            <div class="image-wrapper">
+                                                @if (item.IsNew == true || item.IsSale == true)
+                                                {
+                                                    <p class="salenew hidden-xs" style="margin: 26px 10px">
+                                                        <img src="~/Images/Logo/@(item.IsSale == true ? ConfigWebsite.Data().IconSale : ConfigWebsite.Data().IconNew)" class="m-lazy img-responsive" title="" alt="" style="width: 40px" />
+                                                    </p>
+                                                }
+                                                <img src="http://103.53.231.68:400/MCS/@item.Picture" onerror="this.src='/Images/Products/noimage.gif'" class="m-lazy img-responsive" alt="@item.Name" style="padding: 0 10px">
+                                                @if (!string.IsNullOrEmpty(item.LogoManufacturer))
+                                                {
+                                                    <p class="manufacturer hidden-xs">
+                                                        <img src="~/Images/Manufacturer/@item.LogoManufacturer" class="m-lazy img-responsive" title="" alt="" style="width: 80px" />
+                                                    </p>
+                                                }
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="product-name">
+                                        <a title="@item.Name" href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)">@item.Name</a>
+                                    </div>
+                                    <div class="col-md-12 nk-price-section clearfix">
+                                        <div class="col-md-7" style="text-align: left">
+                                            <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ</span>
+                                        </div>
+                                        <div class="col-md-5" style="text-align: right; padding-right: 5px;">
+                                            <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Purchase_Price).Replace(",", ".")</span>đ</div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- sản phẩm cùng loại -->
+<div class="row bg-white product-list">
+    <div class="col-lg-12 col-md-12 col-sm-12 padLeftNo padRightNo">
+        <div class="title-product-detail">
+            <div class="title">
+                <a href="#">SẢN PHẨM CÙNG LOẠI</a>
+            </div>
+        </div>
+        <div class="col-lg-12 list-nm owl-theme flexslider" id="flexslider1">
+            <ul class="slides">
+                @foreach (var item in ProductViewModel.TheSameCategory)
+                {
+                    <li class="col-lg-15 col-lg-3 col-md-2 col-sm-2 col-xs-4 border-rb border-home product">
+                        <div class="fixed-image-auto-height owl-item">
+                            <a href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)" title="@item.Name">
+                                <div class="image-wrapper">
+                                    @if (item.IsNew == true || item.IsSale == true)
+                                    {
+                                        <p class="salenew hidden-xs">
+                                            <img src="~/Images/Logo/@(item.IsSale == true ? ConfigWebsite.Data().IconSale : ConfigWebsite.Data().IconNew)" class="m-lazy img-responsive" title="" alt="" style="width: 40px" />
+                                        </p>
+                                    }
+                                    <img src="http://103.53.231.68:400/MCS/@item.Picture" onerror="this.src='/Images/Products/noimage.gif'" class="m-lazy img-responsive" alt="@item.Name" style="padding: 10px">
+                                    @if (!string.IsNullOrEmpty(item.LogoManufacturer))
+                                    {
+                                        <p class="manufacturer hidden-xs">
+                                            <img src="~/Images/Manufacturer/@item.LogoManufacturer" class="m-lazy img-responsive" title="" alt="" style="width: 80px" />
+                                        </p>
+                                    }
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-name">
+                            <a title="@item.Name" href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)">@item.Name</a>
+                        </div>
+                        <div class="col-md-12 nk-price-section clearfix">
+                            <div class="col-md-7" style="text-align: left">
+                                <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ</span>
+                            </div>
+                            <div class="col-md-5" style="text-align: right; padding-right: 5px;">
+                                <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Purchase_Price).Replace(",", ".")</span>đ</div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- sản phẩm cùng thương hiệu -->
+<div class="row bg-white product-list">
+    <div class="col-lg-12 col-md-12 col-sm-12 padLeftNo padRightNo">
+        <div class="title-product-detail">
+            <div class="title">
+                <a href="#">SẢN PHẨM CÙNG HÃNG</a>
+            </div>
+        </div>
+        <div class="col-lg-12 list-nm owl-theme flexslider" id="flexslider2">
+            <ul class="slides">
+                @foreach (var item in ProductViewModel.TheSameManufacturer)
+                {
+                    <li class="col-lg-15 col-lg-3 col-md-2 col-sm-2 col-xs-4 border-rb border-home product">
+                        <div class="fixed-image-auto-height">
+                            <a href="/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)" title="@item.Name">
+                                <div class="image-wrapper">
+                                    @if (item.IsNew == true || item.IsSale == true)
+                                    {
+                                        <p class="salenew hidden-xs">
+                                            <img src="~/Images/Logo/@(item.IsSale == true ? ConfigWebsite.Data().IconSale : ConfigWebsite.Data().IconNew)" class="m-lazy img-responsive" title="" alt="" style="width: 40px" />
+                                        </p>
+                                    }
+                                    <img src="http://103.53.231.68:400/MCS/@item.Picture" onerror="this.src='/Images/Products/noimage.gif'" class="m-lazy img-responsive" alt="@item.Name" style="padding: 10px">
+                                    @if (!string.IsNullOrEmpty(item.LogoManufacturer))
+                                    {
+                                        <p class="manufacturer hidden-xs">
+                                            <img src="~/Images/Manufacturer/@item.LogoManufacturer" class="m-lazy img-responsive" title="" alt="" style="width: 80px" />
+                                        </p>
+                                    }
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-name">
+                            <a title="@item.Name" href="/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)">@item.Name</a>
+                        </div>
+                        <div class="col-md-12 nk-price-section clearfix">
+                            <div class="col-md-7" style="text-align: left">
+                                <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ</span>
+                            </div>
+                            <div class="col-md-5" style="text-align: right; padding-right: 5px;">
+                                <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Purchase_Price).Replace(",", ".")</span>đ</div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="frmNotice"></div>
+
+@section scripts{
+    <script src="~/Content/assets/js/shCore.js"></script>
+    <script src="~/Content/assets/js/shBrushXml.js"></script>
+    <script src="~/Content/assets/js/shBrushJScript.js"></script>
+    <script>
+        function addToCart(id) {
+            var dataPost = {
+                id: id,
+                color: $("#ddlColor").val(),
+                size: $("#ddlSize").val()
+            };
+            $.ajax({
+                type: "POST",
+                url: '/ShoppingCart/AddToCart',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $.notify("Đã đưa sản phẩm này vào giỏ hàng!", { animationType: "scale", color: "#fff", background: "#00C907", icon: "check" });
+                    $("#countTotal").text(data);
+                }
+            });
+        }
+    </script>
+    <script src="~/Content/xzoom/xzoom.js"></script>
+    <script src="~/Content/xzoom/magnific-popup.js"></script>
+    <script src="~/Content/assets/js/detail-product.js"></script>
+    <script>
+        $("#bxsliderImages").bxSlider({
+            minSlides: 4,
+            maxSlides: 4,
+            slideWidth: 315,
+            controls: true,
+            nextText: '>',
+            prevText: '<',
+            nextSelector: '#slider-next',
+            prevSelector: '#slider-prev',
+            responsive: true
+        });
+    </script>
+}

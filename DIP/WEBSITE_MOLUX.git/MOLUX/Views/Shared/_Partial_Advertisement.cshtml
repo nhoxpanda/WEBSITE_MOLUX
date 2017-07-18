@@ -1,0 +1,29 @@
+﻿@using MOLUX.Helper
+@using MOLUX.Models
+@model AdvertisementViewModel
+
+
+@if (Model.center.IsShow == true)
+{
+    @*<a href="@Model.center.Link" target="_blank">
+        <img src="~/Images/Slider/@Model.center.Image" alt="Thông tin khuyến mãi" class="img-responsive" id="imgCenter" style="display: none" />
+    </a>*@
+    <a class="test-popup-link" id="imgAds" href="~/Images/Slider/@Model.center.Image"></a>
+    <input type="hidden" value="@Model.center.Link" id="imgCenterLink" />
+}
+@if (Model.left.IsShow == true)
+{
+    <div id="sidebar" class="hidden-sm hidden-xs" style="margin-top: 0px;">
+        <a href="@Model.left.Link">
+            <img src="~/Images/Slider/@Model.left.Image" alt="Thông tin khuyến mãi" width="125" height="349">
+        </a>
+    </div>
+}
+@if (Model.right.IsShow == true)
+{
+    <div id="sidebar2" class="hidden-sm hidden-xs" style="margin-top: 0px;">
+        <a href="@Model.right.Link">
+            <img src="~/Images/Slider/@Model.right.Image" alt="Thông tin khuyến mãi" width="125" height="349">
+        </a>
+    </div>
+}

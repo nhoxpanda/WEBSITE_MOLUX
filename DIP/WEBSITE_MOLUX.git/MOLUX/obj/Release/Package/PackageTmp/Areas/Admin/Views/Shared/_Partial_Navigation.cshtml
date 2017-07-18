@@ -1,0 +1,64 @@
+﻿<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="/Content/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>@(User.Identity.IsAuthenticated == true ? User.Identity.Name : "")</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="treeview">
+                <a href="/admin">
+                    <i class="fa fa-dashboard"></i><span>DASHBOARD</span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <span>SẢN PHẨM</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Cate", "ProductsManage")"> Danh mục sản phẩm</a></li>
+                    <li><a href="@Url.Action("Index", "ProductsManage")"> Danh sách sản phẩm</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <span>TIN TỨC</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("Cate", "PageManage")"> Danh mục tin</a></li>
+                    <li><a href="@Url.Action("Index", "PageManage")"> Danh sách tin</a></li>
+                </ul>
+            </li>
+
+            
+
+            <li class="treeview">
+                <a href="#">
+                    <span>CẤU HÌNH</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#"> Slide</a></li>
+                    <li><a href="#"> Quảng cáo</a></li>
+                    <li><a href="#"> Footer</a></li>
+                    <li><a href="@Url.Action("Index", "MenuManage")"> Menu</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</aside>

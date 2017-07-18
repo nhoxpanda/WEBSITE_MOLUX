@@ -1,0 +1,219 @@
+﻿
+@model MOLUX.Areas.Admin.Models.MenuViewModel
+@{
+
+    ViewBag.Title = "Danh sách menu hiển thị";
+    var classAdd = "";
+    var activeClass = "active";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Detail", "User")"> Home </a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span> Menu </span>
+        </li>
+    </ul>
+
+</div>
+<!-- END PAGE BAR -->
+<!-- BEGIN PAGE TITLE-->
+<h3 class="page-title">
+    Danh sách Menu
+</h3>
+<!-- END PAGE TITLE-->
+<!-- END PAGE HEADER-->
+<!-- BEGIN EXAMPLE TABLE PORTLET-->
+
+<div class="row" style="margin-left:30px;">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet light bordered">
+        @*<div class="portlet-title">
+            <div class="caption font-dark">
+                <i class="icon-settings font-dark"></i>
+                <span class="caption-subject bold uppercase"> Menu </span>
+            </div>
+        </div>*@
+        <div class="portlet-body" >
+            <div class="table-toolbar" style="margin-bottom:10px;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button id="sample_editable_1_new" class="btn sbold green" onclick="location.href='@Url.Action("AddMenu", "MenuManage")'">
+                            <i class="fa fa-plus"></i>
+                            Thêm
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-bordered table-hover table-checkable order-column">
+                <thead>
+                    <tr>
+                        <th> # </th>
+                        <th> Tên menu </th>
+                        <th> Menu cha </th>
+                        <th> Menu link </th>
+                        <th> Số thứ tự </th>
+                        <th> Meta </th>
+                        <th> Mô tả Meta </th>
+                        <th> Hiển thị </th>
+                        <th> Actions </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < Model.listMenu.Count; i++)
+                    {
+                        <tr class="odd gradeX">
+                            <td> @(i + 1) </td>
+                            <td> @Model.listMenu[i].Title </td>
+                            @if (@Model.listMenu.SingleOrDefault(p => p.Id == Model.listMenu[i].ParentId) != null)
+                            {
+                                <td>@Model.listMenu.SingleOrDefault(p => p.Id == Model.listMenu[i].ParentId).Title</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            
+                            <td>@Model.listMenu[i].UrlCustom</td>
+                            <td>@Model.listMenu[i].Orders</td>
+                            <td>@Model.listMenu[i].MetaTitle</td>
+                            <td>@Model.listMenu[i].MetaDesc</td>
+                            <td>@Model.listMenu[i].IsShow</td>
+                            <td>
+                                <button class="btn btn-xs green dropdown-toggle" type="button" onclick="EditMenu(@Model.listMenu[i].Id);" >
+                                 Edit
+                                </button>
+                                
+                                @if (Model.listMenu[i].IsShow ?? true)
+                                {
+                                    <button id="btnVisible" class="btn btn-xs green dropdown-toggle" type="button" onclick="changeIsShow(@Model.listMenu[i].Id);">
+                                        Ẩn
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button id="btnVisible" class="btn btn-xs green dropdown-toggle" type="button" onclick="changeIsShow(@Model.listMenu[i].Id);">
+                                        Hiển thị
+                                    </button>
+                                }
+                                <button class="btn btn-xs red dropdown-toggle" type="button" onclick="DeleteMenu(@Model.listMenu[i].Id);">
+                                    Delete
+                                </button>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+</div>
+
+<h3 class="page-title">
+    Menu Review
+</h3>
+
+<div style="margin-left:30px;">
+    <header>
+        <nav id='cssmenu'>
+            <div id="head-mobile"></div>
+            <div class="button"></div>
+            <ul>
+                @{
+                    var listShow = Model.listMenu.Where(p => p.IsShow == true).ToList();
+                }
+                @for (int i = 0; i < listShow.Count; i++)
+            {
+                if (i > 0)
+                {
+                    activeClass = "";
+                }
+                if (listShow[i].ParentId == 0)
+                {
+                        <li class='@activeClass'>
+                            <a href='#'>@listShow[i].Title</a>
+                            @{
+                                var listChild = listShow.Where(p => p.ParentId == listShow[i].Id).ToList();
+                                if (listChild.Count > 0)
+                                {
+                                    <ul>
+                                        @for (int j = 0; j < listChild.Count; j++)
+                                        {
+                                            if (listChild[j].ParentId == listShow[i].Id)
+                                            {
+                                                <li>
+                                                    <a href='#'>@listChild[j].Title</a>
+                                                    @{
+                                                        var listChildChild = listShow.Where(p => p.ParentId == listChild[j].Id).ToList();
+                                                        if (listChildChild.Count > 0)
+                                                        {
+                                                            <ul>
+                                                                @for (int z = 0; z < listChildChild.Count; z++)
+                                                                {
+                                                                    <li><a href='#'>@listChildChild[z].Title</a></li>
+                                                                }
+                                                            </ul>
+                                                        }
+                                                    }
+                                                </li>
+                                                            }
+
+                                                        }
+                                    </ul>
+
+                                                        }
+
+                            }
+                        </li>
+                                                            }
+                                                        }
+            </ul>
+        </nav>
+    </header>
+</div>
+
+@section scripts {
+
+    <script src="~/Scripts/myscript.js"></script>
+    <link href="~/Content/myCSS.css" rel="stylesheet" />
+    <script>
+        function changeIsShow(id) {
+            $.ajax({
+                url: "/MenuManage/ChangeIsShow",
+                data: { menuID: id },
+                type: "POST",
+                success: function (data) {
+                    if (data.result)
+                        window.location.href = "/Admin/MenuManage/Index";
+                }
+            });
+        }
+        function DeleteMenu(id){
+            $.ajax({
+                url: "/MenuManage/DeleteMenu",
+                data: { menuID: id },
+                type: "POST",
+                success: function (data) {
+                    if (data.result)
+                        window.location.href = "/Admin/MenuManage/Index";
+                }
+            });
+        }
+        //function EditMenu(id){
+        //    $.ajax({
+        //        url: "/MenuManage/AddMenu",
+        //        data: { id: id },
+        //        type: "GET",
+        //        success: function (data) {
+        //            //if (data.result)
+        //            //    window.location.href = "/Admin/MenuManage/Index";
+        //        }
+        //    });
+        //}
+    </script>
+}
