@@ -15,7 +15,7 @@ namespace MOLUX.Areas.Admin.Controllers
         #region Slider
         public ActionResult Index()
         {
-            var model = _db.web_Slider.OrderBy(p => p.Orders).ToList();
+            var model = _db.web_Slider.OrderBy(p => p.Orders).Where(n=>n.Type!=4 && n.Type!=5 && n.IsShow==true).ToList();
             return View(model);
         }
 

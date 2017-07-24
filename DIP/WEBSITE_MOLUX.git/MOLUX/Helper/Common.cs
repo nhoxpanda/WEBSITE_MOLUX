@@ -143,7 +143,7 @@ namespace MOLUX.Helper
                 }
                 return strInput.Replace("-–-","-").ToLower();
             }
-            catch (Exception ex)
+            catch (Exception exx)
             {
                 return "";
             }

@@ -189,6 +189,18 @@
     <Property Name="ICON" Type="nvarchar" MaxLength="50" />
     <Property Name="Orders" Type="int" />
   </EntityType>
+  <EntityType Name="MainProduct">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" />
+    <Property Name="Orders" Type="int" />
+    <Property Name="Link" Type="nvarchar" MaxLength="500" />
+    <Property Name="Image" Type="nvarchar" MaxLength="500" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsShow" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="Manufacturer">
     <Key>
       <PropertyRef Name="Code" />
@@ -829,6 +841,7 @@
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Item Category" EntityType="Self.Item Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MainProduct" EntityType="Self.MainProduct" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Payment Method" EntityType="Self.Payment Method" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Price Level" EntityType="Self.Price Level" Schema="dbo" store:Type="Tables" />

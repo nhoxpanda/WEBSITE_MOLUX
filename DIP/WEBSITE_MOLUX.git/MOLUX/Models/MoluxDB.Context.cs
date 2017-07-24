@@ -54,6 +54,7 @@ namespace MOLUX.Models
         public virtual DbSet<web_Slider> web_Slider { get; set; }
         public virtual DbSet<web_SocialNetwork> web_SocialNetwork { get; set; }
         public virtual DbSet<web_Technical> web_Technical { get; set; }
+        public virtual DbSet<MainProduct> MainProduct { get; set; }
     
         [DbFunction("BMSMoluxHongKongEntities", "fnSplit")]
         public virtual IQueryable<fnSplit_Result> fnSplit(string sInputList, string sDelimiter)

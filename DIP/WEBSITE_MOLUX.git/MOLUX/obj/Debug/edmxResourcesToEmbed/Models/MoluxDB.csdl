@@ -905,6 +905,7 @@
     </FunctionImport>
     <FunctionImport Name="web_PaymentMethodList" ReturnType="Collection(BMSMoluxHongKongModel.web_PaymentMethodList_Result)" />
     <FunctionImport Name="web_SocialNetworkList" ReturnType="Collection(BMSMoluxHongKongModel.web_SocialNetworkList_Result)" />
+    <EntitySet Name="MainProduct" EntityType="BMSMoluxHongKongModel.MainProduct" />
   </EntityContainer>
   <ComplexType Name="sp_LoadPostByMenuID_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -2504,4 +2505,16 @@
     <Property Type="String" Name="Icon" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="URL" Nullable="true" />
   </ComplexType>
+  <EntityType Name="MainProduct">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Orders" Type="Int32" />
+    <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" Nullable="false" />
+  </EntityType>
 </Schema>

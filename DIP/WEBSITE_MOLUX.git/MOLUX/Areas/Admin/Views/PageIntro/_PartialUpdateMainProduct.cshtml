@@ -1,0 +1,61 @@
+﻿@model MOLUX.Models.MainProduct
+<div id="modal-edit-manufacturer" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm mới</h4>
+            </div>
+            @using (Html.BeginForm("UpdateMainProduct", "PageIntro", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(model => model.ID)
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-12 col-lg-12">Tiêu đề</label>
+                            <div class="col-md-12 col-lg-12">
+                                @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12 col-lg-12">Logo</label>
+                            <div class="col-md-12 col-lg-12">
+                                <img src="~/Images/MainProduct/@Model.Image" class="img-responsive" style="height: 50px;" />
+                                @Html.TextBoxFor(model => model.Image, new { @class = "form-control", type = "file" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12 col-lg-12">Link</label>
+                            <div class="col-md-12 col-lg-12">
+                                @Html.TextBoxFor(model => model.Link, new { @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12 col-lg-12">Mô tả</label>
+                            <div class="col-md-12 col-lg-12">
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12 col-lg-12">Sắp xếp</label>
+                            <div class="col-md-12 col-lg-12">
+                                @Html.TextBoxFor(model => model.Orders, new { @class = "form-control", @required = "required", @type = "number" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12 col-lg-12">Hiển thị</label>
+                            <div class="col-md-12 col-lg-12">
+                                @Html.CheckBoxFor(model => model.IsShow)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

@@ -22,6 +22,9 @@ namespace MOLUX.Controllers
 
         public ActionResult About()
         {
+            ViewBag.slider1 = _db.web_Slider.OrderBy(n=>n.Orders).Where(p => p.Type == 4 && p.IsShow==true).ToList();
+            ViewBag.slider2 = _db.web_Slider.OrderBy(n => n.Orders).Where(p => p.Type == 5 && p.IsShow == true).ToList();
+            ViewBag.SPTB = _db.MainProduct.OrderBy(n => n.Orders).Where(p => p.IsShow == true).ToList();
             return View();
         }
 

@@ -13,31 +13,31 @@ $(document).ready(function () {
         singleItem: !0
     });
 
-    $('#logo-slider').owlCarousel({
-        lazyLoad: !0,
-        navigation: true,
-        autoPlay: 4000,
-        stopOnHover: !0,
-        slideSpeed: 50,
-        paginationSpeed: 400,
-        pagination: false,
-        margin: 10,
-        nav: true,
-        dots: false,
-        nav: true,
-        navText: ["<i class='fa fa-angel-left'></i>", "<i class='fa fa-angel-right'></i>"],
-        responsive: {
-            0: {
-                items: 3
-            },
-            600: {
-                items: 6
-            },
-            1000: {
-                items: 9
-            }
-        }
-    })
+    //$('#logo-slider').owlCarousel({
+    //    lazyLoad: !0,
+    //    navigation: true,
+    //    autoPlay: 4000,
+    //    stopOnHover: !0,
+    //    slideSpeed: 50,
+    //    paginationSpeed: 400,
+    //    pagination: false,
+    //    margin: 10,
+    //    nav: true,
+    //    dots: false,
+    //    nav: true,
+    //    navText: ["<i class='fa fa-angel-left'></i>", "<i class='fa fa-angel-right'></i>"],
+    //    responsive: {
+    //        0: {
+    //            items: 3
+    //        },
+    //        600: {
+    //            items: 6
+    //        },
+    //        1000: {
+    //            items: 9
+    //        }
+    //    }
+    //})
 
     //menu mobile
     var pathname = window.location.href;

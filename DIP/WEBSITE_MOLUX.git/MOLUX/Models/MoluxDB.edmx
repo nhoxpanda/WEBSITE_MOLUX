@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BMSMoluxHongKongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BMSMoluxHongKongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="RowID" />
@@ -193,6 +193,18 @@
           <Property Name="MetaDescription" Type="nvarchar(max)" />
           <Property Name="ICON" Type="nvarchar" MaxLength="50" />
           <Property Name="Orders" Type="int" />
+        </EntityType>
+        <EntityType Name="MainProduct">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" />
+          <Property Name="Orders" Type="int" />
+          <Property Name="Link" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsShow" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Manufacturer">
           <Key>
@@ -834,6 +846,7 @@
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Item Category" EntityType="Self.Item Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MainProduct" EntityType="Self.MainProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment Method" EntityType="Self.Payment Method" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Price Level" EntityType="Self.Price Level" Schema="dbo" store:Type="Tables" />
@@ -901,8 +914,7 @@
             <End Role="web_News" EntitySet="web_News" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BMSMoluxHongKongModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1705,14 +1717,14 @@
             <Parameter Name="sortCriteria" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Test2">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_testproc" ReturnType="Collection(BMSMoluxHongKongModel.sp_testproc_Result)">
             <Parameter Name="menuID" Mode="In" Type="Int32" />
             <Parameter Name="cateID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_get15ProductOther" ReturnType="Collection(BMSMoluxHongKongModel.web_get15ProductOther_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_get15ProductSameCategory" ReturnType="Collection(BMSMoluxHongKongModel.web_get15ProductSameCategory_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -1723,7 +1735,7 @@
             <Parameter Name="manuCode" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="web_getAllItemLevel2" ReturnType="Collection(BMSMoluxHongKongModel.web_getAllItemLevel2_Result)">
-            <Parameter Name="cateID" Mode="In" Type="Int32" />
+          <Parameter Name="cateID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getAllItemLevel2Filter" ReturnType="Collection(BMSMoluxHongKongModel.web_getAllItemLevel2Filter_Result)">
             <Parameter Name="cateID" Mode="In" Type="Int32" />
@@ -1732,33 +1744,33 @@
           </FunctionImport>
           <FunctionImport Name="web_getAllManufacturerList" ReturnType="Collection(BMSMoluxHongKongModel.web_getAllManufacturerList_Result)" />
           <FunctionImport Name="web_getAllNewsByCate" ReturnType="Collection(BMSMoluxHongKongModel.web_getAllNewsByCate_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getAllPartner" ReturnType="Collection(BMSMoluxHongKongModel.web_getAllPartner_Result)" />
           <FunctionImport Name="web_getAllPaymentMethod" ReturnType="Collection(BMSMoluxHongKongModel.web_getAllPaymentMethod_Result)" />
           <FunctionImport Name="web_getAllSliders" ReturnType="Collection(BMSMoluxHongKongModel.web_getAllSliders_Result)" />
           <FunctionImport Name="web_getCategoryLevel3ByLevel2" ReturnType="Collection(BMSMoluxHongKongModel.web_getCategoryLevel3ByLevel2_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getChildCategory" ReturnType="Collection(BMSMoluxHongKongModel.web_getChildCategory_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getChildCateNews" ReturnType="Collection(BMSMoluxHongKongModel.web_getChildCateNews_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_GetCompanyById" ReturnType="Collection(BMSMoluxHongKongModel.web_GetCompanyById_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getConfigWebsite" ReturnType="Collection(BMSMoluxHongKongModel.web_getConfigWebsite_Result)" />
           <FunctionImport Name="web_getFooterByType" ReturnType="Collection(BMSMoluxHongKongModel.web_getFooterByType_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getHeaderMenu" ReturnType="Collection(BMSMoluxHongKongModel.web_getHeaderMenu_Result)" />
           <FunctionImport Name="web_getItemCategoryById" ReturnType="Collection(BMSMoluxHongKongModel.web_getItemCategoryById_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getLevel3Category" ReturnType="Collection(BMSMoluxHongKongModel.web_getLevel3Category_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getMultiSearchItem" ReturnType="Collection(BMSMoluxHongKongModel.web_getMultiSearchItem_Result)">
             <Parameter Name="keyWork" Mode="In" Type="String" />
@@ -1773,7 +1785,7 @@
             <Parameter Name="manuCode" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="web_getProductByCategory" ReturnType="Collection(BMSMoluxHongKongModel.web_getProductByCategory_Result)">
-            <Parameter Name="cateCode" Mode="In" Type="String" />
+          <Parameter Name="cateCode" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="web_getProductByCategoryFilter" ReturnType="Collection(BMSMoluxHongKongModel.web_getProductByCategoryFilter_Result)">
             <Parameter Name="cateCode" Mode="In" Type="String" />
@@ -1789,28 +1801,29 @@
             <Parameter Name="cate" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getRecursiveItemCategory">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getSameLevelCategory" ReturnType="Collection(BMSMoluxHongKongModel.web_getSameLevelCategory_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getSliderByType" ReturnType="Collection(BMSMoluxHongKongModel.web_getSliderByType_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getTop5Item" ReturnType="Collection(BMSMoluxHongKongModel.web_getTop5Item_Result)">
-            <Parameter Name="cateID" Mode="In" Type="Int32" />
+          <Parameter Name="cateID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getTop5ItemLevel1" ReturnType="Collection(BMSMoluxHongKongModel.web_getTop5ItemLevel1_Result)">
-            <Parameter Name="cateID" Mode="In" Type="Int32" />
+          <Parameter Name="cateID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getTop5ItemLevel2" ReturnType="Collection(BMSMoluxHongKongModel.web_getTop5ItemLevel2_Result)">
-            <Parameter Name="cateID" Mode="In" Type="Int32" />
+          <Parameter Name="cateID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="web_getTop5ItemLevel3" ReturnType="Collection(BMSMoluxHongKongModel.web_getTop5ItemLevel3_Result)">
-            <Parameter Name="cateCode" Mode="In" Type="String" />
+          <Parameter Name="cateCode" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="web_PaymentMethodList" ReturnType="Collection(BMSMoluxHongKongModel.web_PaymentMethodList_Result)" />
           <FunctionImport Name="web_SocialNetworkList" ReturnType="Collection(BMSMoluxHongKongModel.web_SocialNetworkList_Result)" />
+          <EntitySet Name="MainProduct" EntityType="BMSMoluxHongKongModel.MainProduct" />
         </EntityContainer>
         <ComplexType Name="sp_LoadPostByMenuID_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -3410,6 +3423,18 @@
           <Property Type="String" Name="Icon" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="URL" Nullable="true" />
         </ComplexType>
+        <EntityType Name="MainProduct">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Orders" Type="Int32" />
+          <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsShow" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5753,6 +5778,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="MainProduct">
+            <EntityTypeMapping TypeName="BMSMoluxHongKongModel.MainProduct">
+              <MappingFragment StoreEntitySet="MainProduct">
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

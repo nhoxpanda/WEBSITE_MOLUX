@@ -1,6 +1,389 @@
 ﻿@{
-    ViewBag.Title = "About";
     Layout = null;
 }
+@using MOLUX.Helper
+@{
+    var config = ConfigWebsite.Data();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Giới thiệu</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/animate.min.css?ver=1.12" rel="stylesheet" />
+    <link href="~/Content/assets/css/CssGioiThieu.css?ver=22" rel="stylesheet" />
+    <link href="~/Content/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/slick.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/slick-theme.css" rel="stylesheet" />
+    <style>
+        .slick-prev:before,
+        .slick-next:before {
+            color: black;
+        }
+
+        .an {
+            opacity: 0;
+        }
+
+        .hien {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="menu_mobile">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">MOLUX</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">MOLUX</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a id="_gioithieu" href="#">GIỚI THIỆU <span class="sr-only">(current)</span></a></li>
+                                <li><a class="_sanpham" href="#">SẢN PHẨM</a></li>
+                                <li><a class="_hinhanh" href="#">HÌNH ẢNH</a></li>
+                                <li><a class="" href="#">SHOP ONLINE</a></li>
+                                <li><a class="_lienhe" href="#">LIÊN HỆ</a></li>
+
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </div>
+            <div class="col-md-2 affix menu" style="">
+                <div class=" " style="width:100%;min-height:1000px">
+                    <div class="col-md-12" style="height:200px">
+                        <div class="row">
+                            <img src="/Content/assets/images/logo-footer.png" style="width:100%;padding-top:30px" />
+                        </div>
+
+                    </div>
+                    <div class="col-md-12" style="height:300px; color:white; font-family:'Times New Roman';font-size:20px;text-align:center">
+                        <div style="padding-top: 20px;padding-bottom:20px">
+                            <a><span class="_gioithieu">GIỚI THIỆU</span></a>
+                        </div>
+                        <div style="padding-top: 20px;padding-bottom:20px">
+                            <a><span class="_sanpham">SẢN PHẨM</span></a>
+                        </div>
+                        <div style="padding-top: 20px;padding-bottom:20px">
+                            <a><span class="_hinhanh">HÌNH ẢNH</span></a>
+                        </div>
+                        <div style="padding-top: 20px;padding-bottom:20px">
+                            <a href="/"><span id="">SHOP ONLINE</span></a>
+                        </div>
+                        <div style="padding-top: 20px;padding-bottom:20px">
+
+                            <a><span class="_lienhe">LIÊN HỆ</span></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-10 col-md-offset-2">
+                <div class="row">
+                    @*phần slider*@
+                    <div style="width:100%">
+                        <div id="myCarousel" class="carousel slide an phai" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                @for (int i = 0; i < ViewBag.slider1.Count; i++)
+                                {
+                                    if (i == 0)
+                                    {
+                                        <li data-target="#myCarousel" data-slide-to="@i" class="active"></li>
+                                    }
+                                    else
+                                    {
+                                        <li data-target="#myCarousel" data-slide-to="@i"></li>
+                                    }
+                                }
+                            </ol>
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                @for (int i = 0; i < ViewBag.slider1.Count; i++)
+                                {
+                                    if (i == 0)
+                                    {
+                                        <div class="item active">
+                                            <img src="~/Images/Slider/@ViewBag.slider1[i].Image" style="width:100%;">
+                                            <div class="carousel-caption">
+                                                @*<h3 class="animated bounceInLeft">Los Angeles</h3>
+                                                    <p class="animated bounceInRight">LA is always so much fun!</p>*@
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="item">
+                                            <img src="~/Images/Slider/@ViewBag.slider1[i].Image" style="width:100%;">
+                                            <div class="carousel-caption">
+                                                @*<h3 class="animated bounceInLeft">Los Angeles</h3>
+                                                    <p class="animated bounceInRight">LA is always so much fun!</p>*@
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mod1" style="width:100%;background-color:#72b4f0;margin-top:0px;text-align:center;padding:30px">
+                        <div class="">
+                            <h3 class="an trai" style="text-align:center;font-family:Roboto;color:greenyellow">CHÀO MỪNG QUÝ KHÁCH GHÉ THĂM WEBSITE THẾ GIỚI ĐÈN VÀ THIẾT BỊ PHÒNG TẮM MOLUX</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 spdemo">
+
+                        <div class="col-md-10 col-md-offset-1 caption " style="padding-bottom:50px;padding-top: 50px; ">
+                            <h2 class="an trai text-center">CÁC DÒNG SẢN PHẨM CHÍNH</h2>
+                            <p class="an phai">
+                                Với sứ mệnh là đơn vị tiên phong trên con đường kiếm tìm, lựa chọn những thương hiệu nổi tiếng, uy tín, chất lượng cao, giá thành thấp nhất so với các sản phẩm đồng loại, MOLUX mong muốn đem đến cho khách hàng những lựa chọn mới mẻ, phong phú hơn cho ngôi nhà thân yêu của mình.
+                            </p>
+                            <div>
+                                <section class="responsive slider" id="slide_sp">
+                                    @for (int i = 0; i < ViewBag.SPTB.Count; i++)
+                                    {
+                                        if (i % 2 == 0)
+                                        {
+                                            <div class="col-md-3 an down text-justify">
+                                                <div>
+                                                    <img class="imgsp" src="~/Images/MainProduct/@ViewBag.SPTB[i].Image" />
+                                                    <p>@ViewBag.SPTB[i].Description</p>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-3 an trai text-justify">
+                                                <div>
+                                                    <img class="imgsp" src="~/Images/MainProduct/@ViewBag.SPTB[i].Image" />
+                                                    <p>@ViewBag.SPTB[i].Description</p>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    @*<div class="col-md-3 an down text-justify">
+                                        <div>
+                                            <img class="imgsp" src="~/Content/assets/images/imagePagedetail/sp1.jpg" />
+                                            <p>Đèn Molux HongKong nổi tiếng với sự phong phú, đa dạng mẫu mã, với thiết kế sang trọng, tinh tế từng chi tiết, với độ bền cao, giá cả hợp lý, đã và đang được sự biết đến ngày càng nhiều tại thị trường Việt Nam.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 an trai text-justify">
+                                        <div>
+                                            <img class="imgsp" src="~/Content/assets/images/imagePagedetail/sp1.jpg" />
+                                            <p> Ngoài ra, MOLUX còn phân phối tại thị trường Việt Nam các sản phẩm bồn tắm, buồng tắm của hãng WiseMaker (WMK) - Đức, bồn rửa bát inox GUCHI, chậu tủ liền gương , chậu đá, và là đơn vị nằm trong hệ thống phân phối của các hãng thiết bị vệ sinh TOTO, INAX, JOMOO(Showroom chính thức lớn nhất miền Bắc),...</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 an down text-justify">
+                                        <div>
+                                            <img class="imgsp" src="~/Content/assets/images/imagePagedetail/sp1.jpg" />
+                                            <p> Với mỗi diện tích mặt sàn trưng bày rộng trên 1500m2, với hàng ngàn sản phẩm về đèn chiếu sáng và thiết bị phòng tắm, nhà bếp; Molux tin tưởng sẽ trở thành điểm đến và điểm hội tụ của các công trình.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 an trai text-justify">
+                                        <div>
+
+                                            <img class="imgsp" src="~/Content/assets/images/imagePagedetail/sp1.jpg" />
+                                            <p>Để tỏ lòng biết ơn, tri ân với tình cảm của Quý khách hàng luôn ủng hộ MOLUX trong suốt chặng đường hình thành và phát triển, MOLUX với đội ngũ cán bộ nhân viên CHUYÊN NGHIỆP, TẬN TÂM, KHÔNG NGỪNG SÁNG TẠO, VƯƠN TỚI SỰ HOÀN THIỆN để phục vụ khách hàng ngày một tốt hơn.</p>
+
+                                        </div>
+                                    </div>*@
+                                </section>
+
+                            </div>
+                        </div>
+
+                    </div>
 
 
+
+                    <div class="col-md-12 hinhanh_ bgimg-3" style="background-color: #d5a6d5;padding-bottom:50px;padding-top: 50px;">
+                        <div class="col-md-10 col-md-offset-1 caption an  down">
+                            <h2 style="text-align:center; color:white;">HÌNH ẢNH CÔNG TY</h2>
+                            <div id="myCarousel2" class="carousel slide an phai" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    @for (int i = 0; i < ViewBag.slider2.Count; i++)
+                                    {
+                                        if (i == 0)
+                                        {
+                                            <li data-target="#myCarousel2" data-slide-to="@i" class="active"></li>
+                                        }
+                                        else
+                                        {
+                                            <li data-target="#myCarousel2" data-slide-to="@i"></li>
+                                        }
+                                    }
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+
+                                    @for (int i = 0; i < ViewBag.slider2.Count; i++)
+                                    {
+                                        if (i == 0)
+                                        {
+                                            <div class="item active">
+                                                <img src="~/Images/Slider/@ViewBag.slider2[i].Image" style="width:100%;">
+                                                <div class="carousel-caption">
+                                                    @*<h3 class="animated bounceInLeft">Los Angeles</h3>
+                                                        <p class="animated bounceInRight">LA is always so much fun!</p>*@
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="item">
+                                                <img src="~/Images/Slider/@ViewBag.slider2[i].Image" style="width:100%;">
+                                                <div class="carousel-caption">
+                                                    @*<h3 class="animated bounceInLeft">Los Angeles</h3>
+                                                        <p class="animated bounceInRight">LA is always so much fun!</p>*@
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+
+                                </div>
+
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarousel2" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel2" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 Link">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h2 class="title an trai">MUA SẮM HÀNG TRĂM SẢN PHẨM CHẤT LƯỢNG CỦA MOLUX NGAY TẠI NHÀ </h2>
+                            <p class="an phai">với nhiều chương trình và ưu đãi hấp dẫn khác tại MOLUX.DIP.VN</p>
+
+                            <a href="/" style="" class="btn-click an down">
+                                <img style="height:100%;" src="~/Content/assets/images/imagePagedetail/moluxtick.png" />
+                                <span>Truy cập shop ngay</span>
+                                <img style="height:100%;" src="~/Content/assets/images/imagePagedetail/Molux.gif" />
+
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-12 info">
+                        <div class="an trai">
+                            <p style="text-align:center"><strong style="text-align:center">Copyright &copy; @config.CompanyName</strong></p>
+                            <p style="text-align:center"><strong>Giấy chứng nhận:&nbsp;</strong>@config.LicenseProvince</p>
+                            <p style="text-align:center"><strong>Giấy phép:&nbsp;</strong>@config.LicenseNumber</p>
+                            <p style="text-align:center"><strong>Hà Nội:&nbsp;</strong>@config.Address1 <a href="@config.GoogleMap1" title="@config.Address1" target="_blank" style="color: #e6c804 !important; display: inline">(Bản đồ)</a></p>
+                            <p style="text-align:center"><strong>Quảng Ninh:&nbsp;</strong>@config.Address2 <a href="@config.GoogleMap2" title="@config.Address2" target="_blank" style="color: #e6c804 !important; display: inline">(Bản đồ)</a></p>
+                            <p style="text-align:center"><strong>Điện thoại:&nbsp;</strong>@config.PhonePurchase - @config.CustomerService</p>
+                            <p style="text-align:center"><strong>Email:&nbsp;</strong>@config.Email1</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="~/Content/assets/js/jquery.min.js"></script>
+        <script src="~/Content/assets/js/bootstrap.min.js"></script>
+        <script src="~/Content/assets/js/viewportchecker.js"></script>
+        <script src="~/Content/assets/js/slick.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.trai').addClass("an").viewportChecker({
+                    classToAdd: 'hien animated bounceInLeft', offset: 100
+                });
+                $('.phai').addClass("an").viewportChecker({
+                    classToAdd: 'hien animated bounceInRight', offset: 100
+                });
+                $('.down').addClass("an").viewportChecker({
+                    classToAdd: 'hien animated bounceInDown', offset: 100
+                });
+
+            });
+            $(document).ready(function () {
+                $("._gioithieu").click(function () {
+                    $('html,body').animate({ scrollTop: $("#myCarousel").offset().top }, 'slow');
+                });
+                $("._sanpham").click(function () {
+                    $('html,body').animate({ scrollTop: $(".spdemo").offset().top }, 'slow');
+                });
+                $("._hinhanh").click(function () {
+                    $('html,body').animate({ scrollTop: $(".hinhanh_").offset().top }, 'slow');
+                });
+                $("._lienhe").click(function () {
+                    $('html,body').animate({ scrollTop: $(".info").offset().top }, 'slow');
+                });
+                var body = document.body,
+                               doc = document.documentElement;
+                $(window).scroll(function () {
+                    body.style.backgroundPosition = "0px " + (830 - (Math.max(doc.scrollTop, body.scrollTop) / 4)) + "px";
+                });
+
+                $('.responsive').slick({
+                    dots: true,
+                    infinite: false,
+                    speed: 300,
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    responsive: [
+                      {
+                          breakpoint: 1024,
+                          settings: {
+                              slidesToShow: 3,
+                              slidesToScroll: 3,
+                              infinite: true,
+                              dots: true
+                          }
+                      },
+                      {
+                          breakpoint: 600,
+                          settings: {
+                              slidesToShow: 2,
+                              slidesToScroll: 2
+                          }
+                      },
+                      {
+                          breakpoint: 480,
+                          settings: {
+                              slidesToShow: 1,
+                              slidesToScroll: 1
+                          }
+                      }
+                      // You can unslick at a given breakpoint now by adding:
+                      // settings: "unslick"
+                      // instead of a settings object
+                    ]
+                });
+            });
+        </script>
+</body>
+</html>

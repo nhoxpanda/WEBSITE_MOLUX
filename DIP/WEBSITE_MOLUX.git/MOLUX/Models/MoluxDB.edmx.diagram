@@ -43,6 +43,7 @@
         <AssociationConnector Association="BMSMoluxHongKongModel.FK_web_ItemSizeColor_web_SizeColor" ManuallyRouted="false" />
         <AssociationConnector Association="BMSMoluxHongKongModel.FK_web_ItemTechnical_web_Technical" ManuallyRouted="false" />
         <AssociationConnector Association="BMSMoluxHongKongModel.FK_web_News_web_NewsCategory" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BMSMoluxHongKongModel.MainProduct" Width="1.5" PointX="5.375" PointY="17.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

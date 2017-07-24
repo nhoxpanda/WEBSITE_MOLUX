@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\WORK\DIP\MOLUX\MOLUX\MOLUX\Models\MoluxDB.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Git-Project\MOLUX\WEBSITE_MOLUX\DIP\WEBSITE_MOLUX.git\MOLUX\Models\MoluxDB.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

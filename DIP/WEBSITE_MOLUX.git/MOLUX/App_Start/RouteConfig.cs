@@ -14,6 +14,11 @@ namespace MOLUX
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Intro",
+                url: "gioi-thieu",
+                defaults: new { controller = "Home", action = "about" }
+            );
+            routes.MapRoute(
                  name: "Contact",
                  url: "lien-he",
                  defaults: new { controller = "Home", action = "Contact" }
