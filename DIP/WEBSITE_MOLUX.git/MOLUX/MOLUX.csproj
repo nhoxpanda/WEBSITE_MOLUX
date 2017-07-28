@@ -262,9 +262,22 @@
     <Compile Include="Models\fnSplit_Result.cs">
       <DependentUpon>MoluxDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Get15_SPCungHang_Result.cs">
+      <DependentUpon>MoluxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Get15_SPCungLoai_Result.cs">
+      <DependentUpon>MoluxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Get15_SPKhac_Result.cs">
+      <DependentUpon>MoluxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSPKhuyenMai_Result.cs">
+      <DependentUpon>MoluxDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HeaderModelView.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IteamProduct.cs" />
     <Compile Include="Models\Item.cs">
       <DependentUpon>MoluxDB.tt</DependentUpon>
     </Compile>
@@ -1819,6 +1832,7 @@
     <Content Include="Areas\Admin\Views\PageIntro\MainProduct.cshtml" />
     <Content Include="Areas\Admin\Views\PageIntro\_PartialCreateMainProduct.cshtml" />
     <Content Include="Areas\Admin\Views\PageIntro\_PartialUpdateMainProduct.cshtml" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\Molux.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

@@ -497,5 +497,45 @@ namespace MOLUX.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<web_SocialNetworkList_Result>("web_SocialNetworkList");
         }
+    
+        public virtual ObjectResult<Get15_SPCungLoai_Result> Get15_SPCungLoai(Nullable<int> id, string item_Category_Code)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var item_Category_CodeParameter = item_Category_Code != null ?
+                new ObjectParameter("Item_Category_Code", item_Category_Code) :
+                new ObjectParameter("Item_Category_Code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get15_SPCungLoai_Result>("Get15_SPCungLoai", idParameter, item_Category_CodeParameter);
+        }
+    
+        public virtual ObjectResult<Get15_SPCungHang_Result> Get15_SPCungHang(Nullable<int> id, string manufacturer_Code)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var manufacturer_CodeParameter = manufacturer_Code != null ?
+                new ObjectParameter("Manufacturer_Code", manufacturer_Code) :
+                new ObjectParameter("Manufacturer_Code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get15_SPCungHang_Result>("Get15_SPCungHang", idParameter, manufacturer_CodeParameter);
+        }
+    
+        public virtual ObjectResult<Get15_SPKhac_Result> Get15_SPKhac(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get15_SPKhac_Result>("Get15_SPKhac", idParameter);
+        }
+    
+        public virtual ObjectResult<GetSPKhuyenMai_Result> GetSPKhuyenMai()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSPKhuyenMai_Result>("GetSPKhuyenMai");
+        }
     }
 }

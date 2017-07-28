@@ -10,19 +10,9 @@
 namespace MOLUX.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Item
+    public partial class Get15_SPCungHang_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Item()
-        {
-            this.web_Cart = new HashSet<web_Cart>();
-            this.web_ItemImage = new HashSet<web_ItemImage>();
-            this.web_ItemSizeColor = new HashSet<web_ItemSizeColor>();
-            this.web_ItemTechnical = new HashSet<web_ItemTechnical>();
-        }
-    
         public int RowID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
@@ -115,14 +105,11 @@ namespace MOLUX.Models
         public Nullable<decimal> Gia_Xuat_Chi_Nhanh { get; set; }
         public int Orders { get; set; }
         public string Technical { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<web_Cart> web_Cart { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<web_ItemImage> web_ItemImage { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<web_ItemSizeColor> web_ItemSizeColor { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<web_ItemTechnical> web_ItemTechnical { get; set; }
+        public string LogoManufacturer { get; set; }
+        public Nullable<decimal> Price { get; set; }
+        public string Item_Code { get; set; }
+        public string Item_Code_2 { get; set; }
+        public Nullable<System.DateTime> To_Date { get; set; }
+        public Nullable<System.DateTime> From_Date { get; set; }
     }
 }

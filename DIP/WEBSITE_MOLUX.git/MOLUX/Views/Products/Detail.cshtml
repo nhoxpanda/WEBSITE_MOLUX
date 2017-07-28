@@ -1,11 +1,12 @@
 ﻿@using MOLUX.Models
 @using MOLUX.Helper
-@model Item
+@model IteamProduct
 
 @{
-    var ProductViewModel = ViewBag.ProductViewModel as ProductViewModel;
+    //var ProductViewModel = ViewBag.ProductViewModel as ProductViewModel;
     ViewBag.Title = Model.MetaTitle;
     ViewBag.MetaDescription = Model.MetaDescription;
+
 }
 @section styles{
     <link href="~/Content/xzoom/xzoom.css" rel="stylesheet" />
@@ -44,7 +45,7 @@
                                 <img class="xzoom-gallery5 xzoom-gallery" width="80" src="http://103.53.231.68:400/MCS/@Model.Picture" xpreview="http://103.53.231.68:400/MCS/@Model.Picture">
                             </a>
                         </li>
-                        @foreach (var item in Model.web_ItemImage)
+                        @foreach (var item in Model.Images)
                         {
                             <li>
                                 <a href="/Images/Products/@item.Image">
@@ -86,7 +87,7 @@
                             </p>
                             <div class="dropdown">
                                 <select class="dropbtn" name="ddlColor" id="ddlColor">
-                                    @foreach (var item in ProductViewModel.Color)
+                                    @foreach (var item in Model.Colors)
                                     {
                                         <option value="@item.SizeColorId">@item.web_SizeColor.Name</option>
                                     }
@@ -97,7 +98,7 @@
                             </p>
                             <div class="dropdown">
                                 <select class="dropbtn" name="ddlSize" id="ddlSize">
-                                    @foreach (var item in ProductViewModel.Size)
+                                    @foreach (var item in Model.Sizes)
                                     {
                                         <option value="@item.SizeColorId">@item.web_SizeColor.Name</option>
                                     }
@@ -107,27 +108,48 @@
                         <div class="price-detail">
                             <div class="price-dt1">
                             </div>
-                            <div class="price-dt2">
-                                <div class="">
-                                    <small class="real-price">
-                                        @string.Format("{0:0,0đ}", Model.Sale_Price).Replace(",", ".")
-                                    </small>
+                            @{decimal price=0;}
+                            @if (Model.Item_Code == Model.Item_Code_2 && Model.Item_Code != null && DateTime.Now.Date >= Model.From_Date && DateTime.Now.Date <= Model.To_Date)
+                            {
+                                <div class="price-dt2">
+
+                                    <div class="">
+                                        <small class="real-price" >
+                                            @{price = (decimal)(Model.Sale_Price - Model.Sale_Price * Model.Sale / 100);}
+                                            <span id="_Price"> @string.Format("{0:0,0đ}", price).Replace(",", ".")</span>
+                                        </small>
+                                    </div>
+
                                 </div>
-                            </div>
-                            <div class="price-vat">
-                                @string.Format("{0:0,0₫}", Model.Purchase_Price).Replace(",", ".")
-                            </div>
+                                <div class="price-vat">
+                                    @string.Format("{0:0,0₫}", Model.Sale_Price).Replace(",", ".")
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="price-dt2">
+
+                                    <div class="">
+                                        <small class="real-price" >
+                                           
+                                            @{price= (decimal)Model.Sale_Price;}
+                                            <span id="_Price">   @string.Format("{0:0,0đ}", Model.Sale_Price).Replace(",", ".")</span>
+                                        </small>
+                                    </div>
+
+                                </div>
+                            }
                         </div>
                     </div>
                     <div class="ba-button">
                         <ul>
                             <li style="width: 80px;">
                                 <div class="quantity">
-                                    <input type="number" min="1" max="30" step="1" value="1" class="form-control" style="width: 60px; height: 32px" />
+                                    <input type="number" id="number" min="1" max="30" step="1" value="1" class="form-control" style="width: 60px; height: 32px" />
                                 </div>
                             </li>
                             <li>
-                                <a style="cursor: pointer" onclick="addToCart(@Model.RowID)" class="buynow calltobuy" title="Mua luôn @Model.Name">
+                                <a style="cursor: pointer" onclick="addToCart(@Model.RowID,@price)" class="buynow calltobuy" title="Mua luôn @Model.Name">
                                     Thêm vào giỏ
                                 </a>
                             </li>
@@ -170,19 +192,20 @@
                 <div class="slider relate-product-inner slick-initialized slick-slider">
                     <div aria-live="polite" class="slick-list draggable">
                         <ul class="slick-track bxslider" id="bxsliderProduct" role="listbox" style="opacity: 1;">
-                            @foreach (var item in ProductViewModel.TheOther)
+                            @foreach (var item in ViewBag.spKhac)
                             {
                                 <li class="col-lg-12 col-md-12 col-sm-12 border-rb border-home product">
                                     <div class="fixed-image-auto-height owl-item">
                                         <a href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)" title="@item.Name">
-                                            <div class="image-wrapper">
-                                                @if (item.IsNew == true || item.IsSale == true)
+                                            <div class="image-wrapper" style="position:relative">
+                                                @if (item.Item_Code == item.Item_Code_2 && item.Item_Code != null && DateTime.Now.Date >= item.From_Date && DateTime.Now.Date <= item.To_Date)
                                                 {
-                                                    <p class="salenew hidden-xs" style="margin: 26px 10px">
-                                                        <img src="~/Images/Logo/@(item.IsSale == true ? ConfigWebsite.Data().IconSale : ConfigWebsite.Data().IconNew)" class="m-lazy img-responsive" title="" alt="" style="width: 40px" />
+                                                    <p class="salenew hidden-xs" style="margin: 10px 10px">
+                                                        <img src="~/Images/Logo/@ConfigWebsite.Data().IconSale" class="m-lazy img-responsive" title="" alt="" style="width: 40px" />
+                                                        <div style="position: absolute; right: 13px;top:15px;  height:30px;color:red; font-size:20px">10%</div>
                                                     </p>
                                                 }
-                                                <img src="http://103.53.231.68:400/MCS/@item.Picture" onerror="this.src='/Images/Products/noimage.gif'" class="m-lazy img-responsive" alt="@item.Name" style="padding: 0 10px">
+                                                <img src="http://103.53.231.68:400/MCS/@item.LogoManufacturer" onerror="this.src='/Images/Products/noimage.gif'" class="m-lazy img-responsive" alt="@item.Name" style="padding: 0 10px">
                                                 @if (!string.IsNullOrEmpty(item.LogoManufacturer))
                                                 {
                                                     <p class="manufacturer hidden-xs">
@@ -196,12 +219,21 @@
                                         <a title="@item.Name" href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)">@item.Name</a>
                                     </div>
                                     <div class="col-md-12 nk-price-section clearfix">
-                                        <div class="col-md-7" style="text-align: left">
-                                            <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ</span>
-                                        </div>
-                                        <div class="col-md-5" style="text-align: right; padding-right: 5px;">
-                                            <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Purchase_Price).Replace(",", ".")</span>đ</div>
-                                        </div>
+                                        @if (item.Item_Code == item.Item_Code_2 && item.Item_Code != null && DateTime.Now.Date >= item.From_Date && DateTime.Now.Date <= item.To_Date)
+                                        {
+                                            <div class="col-md-7" style="text-align: left;margin-top:-15px">
+                                                <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price - item.Sale_Price * item.Price / 100).Replace(",", ".")</span>đ</span>
+                                            </div>
+                                            <div class="col-md-5" style="text-align: right; padding-right: 5px;margin-top:-15px;">
+                                                <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-7" style="text-align: left;margin-top:-20px">
+                                                <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ</span>
+                                            </div>
+                                        }
                                     </div>
                                 </li>
                             }
@@ -222,19 +254,20 @@
         </div>
         <div class="col-lg-12 list-nm owl-theme flexslider" id="flexslider1">
             <ul class="slides">
-                @foreach (var item in ProductViewModel.TheSameCategory)
+                @foreach (var item in ViewBag.spcungloai)
                 {
                     <li class="col-lg-15 col-lg-3 col-md-2 col-sm-2 col-xs-4 border-rb border-home product">
                         <div class="fixed-image-auto-height owl-item">
                             <a href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)" title="@item.Name">
-                                <div class="image-wrapper">
-                                    @if (item.IsNew == true || item.IsSale == true)
+                                <div class="image-wrapper" style="position:relative">
+                                    @if (item.Item_Code == item.Item_Code_2 && item.Item_Code != null && DateTime.Now.Date >= item.From_Date && DateTime.Now.Date <= item.To_Date)
                                     {
                                         <p class="salenew hidden-xs">
-                                            <img src="~/Images/Logo/@(item.IsSale == true ? ConfigWebsite.Data().IconSale : ConfigWebsite.Data().IconNew)" class="m-lazy img-responsive" title="" alt="" style="width: 40px" />
+                                            <img src="~/Images/Logo/@ConfigWebsite.Data().IconSale" class="m-lazy img-responsive" title="" alt="" style="width: 40px" />
+                                            <div style="position: absolute; right: 13px;top:15px; height:30px;color:red; font-size:20px">@string.Format("{0:0,0}", @item.Price) %</div>
                                         </p>
                                     }
-                                    <img src="http://103.53.231.68:400/MCS/@item.Picture" onerror="this.src='/Images/Products/noimage.gif'" class="m-lazy img-responsive" alt="@item.Name" style="padding: 10px">
+                                    <img src="http://103.53.231.68:400/MCS/@item.LogoManufacturer" onerror="this.src='/Images/Products/noimage.gif'" class="m-lazy img-responsive" alt="@item.Name" style="padding: 10px">
                                     @if (!string.IsNullOrEmpty(item.LogoManufacturer))
                                     {
                                         <p class="manufacturer hidden-xs">
@@ -244,20 +277,32 @@
                                 </div>
                             </a>
                         </div>
+
                         <div class="product-name">
                             <a title="@item.Name" href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)">@item.Name</a>
                         </div>
                         <div class="col-md-12 nk-price-section clearfix">
-                            <div class="col-md-7" style="text-align: left">
-                                <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ</span>
-                            </div>
-                            <div class="col-md-5" style="text-align: right; padding-right: 5px;">
-                                <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Purchase_Price).Replace(",", ".")</span>đ</div>
-                            </div>
+                            @if (item.Item_Code == item.Item_Code_2 && item.Item_Code != null && DateTime.Now.Date >= item.From_Date && DateTime.Now.Date <= item.To_Date)
+                            {
+                                <div class="col-md-7" style="text-align: left">
+                                    <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price - item.Sale_Price * item.Price / 100).Replace(",", ".")</span>đ</span>
+                                </div>
+                                <div class="col-md-5" style="text-align: right; padding-right: 5px;">
+                                    <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-7" style="text-align: left">
+                                    <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ</span>
+                                </div>
+                            }
+
                         </div>
                     </li>
                 }
             </ul>
+
         </div>
     </div>
 </div>
@@ -272,8 +317,9 @@
         </div>
         <div class="col-lg-12 list-nm owl-theme flexslider" id="flexslider2">
             <ul class="slides">
-                @foreach (var item in ProductViewModel.TheSameManufacturer)
+                @foreach (var item in ViewBag.spCungHang)
                 {
+
                     <li class="col-lg-15 col-lg-3 col-md-2 col-sm-2 col-xs-4 border-rb border-home product">
                         <div class="fixed-image-auto-height">
                             <a href="/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)" title="@item.Name">
@@ -284,7 +330,7 @@
                                             <img src="~/Images/Logo/@(item.IsSale == true ? ConfigWebsite.Data().IconSale : ConfigWebsite.Data().IconNew)" class="m-lazy img-responsive" title="" alt="" style="width: 40px" />
                                         </p>
                                     }
-                                    <img src="http://103.53.231.68:400/MCS/@item.Picture" onerror="this.src='/Images/Products/noimage.gif'" class="m-lazy img-responsive" alt="@item.Name" style="padding: 10px">
+                                    <img src="http://103.53.231.68:400/MCS/@item.LogoManufacturer" onerror="this.src='/Images/Products/noimage.gif'" class="m-lazy img-responsive" alt="@item.Name" style="padding: 10px">
                                     @if (!string.IsNullOrEmpty(item.LogoManufacturer))
                                     {
                                         <p class="manufacturer hidden-xs">
@@ -298,12 +344,21 @@
                             <a title="@item.Name" href="/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)">@item.Name</a>
                         </div>
                         <div class="col-md-12 nk-price-section clearfix">
-                            <div class="col-md-7" style="text-align: left">
-                                <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ</span>
-                            </div>
-                            <div class="col-md-5" style="text-align: right; padding-right: 5px;">
-                                <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Purchase_Price).Replace(",", ".")</span>đ</div>
-                            </div>
+                            @if (item.Item_Code == item.Item_Code_2 && item.Item_Code != null && DateTime.Now.Date >= item.From_Date && DateTime.Now.Date <= item.To_Date)
+                            {
+                                <div class="col-md-7" style="text-align: left">
+                                    <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price - item.Sale_Price * item.Price / 100).Replace(",", ".")</span>đ</span>
+                                </div>
+                                <div class="col-md-5" style="text-align: right; padding-right: 5px;">
+                                    <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-7" style="text-align: left">
+                                    <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ</span>
+                                </div>
+                            }
                         </div>
                     </li>
                 }
@@ -319,12 +374,16 @@
     <script src="~/Content/assets/js/shBrushXml.js"></script>
     <script src="~/Content/assets/js/shBrushJScript.js"></script>
     <script>
-        function addToCart(id) {
+        function addToCart(id,price) {
             var dataPost = {
                 id: id,
                 color: $("#ddlColor").val(),
-                size: $("#ddlSize").val()
+                size: $("#ddlSize").val(),
+                number: $("#number").val(),
+                price:price
+                
             };
+            console.log(price);
             $.ajax({
                 type: "POST",
                 url: '/ShoppingCart/AddToCart',

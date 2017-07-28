@@ -98,16 +98,57 @@ namespace MOLUX.Controllers
         #region Chi tiết sản phẩm
         public ActionResult Detail(int id)
         {
+            IteamProduct item = new IteamProduct();
             var model = _db.Item.Find(id);
-            ViewBag.ProductViewModel = new ProductViewModel()
+            //var model = _db.Item.Where(n => n.RowID == id).Single();
+
+            if (model!=null)
             {
-                TheSameCategory = _db.web_get15ProductSameCategory(id, model.Item_Category_Code).ToList(),
-                TheSameManufacturer = _db.web_get15ProductSameManufacturer(id, model.Manufacturer_Code).ToList(),
-                TheOther = _db.web_get15ProductOther(id).ToList(),
-                Color = _db.web_ItemSizeColor.Where(p=> p.ItemId == id && p.IsDelete == false && p.Type == 1).ToList(),
-                Size = _db.web_ItemSizeColor.Where(p => p.ItemId == id && p.IsDelete == false && p.Type == 2).ToList()
-            };
-            return View(model);
+                
+                item.RowID = model.RowID;
+                item.Name = model.Name;
+                item.Code = model.Code;
+                item.Picture = model.Picture;
+                item.Description = model.Description;
+                item.Images = _db.web_ItemImage.Where(n => n.ItemId == id).ToList();
+                item.MadeIn = model.MadeIn;
+                item.Manufacturer_Code = model.Manufacturer_Code;
+                item.ShortDesc = model.ShortDesc;
+                item.Sale_Price = model.Sale_Price;
+                item.MetaTitle = model.MetaTitle;
+                item.MetaDescription = model.MetaDescription;
+                item.Status = "còn hàng";
+                item.guarantee ="12 tháng";
+                var pld = _db.Price_Level_Detail.Where(n => n.Item_Code == model.Code).FirstOrDefault();
+                if (pld!=null)
+                {
+                    item.Sale = pld.Price;
+                    item.Item_Code = pld.Item_Code;
+                    item.Item_Code_2 = pld.Item_Code_2;
+                    var pl = _db.Price_Level.Where(n => n.RowID == pld.RowID).Single();
+                    item.From_Date = (DateTime)pl.From_Date;
+                    item.To_Date = (DateTime)pl.To_Date;
+                }
+            
+                item.Sizes = _db.web_ItemSizeColor.Where(n => n.ItemId == id && n.IsDelete == false && n.Type == 2).ToList();
+                item.Colors = _db.web_ItemSizeColor.Where(n => n.ItemId == id && n.IsDelete == false && n.Type == 1).ToList();
+
+            }
+            //ViewBag.ProductViewModel = new ProductViewModel()
+            //{
+            //    //sp cùng loaij
+            //    TheSameCategory = _db.web_get15ProductSameCategory(id, model.Item_Category_Code).ToList(),
+            //    //sp cung nha sx
+            //    TheSameManufacturer = _db.web_get15ProductSameManufacturer(id, model.Manufacturer_Code).ToList(),
+            //    TheOther = _db.web_get15ProductOther(id).ToList(),
+            //    Color = _db.web_ItemSizeColor.Where(p=> p.ItemId == id && p.IsDelete == false && p.Type == 1).ToList(),
+            //    Size = _db.web_ItemSizeColor.Where(p => p.ItemId == id && p.IsDelete == false && p.Type == 2).ToList()
+            //};
+            var spcungloai = _db.Get15_SPCungLoai(id, model.Item_Category_Code).ToList();
+            ViewBag.spcungloai = spcungloai;
+            ViewBag.spCungHang = _db.Get15_SPCungHang(id,model.Manufacturer_Code).ToList();
+            ViewBag.spKhac = _db.Get15_SPKhac(id).ToList();
+            return View(item);
         }
         #endregion
 
@@ -129,9 +170,27 @@ namespace MOLUX.Controllers
 
         #region SP khuyến mãi
 
-        public ActionResult PromotionProduct()
+        public ActionResult PromotionProduct(string sort ,int?page)
         {
-            return View();
+            int pageN = page ?? 1;
+            int pageS = 50;
+            ViewBag.sort = sort;
+            ViewBag.page = pageN;
+            var model = new List<GetSPKhuyenMai_Result>();
+            if (string.IsNullOrEmpty(sort))
+            {
+                model = _db.GetSPKhuyenMai().ToList();
+            }
+            else if (sort=="asc")
+            {
+                model = _db.GetSPKhuyenMai().OrderBy(n => n.Sale_Price).ToList();
+            }
+            else
+            {
+                model = _db.GetSPKhuyenMai().OrderByDescending(n => n.Sale_Price).ToList();
+            }
+
+            return View(model.ToPagedList(pageN, pageS));
         }
 
         #endregion

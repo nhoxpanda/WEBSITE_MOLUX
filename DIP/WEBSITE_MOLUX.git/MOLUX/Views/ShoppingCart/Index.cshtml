@@ -42,8 +42,8 @@
                                 <td>@(item.ColorId != null ? item.web_SizeColor.Name : "")</td>
                                 <td>@(item.SizeId != null ? item.web_SizeColor1.Name : "")</td>
                                 <td><input type="number" class="form-control" onchange="updateQuantity(@item.Id)" id="quantity@(item.Id)" value="@item.Count" /></td>
-                                <td id="price@(item.Id)" class="price-cart">@string.Format("{0:0,0₫}", item.Item.Sale_Price != null ? item.Item.Sale_Price : 0).Replace(",", ".")</td>
-                                <td id="total@(item.Id)" class="price-cart">@string.Format("{0:0,0₫}", item.Item.Sale_Price != null ? item.Count * item.Item.Sale_Price : 0).Replace(",", ".")</td>
+                                <td id="price@(item.Id)" class="price-cart">@string.Format("{0:0,0₫}", item.UnitPrice != null ? item.UnitPrice : 0).Replace(",", ".")</td>
+                                <td id="total@(item.Id)" class="price-cart">@string.Format("{0:0,0₫}", item.UnitPrice != null ? item.Count * item.UnitPrice : 0).Replace(",", ".")</td>
                                 <td style="text-align: center">
                                     <a style="cursor: pointer" onclick="removeFromCart(@item.Id)"><i class="fa fa-trash"></i>&nbsp;Xóa</a>
                                 </td>

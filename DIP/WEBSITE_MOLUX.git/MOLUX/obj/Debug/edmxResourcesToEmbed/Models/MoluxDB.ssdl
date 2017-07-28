@@ -175,6 +175,7 @@
     <Property Name="Price PP2(KVBH)" Type="decimal" Precision="18" Scale="0" />
     <Property Name="Gia Xuat Chi Nhanh" Type="decimal" Precision="18" Scale="0" />
     <Property Name="Orders" Type="int" Nullable="false" />
+    <Property Name="Technical" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Item Category">
     <Key>
@@ -688,6 +689,18 @@
       </CollectionType>
     </ReturnType>
   </Function>
+  <Function Name="Get15_SPCungHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="Manufacturer_Code" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Get15_SPCungLoai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="Item_Category_Code" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Get15_SPKhac" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetSPKhuyenMai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_LoadPostByMenuID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="menuID" Type="int" Mode="In" />
     <Parameter Name="cateID" Type="int" Mode="In" />

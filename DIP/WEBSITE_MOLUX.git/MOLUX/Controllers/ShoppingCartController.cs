@@ -38,11 +38,11 @@ namespace MOLUX.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToCart(int id, int? color, int? size)
+        public ActionResult AddToCart(int id, int? color, int? size,int? number,decimal price)
         {
             var product = _db.Item.Find(id);
             var cart = ShoppingCart.GetCart(this.HttpContext);
-            int data = cart.AddToCart(product, color ?? 0, size ?? 0);
+            int data = cart.AddToCart(product, color ?? 0, size ?? 0,number ?? 1,price);
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }

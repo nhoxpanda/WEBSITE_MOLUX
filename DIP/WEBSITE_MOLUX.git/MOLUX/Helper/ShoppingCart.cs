@@ -23,7 +23,7 @@ namespace MOLUX.Helper
         {
             return GetCart(controller.HttpContext);
         }
-        public int AddToCart(Item item, int color, int size)
+        public int AddToCart(Item item, int color, int size,int number,decimal price)
         {
             // Get the matching cart and Item instances
             var cartItem = _db.web_Cart.SingleOrDefault(
@@ -37,10 +37,11 @@ namespace MOLUX.Helper
                 {
                     ItemId = item.RowID,
                     CartId = ShoppingCartId,
-                    Count = 1,
+                    Count = number,
                     DateCreated = DateTime.Now,
                     SizeId = size == 0 ? (int?)null : size,
-                    ColorId = color == 0 ? (int?)null : color
+                    ColorId = color == 0 ? (int?)null : color,
+                    UnitPrice =price
                 };
                 _db.web_Cart.Add(cartItem);
             }
@@ -110,7 +111,7 @@ namespace MOLUX.Helper
             // sum all Item Sale_Price totals to get the cart total
             decimal? total = (from cartItems in _db.web_Cart
                               where cartItems.CartId == ShoppingCartId
-                              select (int?)cartItems.Count * cartItems.Item.Sale_Price).Sum();
+                              select (int?)cartItems.Count * cartItems.UnitPrice).Sum();
 
             return total ?? decimal.Zero;
         }

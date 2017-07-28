@@ -1,6 +1,8 @@
 ﻿@using MOLUX.Models
 @using MOLUX.Helper
-
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList<GetSPKhuyenMai_Result>
 @{
     ViewBag.Title = "Danh sách sản phẩm khuyến mãi";
 }
@@ -26,44 +28,92 @@
 <!--End Breadcrumb-->
 <div class="row bg-white">
     <div class="col-lg-12 list-nm">
-      
-    </div>
-</div>
-@*<div class="row bg-white">
-    <div class="col-lg-12 list-m">
-        @if (Model.Count() > 0)
+
+
+        @foreach (var item in Model)
         {
-            int totalItem = Model.FirstOrDefault().TotalRowCount ?? 0;
-            int pageIndex = totalItem / 5 + 1;
-            <div class="pagination-container">
-                <ul class="pagination" style="float: right;">
-                    @if (search.page > 1)
-                    {
-                        <li class="PagedList-skipToPrevious">
-                            <a href="/ket-qua-tim-kiem?keyword=@search.keyword&sort=@search.sort&page=@(search.page - 1)" rel="prev">«</a>
-                        </li>
-                    }
-                    @for (int i = 1; i <= pageIndex; i++)
-                    {
-                        <li class="@(i == search.page ? "active" : "")">
-                            <a href="/ket-qua-tim-kiem?keyword=@search.keyword&sort=@search.sort&page=@i" title="trang-@i">@i</a>
-                        </li>
-                    }
-                    @if (search.page < pageIndex)
-                    {
-                        <li class="PagedList-skipToNext">
-                            <a href="/ket-qua-tim-kiem?keyword=@search.keyword&sort=@search.sort&page=@(search.page + 1)" rel="next">»</a>
-                        </li>
-                    }
-                </ul>
+
+
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3 border-rb border-home product" style="border:1px solid #F1F1F1">
+                <div class="fixed-image-auto-height owl-item">
+                    <a href="/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)" title="@item.Name">
+                        <div class="image-wrapper" style="position:relative">
+                            <p class="salenew">
+                                <img src="~/Images/Logo/@ConfigWebsite.Data().IconSale" class="m-lazy img-responsive" title="" alt="" style="width: 40px" />
+                                <div style="position: absolute; right: 13px;top:15px; height:30px;color:red; font-size:20px">@string.Format("{0:0,0}", item.Price)%</div>
+                            </p>
+                            <img src="http://103.53.231.68:400/MCS/@item.Picture" onerror="this.src='/Images/Products/noimage.gif'" class="m-lazy img-responsive" alt="xxx" style="padding: 15px">
+
+                        </div>
+                    </a>
+                </div>
+
+                <div class="product-name">
+                    <a title="@item.Name" href="/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)">@item.Name</a>
+                </div>
+                <div class="col-md-12 nk-price-section clearfix">
+                    <div class="col-md-7" style="text-align: left">
+                        <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price - item.Sale_Price * item.Price / 100).Replace(",", ".")</span>đ</span>
+                    </div>
+                    <div class="col-md-5" style="text-align: right; padding-right: 5px;">
+                        <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ </div>
+                    </div>
+
+                </div>
             </div>
         }
     </div>
+</div>
+<div>
+    <div id='Paging' style="text-align: center">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        / @Model.PageCount
 
-</div>*@
+        @Html.PagedListPager(Model, page => Url.Action("PromotionProduct", new { sort = ViewBag.sort, page }))
+    </div>  
+</div>
+@*<div class="row bg-white">
+        <div class="col-lg-12 list-m">
+            @if (Model.Count() > 0)
+            {
+                int totalItem = Model.FirstOrDefault().TotalRowCount ?? 0;
+                int pageIndex = totalItem / 5 + 1;
+                <div class="pagination-container">
+                    <ul class="pagination" style="float: right;">
+                        @if (search.page > 1)
+                        {
+                            <li class="PagedList-skipToPrevious">
+                                <a href="/ket-qua-tim-kiem?keyword=@search.keyword&sort=@search.sort&page=@(search.page - 1)" rel="prev">«</a>
+                            </li>
+                        }
+                        @for (int i = 1; i <= pageIndex; i++)
+                        {
+                            <li class="@(i == search.page ? "active" : "")">
+                                <a href="/ket-qua-tim-kiem?keyword=@search.keyword&sort=@search.sort&page=@i" title="trang-@i">@i</a>
+                            </li>
+                        }
+                        @if (search.page < pageIndex)
+                        {
+                            <li class="PagedList-skipToNext">
+                                <a href="/ket-qua-tim-kiem?keyword=@search.keyword&sort=@search.sort&page=@(search.page + 1)" rel="next">»</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+
+    </div>*@
 
 @section scripts{
-    <script>
-        
-    </script>
+   <script>
+       $("#ddlSort").change(function () {
+           window.location.href = "/Products/PromotionProduct?sort=" + $("#ddlSort").val() + "&page=@ViewBag.page";
+       });
+       function getURLParameter(name) {
+           return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+       };
+       $("#ddlSort").val(getURLParameter("sort"));
+</script>
+
 }
