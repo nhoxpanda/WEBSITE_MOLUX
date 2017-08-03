@@ -16,7 +16,7 @@ namespace MOLUX
             routes.MapRoute(
                 name: "Intro",
                 url: "gioi-thieu",
-                defaults: new { controller = "Home", action = "about" }
+                defaults: new { controller = "Home", action = "About" }
             );
             routes.MapRoute(
                  name: "Contact",

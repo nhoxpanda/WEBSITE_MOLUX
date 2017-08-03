@@ -111,6 +111,7 @@
                                     <td>
                                         <a title="Hình sản phẩm" href="~/Admin/ProductManage/UpdateImage/@item.RowID"><i class="fa fa-picture-o"></i>&nbsp;Hình ảnh sản phẩm</a><br />
                                         <a title="Cập nhật SEO" onclick="updateSEO(@item.RowID)" style="cursor: pointer"><i class="fa fa-globe"></i>&nbsp;Cập nhật SEO</a>
+                                        <a title="Thông số kỹ thuật" onclick="updateTechnical(@item.RowID)" style="cursor: pointer"><i class="fa fa-terminal"></i>&nbsp;Cập nhật Thông số kỹ thuật</a>
                                     </td>
                                 </tr>
                             }
@@ -177,6 +178,21 @@
                 success: function (data) {
                     $("#data-item").html(data);
                     $("#modal-update-seo").modal("show");
+                }
+            });
+        }
+
+        function updateTechnical(id) {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ProductManage/EditTechnical',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#data-item").html(data);
+                    $("#modal-update-technical").modal("show");
                 }
             });
         }

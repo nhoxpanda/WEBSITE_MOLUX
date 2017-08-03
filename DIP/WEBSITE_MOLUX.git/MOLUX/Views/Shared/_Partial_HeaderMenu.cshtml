@@ -43,6 +43,7 @@
             </a>
         </div>
         <div class="col-lg-7 col-md-8 col-xm-8 col-sm-7 col-xs-12 hidden-xs menu-logo">
+            <a class="hidden-ss hidden-sm" href="/gioi-thieu" title="Giới thiệu">Giới thiệu</a>
             @foreach (var item in Category.HeaderMenu())
             {
                 <a class="hidden-ss hidden-sm" href="/tin-tuc/p@(item.Id)/@Common.MakeUrlSlug(item.Title)" title="@item.Title">@item.Title</a>
@@ -92,6 +93,7 @@
                     <p>Danh mục sản phẩm</p>
                 </button>
                 <ul class="dropdown-menu" role="menu">
+                    <li><a class="hidden-ss hidden-sm" href="/gioi-thieu" title="Giới thiệu">Giới thiệu</a></li>
                     @foreach (var parent in Category.CategoryParent())
                     {
                         <li><a href="/san-pham/pr@(parent.RowID)-@(parent.Code)/@Common.MakeUrlSlug(parent.Name)" class="menu-mobile sgtop"><i class="iconmobile-dl"></i>@parent.Name</a></li>

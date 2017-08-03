@@ -115,6 +115,8 @@ namespace MOLUX.Models
         public Nullable<decimal> Gia_Xuat_Chi_Nhanh { get; set; }
         public int Orders { get; set; }
         public string Technical { get; set; }
+        public string Size_Code { get; set; }
+        public string Color_Code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<web_Cart> web_Cart { get; set; }

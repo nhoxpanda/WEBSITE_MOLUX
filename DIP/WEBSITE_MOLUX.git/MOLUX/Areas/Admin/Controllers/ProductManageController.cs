@@ -243,6 +243,25 @@ namespace MOLUX.Areas.Admin.Controllers
         }
         #endregion
 
+        #region Cập nhật Thông số kỹ thuật
+
+        public ActionResult EditTechnical(int id)
+        {
+            var model = _db.Item.Find(id);
+            return PartialView("_Partial_UpdateTechnical", model);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateTechnical(Item model)
+        {
+            var item = _db.Item.Find(model.RowID);
+            item.Technical = model.Technical;
+            _db.SaveChanges();
+
+            return Json(JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
         #region Check hiển thị + xếp thứ tự
         public ActionResult CheckShow(int id)
         {

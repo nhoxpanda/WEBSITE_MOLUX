@@ -87,6 +87,8 @@
     <EntitySetMapping Name="Item">
       <EntityTypeMapping TypeName="BMSMoluxHongKongModel.Item">
         <MappingFragment StoreEntitySet="Item">
+          <ScalarProperty Name="Color_Code" ColumnName="Color Code" />
+          <ScalarProperty Name="Size_Code" ColumnName="Size Code" />
           <ScalarProperty Name="Technical" ColumnName="Technical" />
           <ScalarProperty Name="RowID" ColumnName="RowID" />
           <ScalarProperty Name="Code" ColumnName="Code" />

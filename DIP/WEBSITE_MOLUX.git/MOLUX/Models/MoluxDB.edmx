@@ -181,6 +181,8 @@
           <Property Name="Gia Xuat Chi Nhanh" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Orders" Type="int" Nullable="false" />
           <Property Name="Technical" Type="nvarchar(max)" />
+          <Property Name="Size Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Color Code" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Item Category">
           <Key>
@@ -1124,6 +1126,8 @@
           <NavigationProperty Name="web_ItemSizeColor" Relationship="Self.FK_web_ItemSizeColor_Item" FromRole="Item" ToRole="web_ItemSizeColor" />
           <NavigationProperty Name="web_ItemTechnical" Relationship="Self.FK_web_ItemTechnical_Item" FromRole="Item" ToRole="web_ItemTechnical" />
           <Property Name="Technical" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Size_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Color_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Item_Category">
           <Key>
@@ -3861,6 +3865,8 @@
           <EntitySetMapping Name="Item">
             <EntityTypeMapping TypeName="BMSMoluxHongKongModel.Item">
               <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="Color_Code" ColumnName="Color Code" />
+                <ScalarProperty Name="Size_Code" ColumnName="Size Code" />
                 <ScalarProperty Name="Technical" ColumnName="Technical" />
                 <ScalarProperty Name="RowID" ColumnName="RowID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />

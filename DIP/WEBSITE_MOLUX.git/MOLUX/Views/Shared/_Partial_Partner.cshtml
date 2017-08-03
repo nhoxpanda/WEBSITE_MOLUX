@@ -1,57 +1,56 @@
 ﻿@using MOLUX.Models
 @model IEnumerable<web_getAllPartner_Result>
-
-<div class="col-xs-12 " style="margin-top:20px">
-    <div class="col-info ">
-     
-        <div style="float:left;width:250px;margin-left:20px;border:solid 1px #31b1b1">
-            <div style="height:50px;background-color:white;width:100%;float:left;">
-                <img src="~/Content/assets/images/icondoitra/ok2.PNG" style="height:50px;margin-left:0px" />
-                <span style="font-size:15px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align:center;margin-left:10px;cursor:default">Sản phẩm chính hãng</span>
-            </div>
-        </div>  
-        <div style="float:left;width:250px;margin-left:10px;border:solid 1px #31b1b1">
-            <div style="height:50px;background-color:white;width:100%;float:left;">
-                <img src="~/Content/assets/images/icondoitra/LapDat.PNG" style="height:50px;margin-left:0px" />
-                <span style="font-size:15px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align:center;margin-left:10px;cursor:default">Lắp đặt tận tình</span>
-            </div>
-        </div>
-        <div style="float:left;width:250px;margin-left:10px;border:solid 1px #31b1b1">
-            <div style="height:50px;background-color:white;width:100%;float:left;">
-                <img src="~/Content/assets/images/icondoitra/GiaoHang.PNG" style="height:50px;margin-left:0px" />
-                <span style="font-size:15px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align:center;margin-left:10px;cursor:default">Giao hàng tận nơi</span>
+<style>
+    .col-half-offset {
+        margin-left: 1.2444%;
+    }
+    .col-5{
+        width: 19%
+    }
+</style>
+<div class="col-xs-12 col-md-12" style="margin-top:20px">
+    <div class="row" style="margin-right: 0">
+        <div class="col-md-2 col-5">
+            <div style="background-color:white;width:100%;float:left;border: solid 1px #31b1b1">
+                <img src="~/Content/assets/images/icondoitra/ok2.PNG" style="height:40px;margin-left:0px" />
+                <span style="font-size:13px;text-align:center;margin-left:10px;cursor:default">Sản phẩm chính hãng</span>
             </div>
         </div>
-        <div style="float:left;width:250px;margin-left:10px;border:solid 1px #31b1b1">
-            <div style="height:50px;background-color:white;width:100%;float:left;">
-                <img src="~/Content/assets/images/icondoitra/HauDai.PNG" style="height:50px;margin-left:0px" />
-                <span style="font-size:15px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align:center;margin-left:10px;cursor:default">Hậu mãi chu đáo</span>
+        <div class="col-md-2 col-5 col-half-offset">
+            <div style="background-color:white;width:100%;float:left;border: solid 1px #31b1b1">
+                <img src="~/Content/assets/images/icondoitra/LapDat.PNG" style="height:40px;margin-left:0px" />
+                <span style="font-size:13px;text-align:center;margin-left:10px;cursor:default">Lắp đặt tận tình</span>
             </div>
         </div>
-        <div style="float:left;width:250px;margin-left:10px;border:solid 1px #31b1b1">
-            <div style="height:50px;background-color:white;width:100%;float:left;">
-                <img src="~/Content/assets/images/icondoitra/ThanhToan.PNG" style="height:50px;margin-left:0px" />
-                <span style="font-size:15px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align:center;margin-left:10px;cursor:default">Thanh toán linh hoạt</span>
+        <div class="col-md-2 col-5 col-half-offset">
+            <div style="background-color:white;width:100%;float:left;border: solid 1px #31b1b1">
+                <img src="~/Content/assets/images/icondoitra/GiaoHang.PNG" style="height:40px;margin-left:0px" />
+                <span style="font-size:13px;text-align:center;margin-left:10px;cursor:default">Giao hàng tận nơi</span>
             </div>
         </div>
-
+        <div class="col-md-2 col-5 col-half-offset">
+            <div style="background-color:white;width:100%;float:left;border: solid 1px #31b1b1">
+                <img src="~/Content/assets/images/icondoitra/HauDai.PNG" style="height:40px;margin-left:0px" />
+                <span style="font-size:13px;text-align:center;margin-left:10px;cursor:default">Hậu mãi chu đáo</span>
+            </div>
+        </div>
+        <div class="col-md-2 col-5 col-half-offset">
+            <div style="background-color:white;width:100%;float:left;border: solid 1px #31b1b1">
+                <img src="~/Content/assets/images/icondoitra/ThanhToan.PNG" style="height:40px;margin-left:0px" />
+                <span style="font-size:13px;text-align:center;margin-left:10px;cursor:default">Thanh toán linh hoạt</span>
+            </div>
+        </div>
     </div>
-    
 </div>
-
-
 <div class="col-xs-12 bg-white-bo">
     <div class="col-info">
         @*<div id="logo-slider" class="owl-theme">*@
-
         @foreach (var item in Model)
         {
             <div style="float:left">
-                <a href="@item.Name" title="@item.Name" target="_blank"><img src="/Images/Manufacturer/@item.Logo" style="width:130px" /></a>
+                <a href="@item.Name" title="@item.Name" target="_blank"><img src="/Images/Manufacturer/@item.Logo" style="width:120px" /></a>
             </div>
         }
-
-
         @*</div>*@
     </div>
 </div>

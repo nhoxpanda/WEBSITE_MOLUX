@@ -1397,7 +1397,6 @@
     <Content Include="Content\assets\images\icondoitra\GiaoHang.PNG" />
     <Content Include="Content\assets\images\icondoitra\HauDai.PNG" />
     <Content Include="Content\assets\images\icondoitra\LapDat.PNG" />
-    <Content Include="Content\assets\images\icondoitra\ok.PNG" />
     <Content Include="Content\assets\images\icondoitra\ok2.PNG" />
     <Content Include="Content\assets\images\icondoitra\spchinhhang.png" />
     <Content Include="Content\assets\images\icondoitra\ThanhToan.PNG" />
@@ -1833,6 +1832,7 @@
     <Content Include="Areas\Admin\Views\PageIntro\_PartialCreateMainProduct.cshtml" />
     <Content Include="Areas\Admin\Views\PageIntro\_PartialUpdateMainProduct.cshtml" />
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="Areas\Admin\Views\ProductManage\_Partial_UpdateTechnical.cshtml" />
     <None Include="Properties\PublishProfiles\Molux.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1851,7 +1851,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

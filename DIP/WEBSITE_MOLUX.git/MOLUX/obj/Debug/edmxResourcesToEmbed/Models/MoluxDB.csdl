@@ -193,6 +193,8 @@
     <NavigationProperty Name="web_ItemSizeColor" Relationship="Self.FK_web_ItemSizeColor_Item" FromRole="Item" ToRole="web_ItemSizeColor" />
     <NavigationProperty Name="web_ItemTechnical" Relationship="Self.FK_web_ItemTechnical_Item" FromRole="Item" ToRole="web_ItemTechnical" />
     <Property Name="Technical" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Size_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Color_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Item_Category">
     <Key>
