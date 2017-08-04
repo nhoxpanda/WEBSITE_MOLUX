@@ -118,8 +118,6 @@ namespace MOLUX.Controllers
                     Amount = item.Item.Sale_Price * item.Count,
                     Rate__LCY_ = item.Item.Sale_Price,
                     Amount__LCY_ = item.Item.Sale_Price * item.Count,
-                    ColorId = item.ColorId,
-                    SizeId = item.SizeId
                 };
                 // Set the order total of the shopping cart
                 orderTotal += (item.Count * item.Item.Sale_Price);

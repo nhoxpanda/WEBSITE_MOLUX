@@ -19,13 +19,9 @@ namespace MOLUX.Models
         public int ItemId { get; set; }
         public int Count { get; set; }
         public System.DateTime DateCreated { get; set; }
-        public Nullable<int> ColorId { get; set; }
         public Nullable<int> Type { get; set; }
         public Nullable<decimal> UnitPrice { get; set; }
-        public Nullable<int> SizeId { get; set; }
     
         public virtual Item Item { get; set; }
-        public virtual web_SizeColor web_SizeColor { get; set; }
-        public virtual web_SizeColor web_SizeColor1 { get; set; }
     }
 }

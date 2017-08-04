@@ -39,8 +39,15 @@
                             <tr id="item@(item.Id)">
                                 <td style="width: 40px">@i</td>
                                 <td style="white-space: nowrap">@item.Item.Name</td>
-                                <td>@(item.ColorId != null ? item.web_SizeColor.Name : "")</td>
-                                <td>@(item.SizeId != null ? item.web_SizeColor1.Name : "")</td>
+                                @*<td>@(item.ColorId != null ? item.web_SizeColor.Name : "")</td>*@
+                                @{
+                                    BMSMoluxHongKongEntities db = new BMSMoluxHongKongEntities();
+                                    var color = db.web_SizeColor.Where(n => n.Note == item.Item.Color_Code).Select(b => b.Name).FirstOrDefault();
+                                    var size = db.web_SizeColor.Where(n => n.Note == item.Item.Size_Code).Select(b => b.Name).FirstOrDefault();
+                                }
+                                <td>@color</td>
+                                <td>@size</td>
+                                @*<td>@(item.SizeId != null ? item.web_SizeColor1.Name : "")</td>*@
                                 <td><input type="number" class="form-control" onchange="updateQuantity(@item.Id)" id="quantity@(item.Id)" value="@item.Count" /></td>
                                 <td id="price@(item.Id)" class="price-cart">@string.Format("{0:0,0₫}", item.UnitPrice != null ? item.UnitPrice : 0).Replace(",", ".")</td>
                                 <td id="total@(item.Id)" class="price-cart">@string.Format("{0:0,0₫}", item.UnitPrice != null ? item.Count * item.UnitPrice : 0).Replace(",", ".")</td>

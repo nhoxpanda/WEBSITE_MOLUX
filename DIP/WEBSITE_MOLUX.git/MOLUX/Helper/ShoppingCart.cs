@@ -23,12 +23,10 @@ namespace MOLUX.Helper
         {
             return GetCart(controller.HttpContext);
         }
-        public int AddToCart(Item item, int color, int size,int number,decimal price)
+        public int AddToCart(Item item,  int number, decimal price)
         {
             // Get the matching cart and Item instances
-            var cartItem = _db.web_Cart.SingleOrDefault(
-                c => c.CartId == ShoppingCartId
-                && c.ItemId == item.RowID);
+            var cartItem = _db.web_Cart.SingleOrDefault(c => c.CartId == ShoppingCartId && c.ItemId == item.RowID);
 
             if (cartItem == null)
             {
@@ -39,8 +37,6 @@ namespace MOLUX.Helper
                     CartId = ShoppingCartId,
                     Count = number,
                     DateCreated = DateTime.Now,
-                    SizeId = size == 0 ? (int?)null : size,
-                    ColorId = color == 0 ? (int?)null : color,
                     UnitPrice =price
                 };
                 _db.web_Cart.Add(cartItem);
@@ -49,7 +45,7 @@ namespace MOLUX.Helper
             {
                 // If the item does exist in the cart, 
                 // then add one to the quantity
-                cartItem.Count++;
+                cartItem.Count += number;
             }
             // Save changes
             _db.SaveChanges();

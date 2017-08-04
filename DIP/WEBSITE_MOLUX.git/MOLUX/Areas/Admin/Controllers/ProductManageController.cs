@@ -287,5 +287,26 @@ namespace MOLUX.Areas.Admin.Controllers
         }
 
         #endregion
+
+        #region Cập nhập size, color
+            public ActionResult EditSizeColor(int id)
+            {
+                var model = _db.Item.Find(id);
+                ViewBag.Size_Code = _db.web_SizeColor.Where(n => n.Type == 2).ToList();
+                ViewBag.Color_Code = _db.web_SizeColor.Where(n => n.Type == 1).ToList();
+                return PartialView("_Partial_UpdateSizeColor", model);
+            }
+           [HttpPost]
+            public ActionResult _UpdateSizeColor(int id,string CodeColor, string CodeSize)
+            {
+                var model = _db.Item.Find(id);
+                model.Color_Code = CodeColor;
+                model.Size_Code = CodeSize;
+                _db.SaveChanges();
+                return Json(new { result = true,JsonRequestBehavior.AllowGet });
+
+            }
+        #endregion
+
     }
 }

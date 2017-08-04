@@ -1,0 +1,163 @@
+﻿@model MOLUX.Models.IteamProduct
+<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 tit-des-detail">
+    <div class="img-product-detail col-lg-6 col-md-6 col-sm-6 col-xs-12 paddingLNone">
+        <div style="padding: 0 20px 20px 20px;" class="xzoom-container">
+            <img class="img-responsive img-thumbnail xzoom" id="xzoom-magnific" onerror="this.src='/Images/Products/noimage.gif'" src="http://103.53.231.68:400/MCS/@Model.Picture" xoriginal="http://103.53.231.68:400/MCS/@Model.Picture" />
+            <ul class="xzoom-thumbs bxslider" id="bxsliderImages">
+                <li>
+                    <a href="http://103.53.231.68:400/MCS/@Model.Picture">
+                        <img class="xzoom-gallery5 xzoom-gallery" width="80" src="http://103.53.231.68:400/MCS/@Model.Picture" xpreview="http://103.53.231.68:400/MCS/@Model.Picture">
+                    </a>
+                </li>
+                @foreach (var item in Model.Images)
+                {
+                    <li>
+                        <a href="/Images/Products/@item.Image">
+                            <img class="xzoom-gallery5 xzoom-gallery" width="80" src="/Images/Products/@item.Image">
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="info-product-detail col-lg-6 col-md-6 col-sm-6 col-xs-12 paddingLNone paddingRNone">
+        <div class="bg-white">
+            <div class="info-price">
+                <h1><span>@Model.Name</span></h1>
+                <div class="modeldetail">
+                    <ul>
+                        <li><b>Mã sản phẩm: </b>@Model.Code</li>
+                        <li><b>Xuất xứ: </b>Chính hãng</li>
+                        <li><b>Hãng sản xuất: </b><a href="#" title="@Model.Name @Model.Manufacturer_Code">@Model.Manufacturer_Code</a></li>
+                        <li>
+                            @Html.Raw(Model.ShortDesc)
+                        </li>
+                    </ul>
+                </div>
+                <div class="func_stock">
+                    <div class="avaiable"><span class="icon-avai"></span><p>Còn hàng | </p></div>
+                    <div class="info-wan">
+                        <span class="icon-wan"></span>
+                        <p>
+                            Bảo hành: 24 tháng
+                            @*<a class="csbaohanh" target="_blank" href="/tin-tuc/chinh-sach/chinh-sach-bao-hanh-tran-anh-n516" title="Chính sách bảo hành">Chính sách bảo hành</a>*@<a class="csbaohanh" target="_blank" href="/tin-tuc/chinh-sach/chinh-sach-bao-hanh-tran-anh-n516" title="Chính sách bảo hành"></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="price-city">
+                    <p>
+                        Chọn màu sắc:
+                    </p>
+                    <div class="dropdown">
+                        <select class="dropbtn" name="ddlColor" id="ddlColor" onchange="LoadItemBycolor('@Model.Code_2')">
+                            @foreach (var item in Model.Colors)
+                            {
+                                if (item.Note == Model.Color_Code)
+                                {
+                                    <option value="@item.Note" selected>@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Note">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <p>
+                        Chọn kích thước:
+                    </p>
+                    <div class="dropdown">
+                        <select class="dropbtn" name="ddlSize" id="ddlSize" onchange="LoadItemBycolor('@Model.Code_2')">
+                            @foreach (var item in Model.Sizes)
+                            {
+                                if (item.Note == Model.Size_Code)
+                                {
+                                    <option value="@item.Note" selected>@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Note">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="price-detail">
+                    <div class="price-dt1">
+                    </div>
+                    @{decimal price = 0;}
+                    @if (Model.Item_Code == Model.Item_Code_2 && Model.Item_Code != null && DateTime.Now.Date >= Model.From_Date && DateTime.Now.Date <= Model.To_Date)
+                    {
+                        <div class="price-dt2">
+
+                            <div class="">
+                                <small class="real-price">
+                                    @{price = (decimal)(Model.Sale_Price - Model.Sale_Price * Model.Sale / 100);}
+                                    <span id="_Price"> @string.Format("{0:0,0đ}", price).Replace(",", ".")</span>
+                                </small>
+                            </div>
+
+                        </div>
+                        <div class="price-vat">
+                            @string.Format("{0:0,0₫}", Model.Sale_Price).Replace(",", ".")
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="price-dt2">
+
+                            <div class="">
+                                <small class="real-price">
+
+                                    @{price = (decimal)Model.Sale_Price;}
+                                    <span id="_Price">   @string.Format("{0:0,0đ}", Model.Sale_Price).Replace(",", ".")</span>
+                                </small>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="ba-button">
+                <ul>
+                    <li style="width: 80px;">
+                        <div class="quantity">
+                            <input type="number" id="number" min="1" max="30" step="1" value="1" class="form-control" style="width: 60px; height: 32px" />
+                        </div>
+                    </li>
+                    <li>
+                        <a style="cursor: pointer" onclick="addToCart(@Model.RowID,@price)" class="buynow calltobuy" title="Mua luôn @Model.Name">
+                            Thêm vào giỏ
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!-- tab mô tả sản phẩm - thông số kỹ thuật -->
+    <div class="tabbable" style="padding: 5px;">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#mota" data-toggle="tab">Mô tả sản phẩm</a>
+            </li>
+            <li>
+                <a href="#thongso" data-toggle="tab">Thông số kỹ thuật</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="mota">
+                <div class="product-content">
+                    @Html.Raw(Model.Description)
+                </div>
+            </div>
+            <div class="tab-pane" id="thongso">
+                <div class="product-content">
+                    Thông số kỹ thuật
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

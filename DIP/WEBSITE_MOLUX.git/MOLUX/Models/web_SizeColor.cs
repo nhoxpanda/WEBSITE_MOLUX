@@ -19,8 +19,6 @@ namespace MOLUX.Models
         {
             this.Sales_Order_Detail = new HashSet<Sales_Order_Detail>();
             this.Sales_Order_Detail1 = new HashSet<Sales_Order_Detail>();
-            this.web_Cart = new HashSet<web_Cart>();
-            this.web_Cart1 = new HashSet<web_Cart>();
             this.web_ItemSizeColor = new HashSet<web_ItemSizeColor>();
         }
     
@@ -34,10 +32,6 @@ namespace MOLUX.Models
         public virtual ICollection<Sales_Order_Detail> Sales_Order_Detail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sales_Order_Detail> Sales_Order_Detail1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<web_Cart> web_Cart { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<web_Cart> web_Cart1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<web_ItemSizeColor> web_ItemSizeColor { get; set; }
     }

@@ -1,0 +1,119 @@
+﻿@model IEnumerable<MOLUX.Models.web_SizeColor>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        Màu sắc - Kích thước
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"> Màu sắc - Kích thước</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="callout callout-info lead">
+                        <a href="@Url.Action("Index", "PostManage")" class="btn btn-primary"><i class="fa fa-refresh"></i>&nbsp;Nạp</a>
+                        <button class="btn btn-success" data-toggle="modal" data-target="#ModalCreate"><i class="fa fa-plus"></i>Thêm mới</button>
+                    </div>
+                </div>
+                <div class="box-body" id="data-customer">
+                    <table id="postTable" class="table table-striped table-bordered table-hover table-checkable order-column nomenutable">
+                        <thead>
+                            <tr>
+                                <th> # </th>
+                                <th> Name</th>
+                                <th> Loại </th>
+                                <th> Ghi chú</th>>
+                                <th> Actions </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int i = 0;}
+                            @foreach (var item in Model)
+                            {
+                                i++;
+                                <tr class="odd gradeX" id="post@(item.Id)">
+                                    <td> @(i) </td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                    <td>
+                                        @if (item.Type==1)
+                                        {
+                                            <span>Màu sắc</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Kích thước</span>
+                                        }
+                                    
+                                    </td>
+                                    <td>@item.Note</td>
+                                    <td>
+                                        <button class="btn btn-xs btn-warning dropdown-toggle" onclick="EditModel(@item.Id)">
+                                            Edit
+                                        </button>
+                                        <button class="btn btn-xs btn-danger dropdown-toggle" type="button" onclick="deleteModel(@item.Id);">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@Html.Partial("_PartialCreate", new MOLUX.Models.web_SizeColor())
+
+<div id="data"></div>
+@section scripts {
+   <script>
+    
+           $("AddNew").click(function () {
+               $("#ModalCreate").modal("show");
+           })
+
+           function EditModel(id) {
+               $.ajax({
+                   type: "get",
+                   url: '/Admin/ColorSizeManage/Edit',
+                   data: "id=" + id,
+                   contentType: "application/json; charset=utf-8",
+                   dataType: "html",
+                   success: function (data) {
+                       console.log(data);
+                       $("#data").html(data);
+                       $('#ModelEdit').modal('show');
+                   },
+                   error: function (errorData) {
+                       onError(errorData);
+                   }
+               });
+           }
+           function deleteModel(id) {
+               var dataPost = { id: id };
+               $.ajax({
+                   type: "POST",
+                   url: '/Admin/ColorSizeManage/Delete',
+                   data: JSON.stringify(dataPost),
+                   contentType: "application/json; charset=utf-8",
+                   dataType: "json",
+                   success: function (data) {
+                       $("#post" + id).fadeOut();
+                   }
+               });
+           }
+    </script>
+}

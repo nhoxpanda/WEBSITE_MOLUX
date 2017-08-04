@@ -347,21 +347,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="web_Cart">
-      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_Cart">
-        <MappingFragment StoreEntitySet="web_Cart">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="CartId" ColumnName="CartId" />
-          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-          <ScalarProperty Name="Count" ColumnName="Count" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="ColorId" ColumnName="ColorId" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-          <ScalarProperty Name="SizeId" ColumnName="SizeId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="web_Company">
       <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_Company">
         <MappingFragment StoreEntitySet="web_Company">
@@ -2678,5 +2663,18 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="web_Cart">
+      <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_Cart">
+        <MappingFragment StoreEntitySet="web_Cart">
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="CartId" ColumnName="CartId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -356,10 +356,8 @@
     <Property Name="ItemId" Type="int" Nullable="false" />
     <Property Name="Count" Type="int" Nullable="false" />
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
-    <Property Name="ColorId" Type="int" />
     <Property Name="Type" Type="int" />
     <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" />
-    <Property Name="SizeId" Type="int" />
   </EntityType>
   <EntityType Name="web_Company">
     <Key>
@@ -581,30 +579,6 @@
       </Principal>
       <Dependent Role="web_Cart">
         <PropertyRef Name="ItemId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_web_Cart_web_SizeColor1">
-    <End Role="web_SizeColor" Type="Self.web_SizeColor" Multiplicity="0..1" />
-    <End Role="web_Cart" Type="Self.web_Cart" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="web_SizeColor">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="web_Cart">
-        <PropertyRef Name="ColorId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_web_Cart_web_SizeColor2">
-    <End Role="web_SizeColor" Type="Self.web_SizeColor" Multiplicity="0..1" />
-    <End Role="web_Cart" Type="Self.web_Cart" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="web_SizeColor">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="web_Cart">
-        <PropertyRef Name="SizeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -889,14 +863,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_web_Cart_Item" Association="Self.FK_web_Cart_Item">
       <End Role="Item" EntitySet="Item" />
-      <End Role="web_Cart" EntitySet="web_Cart" />
-    </AssociationSet>
-    <AssociationSet Name="FK_web_Cart_web_SizeColor1" Association="Self.FK_web_Cart_web_SizeColor1">
-      <End Role="web_SizeColor" EntitySet="web_SizeColor" />
-      <End Role="web_Cart" EntitySet="web_Cart" />
-    </AssociationSet>
-    <AssociationSet Name="FK_web_Cart_web_SizeColor2" Association="Self.FK_web_Cart_web_SizeColor2">
-      <End Role="web_SizeColor" EntitySet="web_SizeColor" />
       <End Role="web_Cart" EntitySet="web_Cart" />
     </AssociationSet>
     <AssociationSet Name="FK_web_ItemImage_Item" Association="Self.FK_web_ItemImage_Item">

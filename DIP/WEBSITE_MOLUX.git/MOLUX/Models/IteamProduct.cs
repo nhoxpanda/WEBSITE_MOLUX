@@ -21,11 +21,14 @@ namespace MOLUX.Models
        public Nullable<decimal> Sale_Price { set; get; }
        public string guarantee { set; get; }
        public string Description { set; get; }
-       public List<web_ItemSizeColor> Sizes { set; get; }
-       public List<web_ItemSizeColor> Colors { set; get; }
+       public List<web_SizeColor> Sizes { set; get; }
+       public List<web_SizeColor> Colors { set; get; }
        public Nullable<decimal> Sale { set; get; }
        public string Item_Code { set; get; }
        public string Item_Code_2 { set; get; }
+       public string Code_2 { set; get; }
+        public string Size_Code{set;get;}
+        public string Color_Code { set; get; }
        public Nullable<DateTime> From_Date { set; get; }
        public Nullable<DateTime> To_Date { set; get; }
     }

@@ -100,8 +100,6 @@ namespace MOLUX.Controllers
         {
             IteamProduct item = new IteamProduct();
             var model = _db.Item.Find(id);
-            //var model = _db.Item.Where(n => n.RowID == id).Single();
-
             if (model!=null)
             {
                 
@@ -119,6 +117,9 @@ namespace MOLUX.Controllers
                 item.MetaDescription = model.MetaDescription;
                 item.Status = "còn hàng";
                 item.guarantee ="12 tháng";
+                item.Size_Code = model.Size_Code;
+                item.Color_Code = model.Color_Code;
+                item.Code_2 = model.Code_2;
                 var pld = _db.Price_Level_Detail.Where(n => n.Item_Code == model.Code).FirstOrDefault();
                 if (pld!=null)
                 {
@@ -129,26 +130,89 @@ namespace MOLUX.Controllers
                     item.From_Date = (DateTime)pl.From_Date;
                     item.To_Date = (DateTime)pl.To_Date;
                 }
-            
-                item.Sizes = _db.web_ItemSizeColor.Where(n => n.ItemId == id && n.IsDelete == false && n.Type == 2).ToList();
-                item.Colors = _db.web_ItemSizeColor.Where(n => n.ItemId == id && n.IsDelete == false && n.Type == 1).ToList();
+                var dsCode2 = _db.Item.Where(n => n.Code_2 == model.Code_2).ToList();
+                List<web_SizeColor> a = new List<web_SizeColor>();
+                List<web_SizeColor> b = new List<web_SizeColor>();
+                foreach (var _item in dsCode2)
+                {
+                    web_SizeColor c = _db.web_SizeColor.Where(n=>n.Note==_item.Color_Code).FirstOrDefault();
+                    web_SizeColor d = _db.web_SizeColor.Where(n => n.Note == _item.Size_Code).FirstOrDefault();
+                    a.Add(c);
+                    b.Add(d);
+                }
+                item.Sizes = b.OrderBy(n=>n.Note).Distinct().ToList();
+                item.Colors = a.OrderBy(n => n.Note).Distinct().ToList();
 
             }
-            //ViewBag.ProductViewModel = new ProductViewModel()
-            //{
-            //    //sp cùng loaij
-            //    TheSameCategory = _db.web_get15ProductSameCategory(id, model.Item_Category_Code).ToList(),
-            //    //sp cung nha sx
-            //    TheSameManufacturer = _db.web_get15ProductSameManufacturer(id, model.Manufacturer_Code).ToList(),
-            //    TheOther = _db.web_get15ProductOther(id).ToList(),
-            //    Color = _db.web_ItemSizeColor.Where(p=> p.ItemId == id && p.IsDelete == false && p.Type == 1).ToList(),
-            //    Size = _db.web_ItemSizeColor.Where(p => p.ItemId == id && p.IsDelete == false && p.Type == 2).ToList()
-            //};
-            var spcungloai = _db.Get15_SPCungLoai(id, model.Item_Category_Code).ToList();
-            ViewBag.spcungloai = spcungloai;
+            ViewBag.spcungloai = _db.Get15_SPCungLoai(id, model.Item_Category_Code).ToList();
             ViewBag.spCungHang = _db.Get15_SPCungHang(id,model.Manufacturer_Code).ToList();
             ViewBag.spKhac = _db.Get15_SPKhac(id).ToList();
             return View(item);
+        }
+
+        public decimal CheckPriceByColorSize(string code, string color_code,string size_code)
+        {
+            decimal output;
+            var model = _db.Item.Where(n => n.Code_2 == code && n.Color_Code == color_code && n.Size_Code == size_code).FirstOrDefault();
+            if (model!= null)
+            {
+                output = (decimal)model.Sale_Price;
+            }
+            else
+            {
+                output = 0;
+            }
+            return output;
+        }
+        public PartialViewResult LoadItemByColorZSize(string code, string color_code,string size_code)
+        {
+            var model = _db.Item.Where(n => n.Code_2 == code && n.Color_Code == color_code && n.Size_Code == size_code).FirstOrDefault();
+            IteamProduct item = new IteamProduct();
+            if (model != null)
+            {
+
+                item.RowID = model.RowID;
+                item.Name = model.Name;
+                item.Code = model.Code;
+                item.Picture = model.Picture;
+                item.Description = model.Description;
+                item.Images = _db.web_ItemImage.Where(n => n.ItemId == model.RowID).ToList();
+                item.MadeIn = model.MadeIn;
+                item.Manufacturer_Code = model.Manufacturer_Code;
+                item.ShortDesc = model.ShortDesc;
+                item.Sale_Price = model.Sale_Price;
+                item.MetaTitle = model.MetaTitle;
+                item.MetaDescription = model.MetaDescription;
+                item.Status = "còn hàng";
+                item.guarantee = "12 tháng";
+                item.Size_Code = model.Size_Code;
+                item.Color_Code = model.Color_Code;
+                item.Code_2 = model.Code_2;
+                var pld = _db.Price_Level_Detail.Where(n => n.Item_Code == model.Code).FirstOrDefault();
+                if (pld != null)
+                {
+                    item.Sale = pld.Price;
+                    item.Item_Code = pld.Item_Code;
+                    item.Item_Code_2 = pld.Item_Code_2;
+                    var pl = _db.Price_Level.Where(n => n.RowID == pld.RowID).Single();
+                    item.From_Date = (DateTime)pl.From_Date;
+                    item.To_Date = (DateTime)pl.To_Date;
+                }
+                var dsCode2 = _db.Item.Where(n => n.Code_2 == model.Code_2).ToList();
+                List<web_SizeColor> a = new List<web_SizeColor>();
+                List<web_SizeColor> b = new List<web_SizeColor>();
+                foreach (var _item in dsCode2)
+                {
+                    web_SizeColor c = _db.web_SizeColor.Where(n => n.Note == _item.Color_Code).FirstOrDefault();
+                    web_SizeColor d = _db.web_SizeColor.Where(n => n.Note == _item.Size_Code).FirstOrDefault();
+                    a.Add(c);
+                    b.Add(d);
+                }
+                item.Sizes = b.OrderBy(n => n.Note).Distinct().ToList();
+                item.Colors = a.OrderBy(n => n.Note).Distinct().ToList();
+
+            }
+            return PartialView("_Partial_LoadItemByColorSize", item);
         }
         #endregion
 

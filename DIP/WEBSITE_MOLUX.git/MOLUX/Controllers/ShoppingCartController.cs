@@ -38,11 +38,11 @@ namespace MOLUX.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToCart(int id, int? color, int? size,int? number,decimal price)
+        public ActionResult AddToCart(int id,int? number,decimal price)
         {
             var product = _db.Item.Find(id);
             var cart = ShoppingCart.GetCart(this.HttpContext);
-            int data = cart.AddToCart(product, color ?? 0, size ?? 0,number ?? 1,price);
+            int data = cart.AddToCart(product, number??1, price);
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
@@ -95,7 +95,9 @@ namespace MOLUX.Controllers
 
         [ChildActionOnly]
         public ActionResult _Partial_CartCount()
+
         {
+           
             var cart = ShoppingCart.GetCart(this.HttpContext);
             int? count = _db.web_Cart.AsEnumerable().Where(p => p.CartId == cart.GetCartId(this.HttpContext)).Count();
             // Return 0 if all entries are null

@@ -1,0 +1,61 @@
+﻿@model MOLUX.Models.web_SizeColor
+<div class="modal fade" id="ModelEdit" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm Mới</h4>
+            </div>
+            @using (Html.BeginForm("Edits", "ColorSizeManage", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-lg-2 col-md-2">Name</label>
+                                <div class="col-lg-10 col-md-10">
+                                    @Html.HiddenFor(model=>model.Id)
+                                    @Html.HiddenFor(model => model.IsDelete)
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", required = "required" })
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div class="form-group">
+                                <label class="control-label col-lg-2 col-md-2">Loại</label>
+                                <div class="col-lg-10 col-md-10">
+                                    <select name="Type" id="Type" class="form-control">
+                                        @if (Model.Type == 1)
+                                        {
+                                            <option value="1" selected>Color</option>
+                                            <option value="2">Size</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="1" >Color</option>
+                                            <option value="2" selected>Size</option>
+                                        }
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div class="form-group">
+                                <label class="control-label col-lg-2 col-md-2">Ghi chú</label>
+                                <div class="col-lg-10 col-md-10">
+                                    @Html.TextBoxFor(model => model.Note, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

@@ -17,10 +17,10 @@ namespace MOLUX.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Item()
         {
-            this.web_Cart = new HashSet<web_Cart>();
             this.web_ItemImage = new HashSet<web_ItemImage>();
             this.web_ItemSizeColor = new HashSet<web_ItemSizeColor>();
             this.web_ItemTechnical = new HashSet<web_ItemTechnical>();
+            this.web_Cart = new HashSet<web_Cart>();
         }
     
         public int RowID { get; set; }
@@ -119,12 +119,12 @@ namespace MOLUX.Models
         public string Color_Code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<web_Cart> web_Cart { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<web_ItemImage> web_ItemImage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<web_ItemSizeColor> web_ItemSizeColor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<web_ItemTechnical> web_ItemTechnical { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<web_Cart> web_Cart { get; set; }
     }
 }

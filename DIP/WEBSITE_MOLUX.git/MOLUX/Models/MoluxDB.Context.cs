@@ -38,7 +38,6 @@ namespace MOLUX.Models
         public virtual DbSet<Price_Level_Detail> Price_Level_Detail { get; set; }
         public virtual DbSet<Sales_Order_Detail> Sales_Order_Detail { get; set; }
         public virtual DbSet<Sales_Order_Master> Sales_Order_Master { get; set; }
-        public virtual DbSet<web_Cart> web_Cart { get; set; }
         public virtual DbSet<web_Company> web_Company { get; set; }
         public virtual DbSet<web_ConfigWebsite> web_ConfigWebsite { get; set; }
         public virtual DbSet<web_Contact> web_Contact { get; set; }
@@ -55,6 +54,7 @@ namespace MOLUX.Models
         public virtual DbSet<web_SocialNetwork> web_SocialNetwork { get; set; }
         public virtual DbSet<web_Technical> web_Technical { get; set; }
         public virtual DbSet<MainProduct> MainProduct { get; set; }
+        public virtual DbSet<web_Cart> web_Cart { get; set; }
     
         [DbFunction("BMSMoluxHongKongEntities", "fnSplit")]
         public virtual IQueryable<fnSplit_Result> fnSplit(string sInputList, string sDelimiter)

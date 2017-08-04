@@ -188,13 +188,13 @@
     <Property Name="Price_PP2_KVBH_" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="Gia_Xuat_Chi_Nhanh" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="Orders" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="web_Cart" Relationship="Self.FK_web_Cart_Item" FromRole="Item" ToRole="web_Cart" />
     <NavigationProperty Name="web_ItemImage" Relationship="Self.FK_web_ItemImage_Item" FromRole="Item" ToRole="web_ItemImage" />
     <NavigationProperty Name="web_ItemSizeColor" Relationship="Self.FK_web_ItemSizeColor_Item" FromRole="Item" ToRole="web_ItemSizeColor" />
     <NavigationProperty Name="web_ItemTechnical" Relationship="Self.FK_web_ItemTechnical_Item" FromRole="Item" ToRole="web_ItemTechnical" />
     <Property Name="Technical" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Size_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Color_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="web_Cart" Relationship="BMSMoluxHongKongModel.FK_web_Cart_Item" FromRole="Item" ToRole="web_Cart" />
   </EntityType>
   <EntityType Name="Item_Category">
     <Key>
@@ -353,23 +353,6 @@
     <Property Name="Sales_Quote_Order_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Location_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="IsBanLe" Type="Int32" />
-  </EntityType>
-  <EntityType Name="web_Cart">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CartId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ItemId" Type="Int32" Nullable="false" />
-    <Property Name="Count" Type="Int32" Nullable="false" />
-    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="ColorId" Type="Int32" />
-    <Property Name="Type" Type="Int32" />
-    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="SizeId" Type="Int32" />
-    <NavigationProperty Name="Item" Relationship="Self.FK_web_Cart_Item" FromRole="web_Cart" ToRole="Item" />
-    <NavigationProperty Name="web_SizeColor" Relationship="Self.FK_web_Cart_web_SizeColor1" FromRole="web_Cart" ToRole="web_SizeColor" />
-    <NavigationProperty Name="web_SizeColor1" Relationship="Self.FK_web_Cart_web_SizeColor2" FromRole="web_Cart" ToRole="web_SizeColor" />
   </EntityType>
   <EntityType Name="web_Company">
     <Key>
@@ -537,8 +520,6 @@
     <Property Name="IsDelete" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Sales_Order_Detail" Relationship="Self.FK_Sales_Order_Detail_web_SizeColor" FromRole="web_SizeColor" ToRole="Sales_Order_Detail" />
     <NavigationProperty Name="Sales_Order_Detail1" Relationship="Self.FK_Sales_Order_Detail_web_SizeColor1" FromRole="web_SizeColor" ToRole="Sales_Order_Detail" />
-    <NavigationProperty Name="web_Cart" Relationship="Self.FK_web_Cart_web_SizeColor1" FromRole="web_SizeColor" ToRole="web_Cart" />
-    <NavigationProperty Name="web_Cart1" Relationship="Self.FK_web_Cart_web_SizeColor2" FromRole="web_SizeColor" ToRole="web_Cart" />
     <NavigationProperty Name="web_ItemSizeColor" Relationship="Self.FK_web_ItemSizeColor_web_SizeColor" FromRole="web_SizeColor" ToRole="web_ItemSizeColor" />
   </EntityType>
   <EntityType Name="web_Slider">
@@ -571,18 +552,6 @@
     <Property Name="IsDelete" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="web_ItemTechnical" Relationship="Self.FK_web_ItemTechnical_web_Technical" FromRole="web_Technical" ToRole="web_ItemTechnical" />
   </EntityType>
-  <Association Name="FK_web_Cart_Item">
-    <End Role="Item" Type="Self.Item" Multiplicity="1" />
-    <End Role="web_Cart" Type="Self.web_Cart" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Item">
-        <PropertyRef Name="RowID" />
-      </Principal>
-      <Dependent Role="web_Cart">
-        <PropertyRef Name="ItemId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_web_ItemImage_Item">
     <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
     <End Role="web_ItemImage" Type="Self.web_ItemImage" Multiplicity="*" />
@@ -643,30 +612,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_web_Cart_web_SizeColor1">
-    <End Role="web_SizeColor" Type="Self.web_SizeColor" Multiplicity="0..1" />
-    <End Role="web_Cart" Type="Self.web_Cart" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="web_SizeColor">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="web_Cart">
-        <PropertyRef Name="ColorId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_web_Cart_web_SizeColor2">
-    <End Role="web_SizeColor" Type="Self.web_SizeColor" Multiplicity="0..1" />
-    <End Role="web_Cart" Type="Self.web_Cart" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="web_SizeColor">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="web_Cart">
-        <PropertyRef Name="SizeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_web_ItemSizeColor_web_SizeColor">
     <End Role="web_SizeColor" Type="Self.web_SizeColor" Multiplicity="0..1" />
     <End Role="web_ItemSizeColor" Type="Self.web_ItemSizeColor" Multiplicity="*" />
@@ -715,7 +660,6 @@
     <EntitySet Name="Price_Level_Detail" EntityType="Self.Price_Level_Detail" />
     <EntitySet Name="Sales_Order_Detail" EntityType="Self.Sales_Order_Detail" />
     <EntitySet Name="Sales_Order_Master" EntityType="Self.Sales_Order_Master" />
-    <EntitySet Name="web_Cart" EntityType="Self.web_Cart" />
     <EntitySet Name="web_Company" EntityType="Self.web_Company" />
     <EntitySet Name="web_ConfigWebsite" EntityType="Self.web_ConfigWebsite" />
     <EntitySet Name="web_Contact" EntityType="Self.web_Contact" />
@@ -731,10 +675,6 @@
     <EntitySet Name="web_Slider" EntityType="Self.web_Slider" />
     <EntitySet Name="web_SocialNetwork" EntityType="Self.web_SocialNetwork" />
     <EntitySet Name="web_Technical" EntityType="Self.web_Technical" />
-    <AssociationSet Name="FK_web_Cart_Item" Association="Self.FK_web_Cart_Item">
-      <End Role="Item" EntitySet="Item" />
-      <End Role="web_Cart" EntitySet="web_Cart" />
-    </AssociationSet>
     <AssociationSet Name="FK_web_ItemImage_Item" Association="Self.FK_web_ItemImage_Item">
       <End Role="Item" EntitySet="Item" />
       <End Role="web_ItemImage" EntitySet="web_ItemImage" />
@@ -754,14 +694,6 @@
     <AssociationSet Name="FK_Sales_Order_Detail_web_SizeColor1" Association="Self.FK_Sales_Order_Detail_web_SizeColor1">
       <End Role="web_SizeColor" EntitySet="web_SizeColor" />
       <End Role="Sales_Order_Detail" EntitySet="Sales_Order_Detail" />
-    </AssociationSet>
-    <AssociationSet Name="FK_web_Cart_web_SizeColor1" Association="Self.FK_web_Cart_web_SizeColor1">
-      <End Role="web_SizeColor" EntitySet="web_SizeColor" />
-      <End Role="web_Cart" EntitySet="web_Cart" />
-    </AssociationSet>
-    <AssociationSet Name="FK_web_Cart_web_SizeColor2" Association="Self.FK_web_Cart_web_SizeColor2">
-      <End Role="web_SizeColor" EntitySet="web_SizeColor" />
-      <End Role="web_Cart" EntitySet="web_Cart" />
     </AssociationSet>
     <AssociationSet Name="FK_web_ItemSizeColor_web_SizeColor" Association="Self.FK_web_ItemSizeColor_web_SizeColor">
       <End Role="web_SizeColor" EntitySet="web_SizeColor" />
@@ -921,6 +853,11 @@
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="GetSPKhuyenMai" ReturnType="Collection(BMSMoluxHongKongModel.GetSPKhuyenMai_Result)" />
+    <EntitySet Name="web_Cart" EntityType="BMSMoluxHongKongModel.web_Cart" />
+    <AssociationSet Name="FK_web_Cart_Item" Association="BMSMoluxHongKongModel.FK_web_Cart_Item">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="web_Cart" EntitySet="web_Cart" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_LoadPostByMenuID_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -2840,4 +2777,29 @@
     <Property Type="String" Name="Technical" Nullable="true" />
     <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
   </ComplexType>
+  <EntityType Name="web_Cart">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CartId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Type" Type="Int32" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Item" Relationship="BMSMoluxHongKongModel.FK_web_Cart_Item" FromRole="web_Cart" ToRole="Item" />
+  </EntityType>
+  <Association Name="FK_web_Cart_Item">
+    <End Type="BMSMoluxHongKongModel.Item" Role="Item" Multiplicity="1" />
+    <End Type="BMSMoluxHongKongModel.web_Cart" Role="web_Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="RowID" />
+      </Principal>
+      <Dependent Role="web_Cart">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

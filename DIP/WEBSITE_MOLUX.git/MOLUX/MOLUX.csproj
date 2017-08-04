@@ -208,6 +208,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ColorSizeManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ConfigManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactManageController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomersManageController.cs" />
@@ -1785,6 +1786,9 @@
     <Content Include="Areas\Admin\Views\ConfigManage\_Partial_UpdateCompany.cshtml" />
     <Content Include="Areas\Admin\Views\ConfigManage\BusinessDepartment.cshtml" />
     <Content Include="Areas\Admin\Views\ContactManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ColorSizeManage\_PartialCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\ColorSizeManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ColorSizeManage\_PartialEdit.cshtml" />
     <None Include="Areas\Admin\Views\MenuManage\EditMenu.cshtml" />
     <Content Include="Areas\Admin\Views\PostManage\EditPost.cshtml" />
     <Content Include="Areas\Admin\Views\ProductManage\Index.cshtml" />
@@ -1833,6 +1837,7 @@
     <Content Include="Areas\Admin\Views\PageIntro\_PartialUpdateMainProduct.cshtml" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include="Areas\Admin\Views\ProductManage\_Partial_UpdateTechnical.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManage\_Partial_UpdateSizeColor.cshtml" />
     <None Include="Properties\PublishProfiles\Molux.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1912,6 +1917,7 @@
     <Content Include="Views\Shared\_Partial_Advertisement.cshtml" />
     <Content Include="Views\Products\PromotionProduct.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Products\_Partial_LoadItemByColorSize.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

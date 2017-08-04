@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fd19b96000b74d339b149f2e56d38430" Name="Diagram1" ZoomLevel="80">
+      <Diagram DiagramId="fd19b96000b74d339b149f2e56d38430" Name="Diagram1" ZoomLevel="77">
         <EntityTypeShape EntityType="BMSMoluxHongKongModel.City" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BMSMoluxHongKongModel.Country" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BMSMoluxHongKongModel.Customer" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
@@ -16,7 +16,6 @@
         <EntityTypeShape EntityType="BMSMoluxHongKongModel.Price_Level_Detail" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BMSMoluxHongKongModel.Sales_Order_Detail" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BMSMoluxHongKongModel.Sales_Order_Master" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BMSMoluxHongKongModel.web_Cart" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="BMSMoluxHongKongModel.web_Company" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BMSMoluxHongKongModel.web_ConfigWebsite" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BMSMoluxHongKongModel.web_Contact" Width="1.5" PointX="14.75" PointY="11.75" IsExpanded="true" />
@@ -32,18 +31,17 @@
         <EntityTypeShape EntityType="BMSMoluxHongKongModel.web_Slider" Width="1.5" PointX="14.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BMSMoluxHongKongModel.web_SocialNetwork" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BMSMoluxHongKongModel.web_Technical" Width="1.5" PointX="3.75" PointY="22.375" IsExpanded="true" />
-        <AssociationConnector Association="BMSMoluxHongKongModel.FK_web_Cart_Item" ManuallyRouted="false" />
         <AssociationConnector Association="BMSMoluxHongKongModel.FK_web_ItemImage_Item" ManuallyRouted="false" />
         <AssociationConnector Association="BMSMoluxHongKongModel.FK_web_ItemSizeColor_Item" ManuallyRouted="false" />
         <AssociationConnector Association="BMSMoluxHongKongModel.FK_web_ItemTechnical_Item" ManuallyRouted="false" />
         <AssociationConnector Association="BMSMoluxHongKongModel.FK_Sales_Order_Detail_web_SizeColor" ManuallyRouted="false" />
         <AssociationConnector Association="BMSMoluxHongKongModel.FK_Sales_Order_Detail_web_SizeColor1" ManuallyRouted="false" />
-        <AssociationConnector Association="BMSMoluxHongKongModel.FK_web_Cart_web_SizeColor1" ManuallyRouted="false" />
-        <AssociationConnector Association="BMSMoluxHongKongModel.FK_web_Cart_web_SizeColor2" ManuallyRouted="false" />
         <AssociationConnector Association="BMSMoluxHongKongModel.FK_web_ItemSizeColor_web_SizeColor" ManuallyRouted="false" />
         <AssociationConnector Association="BMSMoluxHongKongModel.FK_web_ItemTechnical_web_Technical" ManuallyRouted="false" />
         <AssociationConnector Association="BMSMoluxHongKongModel.FK_web_News_web_NewsCategory" ManuallyRouted="false" />
         <EntityTypeShape EntityType="BMSMoluxHongKongModel.MainProduct" Width="1.5" PointX="5.375" PointY="17.75" />
+        <EntityTypeShape EntityType="BMSMoluxHongKongModel.web_Cart" Width="1.5" PointX="6" PointY="37.375" />
+        <AssociationConnector Association="BMSMoluxHongKongModel.FK_web_Cart_Item" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

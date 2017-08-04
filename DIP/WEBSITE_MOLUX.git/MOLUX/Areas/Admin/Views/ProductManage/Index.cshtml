@@ -112,6 +112,7 @@
                                         <a title="Hình sản phẩm" href="~/Admin/ProductManage/UpdateImage/@item.RowID"><i class="fa fa-picture-o"></i>&nbsp;Hình ảnh sản phẩm</a><br />
                                         <a title="Cập nhật SEO" onclick="updateSEO(@item.RowID)" style="cursor: pointer"><i class="fa fa-globe"></i>&nbsp;Cập nhật SEO</a>
                                         <a title="Thông số kỹ thuật" onclick="updateTechnical(@item.RowID)" style="cursor: pointer"><i class="fa fa-terminal"></i>&nbsp;Cập nhật Thông số kỹ thuật</a>
+                                        <a title="cập nhập color, size" onclick="updateColorSize(@item.RowID)" style="cursor: pointer"><i class="fa fa-terminal"></i>&nbsp;Cập nhật Color, Size</a>
                                     </td>
                                 </tr>
                             }
@@ -232,6 +233,41 @@
                 dataType: "json",
                 success: function (data) {
                 }
+            });
+        }
+
+        function updateColorSize(id)
+        {
+            var dataPost = { id: id };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ProductManage/EditSizeColor',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (data) {
+                    $("#data-item").html(data);
+                    $("#updateSizeColor").modal("show");
+                }
+            });
+        }
+       function UpdateCodeColorSize(id){
+            console.log('ok');
+            var codeColor = $('#ColorCode').val();
+            var codeSize = $('#SideCode').val();
+            var dataPost = { id: id, CodeColor: codeColor, CodeSize: codeSize };
+            $.ajax({
+                type: "POST",
+                url: '/Admin/ProductManage/_UpdateSizeColor',
+                data: JSON.stringify(dataPost),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if(data.result==true)
+                        $("#updateSizeColor").modal("hide");
+                },
+                error: function(er){
+                    console.log(er.responseText);
+            }
             });
         }
     </script>
