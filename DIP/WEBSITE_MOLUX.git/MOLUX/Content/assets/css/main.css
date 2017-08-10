@@ -293,7 +293,7 @@ button, input, select, textarea {
 }
 
 a {
-    color: #302b10;
+    color: #000;
     text-decoration: none;
 }
 
@@ -6482,7 +6482,7 @@ table {
 }
 
 .category {
-    background: #FFDD00;
+    background: #000000;
     height: 38px;
 }
 
@@ -6754,13 +6754,13 @@ table {
 }
 
 .menu-top-red {
-    color: red !important;
+    color: #fd0 !important;
     font-size: 14px;
     font-weight: 700;
 }
 
 .flexy-menu {
-    background: #fff none repeat scroll 0 0;
+    background: #000 none repeat scroll 0 0;
     display: none;
     left: 0;
     position: absolute;
@@ -6974,7 +6974,7 @@ table {
     }
 
 .flexy-menu-box {
-    background: #fff none repeat scroll 0 0;
+    background: #000 none repeat scroll 0 0;
     border: 1px solid #eaeaea;
     box-shadow: none;
     display: none;
@@ -6985,7 +6985,7 @@ table {
 
 .flexy-menu-inner {
     float: left;
-    height: 300px;
+    /*height: 300px;*/
     width: 170px;
 }
 
@@ -7515,7 +7515,7 @@ strong {
         }
 
     .category {
-        background: #3b3536;
+        background: #000000;
     }
 
     .dropdown-menu {
@@ -7929,7 +7929,7 @@ strong {
 }
 
     .title a {
-        color: #302b10;
+        color: #000;
         float: left;
         font-size: 12px;
         font-weight: 700;
@@ -8353,17 +8353,17 @@ strong {
 }
 
 .info {
-    background: #3b3536;
+    background: #000000;
     padding: 20px 10px;
 }
 
     .info a {
-        color: #fff !important;
+        color: #fd0 !important;
         line-height: 20px;
     }
 
 .textwidget {
-    color: #fff;
+    color: #fd0;
     font-size: 13px;
 }
 
@@ -9827,7 +9827,7 @@ th {
     }
 
     .title a {
-        color: #302b10;
+        color: #000;
     }
 
     .title {
@@ -10605,7 +10605,7 @@ th {
     }
 
     .category {
-        background: #FFDD00;
+        background: #000000;
         height: 36px;
     }
 
@@ -11093,7 +11093,7 @@ th {
     }
 
     .category {
-        background: #FFDD00;
+        background: #000000;
     }
 
     .icomnu {
@@ -11738,7 +11738,7 @@ th {
     }
 
         .icomnu em {
-            background: #fff none repeat scroll 0 0;
+            background: #fd0 none repeat scroll 0 0;
             display: block;
             height: 3px;
             margin-bottom: 3px;
@@ -11774,7 +11774,7 @@ th {
     }
 
     .category {
-        background: #FFDD00;
+        background: #000000;
     }
 
     .product-summary {
@@ -14018,6 +14018,16 @@ ul.flexy-menu li.flexymenuli a.icon-cate {
     padding-left: 30px;
 }
 
+ul.flexy-menu li.flexymenuli:hover{
+    background-color: #fd0;
+    text-decoration: none;
+}
+
+ul.flexy-menu li.flexymenuli a:hover{
+    color: #000;
+    text-decoration: none;
+}
+
 ul.flexy-menu li.flexymenuli:nth-child(3) a.icon-cate {
     background-position: 0 2px;
 }
@@ -14060,7 +14070,7 @@ ul.flexy-menu li.flexymenuli:nth-child(12) a.icon-cate {
 
 .flexy-menu.vertical li a {
     box-sizing: border-box;
-    color: #000;
+    color: #fd0;
     display: block;
     font-size: 12px;
     padding: 3px 10px;
@@ -14082,7 +14092,7 @@ ul.flexy-menu li.flexymenuli:nth-child(12) a.icon-cate {
 }
 
 .info a {
-    color: #fff !important;
+    color: #fd0 !important;
     display: block;
     line-height: 20px;
 }

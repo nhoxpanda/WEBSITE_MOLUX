@@ -100,10 +100,10 @@ namespace MOLUX.Controllers
         {
             IteamProduct item = new IteamProduct();
             var model = _db.Item.Find(id);
-            if (model!=null)
+            if (model != null)
             {
-                
                 item.RowID = model.RowID;
+                item.Technical = model.Technical;
                 item.Name = model.Name;
                 item.Code = model.Code;
                 item.Picture = model.Picture;
@@ -116,12 +116,12 @@ namespace MOLUX.Controllers
                 item.MetaTitle = model.MetaTitle;
                 item.MetaDescription = model.MetaDescription;
                 item.Status = "còn hàng";
-                item.guarantee ="12 tháng";
+                item.guarantee = "12 tháng";
                 item.Size_Code = model.Size_Code;
                 item.Color_Code = model.Color_Code;
                 item.Code_2 = model.Code_2;
                 var pld = _db.Price_Level_Detail.Where(n => n.Item_Code == model.Code).FirstOrDefault();
-                if (pld!=null)
+                if (pld != null)
                 {
                     item.Sale = pld.Price;
                     item.Item_Code = pld.Item_Code;
@@ -130,31 +130,32 @@ namespace MOLUX.Controllers
                     item.From_Date = (DateTime)pl.From_Date;
                     item.To_Date = (DateTime)pl.To_Date;
                 }
-                var dsCode2 = _db.Item.Where(n => n.Code_2 == model.Code_2).ToList();
+                var dsCode2 = _db.Item.Where(n => n.Code_2 == model.Code_2 && n.Code_2 != null).ToList();
                 List<web_SizeColor> a = new List<web_SizeColor>();
                 List<web_SizeColor> b = new List<web_SizeColor>();
                 foreach (var _item in dsCode2)
                 {
-                    web_SizeColor c = _db.web_SizeColor.Where(n=>n.Note==_item.Color_Code).FirstOrDefault();
-                    web_SizeColor d = _db.web_SizeColor.Where(n => n.Note == _item.Size_Code).FirstOrDefault();
+                    var size = _db.web_SizeColor.FirstOrDefault(n => n.Note == _item.Color_Code);
+                    var color = _db.web_SizeColor.FirstOrDefault(n => n.Note == _item.Size_Code);
+                    web_SizeColor c = size != null ? size : new web_SizeColor();
+                    web_SizeColor d = color != null ? color : new web_SizeColor();
                     a.Add(c);
                     b.Add(d);
                 }
-                item.Sizes = b.OrderBy(n=>n.Note).Distinct().ToList();
+                item.Sizes = b.OrderBy(n => n.Note).Distinct().ToList();
                 item.Colors = a.OrderBy(n => n.Note).Distinct().ToList();
-
             }
             ViewBag.spcungloai = _db.Get15_SPCungLoai(id, model.Item_Category_Code).ToList();
-            ViewBag.spCungHang = _db.Get15_SPCungHang(id,model.Manufacturer_Code).ToList();
+            ViewBag.spCungHang = _db.Get15_SPCungHang(id, model.Manufacturer_Code).ToList();
             ViewBag.spKhac = _db.Get15_SPKhac(id).ToList();
             return View(item);
         }
 
-        public decimal CheckPriceByColorSize(string code, string color_code,string size_code)
+        public decimal CheckPriceByColorSize(string code, string color_code, string size_code)
         {
             decimal output;
             var model = _db.Item.Where(n => n.Code_2 == code && n.Color_Code == color_code && n.Size_Code == size_code).FirstOrDefault();
-            if (model!= null)
+            if (model != null)
             {
                 output = (decimal)model.Sale_Price;
             }
@@ -164,7 +165,7 @@ namespace MOLUX.Controllers
             }
             return output;
         }
-        public PartialViewResult LoadItemByColorZSize(string code, string color_code,string size_code)
+        public PartialViewResult LoadItemByColorZSize(string code, string color_code, string size_code)
         {
             var model = _db.Item.Where(n => n.Code_2 == code && n.Color_Code == color_code && n.Size_Code == size_code).FirstOrDefault();
             IteamProduct item = new IteamProduct();
@@ -234,7 +235,7 @@ namespace MOLUX.Controllers
 
         #region SP khuyến mãi
 
-        public ActionResult PromotionProduct(string sort ,int?page)
+        public ActionResult PromotionProduct(string sort, int? page)
         {
             int pageN = page ?? 1;
             int pageS = 50;
@@ -245,7 +246,7 @@ namespace MOLUX.Controllers
             {
                 model = _db.GetSPKhuyenMai().ToList();
             }
-            else if (sort=="asc")
+            else if (sort == "asc")
             {
                 model = _db.GetSPKhuyenMai().OrderBy(n => n.Sale_Price).ToList();
             }
