@@ -1376,6 +1376,7 @@
     <Content Include="ckfinder\skins\v1\skin.js" />
     <Content Include="ckfinder\skins\v1\uipanel.css" />
     <Content Include="ckfinder\translations.txt" />
+    <Content Include="Content\assets\css\ajax-loader.gif" />
     <Content Include="Content\assets\css\animate.min.css" />
     <Content Include="Content\assets\css\bootstrap.min.css" />
     <Content Include="Content\assets\css\CssGioiThieu.css" />
@@ -1406,6 +1407,7 @@
     <Content Include="Content\assets\images\imagePagedetail\banner2.jpg" />
     <Content Include="Content\assets\images\imagePagedetail\banner3.jpg" />
     <Content Include="Content\assets\images\imagePagedetail\banner4.jpg" />
+    <Content Include="Content\assets\images\imagePagedetail\bg.jpg" />
     <Content Include="Content\assets\images\imagePagedetail\bg.png" />
     <Content Include="Content\assets\images\imagePagedetail\bgpattern.png" />
     <Content Include="Content\assets\images\imagePagedetail\bgr1.jpg" />
@@ -1838,6 +1840,7 @@
     <Content Include="ClassDiagram1.cd" />
     <Content Include="Areas\Admin\Views\ProductManage\_Partial_UpdateTechnical.cshtml" />
     <Content Include="Areas\Admin\Views\ProductManage\_Partial_UpdateSizeColor.cshtml" />
+    <Content Include="fonts\Roboto-Regular.ttf" />
     <None Include="Properties\PublishProfiles\Molux.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
