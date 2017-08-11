@@ -285,6 +285,21 @@
     <Compile Include="Models\Item_Category.cs">
       <DependentUpon>MoluxDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Linh_getAllItemLevel2Filter_Result.cs">
+      <DependentUpon>MoluxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Linh_getMultiSearchItem_Result.cs">
+      <DependentUpon>MoluxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Linh_getProductByCategoryFilter_Result.cs">
+      <DependentUpon>MoluxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Linh_getRowId_Result.cs">
+      <DependentUpon>MoluxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Linh_ProductLever1_Result.cs">
+      <DependentUpon>MoluxDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MainProduct.cs">
       <DependentUpon>MoluxDB.tt</DependentUpon>
     </Compile>

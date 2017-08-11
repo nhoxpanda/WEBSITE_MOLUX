@@ -9,11 +9,19 @@ namespace MOLUX.Helper
     public static class Product
     {
         private static BMSMoluxHongKongEntities _db = new BMSMoluxHongKongEntities();
+
         public static List<web_getTop5ItemLevel1_Result> ProductLevel1(int id)
         {
             return _db.web_getTop5ItemLevel1(id).ToList();
         }
-
+        public static List<Linh_getRowId_Result> GetRowID(int id)
+        {
+            return _db.Linh_getRowId(id).ToList();
+        }
+        public static List<Linh_ProductLever1_Result> Linh_ProductLevel1(int id)
+        {
+            return _db.Linh_ProductLever1(id).ToList();
+        }
         public static List<web_getTop5ItemLevel2_Result> ProductLevel2(int id)
         {
             return _db.web_getTop5ItemLevel2(id).ToList();

@@ -11,8 +11,10 @@ namespace MOLUX.Models
 {
     using System;
     
-    public partial class Get15_SPKhac_Result
+    public partial class Linh_getMultiSearchItem_Result
     {
+        public Nullable<long> SortingRowNumber { get; set; }
+        public Nullable<int> TotalRowCount { get; set; }
         public int RowID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
@@ -107,6 +109,7 @@ namespace MOLUX.Models
         public string Technical { get; set; }
         public string Size_Code { get; set; }
         public string Color_Code { get; set; }
+        public string Splitdata { get; set; }
         public string LogoManufacturer { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string Item_Code { get; set; }

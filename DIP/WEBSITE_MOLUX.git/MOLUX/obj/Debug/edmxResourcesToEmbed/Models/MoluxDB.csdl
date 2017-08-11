@@ -849,15 +849,37 @@
       <Parameter Name="id" Mode="In" Type="Int32" />
       <Parameter Name="Manufacturer_Code" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="Get15_SPKhac" ReturnType="Collection(BMSMoluxHongKongModel.Get15_SPKhac_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="GetSPKhuyenMai" ReturnType="Collection(BMSMoluxHongKongModel.GetSPKhuyenMai_Result)" />
     <EntitySet Name="web_Cart" EntityType="BMSMoluxHongKongModel.web_Cart" />
     <AssociationSet Name="FK_web_Cart_Item" Association="BMSMoluxHongKongModel.FK_web_Cart_Item">
       <End Role="Item" EntitySet="Item" />
       <End Role="web_Cart" EntitySet="web_Cart" />
     </AssociationSet>
+    <FunctionImport Name="GetSPKhuyenMai" ReturnType="Collection(BMSMoluxHongKongModel.GetSPKhuyenMai_Result)" />
+    <FunctionImport Name="Linh_getRowId" ReturnType="Collection(BMSMoluxHongKongModel.Linh_getRowId_Result)">
+      <Parameter Name="RowID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Linh_ProductLever1" ReturnType="Collection(BMSMoluxHongKongModel.Linh_ProductLever1_Result)">
+      <Parameter Name="cateID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Linh_getProductByCategoryFilter" ReturnType="Collection(BMSMoluxHongKongModel.Linh_getProductByCategoryFilter_Result)">
+      <Parameter Name="cateCode" Mode="In" Type="String" />
+      <Parameter Name="manuCode" Mode="In" Type="String" />
+      <Parameter Name="sortCriteria" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Linh_getAllItemLevel2Filter" ReturnType="Collection(BMSMoluxHongKongModel.Linh_getAllItemLevel2Filter_Result)">
+      <Parameter Name="cateID" Mode="In" Type="Int32" />
+      <Parameter Name="manuCode" Mode="In" Type="String" />
+      <Parameter Name="sortCriteria" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Linh_getMultiSearchItem" ReturnType="Collection(BMSMoluxHongKongModel.Linh_getMultiSearchItem_Result)">
+      <Parameter Name="keyWork" Mode="In" Type="String" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="sortCriteria" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get15_SPKhac" ReturnType="Collection(BMSMoluxHongKongModel.Get15_SPKhac_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_LoadPostByMenuID_Result">
     <Property Type="Int32" Name="Id" Nullable="false" />
@@ -2582,106 +2604,31 @@
     <Property Type="DateTime" Name="To_Date" Nullable="true" />
     <Property Type="DateTime" Name="From_Date" Nullable="true" />
   </ComplexType>
-  <ComplexType Name="Get15_SPKhac_Result">
-    <Property Type="Int32" Name="RowID" Nullable="false" />
-    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
-    <Property Type="String" Name="Item_Posting_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Item_Group" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Inventory_Unit" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Purchase_Unit" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Sale_Unit" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Location_Code" Nullable="true" MaxLength="50" />
-    <Property Type="Decimal" Name="Purchase_Price" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Sale_Price" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Standard_Cost" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Credit_points" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="String" Name="Item_Category_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Brand" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
-    <Property Type="Decimal" Name="Maximum_Inventory" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Safety_Stock_Quantity" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Int32" Name="Nonstock" Nullable="true" />
-    <Property Type="Int32" Name="Inventory_Value_Zero" Nullable="true" />
-    <Property Type="String" Name="Manufacturer_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Country_of_Origin_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Purchase_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Country_Purchased_Code" Nullable="true" MaxLength="50" />
-    <Property Type="Decimal" Name="Lot_Size" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Scrap__" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Gross_Weight" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Net_Weight" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="String" Name="Picture" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="BOM_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Version_Bom_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="BOR_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Version_BOR_Code" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="Critical" Nullable="true" />
-    <Property Type="Decimal" Name="Period_Of_Guarantee" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="DateTime" Name="Expiration_Date" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="Price_Type" Nullable="true" />
-    <Property Type="String" Name="Currency_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Branch_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Shelf_No_" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Units_per_Parcel" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Phys_Invt_Counting_Period_Code" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="Last_Counting_Period_Update" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="Next_Counting_Period" Nullable="true" Precision="23" />
-    <Property Type="String" Name="Lot_No" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Recipe" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Code_2" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Error_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="MFG_Date" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Time_MFC" Nullable="true" MaxLength="50" />
-    <Property Type="Decimal" Name="Overhead_Rate" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="WIP_Quantity" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="WIP_Completion__" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Equivalant_Finished_Quantity" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="DateTime" Name="Last_Unit_Cost_Calc__Date" Nullable="true" Precision="23" />
-    <Property Type="Decimal" Name="Last_Direct_Cost" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Indirect_Cost__" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Allocated_Cost" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Int32" Name="Clocked" Nullable="true" />
-    <Property Type="String" Name="Location_HR_Title_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Item_Type" Nullable="true" MaxLength="50" />
-    <Property Type="Decimal" Name="W" Nullable="true" Precision="18" Scale="5" />
-    <Property Type="Int32" Name="QAQC" Nullable="true" />
-    <Property Type="String" Name="QAQC_Routing_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="QAQC_Routing_Version" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="NhietDo" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Bar_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Item_Parent" Nullable="true" MaxLength="50" />
-    <Property Type="Decimal" Name="Point" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Price_PC" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="DateTime" Name="Create_Date" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="Edit_Date" Nullable="true" Precision="23" />
-    <Property Type="String" Name="MetaTitle" Nullable="true" />
-    <Property Type="String" Name="MetaDescription" Nullable="true" />
-    <Property Type="String" Name="ShortDesc" Nullable="true" />
-    <Property Type="Boolean" Name="IsSale" Nullable="false" />
-    <Property Type="Boolean" Name="IsNew" Nullable="false" />
-    <Property Type="String" Name="MadeIn" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="Brand_Code" Nullable="true" MaxLength="50" />
-    <Property Type="Decimal" Name="Volume" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="Decimal" Name="List_Price" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="Decimal" Name="Branch_price_1" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="Decimal" Name="Branch_Price_2_KVBH_" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="Decimal" Name="Import_Price" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="Decimal" Name="Import_Tax__" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="Decimal" Name="Discount__" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="DateTime" Name="Warranty_Date" Nullable="true" />
-    <Property Type="Decimal" Name="Price_PP1" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="Decimal" Name="Price_PP2_KVBH_" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="Int32" Name="Orders" Nullable="false" />
-    <Property Type="String" Name="Technical" Nullable="true" />
-    <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
-    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="String" Name="Item_Code" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Item_Code_2" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="To_Date" Nullable="true" />
-    <Property Type="DateTime" Name="From_Date" Nullable="true" />
-  </ComplexType>
+  <EntityType Name="web_Cart">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CartId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Type" Type="Int32" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Item" Relationship="BMSMoluxHongKongModel.FK_web_Cart_Item" FromRole="web_Cart" ToRole="Item" />
+  </EntityType>
+  <Association Name="FK_web_Cart_Item">
+    <End Type="BMSMoluxHongKongModel.Item" Role="Item" Multiplicity="1" />
+    <End Type="BMSMoluxHongKongModel.web_Cart" Role="web_Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="RowID" />
+      </Principal>
+      <Dependent Role="web_Cart">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <ComplexType Name="GetSPKhuyenMai_Result">
     <Property Type="Int32" Name="RowID" Nullable="false" />
     <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
@@ -2775,31 +2722,528 @@
     <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
     <Property Type="Int32" Name="Orders" Nullable="false" />
     <Property Type="String" Name="Technical" Nullable="true" />
+    <Property Type="String" Name="Size_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Color_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
     <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
   </ComplexType>
-  <EntityType Name="web_Cart">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CartId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ItemId" Type="Int32" Nullable="false" />
-    <Property Name="Count" Type="Int32" Nullable="false" />
-    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Type" Type="Int32" />
-    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
-    <NavigationProperty Name="Item" Relationship="BMSMoluxHongKongModel.FK_web_Cart_Item" FromRole="web_Cart" ToRole="Item" />
-  </EntityType>
-  <Association Name="FK_web_Cart_Item">
-    <End Type="BMSMoluxHongKongModel.Item" Role="Item" Multiplicity="1" />
-    <End Type="BMSMoluxHongKongModel.web_Cart" Role="web_Cart" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Item">
-        <PropertyRef Name="RowID" />
-      </Principal>
-      <Dependent Role="web_Cart">
-        <PropertyRef Name="ItemId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <ComplexType Name="Linh_getRowId_Result">
+    <Property Type="Int32" Name="RowID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Orders" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Linh_ProductLever1_Result">
+    <Property Type="Int32" Name="RowID" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Item_Posting_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Group" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Inventory_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Purchase_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Sale_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Location_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Purchase_Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Sale_Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Standard_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Credit_points" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Item_Category_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Brand" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Maximum_Inventory" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Safety_Stock_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Nonstock" Nullable="true" />
+    <Property Type="Int32" Name="Inventory_Value_Zero" Nullable="true" />
+    <Property Type="String" Name="Manufacturer_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Country_of_Origin_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Purchase_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Country_Purchased_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Lot_Size" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Scrap__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Gross_Weight" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Net_Weight" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Picture" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BOM_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Version_Bom_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BOR_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Version_BOR_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Critical" Nullable="true" />
+    <Property Type="Decimal" Name="Period_Of_Guarantee" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="Expiration_Date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Price_Type" Nullable="true" />
+    <Property Type="String" Name="Currency_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Branch_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Shelf_No_" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Units_per_Parcel" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Phys_Invt_Counting_Period_Code" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Last_Counting_Period_Update" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Next_Counting_Period" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Lot_No" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Recipe" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Code_2" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Error_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MFG_Date" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Time_MFC" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Overhead_Rate" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="WIP_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="WIP_Completion__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Equivalant_Finished_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="Last_Unit_Cost_Calc__Date" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Last_Direct_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Indirect_Cost__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Allocated_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Clocked" Nullable="true" />
+    <Property Type="String" Name="Location_HR_Title_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Type" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="W" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Int32" Name="QAQC" Nullable="true" />
+    <Property Type="String" Name="QAQC_Routing_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="QAQC_Routing_Version" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NhietDo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Bar_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Parent" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Point" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Price_PC" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="Create_Date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Edit_Date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MetaTitle" Nullable="true" />
+    <Property Type="String" Name="MetaDescription" Nullable="true" />
+    <Property Type="String" Name="ShortDesc" Nullable="true" />
+    <Property Type="Boolean" Name="IsSale" Nullable="false" />
+    <Property Type="Boolean" Name="IsNew" Nullable="false" />
+    <Property Type="String" Name="MadeIn" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Brand_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Volume" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="List_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Branch_price_1" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Branch_Price_2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Import_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Import_Tax__" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Discount__" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="Warranty_Date" Nullable="true" />
+    <Property Type="Decimal" Name="Price_PP1" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Price_PP2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="Orders" Nullable="false" />
+    <Property Type="String" Name="Technical" Nullable="true" />
+    <Property Type="String" Name="Size_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Color_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Item_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Code_2" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="To_Date" Nullable="true" />
+    <Property Type="DateTime" Name="From_Date" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Linh_getProductByCategoryFilter_Result">
+    <Property Type="Int32" Name="RowID" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Item_Posting_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Group" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Inventory_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Purchase_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Sale_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Location_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Purchase_Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Sale_Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Standard_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Credit_points" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Item_Category_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Brand" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Maximum_Inventory" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Safety_Stock_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Nonstock" Nullable="true" />
+    <Property Type="Int32" Name="Inventory_Value_Zero" Nullable="true" />
+    <Property Type="String" Name="Manufacturer_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Country_of_Origin_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Purchase_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Country_Purchased_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Lot_Size" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Scrap__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Gross_Weight" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Net_Weight" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Picture" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BOM_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Version_Bom_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BOR_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Version_BOR_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Critical" Nullable="true" />
+    <Property Type="Decimal" Name="Period_Of_Guarantee" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="Expiration_Date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Price_Type" Nullable="true" />
+    <Property Type="String" Name="Currency_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Branch_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Shelf_No_" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Units_per_Parcel" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Phys_Invt_Counting_Period_Code" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Last_Counting_Period_Update" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Next_Counting_Period" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Lot_No" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Recipe" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Code_2" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Error_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MFG_Date" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Time_MFC" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Overhead_Rate" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="WIP_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="WIP_Completion__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Equivalant_Finished_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="Last_Unit_Cost_Calc__Date" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Last_Direct_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Indirect_Cost__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Allocated_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Clocked" Nullable="true" />
+    <Property Type="String" Name="Location_HR_Title_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Type" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="W" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Int32" Name="QAQC" Nullable="true" />
+    <Property Type="String" Name="QAQC_Routing_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="QAQC_Routing_Version" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NhietDo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Bar_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Parent" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Point" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Price_PC" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="Create_Date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Edit_Date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MetaTitle" Nullable="true" />
+    <Property Type="String" Name="MetaDescription" Nullable="true" />
+    <Property Type="String" Name="ShortDesc" Nullable="true" />
+    <Property Type="Boolean" Name="IsSale" Nullable="false" />
+    <Property Type="Boolean" Name="IsNew" Nullable="false" />
+    <Property Type="String" Name="MadeIn" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Brand_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Volume" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="List_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Branch_price_1" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Branch_Price_2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Import_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Import_Tax__" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Discount__" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="Warranty_Date" Nullable="true" />
+    <Property Type="Decimal" Name="Price_PP1" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Price_PP2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="Orders" Nullable="false" />
+    <Property Type="String" Name="Technical" Nullable="true" />
+    <Property Type="String" Name="Size_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Color_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Item_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Code_2" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="To_Date" Nullable="true" />
+    <Property Type="DateTime" Name="From_Date" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Linh_getAllItemLevel2Filter_Result">
+    <Property Type="Int32" Name="RowID" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Item_Posting_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Group" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Inventory_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Purchase_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Sale_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Location_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Purchase_Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Sale_Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Standard_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Credit_points" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Item_Category_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Brand" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Maximum_Inventory" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Safety_Stock_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Nonstock" Nullable="true" />
+    <Property Type="Int32" Name="Inventory_Value_Zero" Nullable="true" />
+    <Property Type="String" Name="Manufacturer_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Country_of_Origin_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Purchase_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Country_Purchased_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Lot_Size" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Scrap__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Gross_Weight" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Net_Weight" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Picture" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BOM_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Version_Bom_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BOR_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Version_BOR_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Critical" Nullable="true" />
+    <Property Type="Decimal" Name="Period_Of_Guarantee" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="Expiration_Date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Price_Type" Nullable="true" />
+    <Property Type="String" Name="Currency_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Branch_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Shelf_No_" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Units_per_Parcel" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Phys_Invt_Counting_Period_Code" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Last_Counting_Period_Update" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Next_Counting_Period" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Lot_No" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Recipe" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Code_2" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Error_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MFG_Date" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Time_MFC" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Overhead_Rate" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="WIP_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="WIP_Completion__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Equivalant_Finished_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="Last_Unit_Cost_Calc__Date" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Last_Direct_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Indirect_Cost__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Allocated_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Clocked" Nullable="true" />
+    <Property Type="String" Name="Location_HR_Title_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Type" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="W" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Int32" Name="QAQC" Nullable="true" />
+    <Property Type="String" Name="QAQC_Routing_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="QAQC_Routing_Version" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NhietDo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Bar_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Parent" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Point" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Price_PC" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="Create_Date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Edit_Date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MetaTitle" Nullable="true" />
+    <Property Type="String" Name="MetaDescription" Nullable="true" />
+    <Property Type="String" Name="ShortDesc" Nullable="true" />
+    <Property Type="Boolean" Name="IsSale" Nullable="false" />
+    <Property Type="Boolean" Name="IsNew" Nullable="false" />
+    <Property Type="String" Name="MadeIn" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Brand_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Volume" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="List_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Branch_price_1" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Branch_Price_2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Import_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Import_Tax__" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Discount__" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="Warranty_Date" Nullable="true" />
+    <Property Type="Decimal" Name="Price_PP1" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Price_PP2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="Orders" Nullable="false" />
+    <Property Type="String" Name="Technical" Nullable="true" />
+    <Property Type="String" Name="Size_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Color_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Item_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Code_2" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="To_Date" Nullable="true" />
+    <Property Type="DateTime" Name="From_Date" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Linh_getMultiSearchItem_Result">
+    <Property Type="Int64" Name="SortingRowNumber" Nullable="true" />
+    <Property Type="Int32" Name="TotalRowCount" Nullable="true" />
+    <Property Type="Int32" Name="RowID" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Item_Posting_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Group" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Inventory_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Purchase_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Sale_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Location_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Purchase_Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Sale_Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Standard_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Credit_points" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Item_Category_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Brand" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Maximum_Inventory" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Safety_Stock_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Nonstock" Nullable="true" />
+    <Property Type="Int32" Name="Inventory_Value_Zero" Nullable="true" />
+    <Property Type="String" Name="Manufacturer_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Country_of_Origin_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Purchase_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Country_Purchased_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Lot_Size" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Scrap__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Gross_Weight" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Net_Weight" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Picture" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BOM_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Version_Bom_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BOR_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Version_BOR_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Critical" Nullable="true" />
+    <Property Type="Decimal" Name="Period_Of_Guarantee" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="Expiration_Date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Price_Type" Nullable="true" />
+    <Property Type="String" Name="Currency_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Branch_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Shelf_No_" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Units_per_Parcel" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Phys_Invt_Counting_Period_Code" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Last_Counting_Period_Update" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Next_Counting_Period" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Lot_No" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Recipe" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Code_2" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Error_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MFG_Date" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Time_MFC" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Overhead_Rate" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="WIP_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="WIP_Completion__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Equivalant_Finished_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="Last_Unit_Cost_Calc__Date" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Last_Direct_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Indirect_Cost__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Allocated_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Clocked" Nullable="true" />
+    <Property Type="String" Name="Location_HR_Title_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Type" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="W" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Int32" Name="QAQC" Nullable="true" />
+    <Property Type="String" Name="QAQC_Routing_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="QAQC_Routing_Version" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NhietDo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Bar_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Parent" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Point" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Price_PC" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="Create_Date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Edit_Date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MetaTitle" Nullable="true" />
+    <Property Type="String" Name="MetaDescription" Nullable="true" />
+    <Property Type="String" Name="ShortDesc" Nullable="true" />
+    <Property Type="Boolean" Name="IsSale" Nullable="false" />
+    <Property Type="Boolean" Name="IsNew" Nullable="false" />
+    <Property Type="String" Name="MadeIn" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Brand_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Volume" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="List_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Branch_price_1" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Branch_Price_2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Import_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Import_Tax__" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Discount__" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="Warranty_Date" Nullable="true" />
+    <Property Type="Decimal" Name="Price_PP1" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Price_PP2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="Orders" Nullable="false" />
+    <Property Type="String" Name="Technical" Nullable="true" />
+    <Property Type="String" Name="Size_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Color_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Splitdata" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Item_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Code_2" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="To_Date" Nullable="true" />
+    <Property Type="DateTime" Name="From_Date" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get15_SPKhac_Result">
+    <Property Type="Int32" Name="RowID" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Item_Posting_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Group" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Inventory_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Purchase_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Sale_Unit" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Location_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Purchase_Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Sale_Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Standard_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Credit_points" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Item_Category_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Brand" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Maximum_Inventory" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Safety_Stock_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Nonstock" Nullable="true" />
+    <Property Type="Int32" Name="Inventory_Value_Zero" Nullable="true" />
+    <Property Type="String" Name="Manufacturer_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Country_of_Origin_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Purchase_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Country_Purchased_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Lot_Size" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Scrap__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Gross_Weight" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Net_Weight" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Picture" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BOM_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Version_Bom_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BOR_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Version_BOR_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Critical" Nullable="true" />
+    <Property Type="Decimal" Name="Period_Of_Guarantee" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="Expiration_Date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Price_Type" Nullable="true" />
+    <Property Type="String" Name="Currency_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Branch_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Shelf_No_" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Units_per_Parcel" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Phys_Invt_Counting_Period_Code" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Last_Counting_Period_Update" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Next_Counting_Period" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Lot_No" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Recipe" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Code_2" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Error_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MFG_Date" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Time_MFC" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Overhead_Rate" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="WIP_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="WIP_Completion__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Equivalant_Finished_Quantity" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="Last_Unit_Cost_Calc__Date" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Last_Direct_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Indirect_Cost__" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Allocated_Cost" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Clocked" Nullable="true" />
+    <Property Type="String" Name="Location_HR_Title_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Type" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="W" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Int32" Name="QAQC" Nullable="true" />
+    <Property Type="String" Name="QAQC_Routing_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="QAQC_Routing_Version" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NhietDo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Bar_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Parent" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Point" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Price_PC" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="Create_Date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="Edit_Date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MetaTitle" Nullable="true" />
+    <Property Type="String" Name="MetaDescription" Nullable="true" />
+    <Property Type="String" Name="ShortDesc" Nullable="true" />
+    <Property Type="Boolean" Name="IsSale" Nullable="false" />
+    <Property Type="Boolean" Name="IsNew" Nullable="false" />
+    <Property Type="String" Name="MadeIn" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Brand_Code" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Volume" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="List_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Branch_price_1" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Branch_Price_2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Import_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Import_Tax__" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Discount__" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="Warranty_Date" Nullable="true" />
+    <Property Type="Decimal" Name="Price_PP1" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Price_PP2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="Orders" Nullable="false" />
+    <Property Type="String" Name="Technical" Nullable="true" />
+    <Property Type="String" Name="Size_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Color_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Item_Code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Item_Code_2" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="To_Date" Nullable="true" />
+    <Property Type="DateTime" Name="From_Date" Nullable="true" />
+  </ComplexType>
 </Schema>

@@ -524,6 +524,84 @@ namespace MOLUX.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get15_SPCungHang_Result>("Get15_SPCungHang", idParameter, manufacturer_CodeParameter);
         }
     
+        public virtual ObjectResult<GetSPKhuyenMai_Result> GetSPKhuyenMai()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSPKhuyenMai_Result>("GetSPKhuyenMai");
+        }
+    
+        public virtual ObjectResult<Linh_getRowId_Result> Linh_getRowId(Nullable<int> rowID)
+        {
+            var rowIDParameter = rowID.HasValue ?
+                new ObjectParameter("RowID", rowID) :
+                new ObjectParameter("RowID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Linh_getRowId_Result>("Linh_getRowId", rowIDParameter);
+        }
+    
+        public virtual ObjectResult<Linh_ProductLever1_Result> Linh_ProductLever1(Nullable<int> cateID)
+        {
+            var cateIDParameter = cateID.HasValue ?
+                new ObjectParameter("cateID", cateID) :
+                new ObjectParameter("cateID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Linh_ProductLever1_Result>("Linh_ProductLever1", cateIDParameter);
+        }
+    
+        public virtual ObjectResult<Linh_getProductByCategoryFilter_Result> Linh_getProductByCategoryFilter(string cateCode, string manuCode, string sortCriteria)
+        {
+            var cateCodeParameter = cateCode != null ?
+                new ObjectParameter("cateCode", cateCode) :
+                new ObjectParameter("cateCode", typeof(string));
+    
+            var manuCodeParameter = manuCode != null ?
+                new ObjectParameter("manuCode", manuCode) :
+                new ObjectParameter("manuCode", typeof(string));
+    
+            var sortCriteriaParameter = sortCriteria != null ?
+                new ObjectParameter("sortCriteria", sortCriteria) :
+                new ObjectParameter("sortCriteria", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Linh_getProductByCategoryFilter_Result>("Linh_getProductByCategoryFilter", cateCodeParameter, manuCodeParameter, sortCriteriaParameter);
+        }
+    
+        public virtual ObjectResult<Linh_getAllItemLevel2Filter_Result> Linh_getAllItemLevel2Filter(Nullable<int> cateID, string manuCode, string sortCriteria)
+        {
+            var cateIDParameter = cateID.HasValue ?
+                new ObjectParameter("cateID", cateID) :
+                new ObjectParameter("cateID", typeof(int));
+    
+            var manuCodeParameter = manuCode != null ?
+                new ObjectParameter("manuCode", manuCode) :
+                new ObjectParameter("manuCode", typeof(string));
+    
+            var sortCriteriaParameter = sortCriteria != null ?
+                new ObjectParameter("sortCriteria", sortCriteria) :
+                new ObjectParameter("sortCriteria", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Linh_getAllItemLevel2Filter_Result>("Linh_getAllItemLevel2Filter", cateIDParameter, manuCodeParameter, sortCriteriaParameter);
+        }
+    
+        public virtual ObjectResult<Linh_getMultiSearchItem_Result> Linh_getMultiSearchItem(string keyWork, Nullable<int> pageSize, Nullable<int> pageIndex, string sortCriteria)
+        {
+            var keyWorkParameter = keyWork != null ?
+                new ObjectParameter("keyWork", keyWork) :
+                new ObjectParameter("keyWork", typeof(string));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var sortCriteriaParameter = sortCriteria != null ?
+                new ObjectParameter("sortCriteria", sortCriteria) :
+                new ObjectParameter("sortCriteria", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Linh_getMultiSearchItem_Result>("Linh_getMultiSearchItem", keyWorkParameter, pageSizeParameter, pageIndexParameter, sortCriteriaParameter);
+        }
+    
         public virtual ObjectResult<Get15_SPKhac_Result> Get15_SPKhac(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -531,11 +609,6 @@ namespace MOLUX.Models
                 new ObjectParameter("id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get15_SPKhac_Result>("Get15_SPKhac", idParameter);
-        }
-    
-        public virtual ObjectResult<GetSPKhuyenMai_Result> GetSPKhuyenMai()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSPKhuyenMai_Result>("GetSPKhuyenMai");
         }
     }
 }

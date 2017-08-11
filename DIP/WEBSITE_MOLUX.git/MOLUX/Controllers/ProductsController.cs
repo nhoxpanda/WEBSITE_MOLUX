@@ -58,7 +58,7 @@ namespace MOLUX.Controllers
                 MetaDescription = cate.MetaDescription,
                 MetaTitle = cate.MetaTitle
             };
-            var model = _db.web_getAllItemLevel2Filter(id, manufacturer, sort).ToList();
+            var model = _db.Linh_getAllItemLevel2Filter(id, manufacturer, sort).ToList();
             return View(model.ToPagedList(pageNumber, pageSize));
         }
 
@@ -89,7 +89,7 @@ namespace MOLUX.Controllers
                 MetaTitle = cate.MetaTitle,
                 MetaDescription = cate.MetaDescription
             };
-            var model = _db.web_getProductByCategoryFilter(code, manufacturer, sort).ToList();
+            var model = _db.Linh_getProductByCategoryFilter(code, manufacturer, sort).ToList();
             return View(model.ToPagedList(pageNumber, pageSize));
         }
 
@@ -221,7 +221,7 @@ namespace MOLUX.Controllers
 
         public ActionResult Search(string keyword, string sort, int? page = 1)
         {
-            var model = _db.web_getMultiSearchItem(keyword, 5, page - 1, sort).ToList();
+            var model = _db.Linh_getMultiSearchItem(keyword, 5, page - 1, sort).ToList();
             ViewBag.SearchViewModel = new SearchViewModel
             {
                 page = page,

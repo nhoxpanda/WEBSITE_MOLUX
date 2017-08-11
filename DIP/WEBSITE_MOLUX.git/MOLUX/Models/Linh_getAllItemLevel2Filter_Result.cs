@@ -11,7 +11,7 @@ namespace MOLUX.Models
 {
     using System;
     
-    public partial class Get15_SPKhac_Result
+    public partial class Linh_getAllItemLevel2Filter_Result
     {
         public int RowID { get; set; }
         public string Code { get; set; }

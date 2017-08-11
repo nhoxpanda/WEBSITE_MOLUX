@@ -2,7 +2,7 @@
 @using MOLUX.Models
 @using PagedList
 @using PagedList.Mvc
-@model IPagedList<web_getProductByCategoryFilter_Result>
+@model IPagedList<Linh_getProductByCategoryFilter_Result>
 @{
     var cate = ViewBag.CateViewModel as CateViewModel;
     ViewBag.Title = cate.MetaTitle;
@@ -124,13 +124,14 @@
                             <div class="fixed-image owl-item">
                                 <a href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)" title="@item.Name">
                                     <div class="image-wrapper">
-                                        @if (item.IsNew == true || item.IsSale == true)
+                                        @if (item.Item_Code == item.Item_Code_2 && item.Item_Code != null && DateTime.Now.Date >= item.From_Date && DateTime.Now.Date <= item.To_Date)
                                         {
-                                            <p class="salenew hidden-xs">
-                                                <img src="~/Images/Logo/@(item.IsSale == true ? ConfigWebsite.Data().IconSale : ConfigWebsite.Data().IconNew)" class="m-lazy img-responsive" title="" alt="" style="width: 40px" />
+                                            <p class="salenew hidden-xs" style="margin: 10px 10px">
+                                                <img src="~/Images/Logo/@ConfigWebsite.Data().IconSale" class="m-lazy img-responsive" title="" alt="" style="width: 40px" />
+                                                <div style="position: absolute; right: 13px;top:15px;  height:30px;color:red; font-size:20px">@item.Price %</div>
                                             </p>
                                         }
-                                        <img src="http://103.53.231.68:400/MCS/@item.Picture" onerror="this.src='/Images/Products/noimage.gif'" alt="@item.Name" height="200" width="200">
+                                        <img src="http://103.53.231.68:400/MCS/@item.LogoManufacturer" onerror="this.src='/Images/Products/noimage.gif'" class="m-lazy img-responsive" alt="@item.Name" style="padding: 0 10px">
                                         @if (!string.IsNullOrEmpty(item.LogoManufacturer))
                                         {
                                             <p class="manufacturer hidden-xs">
@@ -145,12 +146,21 @@
                             <a title="@item.Name" href="~/san-pham/ct@(item.RowID)/@Common.MakeUrlSlug(item.Name)">@item.Name</a>
                         </div>
                         <div class="col-md-12 nk-price-section clearfix">
-                            <div class="col-md-7" style="text-align: left">
-                                <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ</span>
-                            </div>
-                            <div class="col-md-5" style="text-align: right; padding-right: 5px;">
-                                <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Purchase_Price).Replace(",", ".")</span>đ</div>
-                            </div>
+                            @if (item.Item_Code == item.Item_Code_2 && item.Item_Code != null && DateTime.Now.Date >= item.From_Date && DateTime.Now.Date <= item.To_Date)
+                            {
+                                <div class="col-md-7" style="text-align: left;">
+                                    <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price - item.Sale_Price * item.Price / 100).Replace(",", ".")</span>đ</span>
+                                </div>
+                                <div class="col-md-5" style="text-align: right; padding-right: 5px;">
+                                    <div class="nk-old-price"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-7" style="text-align: left;">
+                                    <span class="nk-price-txt"><span>@string.Format("{0:0,0}", item.Sale_Price).Replace(",", ".")</span>đ</span>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

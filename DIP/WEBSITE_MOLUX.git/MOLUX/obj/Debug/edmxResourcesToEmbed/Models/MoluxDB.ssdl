@@ -677,6 +677,28 @@
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
   <Function Name="GetSPKhuyenMai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Linh_getAllItemLevel2Filter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cateID" Type="int" Mode="In" />
+    <Parameter Name="manuCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="sortCriteria" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Linh_getMultiSearchItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="keyWork" Type="nvarchar" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="sortCriteria" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Linh_getProductByCategoryFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cateCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="manuCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="sortCriteria" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Linh_getRowId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RowID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Linh_ProductLever1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cateID" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_LoadPostByMenuID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="menuID" Type="int" Mode="In" />
     <Parameter Name="cateID" Type="int" Mode="In" />

@@ -105,6 +105,9 @@ namespace MOLUX.Models
         public Nullable<decimal> Gia_Xuat_Chi_Nhanh { get; set; }
         public int Orders { get; set; }
         public string Technical { get; set; }
+        public string Size_Code { get; set; }
+        public string Color_Code { get; set; }
+        public string LogoManufacturer { get; set; }
         public Nullable<decimal> Price { get; set; }
     }
 }
