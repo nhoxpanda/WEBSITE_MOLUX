@@ -1602,6 +1602,9 @@
     <Content Include="Images\Logo\google-plus-icon.png" />
     <Content Include="Images\Logo\Invoice-icon.png" />
     <Content Include="Images\Logo\linkedin-icon.png" />
+    <Content Include="Images\Logo\logo MOLUX %28nen den%29.png" />
+    <Content Include="Images\Logo\logo MOLUX %28nen trang%29.png" />
+    <Content Include="Images\Logo\logo MOLUX %28nen vang%29.png" />
     <Content Include="Images\Logo\rss-icon.png" />
     <Content Include="Images\Logo\ship-cod.png" />
     <Content Include="Images\Logo\twitter-icon.png" />
