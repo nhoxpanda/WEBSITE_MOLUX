@@ -682,6 +682,28 @@
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="GetSPKhuyenMai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Linh_getAllItemLevel2Filter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cateID" Type="int" Mode="In" />
+          <Parameter Name="manuCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="sortCriteria" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Linh_getMultiSearchItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="keyWork" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="sortCriteria" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Linh_getProductByCategoryFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cateCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="manuCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="sortCriteria" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Linh_getRowId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RowID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Linh_ProductLever1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cateID" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_LoadPostByMenuID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="menuID" Type="int" Mode="In" />
           <Parameter Name="cateID" Type="int" Mode="In" />
@@ -1748,15 +1770,37 @@
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="Manufacturer_Code" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="Get15_SPKhac" ReturnType="Collection(BMSMoluxHongKongModel.Get15_SPKhac_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetSPKhuyenMai" ReturnType="Collection(BMSMoluxHongKongModel.GetSPKhuyenMai_Result)" />
           <EntitySet Name="web_Cart" EntityType="BMSMoluxHongKongModel.web_Cart" />
           <AssociationSet Name="FK_web_Cart_Item" Association="BMSMoluxHongKongModel.FK_web_Cart_Item">
             <End Role="Item" EntitySet="Item" />
             <End Role="web_Cart" EntitySet="web_Cart" />
           </AssociationSet>
+          <FunctionImport Name="GetSPKhuyenMai" ReturnType="Collection(BMSMoluxHongKongModel.GetSPKhuyenMai_Result)" />
+          <FunctionImport Name="Linh_getRowId" ReturnType="Collection(BMSMoluxHongKongModel.Linh_getRowId_Result)">
+          <Parameter Name="RowID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Linh_ProductLever1" ReturnType="Collection(BMSMoluxHongKongModel.Linh_ProductLever1_Result)">
+          <Parameter Name="cateID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Linh_getProductByCategoryFilter" ReturnType="Collection(BMSMoluxHongKongModel.Linh_getProductByCategoryFilter_Result)">
+            <Parameter Name="cateCode" Mode="In" Type="String" />
+            <Parameter Name="manuCode" Mode="In" Type="String" />
+            <Parameter Name="sortCriteria" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Linh_getAllItemLevel2Filter" ReturnType="Collection(BMSMoluxHongKongModel.Linh_getAllItemLevel2Filter_Result)">
+            <Parameter Name="cateID" Mode="In" Type="Int32" />
+            <Parameter Name="manuCode" Mode="In" Type="String" />
+            <Parameter Name="sortCriteria" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Linh_getMultiSearchItem" ReturnType="Collection(BMSMoluxHongKongModel.Linh_getMultiSearchItem_Result)">
+            <Parameter Name="keyWork" Mode="In" Type="String" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="sortCriteria" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get15_SPKhac" ReturnType="Collection(BMSMoluxHongKongModel.Get15_SPKhac_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_LoadPostByMenuID_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -3481,106 +3525,31 @@
           <Property Type="DateTime" Name="To_Date" Nullable="true" />
           <Property Type="DateTime" Name="From_Date" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="Get15_SPKhac_Result">
-          <Property Type="Int32" Name="RowID" Nullable="false" />
-          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="Item_Posting_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Item_Group" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Inventory_Unit" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Purchase_Unit" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Sale_Unit" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Location_Code" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="Purchase_Price" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Sale_Price" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Standard_Cost" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Credit_points" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="Item_Category_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Brand" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
-          <Property Type="Decimal" Name="Maximum_Inventory" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Safety_Stock_Quantity" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="Nonstock" Nullable="true" />
-          <Property Type="Int32" Name="Inventory_Value_Zero" Nullable="true" />
-          <Property Type="String" Name="Manufacturer_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Country_of_Origin_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Purchase_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Country_Purchased_Code" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="Lot_Size" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Scrap__" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Gross_Weight" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Net_Weight" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="Picture" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="BOM_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Version_Bom_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="BOR_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Version_BOR_Code" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Critical" Nullable="true" />
-          <Property Type="Decimal" Name="Period_Of_Guarantee" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="DateTime" Name="Expiration_Date" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="Price_Type" Nullable="true" />
-          <Property Type="String" Name="Currency_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Branch_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Shelf_No_" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Units_per_Parcel" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Phys_Invt_Counting_Period_Code" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="Last_Counting_Period_Update" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="Next_Counting_Period" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Lot_No" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Recipe" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Code_2" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Error_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="MFG_Date" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Time_MFC" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="Overhead_Rate" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="WIP_Quantity" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="WIP_Completion__" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Equivalant_Finished_Quantity" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="DateTime" Name="Last_Unit_Cost_Calc__Date" Nullable="true" Precision="23" />
-          <Property Type="Decimal" Name="Last_Direct_Cost" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Indirect_Cost__" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Allocated_Cost" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="Clocked" Nullable="true" />
-          <Property Type="String" Name="Location_HR_Title_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Item_Type" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="W" Nullable="true" Precision="18" Scale="5" />
-          <Property Type="Int32" Name="QAQC" Nullable="true" />
-          <Property Type="String" Name="QAQC_Routing_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="QAQC_Routing_Version" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="NhietDo" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Bar_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Item_Parent" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="Point" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Price_PC" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="DateTime" Name="Create_Date" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="Edit_Date" Nullable="true" Precision="23" />
-          <Property Type="String" Name="MetaTitle" Nullable="true" />
-          <Property Type="String" Name="MetaDescription" Nullable="true" />
-          <Property Type="String" Name="ShortDesc" Nullable="true" />
-          <Property Type="Boolean" Name="IsSale" Nullable="false" />
-          <Property Type="Boolean" Name="IsNew" Nullable="false" />
-          <Property Type="String" Name="MadeIn" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Brand_Code" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="Volume" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="List_Price" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="Branch_price_1" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="Branch_Price_2_KVBH_" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="Import_Price" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="Import_Tax__" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="Discount__" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="DateTime" Name="Warranty_Date" Nullable="true" />
-          <Property Type="Decimal" Name="Price_PP1" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="Price_PP2_KVBH_" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Int32" Name="Orders" Nullable="false" />
-          <Property Type="String" Name="Technical" Nullable="true" />
-          <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
-          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="Item_Code" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Item_Code_2" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="To_Date" Nullable="true" />
-          <Property Type="DateTime" Name="From_Date" Nullable="true" />
-        </ComplexType>
+        <EntityType Name="web_Cart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CartId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Item" Relationship="BMSMoluxHongKongModel.FK_web_Cart_Item" FromRole="web_Cart" ToRole="Item" />
+        </EntityType>
+        <Association Name="FK_web_Cart_Item">
+          <End Type="BMSMoluxHongKongModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="BMSMoluxHongKongModel.web_Cart" Role="web_Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="RowID" />
+            </Principal>
+            <Dependent Role="web_Cart">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <ComplexType Name="GetSPKhuyenMai_Result">
           <Property Type="Int32" Name="RowID" Nullable="false" />
           <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
@@ -3674,33 +3643,530 @@
           <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
           <Property Type="Int32" Name="Orders" Nullable="false" />
           <Property Type="String" Name="Technical" Nullable="true" />
+          <Property Type="String" Name="Size_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
           <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
         </ComplexType>
-        <EntityType Name="web_Cart">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CartId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ItemId" Type="Int32" Nullable="false" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Type" Type="Int32" />
-          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="Item" Relationship="BMSMoluxHongKongModel.FK_web_Cart_Item" FromRole="web_Cart" ToRole="Item" />
-        </EntityType>
-        <Association Name="FK_web_Cart_Item">
-          <End Type="BMSMoluxHongKongModel.Item" Role="Item" Multiplicity="1" />
-          <End Type="BMSMoluxHongKongModel.web_Cart" Role="web_Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Item">
-              <PropertyRef Name="RowID" />
-            </Principal>
-            <Dependent Role="web_Cart">
-              <PropertyRef Name="ItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <ComplexType Name="Linh_getRowId_Result">
+          <Property Type="Int32" Name="RowID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Orders" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Linh_ProductLever1_Result">
+          <Property Type="Int32" Name="RowID" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Item_Posting_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Group" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Inventory_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Purchase_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Sale_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Location_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Purchase_Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Sale_Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Standard_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Credit_points" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Item_Category_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Brand" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="Maximum_Inventory" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Safety_Stock_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Nonstock" Nullable="true" />
+          <Property Type="Int32" Name="Inventory_Value_Zero" Nullable="true" />
+          <Property Type="String" Name="Manufacturer_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Country_of_Origin_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Purchase_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Country_Purchased_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Lot_Size" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Scrap__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Gross_Weight" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Net_Weight" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Picture" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BOM_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Version_Bom_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BOR_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Version_BOR_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Critical" Nullable="true" />
+          <Property Type="Decimal" Name="Period_Of_Guarantee" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="Expiration_Date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Price_Type" Nullable="true" />
+          <Property Type="String" Name="Currency_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Branch_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Shelf_No_" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Units_per_Parcel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Phys_Invt_Counting_Period_Code" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Last_Counting_Period_Update" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Next_Counting_Period" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Lot_No" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Recipe" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Code_2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Error_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MFG_Date" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Time_MFC" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Overhead_Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="WIP_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="WIP_Completion__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Equivalant_Finished_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="Last_Unit_Cost_Calc__Date" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Last_Direct_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Indirect_Cost__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Allocated_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Clocked" Nullable="true" />
+          <Property Type="String" Name="Location_HR_Title_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Type" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="W" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Int32" Name="QAQC" Nullable="true" />
+          <Property Type="String" Name="QAQC_Routing_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="QAQC_Routing_Version" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NhietDo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Bar_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Parent" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Point" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Price_PC" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Create_Date" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Edit_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MetaTitle" Nullable="true" />
+          <Property Type="String" Name="MetaDescription" Nullable="true" />
+          <Property Type="String" Name="ShortDesc" Nullable="true" />
+          <Property Type="Boolean" Name="IsSale" Nullable="false" />
+          <Property Type="Boolean" Name="IsNew" Nullable="false" />
+          <Property Type="String" Name="MadeIn" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Brand_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Volume" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="List_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Branch_price_1" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Branch_Price_2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Import_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Import_Tax__" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Discount__" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Warranty_Date" Nullable="true" />
+          <Property Type="Decimal" Name="Price_PP1" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Price_PP2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Orders" Nullable="false" />
+          <Property Type="String" Name="Technical" Nullable="true" />
+          <Property Type="String" Name="Size_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Item_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Code_2" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="To_Date" Nullable="true" />
+          <Property Type="DateTime" Name="From_Date" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Linh_getProductByCategoryFilter_Result">
+          <Property Type="Int32" Name="RowID" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Item_Posting_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Group" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Inventory_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Purchase_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Sale_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Location_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Purchase_Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Sale_Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Standard_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Credit_points" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Item_Category_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Brand" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="Maximum_Inventory" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Safety_Stock_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Nonstock" Nullable="true" />
+          <Property Type="Int32" Name="Inventory_Value_Zero" Nullable="true" />
+          <Property Type="String" Name="Manufacturer_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Country_of_Origin_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Purchase_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Country_Purchased_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Lot_Size" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Scrap__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Gross_Weight" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Net_Weight" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Picture" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BOM_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Version_Bom_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BOR_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Version_BOR_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Critical" Nullable="true" />
+          <Property Type="Decimal" Name="Period_Of_Guarantee" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="Expiration_Date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Price_Type" Nullable="true" />
+          <Property Type="String" Name="Currency_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Branch_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Shelf_No_" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Units_per_Parcel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Phys_Invt_Counting_Period_Code" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Last_Counting_Period_Update" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Next_Counting_Period" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Lot_No" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Recipe" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Code_2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Error_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MFG_Date" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Time_MFC" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Overhead_Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="WIP_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="WIP_Completion__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Equivalant_Finished_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="Last_Unit_Cost_Calc__Date" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Last_Direct_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Indirect_Cost__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Allocated_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Clocked" Nullable="true" />
+          <Property Type="String" Name="Location_HR_Title_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Type" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="W" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Int32" Name="QAQC" Nullable="true" />
+          <Property Type="String" Name="QAQC_Routing_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="QAQC_Routing_Version" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NhietDo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Bar_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Parent" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Point" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Price_PC" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Create_Date" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Edit_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MetaTitle" Nullable="true" />
+          <Property Type="String" Name="MetaDescription" Nullable="true" />
+          <Property Type="String" Name="ShortDesc" Nullable="true" />
+          <Property Type="Boolean" Name="IsSale" Nullable="false" />
+          <Property Type="Boolean" Name="IsNew" Nullable="false" />
+          <Property Type="String" Name="MadeIn" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Brand_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Volume" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="List_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Branch_price_1" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Branch_Price_2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Import_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Import_Tax__" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Discount__" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Warranty_Date" Nullable="true" />
+          <Property Type="Decimal" Name="Price_PP1" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Price_PP2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Orders" Nullable="false" />
+          <Property Type="String" Name="Technical" Nullable="true" />
+          <Property Type="String" Name="Size_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Item_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Code_2" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="To_Date" Nullable="true" />
+          <Property Type="DateTime" Name="From_Date" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Linh_getAllItemLevel2Filter_Result">
+          <Property Type="Int32" Name="RowID" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Item_Posting_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Group" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Inventory_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Purchase_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Sale_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Location_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Purchase_Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Sale_Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Standard_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Credit_points" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Item_Category_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Brand" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="Maximum_Inventory" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Safety_Stock_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Nonstock" Nullable="true" />
+          <Property Type="Int32" Name="Inventory_Value_Zero" Nullable="true" />
+          <Property Type="String" Name="Manufacturer_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Country_of_Origin_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Purchase_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Country_Purchased_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Lot_Size" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Scrap__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Gross_Weight" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Net_Weight" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Picture" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BOM_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Version_Bom_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BOR_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Version_BOR_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Critical" Nullable="true" />
+          <Property Type="Decimal" Name="Period_Of_Guarantee" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="Expiration_Date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Price_Type" Nullable="true" />
+          <Property Type="String" Name="Currency_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Branch_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Shelf_No_" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Units_per_Parcel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Phys_Invt_Counting_Period_Code" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Last_Counting_Period_Update" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Next_Counting_Period" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Lot_No" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Recipe" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Code_2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Error_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MFG_Date" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Time_MFC" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Overhead_Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="WIP_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="WIP_Completion__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Equivalant_Finished_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="Last_Unit_Cost_Calc__Date" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Last_Direct_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Indirect_Cost__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Allocated_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Clocked" Nullable="true" />
+          <Property Type="String" Name="Location_HR_Title_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Type" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="W" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Int32" Name="QAQC" Nullable="true" />
+          <Property Type="String" Name="QAQC_Routing_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="QAQC_Routing_Version" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NhietDo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Bar_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Parent" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Point" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Price_PC" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Create_Date" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Edit_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MetaTitle" Nullable="true" />
+          <Property Type="String" Name="MetaDescription" Nullable="true" />
+          <Property Type="String" Name="ShortDesc" Nullable="true" />
+          <Property Type="Boolean" Name="IsSale" Nullable="false" />
+          <Property Type="Boolean" Name="IsNew" Nullable="false" />
+          <Property Type="String" Name="MadeIn" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Brand_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Volume" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="List_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Branch_price_1" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Branch_Price_2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Import_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Import_Tax__" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Discount__" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Warranty_Date" Nullable="true" />
+          <Property Type="Decimal" Name="Price_PP1" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Price_PP2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Orders" Nullable="false" />
+          <Property Type="String" Name="Technical" Nullable="true" />
+          <Property Type="String" Name="Size_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Item_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Code_2" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="To_Date" Nullable="true" />
+          <Property Type="DateTime" Name="From_Date" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Linh_getMultiSearchItem_Result">
+          <Property Type="Int64" Name="SortingRowNumber" Nullable="true" />
+          <Property Type="Int32" Name="TotalRowCount" Nullable="true" />
+          <Property Type="Int32" Name="RowID" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Item_Posting_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Group" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Inventory_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Purchase_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Sale_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Location_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Purchase_Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Sale_Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Standard_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Credit_points" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Item_Category_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Brand" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="Maximum_Inventory" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Safety_Stock_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Nonstock" Nullable="true" />
+          <Property Type="Int32" Name="Inventory_Value_Zero" Nullable="true" />
+          <Property Type="String" Name="Manufacturer_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Country_of_Origin_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Purchase_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Country_Purchased_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Lot_Size" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Scrap__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Gross_Weight" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Net_Weight" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Picture" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BOM_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Version_Bom_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BOR_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Version_BOR_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Critical" Nullable="true" />
+          <Property Type="Decimal" Name="Period_Of_Guarantee" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="Expiration_Date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Price_Type" Nullable="true" />
+          <Property Type="String" Name="Currency_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Branch_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Shelf_No_" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Units_per_Parcel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Phys_Invt_Counting_Period_Code" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Last_Counting_Period_Update" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Next_Counting_Period" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Lot_No" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Recipe" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Code_2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Error_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MFG_Date" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Time_MFC" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Overhead_Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="WIP_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="WIP_Completion__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Equivalant_Finished_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="Last_Unit_Cost_Calc__Date" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Last_Direct_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Indirect_Cost__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Allocated_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Clocked" Nullable="true" />
+          <Property Type="String" Name="Location_HR_Title_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Type" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="W" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Int32" Name="QAQC" Nullable="true" />
+          <Property Type="String" Name="QAQC_Routing_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="QAQC_Routing_Version" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NhietDo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Bar_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Parent" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Point" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Price_PC" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Create_Date" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Edit_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MetaTitle" Nullable="true" />
+          <Property Type="String" Name="MetaDescription" Nullable="true" />
+          <Property Type="String" Name="ShortDesc" Nullable="true" />
+          <Property Type="Boolean" Name="IsSale" Nullable="false" />
+          <Property Type="Boolean" Name="IsNew" Nullable="false" />
+          <Property Type="String" Name="MadeIn" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Brand_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Volume" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="List_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Branch_price_1" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Branch_Price_2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Import_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Import_Tax__" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Discount__" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Warranty_Date" Nullable="true" />
+          <Property Type="Decimal" Name="Price_PP1" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Price_PP2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Orders" Nullable="false" />
+          <Property Type="String" Name="Technical" Nullable="true" />
+          <Property Type="String" Name="Size_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Splitdata" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Item_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Code_2" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="To_Date" Nullable="true" />
+          <Property Type="DateTime" Name="From_Date" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Get15_SPKhac_Result">
+          <Property Type="Int32" Name="RowID" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Item_Posting_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Group" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Inventory_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Purchase_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Sale_Unit" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Location_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Purchase_Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Sale_Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Standard_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Credit_points" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Item_Category_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Brand" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="Maximum_Inventory" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Safety_Stock_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Nonstock" Nullable="true" />
+          <Property Type="Int32" Name="Inventory_Value_Zero" Nullable="true" />
+          <Property Type="String" Name="Manufacturer_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Country_of_Origin_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Purchase_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Country_Purchased_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Lot_Size" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Scrap__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Gross_Weight" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Net_Weight" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Picture" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BOM_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Version_Bom_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BOR_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Version_BOR_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Critical" Nullable="true" />
+          <Property Type="Decimal" Name="Period_Of_Guarantee" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="Expiration_Date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Price_Type" Nullable="true" />
+          <Property Type="String" Name="Currency_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Branch_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Shelf_No_" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Units_per_Parcel" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Phys_Invt_Counting_Period_Code" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Last_Counting_Period_Update" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Next_Counting_Period" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Lot_No" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Recipe" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Code_2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Error_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MFG_Date" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Time_MFC" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Overhead_Rate" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="WIP_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="WIP_Completion__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Equivalant_Finished_Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="Last_Unit_Cost_Calc__Date" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Last_Direct_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Indirect_Cost__" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Allocated_Cost" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Clocked" Nullable="true" />
+          <Property Type="String" Name="Location_HR_Title_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Type" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="W" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Int32" Name="QAQC" Nullable="true" />
+          <Property Type="String" Name="QAQC_Routing_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="QAQC_Routing_Version" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NhietDo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Bar_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Parent" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Point" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Price_PC" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Create_Date" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Edit_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MetaTitle" Nullable="true" />
+          <Property Type="String" Name="MetaDescription" Nullable="true" />
+          <Property Type="String" Name="ShortDesc" Nullable="true" />
+          <Property Type="Boolean" Name="IsSale" Nullable="false" />
+          <Property Type="Boolean" Name="IsNew" Nullable="false" />
+          <Property Type="String" Name="MadeIn" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Brand_Code" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Volume" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="List_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Branch_price_1" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Branch_Price_2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Import_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Import_Tax__" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Discount__" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Warranty_Date" Nullable="true" />
+          <Property Type="Decimal" Name="Price_PP1" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Price_PP2_KVBH_" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Gia_Xuat_Chi_Nhanh" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Orders" Nullable="false" />
+          <Property Type="String" Name="Technical" Nullable="true" />
+          <Property Type="String" Name="Size_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LogoManufacturer" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Item_Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Item_Code_2" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="To_Date" Nullable="true" />
+          <Property Type="DateTime" Name="From_Date" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6166,110 +6632,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Get15_SPKhac" FunctionName="BMSMoluxHongKongModel.Store.Get15_SPKhac">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.Get15_SPKhac_Result">
-                <ScalarProperty Name="RowID" ColumnName="RowID" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
-                <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
-                <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
-                <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
-                <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
-                <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
-                <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
-                <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
-                <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
-                <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
-                <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
-                <ScalarProperty Name="Brand" ColumnName="Brand" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
-                <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
-                <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
-                <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
-                <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
-                <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
-                <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
-                <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
-                <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
-                <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
-                <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
-                <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
-                <ScalarProperty Name="Picture" ColumnName="Picture" />
-                <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
-                <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
-                <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
-                <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
-                <ScalarProperty Name="Critical" ColumnName="Critical" />
-                <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
-                <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
-                <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
-                <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
-                <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
-                <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
-                <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
-                <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
-                <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
-                <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
-                <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
-                <ScalarProperty Name="Recipe" ColumnName="Recipe" />
-                <ScalarProperty Name="Code_2" ColumnName="Code 2" />
-                <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
-                <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
-                <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
-                <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
-                <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
-                <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
-                <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
-                <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
-                <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
-                <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
-                <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
-                <ScalarProperty Name="Clocked" ColumnName="Clocked" />
-                <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
-                <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
-                <ScalarProperty Name="W" ColumnName="W" />
-                <ScalarProperty Name="QAQC" ColumnName="QAQC" />
-                <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
-                <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
-                <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
-                <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
-                <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
-                <ScalarProperty Name="Point" ColumnName="Point" />
-                <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
-                <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
-                <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
-                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
-                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
-                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
-                <ScalarProperty Name="IsSale" ColumnName="IsSale" />
-                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
-                <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
-                <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
-                <ScalarProperty Name="Volume" ColumnName="Volume" />
-                <ScalarProperty Name="List_Price" ColumnName="List Price" />
-                <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
-                <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
-                <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
-                <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
-                <ScalarProperty Name="Discount__" ColumnName="Discount %" />
-                <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
-                <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
-                <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
-                <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
-                <ScalarProperty Name="Orders" ColumnName="Orders" />
-                <ScalarProperty Name="Technical" ColumnName="Technical" />
-                <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Item_Code" ColumnName="Item Code" />
-                <ScalarProperty Name="Item_Code_2" ColumnName="Item Code 2" />
-                <ScalarProperty Name="To_Date" ColumnName="To Date" />
-                <ScalarProperty Name="From_Date" ColumnName="From Date" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <EntitySetMapping Name="web_Cart">
+            <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_Cart">
+              <MappingFragment StoreEntitySet="web_Cart">
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetSPKhuyenMai" FunctionName="BMSMoluxHongKongModel.Store.GetSPKhuyenMai">
             <ResultMapping>
               <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.GetSPKhuyenMai_Result">
@@ -6365,23 +6740,556 @@
                 <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
                 <ScalarProperty Name="Orders" ColumnName="Orders" />
                 <ScalarProperty Name="Technical" ColumnName="Technical" />
+                <ScalarProperty Name="Size_Code" ColumnName="Size Code" />
+                <ScalarProperty Name="Color_Code" ColumnName="Color Code" />
+                <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="web_Cart">
-            <EntityTypeMapping TypeName="BMSMoluxHongKongModel.web_Cart">
-              <MappingFragment StoreEntitySet="web_Cart">
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-                <ScalarProperty Name="CartId" ColumnName="CartId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Linh_getRowId" FunctionName="BMSMoluxHongKongModel.Store.Linh_getRowId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.Linh_getRowId_Result">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Linh_ProductLever1" FunctionName="BMSMoluxHongKongModel.Store.Linh_ProductLever1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.Linh_ProductLever1_Result">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+                <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+                <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+                <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+                <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+                <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+                <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+                <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+                <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+                <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+                <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+                <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+                <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+                <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+                <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+                <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+                <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+                <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+                <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+                <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+                <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+                <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+                <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+                <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+                <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+                <ScalarProperty Name="Critical" ColumnName="Critical" />
+                <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+                <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+                <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+                <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+                <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+                <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+                <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+                <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+                <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+                <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+                <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+                <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+                <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+                <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+                <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+                <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+                <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+                <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+                <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+                <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+                <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+                <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+                <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+                <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+                <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+                <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+                <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+                <ScalarProperty Name="W" ColumnName="W" />
+                <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+                <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+                <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+                <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+                <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+                <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+                <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+                <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+                <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+                <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="List_Price" ColumnName="List Price" />
+                <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+                <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+                <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+                <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+                <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+                <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+                <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+                <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+                <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+                <ScalarProperty Name="Technical" ColumnName="Technical" />
+                <ScalarProperty Name="Size_Code" ColumnName="Size Code" />
+                <ScalarProperty Name="Color_Code" ColumnName="Color Code" />
+                <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Item_Code" ColumnName="Item Code" />
+                <ScalarProperty Name="Item_Code_2" ColumnName="Item Code 2" />
+                <ScalarProperty Name="To_Date" ColumnName="To Date" />
+                <ScalarProperty Name="From_Date" ColumnName="From Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Linh_getProductByCategoryFilter" FunctionName="BMSMoluxHongKongModel.Store.Linh_getProductByCategoryFilter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.Linh_getProductByCategoryFilter_Result">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+                <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+                <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+                <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+                <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+                <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+                <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+                <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+                <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+                <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+                <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+                <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+                <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+                <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+                <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+                <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+                <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+                <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+                <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+                <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+                <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+                <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+                <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+                <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+                <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+                <ScalarProperty Name="Critical" ColumnName="Critical" />
+                <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+                <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+                <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+                <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+                <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+                <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+                <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+                <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+                <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+                <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+                <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+                <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+                <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+                <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+                <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+                <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+                <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+                <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+                <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+                <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+                <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+                <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+                <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+                <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+                <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+                <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+                <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+                <ScalarProperty Name="W" ColumnName="W" />
+                <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+                <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+                <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+                <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+                <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+                <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+                <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+                <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+                <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+                <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="List_Price" ColumnName="List Price" />
+                <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+                <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+                <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+                <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+                <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+                <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+                <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+                <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+                <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+                <ScalarProperty Name="Technical" ColumnName="Technical" />
+                <ScalarProperty Name="Size_Code" ColumnName="Size Code" />
+                <ScalarProperty Name="Color_Code" ColumnName="Color Code" />
+                <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Item_Code" ColumnName="Item Code" />
+                <ScalarProperty Name="Item_Code_2" ColumnName="Item Code 2" />
+                <ScalarProperty Name="To_Date" ColumnName="To Date" />
+                <ScalarProperty Name="From_Date" ColumnName="From Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Linh_getAllItemLevel2Filter" FunctionName="BMSMoluxHongKongModel.Store.Linh_getAllItemLevel2Filter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.Linh_getAllItemLevel2Filter_Result">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+                <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+                <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+                <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+                <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+                <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+                <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+                <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+                <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+                <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+                <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+                <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+                <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+                <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+                <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+                <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+                <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+                <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+                <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+                <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+                <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+                <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+                <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+                <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+                <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+                <ScalarProperty Name="Critical" ColumnName="Critical" />
+                <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+                <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+                <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+                <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+                <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+                <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+                <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+                <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+                <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+                <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+                <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+                <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+                <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+                <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+                <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+                <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+                <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+                <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+                <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+                <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+                <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+                <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+                <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+                <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+                <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+                <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+                <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+                <ScalarProperty Name="W" ColumnName="W" />
+                <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+                <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+                <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+                <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+                <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+                <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+                <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+                <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+                <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+                <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="List_Price" ColumnName="List Price" />
+                <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+                <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+                <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+                <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+                <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+                <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+                <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+                <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+                <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+                <ScalarProperty Name="Technical" ColumnName="Technical" />
+                <ScalarProperty Name="Size_Code" ColumnName="Size Code" />
+                <ScalarProperty Name="Color_Code" ColumnName="Color Code" />
+                <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Item_Code" ColumnName="Item Code" />
+                <ScalarProperty Name="Item_Code_2" ColumnName="Item Code 2" />
+                <ScalarProperty Name="To_Date" ColumnName="To Date" />
+                <ScalarProperty Name="From_Date" ColumnName="From Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Linh_getMultiSearchItem" FunctionName="BMSMoluxHongKongModel.Store.Linh_getMultiSearchItem">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.Linh_getMultiSearchItem_Result">
+                <ScalarProperty Name="SortingRowNumber" ColumnName="SortingRowNumber" />
+                <ScalarProperty Name="TotalRowCount" ColumnName="TotalRowCount" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+                <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+                <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+                <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+                <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+                <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+                <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+                <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+                <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+                <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+                <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+                <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+                <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+                <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+                <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+                <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+                <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+                <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+                <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+                <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+                <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+                <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+                <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+                <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+                <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+                <ScalarProperty Name="Critical" ColumnName="Critical" />
+                <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+                <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+                <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+                <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+                <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+                <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+                <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+                <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+                <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+                <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+                <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+                <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+                <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+                <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+                <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+                <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+                <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+                <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+                <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+                <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+                <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+                <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+                <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+                <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+                <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+                <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+                <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+                <ScalarProperty Name="W" ColumnName="W" />
+                <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+                <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+                <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+                <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+                <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+                <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+                <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+                <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+                <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+                <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="List_Price" ColumnName="List Price" />
+                <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+                <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+                <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+                <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+                <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+                <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+                <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+                <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+                <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+                <ScalarProperty Name="Technical" ColumnName="Technical" />
+                <ScalarProperty Name="Size_Code" ColumnName="Size Code" />
+                <ScalarProperty Name="Color_Code" ColumnName="Color Code" />
+                <ScalarProperty Name="Splitdata" ColumnName="Splitdata" />
+                <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Item_Code" ColumnName="Item Code" />
+                <ScalarProperty Name="Item_Code_2" ColumnName="Item Code 2" />
+                <ScalarProperty Name="To_Date" ColumnName="To Date" />
+                <ScalarProperty Name="From_Date" ColumnName="From Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get15_SPKhac" FunctionName="BMSMoluxHongKongModel.Store.Get15_SPKhac">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BMSMoluxHongKongModel.Get15_SPKhac_Result">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Item_Posting_Code" ColumnName="Item Posting Code" />
+                <ScalarProperty Name="Item_Group" ColumnName="Item Group" />
+                <ScalarProperty Name="Inventory_Unit" ColumnName="Inventory Unit" />
+                <ScalarProperty Name="Purchase_Unit" ColumnName="Purchase Unit" />
+                <ScalarProperty Name="Sale_Unit" ColumnName="Sale Unit" />
+                <ScalarProperty Name="Location_Code" ColumnName="Location Code" />
+                <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+                <ScalarProperty Name="Sale_Price" ColumnName="Sale Price" />
+                <ScalarProperty Name="Standard_Cost" ColumnName="Standard Cost" />
+                <ScalarProperty Name="Credit_points" ColumnName="Credit points" />
+                <ScalarProperty Name="Item_Category_Code" ColumnName="Item Category Code" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Maximum_Inventory" ColumnName="Maximum Inventory" />
+                <ScalarProperty Name="Safety_Stock_Quantity" ColumnName="Safety Stock Quantity" />
+                <ScalarProperty Name="Nonstock" ColumnName="Nonstock" />
+                <ScalarProperty Name="Inventory_Value_Zero" ColumnName="Inventory Value Zero" />
+                <ScalarProperty Name="Manufacturer_Code" ColumnName="Manufacturer Code" />
+                <ScalarProperty Name="Country_of_Origin_Code" ColumnName="Country of Origin Code" />
+                <ScalarProperty Name="Purchase_Code" ColumnName="Purchase Code" />
+                <ScalarProperty Name="Country_Purchased_Code" ColumnName="Country Purchased Code" />
+                <ScalarProperty Name="Lot_Size" ColumnName="Lot Size" />
+                <ScalarProperty Name="Scrap__" ColumnName="Scrap %" />
+                <ScalarProperty Name="Gross_Weight" ColumnName="Gross Weight" />
+                <ScalarProperty Name="Net_Weight" ColumnName="Net Weight" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="BOM_Code" ColumnName="BOM Code" />
+                <ScalarProperty Name="Version_Bom_Code" ColumnName="Version Bom Code" />
+                <ScalarProperty Name="BOR_Code" ColumnName="BOR Code" />
+                <ScalarProperty Name="Version_BOR_Code" ColumnName="Version BOR Code" />
+                <ScalarProperty Name="Critical" ColumnName="Critical" />
+                <ScalarProperty Name="Period_Of_Guarantee" ColumnName="Period Of Guarantee" />
+                <ScalarProperty Name="Expiration_Date" ColumnName="Expiration Date" />
+                <ScalarProperty Name="Price_Type" ColumnName="Price Type" />
+                <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+                <ScalarProperty Name="Branch_Code" ColumnName="Branch Code" />
+                <ScalarProperty Name="Shelf_No_" ColumnName="Shelf No_" />
+                <ScalarProperty Name="Units_per_Parcel" ColumnName="Units per Parcel" />
+                <ScalarProperty Name="Phys_Invt_Counting_Period_Code" ColumnName="Phys Invt Counting Period Code" />
+                <ScalarProperty Name="Last_Counting_Period_Update" ColumnName="Last Counting Period Update" />
+                <ScalarProperty Name="Next_Counting_Period" ColumnName="Next Counting Period" />
+                <ScalarProperty Name="Lot_No" ColumnName="Lot No" />
+                <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+                <ScalarProperty Name="Code_2" ColumnName="Code 2" />
+                <ScalarProperty Name="Error_Code" ColumnName="Error Code" />
+                <ScalarProperty Name="MFG_Date" ColumnName="MFG Date" />
+                <ScalarProperty Name="Time_MFC" ColumnName="Time MFC" />
+                <ScalarProperty Name="Overhead_Rate" ColumnName="Overhead Rate" />
+                <ScalarProperty Name="WIP_Quantity" ColumnName="WIP Quantity" />
+                <ScalarProperty Name="WIP_Completion__" ColumnName="WIP Completion %" />
+                <ScalarProperty Name="Equivalant_Finished_Quantity" ColumnName="Equivalant Finished Quantity" />
+                <ScalarProperty Name="Last_Unit_Cost_Calc__Date" ColumnName="Last Unit Cost Calc_ Date" />
+                <ScalarProperty Name="Last_Direct_Cost" ColumnName="Last Direct Cost" />
+                <ScalarProperty Name="Indirect_Cost__" ColumnName="Indirect Cost %" />
+                <ScalarProperty Name="Allocated_Cost" ColumnName="Allocated Cost" />
+                <ScalarProperty Name="Clocked" ColumnName="Clocked" />
+                <ScalarProperty Name="Location_HR_Title_Code" ColumnName="Location HR Title Code" />
+                <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+                <ScalarProperty Name="W" ColumnName="W" />
+                <ScalarProperty Name="QAQC" ColumnName="QAQC" />
+                <ScalarProperty Name="QAQC_Routing_Code" ColumnName="QAQC Routing Code" />
+                <ScalarProperty Name="QAQC_Routing_Version" ColumnName="QAQC Routing Version" />
+                <ScalarProperty Name="NhietDo" ColumnName="NhietDo" />
+                <ScalarProperty Name="Bar_Code" ColumnName="Bar Code" />
+                <ScalarProperty Name="Item_Parent" ColumnName="Item Parent" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Price_PC" ColumnName="Price PC" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create Date" />
+                <ScalarProperty Name="Edit_Date" ColumnName="Edit Date" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+                <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+                <ScalarProperty Name="MadeIn" ColumnName="MadeIn" />
+                <ScalarProperty Name="Brand_Code" ColumnName="Brand Code" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="List_Price" ColumnName="List Price" />
+                <ScalarProperty Name="Branch_price_1" ColumnName="Branch price 1" />
+                <ScalarProperty Name="Branch_Price_2_KVBH_" ColumnName="Branch Price 2(KVBH)" />
+                <ScalarProperty Name="Import_Price" ColumnName="Import Price" />
+                <ScalarProperty Name="Import_Tax__" ColumnName="Import Tax %" />
+                <ScalarProperty Name="Discount__" ColumnName="Discount %" />
+                <ScalarProperty Name="Warranty_Date" ColumnName="Warranty Date" />
+                <ScalarProperty Name="Price_PP1" ColumnName="Price PP1" />
+                <ScalarProperty Name="Price_PP2_KVBH_" ColumnName="Price PP2(KVBH)" />
+                <ScalarProperty Name="Gia_Xuat_Chi_Nhanh" ColumnName="Gia Xuat Chi Nhanh" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+                <ScalarProperty Name="Technical" ColumnName="Technical" />
+                <ScalarProperty Name="Size_Code" ColumnName="Size Code" />
+                <ScalarProperty Name="Color_Code" ColumnName="Color Code" />
+                <ScalarProperty Name="LogoManufacturer" ColumnName="LogoManufacturer" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Item_Code" ColumnName="Item Code" />
+                <ScalarProperty Name="Item_Code_2" ColumnName="Item Code 2" />
+                <ScalarProperty Name="To_Date" ColumnName="To Date" />
+                <ScalarProperty Name="From_Date" ColumnName="From Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
